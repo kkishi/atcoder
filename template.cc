@@ -11,10 +11,12 @@ void debug(T value, Ts... args) {
   std::cerr << value << ", ";
   debug(args...);
 }
-#define DBG(...)                \
-  cerr << #__VA_ARGS__ << ": "; \
-  debug(__VA_ARGS__);           \
-  cerr << " (L" << __LINE__ << ")" << endl
+#define DBG(...)                              \
+  do {                                        \
+    cerr << #__VA_ARGS__ << ": ";             \
+    debug(__VA_ARGS__);                       \
+    cerr << " (L" << __LINE__ << ")" << endl; \
+  } while (0)
 #else
 #define DBG(...)
 #endif
