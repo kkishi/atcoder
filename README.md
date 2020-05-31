@@ -10,6 +10,10 @@ Add this to .emacs:
 (defun ojs ()
   (interactive)
   (shell-command (concat "oj submit -y --no-open " (buffer-file-name (current-buffer)))))
+
+(defun ojts ()
+  (interactive)
+  (shell-command (concat "../../submit.sh " (buffer-file-name (current-buffer)))))
 ```
 
 To download samples, run:
