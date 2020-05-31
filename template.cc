@@ -43,7 +43,6 @@ void write_to_cout(const T& value, const Ts&... args) {
 #define COUT(...) write_to_cout(__VA_ARGS__);
 
 #define ALL(x) (x).begin(), (x).end()
-#define FOR(i, n) for (auto i : (n))
 #define REP(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using ll = long long;
