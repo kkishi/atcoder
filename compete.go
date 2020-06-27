@@ -74,7 +74,7 @@ func waitUntil(t time.Time) {
 	now := time.Now()
 	if t.After(now) {
 		d := t.Sub(now)
-		log.Printf("wait %s until the contest starts\n", d)
+		log.Printf("%s until the contest starts\n", d)
 		timer := time.NewTimer(d)
 		<-timer.C
 	}
