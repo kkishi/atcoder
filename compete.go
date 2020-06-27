@@ -6,7 +6,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -47,7 +46,11 @@ func download(contest string) {
 		}
 		mainCC := path.Join(dir, "main.cc")
 		if _, err := os.Stat(mainCC); os.IsNotExist(err) {
-			ioutil.WriteFile(mainCC, ([]byte)("atcoder"), 0660)
+			if file, err := os.Create(mainCC); err != nil {
+				log.Fatal(err)
+			} else {
+				file.Close()
+			}
 		}
 		url := fmt.Sprintf("https://atcoder.jp/contests/%[1]s/tasks/%[1]s_%[2]s",
 			contest, problem)
