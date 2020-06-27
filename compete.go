@@ -2,7 +2,6 @@
 package main
 
 import (
-	"bytes"
 	"errors"
 	"flag"
 	"fmt"
@@ -10,73 +9,94 @@ import (
 	"os"
 	"os/exec"
 	"path"
-	"strings"
 	"time"
 )
 
 var (
-	start   = flag.String("start", "0000/01/01 00:00:00", "")
-	contest = flag.String("contest", "", "")
+	start       = flag.String("start", "0000/01/01 00:00:00", "")
+	contest     = flag.String("contest", "", "")
+	numProblems = flag.Int("num_problems", 6, "")
 )
+
+type Contest struct {
+	Name     string
+	Problems []string
+}
+
+func newContest(name string, numProblems int) *Contest {
+	c := &Contest{
+		Name: *contest,
+	}
+	for i := 0; i < 6; i++ {
+		c.Problems = append(c.Problems, (string)([]byte{byte('a' + i)}))
+	}
+	return c
+}
 
 func exit(err error) {
 	log.Print(err)
 	os.Exit(1)
 }
 
-func wait(t time.Time) {
-	now := time.Now()
-	if t.After(now) {
-		d := t.Sub(now)
-		fmt.Printf("%s until the contest starts\n", d)
-		timer := time.NewTimer(d)
-		<-timer.C
+func exists(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true
 	}
+	if os.IsNotExist(err) {
+		return false
+	}
+	exit(err)
+	return false
 }
 
-func download(contest string) {
-	if err := os.Mkdir(contest, 0750); err != nil && !os.IsExist(err) {
+func createDirs(c *Contest) {
+	if err := os.Mkdir(c.Name, 0750); err != nil && !os.IsExist(err) {
 		exit(err)
 	}
-	for i := 0; i < 6; i++ {
-		problem := (string)([]byte{byte('a' + i)})
-		dir := path.Join(contest, problem)
+	for _, p := range c.Problems {
+		dir := path.Join(c.Name, p)
 		if err := os.Mkdir(dir, 0750); err != nil && !os.IsExist(err) {
 			exit(err)
 		}
 		mainCC := path.Join(dir, "main.cc")
-		if _, err := os.Stat(mainCC); os.IsNotExist(err) {
+		if !exists(mainCC) {
 			if file, err := os.Create(mainCC); err != nil {
 				log.Fatal(err)
 			} else {
 				file.Close()
 			}
 		}
+	}
+}
+
+func waitUntil(t time.Time) {
+	now := time.Now()
+	if t.After(now) {
+		d := t.Sub(now)
+		log.Printf("wait %s until the contest starts\n", d)
+		timer := time.NewTimer(d)
+		<-timer.C
+	}
+}
+
+func downloadSamples(c *Contest) {
+	for _, p := range c.Problems {
+		dir := path.Join(c.Name, p)
+		if testDir := path.Join(dir, "test"); exists(testDir) {
+			log.Printf("%s already exists; skip", testDir)
+			continue
+		}
 		url := fmt.Sprintf("https://atcoder.jp/contests/%[1]s/tasks/%[1]s_%[2]s",
-			contest, problem)
-		buf := new(bytes.Buffer)
+			c.Name, p)
 		cmd := exec.Command("oj", "d", url)
 		cmd.Dir = dir
 		cmd.Stdin = os.Stdin
 		cmd.Stdout = os.Stdout
-		cmd.Stderr = buf
+		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
-			if strings.Contains(buf.String(),
-				"[ERROR] Failed to download since file already exists:") {
-				continue
-			}
 			exit(err)
 		}
-	}
-}
-
-func emacs() {
-	cmd := exec.Command("emacs", "-nw", path.Join(*contest, "a/main.cc"))
-	cmd.Stdin = os.Stdin
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	if err := cmd.Run(); err != nil {
-		exit(err)
 	}
 }
 
@@ -91,7 +111,8 @@ func main() {
 		exit(errors.New("--contest not specified"))
 	}
 
-	wait(t)
-	go download(*contest)
-	emacs()
+	c := newContest(*contest, *numProblems)
+	createDirs(c)
+	waitUntil(t)
+	downloadSamples(c)
 }
