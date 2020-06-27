@@ -18,8 +18,8 @@ Add this to .emacs:
 
 To download samples, run:
 
-```bash
-./download.sh abc168
+```
+go run compete.go --contest=abc172 --start="2020/06/27 14:00:00"
 ```
 
 To run a judge test, use judge.sh.
