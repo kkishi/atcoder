@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"strings"
 	"time"
 )
 
@@ -27,7 +28,7 @@ func newContest(name string, numProblems int) *Contest {
 	c := &Contest{
 		Name: *contest,
 	}
-	for i := 0; i < 6; i++ {
+	for i := 0; i < numProblems; i++ {
 		c.Problems = append(c.Problems, (string)([]byte{byte('a' + i)}))
 	}
 	return c
@@ -87,8 +88,8 @@ func downloadSamples(c *Contest) {
 			log.Printf("%s already exists; skip", testDir)
 			continue
 		}
-		url := fmt.Sprintf("https://atcoder.jp/contests/%[1]s/tasks/%[1]s_%[2]s",
-			c.Name, p)
+		url := fmt.Sprintf("https://atcoder.jp/contests/%s/tasks/%s_%s",
+			c.Name, strings.ReplaceAll(c.Name, "-", "_"), p)
 		cmd := exec.Command("oj", "d", url)
 		cmd.Dir = dir
 		cmd.Stdin = os.Stdin
