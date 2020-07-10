@@ -5,33 +5,27 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 	"os/exec"
 	"path"
-	"strings"
+	"regexp"
 	"time"
 )
 
 var (
 	start       = flag.String("start", "0000/01/01 00:00:00", "")
 	contest     = flag.String("contest", "", "")
-	numProblems = flag.Int("num_problems", 6, "")
+	numProblems = flag.Int("num_problems", 0, "")
 )
+
+const rootDir = "contests"
 
 type Contest struct {
 	Name     string
 	Problems []string
-}
-
-func newContest(name string, numProblems int) *Contest {
-	c := &Contest{
-		Name: *contest,
-	}
-	for i := 0; i < numProblems; i++ {
-		c.Problems = append(c.Problems, (string)([]byte{byte('a' + i)}))
-	}
-	return c
 }
 
 func exit(err error) {
@@ -52,12 +46,9 @@ func exists(path string) bool {
 }
 
 func createDirs(c *Contest) {
-	if err := os.Mkdir(c.Name, 0750); err != nil && !os.IsExist(err) {
-		exit(err)
-	}
 	for _, p := range c.Problems {
-		dir := path.Join(c.Name, p)
-		if err := os.Mkdir(dir, 0750); err != nil && !os.IsExist(err) {
+		dir := path.Join(rootDir, c.Name, p)
+		if err := os.MkdirAll(dir, 0750); err != nil && !os.IsExist(err) {
 			exit(err)
 		}
 		mainCC := path.Join(dir, "main.cc")
@@ -81,15 +72,48 @@ func waitUntil(t time.Time) {
 	}
 }
 
+func getProblems(contest string) ([]string, bool) {
+	resp, err := http.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/tasks", contest))
+	if err != nil {
+		exit(err)
+	}
+	if resp.StatusCode == 404 {
+		log.Print("task page not ready")
+		return nil, false
+	}
+	if resp.StatusCode != 200 {
+		exit(fmt.Errorf("status: %d", resp.StatusCode))
+	}
+	defer resp.Body.Close()
+	buf, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		exit(err)
+	}
+	body := string(buf)
+	re := regexp.MustCompile(fmt.Sprintf("\"/contests/%s/tasks/(.+)\"", contest))
+	ms := re.FindAllStringSubmatch(body, -1)
+	seen := map[string]bool{}
+	var problems []string
+	for _, m := range ms {
+		if len(m) != 2 {
+			continue
+		}
+		if p := m[1]; !seen[p] {
+			seen[p] = true
+			problems = append(problems, p)
+		}
+	}
+	return problems, true
+}
+
 func downloadSamples(c *Contest) {
 	for _, p := range c.Problems {
-		dir := path.Join(c.Name, p)
+		dir := path.Join(rootDir, c.Name, p)
 		if testDir := path.Join(dir, "test"); exists(testDir) {
 			log.Printf("%s already exists; skip", testDir)
 			continue
 		}
-		url := fmt.Sprintf("https://atcoder.jp/contests/%s/tasks/%s_%s",
-			c.Name, strings.ReplaceAll(c.Name, "-", "_"), p)
+		url := fmt.Sprintf("https://atcoder.jp/contests/%s/tasks/%s", c.Name, p)
 		cmd := exec.Command("oj", "d", url)
 		cmd.Dir = dir
 		cmd.Stdin = os.Stdin
@@ -112,7 +136,22 @@ func main() {
 		exit(errors.New("--contest not specified"))
 	}
 
-	c := newContest(*contest, *numProblems)
+	var problems []string
+	if *numProblems == 0 {
+		ps, ok := getProblems(*contest)
+		if !ok {
+			exit(errors.New("failed to get problems"))
+		}
+		problems = ps
+	} else {
+		for i := 0; i < *numProblems; i++ {
+			problems = append(problems, *contest+"_"+(string)([]byte{byte('a' + i)}))
+		}
+	}
+	c := &Contest{
+		Name:     *contest,
+		Problems: problems,
+	}
 	createDirs(c)
 	waitUntil(t)
 	downloadSamples(c)
