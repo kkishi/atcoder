@@ -169,14 +169,13 @@ int main() {
   rep(i, n) cin >> s[i];
   vector<int> t(m);
   rep(i, m) cin >> t[i];
+
   vector<vector<mint>> dp(n + 1, vector<mint>(m + 1));
-  dp[0][0] = 1;
+  rep(i, n + 1) dp[i][0] = 1;
+  rep(i, m + 1) dp[0][i] = 1;
   rep(i, n) rep(j, m) {
-    if (s[i] == t[j]) {
-      rep(k, i + 1) rep(l, j + 1) dp[i + 1][j + 1] += dp[k][l];
-    }
+    dp[i + 1][j + 1] = dp[i + 1][j] + dp[i][j + 1];
+    if (s[i] != t[j]) dp[i + 1][j + 1] -= dp[i][j];
   }
-  mint ans = 0;
-  rep(i, n + 1) rep(j, m + 1) ans += dp[i][j];
-  out(ans);
+  out(dp[n][m]);
 }

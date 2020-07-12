@@ -51,10 +51,13 @@ using namespace std;
 
 int main() {
   in(ll, n);
+  vector<ll> p(n + 1);
   ll ans = 0;
-  for (int i = 1; i <= n; ++i) {
-    ll x = n / i;
-    ans += i * x * (x + 1) / 2;
+  for (ll i = 1; i <= n; ++i) {
+    for (ll j = i; j <= n; j += i) {
+      ++p[j];
+    }
+    ans += i * p[i];
   }
   out(ans);
 }

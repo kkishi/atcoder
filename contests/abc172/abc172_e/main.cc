@@ -81,7 +81,7 @@ class ModInt {
     return *this;
   }
   ModInt& operator/=(const ModInt& m) {
-    *this *= m.inverse();
+    *this *= m.Inv();
     return *this;
   }
 #define DEFINE_BINARY_OPERATOR(op) \
@@ -100,9 +100,10 @@ class ModInt {
   DEFINE_COMPARISON_OPERATOR(>)
   DEFINE_COMPARISON_OPERATOR(>=)
 #undef BDEFINE_COMPARISON_OPERATOR
-  ModInt pow(int n) const {
+  ModInt operator-() const { return ModInt(-n_); }
+  ModInt Pow(int n) const {
     if (n < 0) {
-      return inverse().pow(-n);
+      return Inv().Pow(-n);
     }
     // a * b ^ n = answer.
     ModInt a = 1, b = *this;
@@ -115,45 +116,44 @@ class ModInt {
     }
     return a;
   }
-  ModInt inverse() const {
+  ModInt Inv() const {
     // Compute the inverse based on Fermat's little theorem. Note that this only
     // works when n_ and Mod are relatively prime. The theorem says that
     // n_^(Mod-1) = 1 (mod Mod). So we can compute n_^(Mod-2).
-    return pow(Mod - 2);
+    return Pow(Mod - 2);
   }
   long long value() const { return n_; }
 
-  static ModInt factorial(int n) {
-    for (int i = factorial_.size(); i <= n; ++i) {
-      factorial_.push_back(i == 0 ? 1 : factorial_.back() * i);
+  static ModInt Fact(int n) {
+    for (int i = fact_.size(); i <= n; ++i) {
+      fact_.push_back(i == 0 ? 1 : fact_.back() * i);
     }
-    return factorial_[n];
+    return fact_[n];
   }
-  static ModInt combination(int n, int k) {
+  static ModInt Comb(int n, int k) { return Perm(n, k) / Fact(k); }
+  static ModInt CombSlow(int n, int k) { return PermSlow(n, k) / Fact(k); }
+  static ModInt Perm(int n, int k) {
 #if DEBUG
     assert(n <= 1000000 &&
-           "n is too large. If k is small, consider using combination_slow.");
+           "n is too large. If k is small, consider using PermSlow.");
 #endif
-    return permutation(n, k) / factorial(k);
+    return Fact(n) / Fact(n - k);
   }
-  static ModInt permutation(int n, int k) {
-    return factorial(n) / factorial(n - k);
-  }
-  static ModInt combination_slow(int n, int k) {
-    ModInt numerator = 1;
+  static ModInt PermSlow(int n, int k) {
+    ModInt p = 1;
     for (int i = 0; i < k; ++i) {
-      numerator *= (n - i);
+      p *= (n - i);
     }
-    return numerator / factorial(k);
+    return p;
   }
 
  private:
   long long n_;
-  static std::vector<ModInt> factorial_;
+  static std::vector<ModInt> fact_;
 };
 
 template <int Mod>
-std::vector<ModInt<Mod>> ModInt<Mod>::factorial_;
+std::vector<ModInt<Mod>> ModInt<Mod>::fact_;
 
 template <int Mod>
 std::ostream& operator<<(std::ostream& out, const ModInt<Mod>& m) {
@@ -163,14 +163,14 @@ std::ostream& operator<<(std::ostream& out, const ModInt<Mod>& m) {
 
 using mint = ModInt<1000000007>;
 
-mint P(int n, int m) { return mint::factorial(n) / mint::factorial(n - m); }
-
 int main() {
   in(int, n, m);
-  mint ans = P(m, n).pow(2);
-  for (int i = 1; i <= n; ++i) {
-    ans += mint::combination(n, i) * P(m, i) * P(m - i, n - i).pow(2) *
-           ((i & 1) ? -1 : 1);
+  mint ans = 0;
+  for (int i = 0; i <= n; ++i) {
+    mint x =
+        mint::Comb(n, i) * mint::Perm(m, i) * mint::Perm(m - i, n - i).Pow(2);
+    if (i & 1) x = -x;
+    ans += x;
   }
   out(ans);
 }
