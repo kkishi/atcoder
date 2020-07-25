@@ -12,6 +12,7 @@ import (
 	"os/exec"
 	"path"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -145,7 +146,7 @@ func main() {
 		problems = ps
 	} else {
 		for i := 0; i < *numProblems; i++ {
-			problems = append(problems, *contest+"_"+(string)([]byte{byte('a' + i)}))
+			problems = append(problems, strings.Replace(*contest, "-", "_", -1)+"_"+(string)([]byte{byte('a' + i)}))
 		}
 	}
 	c := &Contest{
