@@ -49,21 +49,13 @@ using ll = long long;
 
 using namespace std;
 
-int pow2(int x, int i) {
-  rep(j, i) x *= 2;
-  return x;
-}
-
 int main() {
-  in(int, a, b, c, K);
-  for (int i = 0; i <= K; ++i) {
-    for (int j = 0; i + j <= K; ++j) {
-      for (int k = 0; i + j + k <= K; ++k) {
-        if (pow2(a, i) < pow2(b, j) && pow2(c, k) > pow2(b, j)) {
-          out("Yes");
-          return 0;
-        }
-      }
+  in(int, a, b, c, k);
+  rep(ai, k + 1) rep(bi, k + 1) rep(ci, k + 1) if (ai + bi + ci <= k) {
+    int A = a << ai, B = b << bi, C = c << ci;
+    if (A < B && B < C) {
+      out("Yes");
+      return 0;
     }
   }
   out("No");

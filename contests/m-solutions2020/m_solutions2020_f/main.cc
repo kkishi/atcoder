@@ -49,131 +49,56 @@ using ll = long long;
 
 using namespace std;
 
-template <typename T>
-bool Setmin(T& a, T b) {
-  if (a > b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
-template <typename T>
-T BinarySearch(T lo, T hi, std::function<bool(T)> pred) {
-  while (lo + 1 < hi) {
-    T mid = (hi - lo) / 2 + lo;
-    if (pred(mid)) {
-      lo = mid;
-    } else {
-      hi = mid;
-    }
-  }
-  return lo;
-}
-
 int main() {
   in(ll, n);
   vector<ll> x(n), y(n);
   vector<char> u(n);
   rep(i, n) cin >> x[i] >> y[i] >> u[i];
 
-  const ll M = 400005;
+  const ll M = 400001;
   const ll inf = numeric_limits<ll>::max();
   ll t = inf;
-  auto pi = [&](int i) { return x[i] + y[i]; };
-  auto mi = [&](int i) { return x[i] + (200000 - y[i]); };
-  // R L
-  {
-    vector<vector<ll>> r(M);
-    rep(i, n) if (u[i] == 'R') r[y[i]].push_back(x[i]);
-    rep(i, M) sort(all(r[i]));
-    rep(i, n) if (u[i] == 'L') {
-      const auto& ri = r[y[i]];
-      if (ri.empty()) continue;
-      int j =
-          BinarySearch<int>(0, ri.size(), [&](int k) { return ri[k] < x[i]; });
-      if (ri[j] < x[i]) {
-        t = min(t, (x[i] - ri[j]) * 10 / 2);
+  rep(rot, 4) {
+    // R L
+    {
+      vector<vector<ll>> r(M);
+      rep(i, n) if (u[i] == 'R') r[y[i]].push_back(x[i]);
+      rep(i, M) sort(all(r[i]));
+      rep(i, n) if (u[i] == 'L') {
+        const auto& ri = r[y[i]];
+        if (ri.empty()) continue;
+        auto it = lower_bound(all(ri), x[i]);
+        if (it != ri.begin()) {
+          if (ll d = x[i] - *(it - 1); d > 0) {
+            t = min(t, d * 10 / 2);
+          }
+        }
       }
     }
-  }
-  // D U
-  {
-    vector<vector<ll>> r(M);
-    rep(i, n) if (u[i] == 'U') r[x[i]].push_back(y[i]);
-    rep(i, M) sort(all(r[i]));
-    rep(i, n) if (u[i] == 'D') {
-      const auto& ri = r[x[i]];
-      if (ri.empty()) continue;
-      int j =
-          BinarySearch<int>(0, ri.size(), [&](int k) { return ri[k] < y[i]; });
-      if (ri[j] < y[i]) {
-        t = min(t, (y[i] - ri[j]) * 10 / 2);
+    // R U
+    {
+      vector<vector<ll>> r(M);
+      rep(i, n) if (u[i] == 'R') r[x[i] + y[i]].push_back(x[i]);
+      rep(i, M) sort(all(r[i]));
+      rep(i, n) if (u[i] == 'U') {
+        const auto& ri = r[x[i] + y[i]];
+        if (ri.empty()) continue;
+        auto it = lower_bound(all(ri), x[i]);
+        if (it != ri.begin()) {
+          if (ll d = x[i] - *(it - 1); d > 0) {
+            t = min(t, d * 10);
+          }
+        }
       }
     }
-  }
-  // R U
-  {
-    vector<vector<ll>> r(M);
-    rep(i, n) if (u[i] == 'R') r[pi(i)].push_back(x[i]);
-    rep(i, M) sort(all(r[i]));
-    rep(i, n) if (u[i] == 'U') {
-      const auto& ri = r[pi(i)];
-      if (ri.empty()) continue;
-      dbg(ri.size(), x[i], ri[0]);
-      int j =
-          BinarySearch<int>(0, ri.size(), [&](int k) { return ri[k] < x[i]; });
-      if (ri[j] < x[i]) {
-        t = min(t, (x[i] - ri[j]) * 10);
-      }
-    }
-  }
-  // R D ?
-  {
-    vector<vector<ll>> r(M);
-    rep(i, n) if (u[i] == 'R') r[mi(i)].push_back(x[i]);
-    rep(i, M) sort(all(r[i]));
-    rep(i, n) if (u[i] == 'D') {
-      const auto& ri = r[mi(i)];
-      if (ri.empty()) continue;
-      dbg(ri.size(), x[i], ri[0]);
-      int j =
-          BinarySearch<int>(0, ri.size(), [&](int k) { return ri[k] < x[i]; });
-      if (ri[j] < x[i]) {
-        t = min(t, (x[i] - ri[j]) * 10);
-      }
-    }
-  }
-  // L U
-  {
-    vector<vector<ll>> r(M);
-    rep(i, n) if (u[i] == 'U') r[mi(i)].push_back(x[i]);
-    rep(i, M) sort(all(r[i]));
-    rep(i, n) if (u[i] == 'L') {
-      const auto& ri = r[mi(i)];
-      if (ri.empty()) continue;
-      dbg(ri.size(), x[i], ri[0]);
-      int j =
-          BinarySearch<int>(0, ri.size(), [&](int k) { return ri[k] < x[i]; });
-      if (ri[j] < x[i]) {
-        t = min(t, (x[i] - ri[j]) * 10);
-      }
-    }
-  }
-  // L D ?
-  {
-    vector<vector<ll>> r(M);
-    rep(i, n) if (u[i] == 'D') r[pi(i)].push_back(x[i]);
-    rep(i, M) sort(all(r[i]));
-    rep(i, n) if (u[i] == 'L') {
-      const auto& ri = r[pi(i)];
-      if (ri.empty()) continue;
-      dbg(ri.size(), x[i], ri[0]);
-      int j =
-          BinarySearch<int>(0, ri.size(), [&](int k) { return ri[k] < x[i]; });
-      if (ri[j] < x[i]) {
-        t = min(t, (x[i] - ri[j]) * 10);
-      }
+    // Rotate 90 degrees.
+    rep(i, n) {
+      int nx = 200000 - y[i];
+      int ny = x[i];
+      x[i] = nx;
+      y[i] = ny;
+      u[i] =
+          map<char, char>{{'R', 'U'}, {'L', 'D'}, {'U', 'L'}, {'D', 'R'}}[u[i]];
     }
   }
   if (t == inf) {

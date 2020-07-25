@@ -1,8 +1,5 @@
 #include <bits/stdc++.h>
 
-#include <boost/multiprecision/cpp_dec_float.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
-
 // #undef DEBUG  // Uncomment this line to forcefully disable debug print.
 #if DEBUG
 template <typename T>
@@ -52,12 +49,9 @@ using ll = long long;
 
 using namespace std;
 
-using bigint = boost::multiprecision::cpp_int;
-using decfloat = boost::multiprecision::cpp_dec_float_50;
-
 int main() {
-  in(ll, n, k);
-  vector<bigint> a(n);
+  in(int, n, k);
+  vector<int> a(n);
   rep(i, n) cin >> a[i];
   for (int i = k; i < n; ++i) {
     if (a[i] > a[i - k]) {

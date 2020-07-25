@@ -51,22 +51,5 @@ using namespace std;
 
 int main() {
   in(int, x);
-  int dan;
-  if (x < 600)
-    dan = 8;
-  else if (x < 800)
-    dan = 7;
-  else if (x < 1000)
-    dan = 6;
-  else if (x < 1200)
-    dan = 5;
-  else if (x < 1400)
-    dan = 4;
-  else if (x < 1600)
-    dan = 3;
-  else if (x < 1800)
-    dan = 2;
-  else if (x < 2000)
-    dan = 1;
-  out(dan);
+  out(8 - (x - 400) / 200);
 }
