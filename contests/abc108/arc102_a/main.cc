@@ -49,4 +49,13 @@ using ll = long long;
 
 using namespace std;
 
-int main() {}
+int main() {
+  in(ll, n, k);
+  ll x = n / k;
+  ll ans = x * x * x;
+  if (!(k & 1)) {
+    ll y = (n + k / 2) / k;
+    ans += y * y * y;
+  }
+  out(ans);
+}
