@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // Test
+            "label": "t",
+            "type": "shell",
+            "command": "go run oj/oj.go --file=${file} -t",
+            "problemMatcher": []
+        },
+        {
+            // Submit if test passes
+            "label": "s",
+            "type": "shell",
+            "command": "go run oj/oj.go --file=${file} -t -s",
+            "problemMatcher": []
+        },
+        {
+            // Submit without test
+            "label": "f",
+            "type": "shell",
+            "command": "go run oj/oj.go --file=${file} -s",
+            "problemMatcher": []
+        }
+    ]
+}
