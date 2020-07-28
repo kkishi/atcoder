@@ -51,36 +51,21 @@ using namespace std;
 
 int main() {
   in(ll, n);
-  ll ans = 0;
-  while (n) {
-    if (n < 0) {
-      ll val = -2;
-      ll sum = -2;
-      while (sum > n) {
-        val *= 4;
-        sum += val;
-      }
-      dbg(n, val, sum);
-      ans |= -val;
-      n -= val;
-    } else {
-      ll val = 1;
-      ll sum = 1;
-      while (sum < n) {
-        val *= 4;
-        sum += val;
-      }
-      dbg(n, val, sum);
-      ans |= val;
-      n -= val;
-    }
-  }
-  if (int clz = __builtin_clzll(ans); clz == 64) {
+  if (!n) {
     out(0);
-  } else {
-    for (int i = 63 - clz; i >= 0; --i) {
-      cout << ((ans >> i) & 1);
-    }
-    cout << endl;
+    return 0;
   }
+  string ans;
+  ll bit = 1;
+  while (n) {
+    if (abs(n) % 2 == 1) {
+      n -= 1;
+      ans = '1' + ans;
+    } else {
+      ans = '0' + ans;
+    }
+    n /= -2;
+    bit <<= 1;
+  }
+  out(ans);
 }
