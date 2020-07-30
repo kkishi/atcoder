@@ -50,13 +50,12 @@ using ll = long long;
 using namespace std;
 
 int main() {
-  in(string, s);
-  in(int, k);
-  rep(i, s.size()) {
-    if (k == 1 || s[i] != '1') {
-      out(s[i]);
+  in(int, n);
+  for (int i = 0; i * 4 <= n; ++i) {
+    if ((n - i * 4) % 7 == 0) {
+      out("Yes");
       return 0;
     }
-    --k;
   }
+  out("No");
 }

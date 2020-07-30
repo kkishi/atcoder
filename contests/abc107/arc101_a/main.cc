@@ -50,13 +50,13 @@ using ll = long long;
 using namespace std;
 
 int main() {
-  in(string, s);
-  in(int, k);
-  rep(i, s.size()) {
-    if (k == 1 || s[i] != '1') {
-      out(s[i]);
-      return 0;
-    }
-    --k;
+  in(int, n, k);
+  vector<ll> x(n);
+  rep(i, n) cin >> x[i];
+  ll ans = numeric_limits<ll>::max();
+  for (int i = k - 1; i < n; ++i) {
+    ll l = x[i - (k - 1)], h = x[i];
+    ans = min(ans, h - l + min(abs(h), abs(l)));
   }
+  out(ans);
 }

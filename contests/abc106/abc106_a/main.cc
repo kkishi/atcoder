@@ -51,5 +51,10 @@ using namespace std;
 
 int main() {
   in(int, a, b);
+<<<<<<< HEAD
   out(a * b - (a + b) + 1);
 }
+=======
+  out((a - 1) * (b - 1));
+}
+>>>>>>> 142bde4179a72294b6be4edc210579536b054ca5

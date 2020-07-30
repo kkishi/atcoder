@@ -50,13 +50,13 @@ using ll = long long;
 using namespace std;
 
 int main() {
-  in(string, s);
-  in(int, k);
-  rep(i, s.size()) {
-    if (k == 1 || s[i] != '1') {
-      out(s[i]);
-      return 0;
-    }
-    --k;
+  in(int, h, w);
+  vector<string> a(h);
+  rep(i, h) cin >> a[i];
+  vector<bool> r(h), c(w);
+  rep(i, h) rep(j, w) if (a[i][j] == '#') r[i] = c[j] = true;
+  rep(i, h) if (r[i]) {
+    rep(j, w) if (c[j]) cout << a[i][j];
+    cout << endl;
   }
 }

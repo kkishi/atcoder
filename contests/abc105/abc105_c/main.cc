@@ -50,13 +50,22 @@ using ll = long long;
 using namespace std;
 
 int main() {
-  in(string, s);
-  in(int, k);
-  rep(i, s.size()) {
-    if (k == 1 || s[i] != '1') {
-      out(s[i]);
-      return 0;
-    }
-    --k;
+  in(ll, n);
+  if (!n) {
+    out(0);
+    return 0;
   }
+  string ans;
+  ll bit = 1;
+  while (n) {
+    if (abs(n) % 2 == 1) {
+      n -= 1;
+      ans = '1' + ans;
+    } else {
+      ans = '0' + ans;
+    }
+    n /= -2;
+    bit <<= 1;
+  }
+  out(ans);
 }

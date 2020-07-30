@@ -49,14 +49,19 @@ using ll = long long;
 
 using namespace std;
 
+bool ok(const string& s) {
+  if (s[0] != 'A') {
+    return false;
+  }
+  if (count(s.begin() + 2, s.end() - 1, 'C') != 1) {
+    return false;
+  }
+  int lower = 0;
+  for (char c : s) if (islower(c)) ++lower;
+  return lower == s.size() - 2;
+}
+
 int main() {
   in(string, s);
-  in(int, k);
-  rep(i, s.size()) {
-    if (k == 1 || s[i] != '1') {
-      out(s[i]);
-      return 0;
-    }
-    --k;
-  }
+  out(ok(s) ? "AC" : "WA");
 }
