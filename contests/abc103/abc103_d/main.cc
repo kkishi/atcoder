@@ -55,17 +55,15 @@ int main() {
   vector<P> v;
   rep(i, m) {
     in(int, a, b);
-    v.push_back({a, b});
+    v.push_back({b, a});
   }
   sort(all(v));
   int ans = 0;
-  priority_queue<int> que;
-  for (auto [a, b] : v) {
-    if (!que.empty() && -que.top() <= a) {
-      ++ans;
-      while (!que.empty()) que.pop();
-    }
-    que.push(-b);
+  int last = 0;
+  for (auto [b, a] : v) {
+    if (a < last && last <= b) continue;
+    ++ans;
+    last = b;
   }
-  out(ans + 1);
+  out(ans);
 }
