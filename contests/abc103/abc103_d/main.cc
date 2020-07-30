@@ -52,37 +52,20 @@ using namespace std;
 
 int main() {
   in(int, n, m);
-  set<P> s;
+  vector<P> v;
   rep(i, m) {
     in(int, a, b);
-    auto intersection = [](P a, P b) -> optional<P> {
-      if (a.second <= b.first || b.second <= a.first) {
-        return nullopt;
-      }
-      return {{max(a.first, b.first), min(a.second, b.second)}};
-    };
-    auto it = s.insert({a, b}).first;
-    if (it != s.begin()) {
-      auto jt = prev(it);
-      auto i = intersection(*it, *jt);
-      if (i) {
-        assert(i->first < i->second);
-        s.erase(it);
-        s.erase(jt);
-        s.insert(*i);
-        continue;
-      }
-    }
-    if (auto jt = next(it); jt != s.end()) {
-      auto i = intersection(*it, *jt);
-      if (i) {
-        assert(i->first < i->second);
-        s.erase(it);
-        s.erase(jt);
-        s.insert(*i);
-        continue;
-      }
-    }
+    v.push_back({a, b});
   }
-  out(s.size());
+  sort(all(v));
+  int ans = 0;
+  priority_queue<int> que;
+  for (auto [a, b] : v) {
+    if (!que.empty() && -que.top() <= a) {
+      ++ans;
+      while (!que.empty()) que.pop();
+    }
+    que.push(-b);
+  }
+  out(ans + 1);
 }
