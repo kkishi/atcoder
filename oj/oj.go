@@ -6,15 +6,18 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"strings"
 )
 
 var (
 	file      = flag.String("file", "", "")
 	runTest   = flag.Bool("t", false, "")
 	runSubmit = flag.Bool("s", false, "")
+	dbg       = flag.Bool("dbg", false, "")
 )
 
 func run(dir, name string, arg ...string) error {
+	log.Printf("$ %s %s", name, strings.Join(arg, " "))
 	cmd := exec.Command(name, arg...)
 	cmd.Dir = dir
 	cmd.Stdin = os.Stdin
@@ -23,12 +26,24 @@ func run(dir, name string, arg ...string) error {
 	return cmd.Run()
 }
 
-func build(dir, base string) error {
-	return run(dir, "g++", "-O2", "-std=c++17", "-DDEBUG", base)
+func build(dir, base string, dbg bool) error {
+	args := []string{"-std=c++17", "-DDEBUG"}
+	if dbg {
+		args = append(args, "-g", "-fsanitize=address,undefined")
+	} else {
+		args = append(args, "-O2")
+	}
+	return run(dir, "g++", append(args, base)...)
 }
 
-func test(dir string) error {
-	return run(dir, "oj", "t", "-t", "2", "--mle", "1024")
+func test(dir string, dbg bool) error {
+	var timeLimit string
+	if dbg {
+		timeLimit = "10"
+	} else {
+		timeLimit = "3"
+	}
+	return run(dir, "oj", "t", "-t", timeLimit, "--mle", "1024")
 }
 
 func submit(dir, base string) error {
@@ -41,11 +56,11 @@ func main() {
 		log.Fatal("--file is not specified")
 	}
 	dir, base := path.Dir(*file), path.Base(*file)
-	if err := build(dir, base); err != nil {
+	if err := build(dir, base, *dbg); err != nil {
 		log.Fatalf("build failed: %s", err)
 	}
 	if *runTest {
-		if err := test(dir); err != nil {
+		if err := test(dir, *dbg); err != nil {
 			log.Fatalf("test failed: %s", err)
 		}
 	}
