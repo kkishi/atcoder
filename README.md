@@ -1,25 +1,53 @@
+# Setup
+
 Install online-judge-tools (oj).
 
-Add this to .emacs:
+For Emacs, add this to .emacs:
 
 ```
 (defun ojt ()
   (interactive)
-  (shell-command (concat "g++ -O2 -std=c++17 -DDEBUG " (buffer-file-name (current-buffer)) " && oj t -t 2 --mle 1024")))
-
+  (save-buffer)
+  (shell-command (concat "go run ../../../oj/oj.go -t --file=" (buffer-file-name (current-buffer)))))
 (defun ojs ()
   (interactive)
-  (shell-command (concat "oj submit -y --no-open " (buffer-file-name (current-buffer)))))
-
-(defun ojts ()
+  (save-buffer)
+  (shell-command (concat "go run ../../../oj/oj.go -t -s --file=" (buffer-file-name (current-buffer)))))
+(defun ojf ()
   (interactive)
-  (shell-command (concat "../../submit.sh " (buffer-file-name (current-buffer)))))
+  (save-buffer)
+  (shell-command (concat "go run ../../../oj/oj.go -s --file=" (buffer-file-name (current-buffer)))))
 ```
 
-To download samples, run:
+For VS Code, add this to keybindings.json:
+```
+[
+    {
+        "key": "ctrl+i t",
+        "command": "workbench.action.tasks.runTask",
+        "args": "t"
+    },
+    {
+        "key": "ctrl+i s",
+        "command": "workbench.action.tasks.runTask",
+        "args": "s"
+    },
+    {
+        "key": "ctrl+i f",
+        "command": "workbench.action.tasks.runTask",
+        "args": "f"
+    }
+]
+```
+
+# Solving problems
+
+Run:
 
 ```
 go run compete.go --contest=abc172 --start="2020/06/27 14:00:00"
 ```
 
-To run a judge test, use judge.sh.
+# Testing with the judge inputs
+
+Use `judge.sh` after downloading the inputs (in/ and out/ directories).
