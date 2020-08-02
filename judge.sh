@@ -1,6 +1,6 @@
 base=$(pwd)
 for file in $base/in/*; do
-  diff=$($base/a.out < $file | diff --strip-trailing-cr - $base/out/$(basename $file))
+  time diff=$($base/a.out < $file | diff --strip-trailing-cr - $base/out/$(basename $file))
   if [ "$diff" = "" ]; then
     echo $(basename $file) OK
   else

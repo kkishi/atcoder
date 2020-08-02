@@ -52,38 +52,66 @@ using V = std::vector<T>;
 template <typename T>
 using VV = V<V<T>>;
 
-using namespace std;
-
-using P = pair<int, int>;
-
-struct Q {
-  P lr;
-  int bucket;
-  int i;
-  int kinds;
+struct Query {
+  int begin, end, index;
 };
+
+template <typename T>
+class Mo {
+ public:
+  using F = std::function<void(int)>;
+  using G = std::function<T()>;
+  Mo(F add, F del, G get)
+      : add_(add), del_(del), get_(get), index_(0), prev_(-1) {}
+  std::pair<int, T> ProcessQuery() {
+    if (prev_ == -1) {
+      sort(queries_.begin(), queries_.end(),
+           [](const Query& a, const Query& b) {
+             int ba = sqrt(a.begin), bb = sqrt(b.begin);
+             if (ba != bb) return ba < bb;
+             return a.end < b.end;
+           });
+      prev_ = 0;
+      const Query& q = queries_[0];
+      Add(q.begin, q.end);
+      return {q.index, get_()};
+    }
+    const Query& p = queries_[prev_];
+    const Query& c = queries_[prev_ + 1];
+    ++prev_;
+    Add(c.begin, p.begin);
+    Delete(p.begin, c.begin);
+    Add(p.end, c.end);
+    Delete(c.end, p.end);
+    return {c.index, get_()};
+  }
+  void AddQuery(int begin, int end) {
+    queries_.push_back({begin, end, index_++});
+  }
+
+ private:
+  void Add(int begin, int end) {
+    for (int i = begin; i < end; ++i) {
+      add_(i);
+    }
+  }
+  void Delete(int begin, int end) {
+    for (int i = begin; i < end; ++i) {
+      del_(i);
+    }
+  }
+  const F add_, del_;
+  const G get_;
+  int index_, prev_;
+  std::vector<Query> queries_;
+};
+
+using namespace std;
 
 int main() {
   in(int, n, q);
   V<int> c(n);
   rep(i, n) cin >> c[i];
-
-  auto bucket = [](int i) { return int(sqrt(i)); };
-
-  V<Q> qs(q);
-  rep(i, q) {
-    cin >> qs[i].lr.first >> qs[i].lr.second;
-    --qs[i].lr.first;
-    --qs[i].lr.second;
-    qs[i].i = i;
-    qs[i].bucket = bucket(qs[i].lr.first);
-  }
-  sort(all(qs), [](const Q& l, const Q& r) {
-    if (l.bucket != r.bucket) {
-      return l.bucket < r.bucket;
-    }
-    return l.lr.second < r.lr.second;
-  });
 
   vector<int> kinds(n + 1);
   int n_kinds = 0;
@@ -99,37 +127,17 @@ int main() {
       --n_kinds;
     }
   };
+  auto get = [&]() { return n_kinds; };
+  Mo<int> mo(add, del, get);
   rep(i, q) {
-    auto [L, R] = qs[i].lr;
-    if (i == 0 || qs[i].bucket != qs[i - 1].bucket) {
-      n_kinds = 0;
-      rep(i, n) kinds[i + 1] = 0;
-      for (int j = L; j <= R; ++j) {
-        add(j);
-      }
-    } else {
-      auto [PL, PR] = qs[i - 1].lr;
-      if (PL < L) {
-        for (int j = PL; j < L; ++j) {
-          del(j);
-        }
-      } else {
-        for (int j = L; j < PL; ++j) {
-          add(j);
-        }
-      }
-      if (PR < R) {
-        for (int j = R; j > PR; --j) {
-          add(j);
-        }
-      } else {
-        for (int j = PR; j > R; --j) {
-          del(j);
-        }
-      }
-    }
-    qs[i].kinds = n_kinds;
+    in(int, l, r);
+    mo.AddQuery(l - 1, r);
   }
-  sort(all(qs), [](const Q& l, const Q& r) { return l.i < r.i; });
-  rep(i, q) { out(qs[i].kinds); }
+
+  vector<int> ans(q);
+  rep(i, q) {
+    auto [idx, x] = mo.ProcessQuery();
+    ans[idx] = x;
+  }
+  rep(i, q) out(ans[i]);
 }
