@@ -54,23 +54,20 @@ using VV = V<V<T>>;
 
 using namespace std;
 
-using ld = long double;
-const ld eps = 0.0000000001;
-
 int main() {
   in(ll, n, k);
-  V<ld> a(n);
+  V<ll> a(n);
   rep(i, n) cin >> a[i];
-  ld lo = 0, hi = *max_element(all(a));
-  rep(iter, 400) {
-    ld mid = (hi + lo) / 2;
+  ll ng = 0, ok = *max_element(all(a));
+  while (ok - ng > 1) {
+    ll mid = (ng + ok) / 2;
     ll cuts = 0;
-    rep(i, n) cuts += (a[i] / mid) - eps;
+    rep(i, n) cuts += (a[i] - 1) / mid;
     if (cuts <= k) {
-      hi = mid;
+      ok = mid;
     } else {
-      lo = mid;
+      ng = mid;
     }
   }
-  out(ll(ceil(lo) + eps));
+  out(ok);
 }

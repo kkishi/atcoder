@@ -54,23 +54,63 @@ using VV = V<V<T>>;
 
 using namespace std;
 
-using ld = long double;
-const ld eps = 0.0000000001;
-
-int main() {
-  in(ll, n, k);
-  V<ld> a(n);
-  rep(i, n) cin >> a[i];
-  ld lo = 0, hi = *max_element(all(a));
-  rep(iter, 400) {
-    ld mid = (hi + lo) / 2;
-    ll cuts = 0;
-    rep(i, n) cuts += (a[i] / mid) - eps;
-    if (cuts <= k) {
-      hi = mid;
-    } else {
-      lo = mid;
+template <typename T>
+class BIT {
+ public:
+  BIT(int n) : v_(n) {}
+  T Sum(int i) const {
+    T ret = 0;
+    while (i >= 0) {
+      ret += v_[i];
+      i = (i & (i + 1)) - 1;
+    }
+    return ret;
+  }
+  T Get(int i) const { return Sum(i) - Sum(i - 1); }
+  void Add(int i, T v) {
+    while (i < v_.size()) {
+      v_[i] += v;
+      i |= i + 1;
     }
   }
-  out(ll(ceil(lo) + eps));
+
+ private:
+  std::vector<T> v_;
+};
+
+struct Q {
+  int l, r, i, v;
+};
+
+int main() {
+  in(int, n, q);
+  V<int> c(n);
+  rep(i, n) cin >> c[i];
+  V<Q> qs;
+  rep(i, q) {
+    in(int, l, r);
+    --l, --r;
+    qs.push_back({l, r, i, 0});
+  }
+  sort(all(qs), [](const Q& a, const Q& b) { return a.r < b.r; });
+  V<int> seen(n, -1);
+  int seen_cnt = 0;
+  BIT<int> bit(n);
+  auto qit = qs.begin();
+  V<int> ans(q);
+  rep(i, n) {
+    int& s = seen[c[i] - 1];
+    if (s == -1) {
+      ++seen_cnt;
+    } else {
+      bit.Add(s, -1);
+    }
+    s = i;
+    bit.Add(i, 1);
+    while (qit != qs.end() && qit->r == i) {
+      ans[qit->i] = seen_cnt - bit.Sum(qit->l - 1);
+      ++qit;
+    }
+  }
+  rep(i, q) out(ans[i]);
 }
