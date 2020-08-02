@@ -28,6 +28,11 @@ For VS Code, add this to keybindings.json:
         "args": "t"
     },
     {
+        "key": "ctrl+i d",
+        "command": "workbench.action.tasks.runTask",
+        "args": "d"
+    },
+    {
         "key": "ctrl+i s",
         "command": "workbench.action.tasks.runTask",
         "args": "s"

@@ -9,6 +9,13 @@
             "problemMatcher": []
         },
         {
+            // Test with debug options
+            "label": "d",
+            "type": "shell",
+            "command": "go run oj/oj.go --file=${file} -t -dbg",
+            "problemMatcher": []
+        },
+        {
             // Submit if test passes
             "label": "s",
             "type": "shell",
