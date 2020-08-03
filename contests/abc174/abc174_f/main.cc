@@ -52,17 +52,10 @@ using V = std::vector<T>;
 template <typename T>
 using VV = V<V<T>>;
 
-struct Query {
-  int begin, end, index;
-};
-
-template <typename T>
+template <typename T, class DS>
 class Mo {
  public:
-  using F = std::function<void(int)>;
-  using G = std::function<T()>;
-  Mo(F add, F del, G get)
-      : add_(add), del_(del), get_(get), index_(0), prev_(-1) {}
+  Mo(DS& ds) : ds_(ds), index_(0), prev_(-1) {}
   std::pair<int, T> ProcessQuery() {
     if (prev_ == -1) {
       sort(queries_.begin(), queries_.end(),
@@ -74,61 +67,66 @@ class Mo {
       prev_ = 0;
       const Query& q = queries_[0];
       Add(q.begin, q.end);
-      return {q.index, get_()};
+      return {q.index, ds_.Get()};
     }
     const Query& p = queries_[prev_];
     const Query& c = queries_[prev_ + 1];
     ++prev_;
     Add(c.begin, p.begin);
-    Delete(p.begin, c.begin);
+    Del(p.begin, c.begin);
     Add(p.end, c.end);
-    Delete(c.end, p.end);
-    return {c.index, get_()};
+    Del(c.end, p.end);
+    return {c.index, ds_.Get()};
   }
   void AddQuery(int begin, int end) {
     queries_.push_back({begin, end, index_++});
   }
 
  private:
+  struct Query {
+    int begin, end, index;
+  };
   void Add(int begin, int end) {
     for (int i = begin; i < end; ++i) {
-      add_(i);
+      ds_.Add(i);
     }
   }
-  void Delete(int begin, int end) {
+  void Del(int begin, int end) {
     for (int i = begin; i < end; ++i) {
-      del_(i);
+      ds_.Del(i);
     }
   }
-  const F add_, del_;
-  const G get_;
+  DS& ds_;
   int index_, prev_;
   std::vector<Query> queries_;
 };
 
 using namespace std;
 
+struct DS {
+  DS(int n) : c(n), kinds(n), unique_kinds(0) {}
+  void Add(int i) {
+    if (kinds[c[i] - 1]++ == 0) {
+      ++unique_kinds;
+    }
+  }
+  void Del(int i) {
+    if (--kinds[c[i] - 1] == 0) {
+      --unique_kinds;
+    }
+  }
+  int Get() const { return unique_kinds; }
+  V<int> c;
+  V<int> kinds;
+  int unique_kinds;
+};
+
 int main() {
   in(int, n, q);
-  V<int> c(n);
-  rep(i, n) cin >> c[i];
+  DS ds(n);
+  rep(i, n) cin >> ds.c[i];
 
-  vector<int> kinds(n + 1);
-  int n_kinds = 0;
-  auto add = [&](int i) {
-    if (kinds[c[i]] == 0) {
-      ++n_kinds;
-    }
-    ++kinds[c[i]];
-  };
-  auto del = [&](int i) {
-    --kinds[c[i]];
-    if (kinds[c[i]] == 0) {
-      --n_kinds;
-    }
-  };
-  auto get = [&]() { return n_kinds; };
-  Mo<int> mo(add, del, get);
+  Mo<int, DS> mo(ds);
   rep(i, q) {
     in(int, l, r);
     mo.AddQuery(l - 1, r);
