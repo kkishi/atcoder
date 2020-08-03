@@ -58,9 +58,10 @@ class Mo {
   Mo(DS& ds) : ds_(ds), index_(0), prev_(-1) {}
   std::pair<int, T> ProcessQuery() {
     if (prev_ == -1) {
+      int bin = sqrt(index_);
       sort(queries_.begin(), queries_.end(),
-           [](const Query& a, const Query& b) {
-             int ba = sqrt(a.begin), bb = sqrt(b.begin);
+           [&bin](const Query& a, const Query& b) {
+             int ba = a.begin / bin, bb = b.begin / bin;
              if (ba != bb) return ba < bb;
              return a.end < b.end;
            });
