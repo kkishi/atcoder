@@ -21,6 +21,13 @@ For Emacs, add this to .emacs:
   (interactive)
   (save-buffer)
   (shell-command (concat "go run ../../../oj/oj.go -s --file=" (buffer-file-name (current-buffer)))))
+(add-hook 'c++-mode-hook
+  (lambda ()
+    (define-key c++-mode-map "\C-it" 'ojt)
+    (define-key c++-mode-map "\C-id" 'ojd)
+    (define-key c++-mode-map "\C-is" 'ojs)
+    (define-key c++-mode-map "\C-if" 'ojf)
+    ))
 ```
 
 For VS Code, add this to keybindings.json:
