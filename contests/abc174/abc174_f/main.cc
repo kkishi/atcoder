@@ -33,7 +33,7 @@ void read_from_cin(T& value, Ts&... args) {
 
 template <typename T>
 void write_to_cout(const T& value) {
-  std::cout << value << std::endl;
+  std::cout << value << '\n';
 }
 template <typename T, typename... Ts>
 void write_to_cout(const T& value, const Ts&... args) {
@@ -63,7 +63,10 @@ class Mo {
            [&bin](const Query& a, const Query& b) {
              int ba = a.begin / bin, bb = b.begin / bin;
              if (ba != bb) return ba < bb;
-             return a.end < b.end;
+             if (ba % 2 == 0) {
+               return a.end < b.end;
+             }
+             return a.end > b.end;
            });
       prev_ = 0;
       const Query& q = queries_[0];
@@ -123,6 +126,9 @@ struct DS {
 };
 
 int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+
   in(int, n, q);
   DS ds(n);
   rep(i, n) cin >> ds.c[i];
