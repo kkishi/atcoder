@@ -16,6 +16,8 @@ var included = make(map[string]bool)
 type preprocessor struct {
 	w           io.Writer
 	includePath string
+
+	lastPrintedLine string
 }
 
 func (p *preprocessor) include(header string) error {
@@ -94,8 +96,17 @@ func (p *preprocessor) line(l string) error {
 	if isSTDHeaderInclude(l) {
 		return nil
 	}
-	fmt.Fprintln(p.w, l)
+	p.print(l)
 	return nil
+}
+
+func (p *preprocessor) print(l string) {
+	if l == "" && p.lastPrintedLine == "" {
+		// Cosmetic improvement: do not print empty lines consecutively.
+		return
+	}
+	p.lastPrintedLine = l
+	fmt.Fprintln(p.w, l)
 }
 
 func Includes(r io.Reader, w io.Writer, includePath string) error {
