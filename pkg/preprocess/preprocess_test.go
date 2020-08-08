@@ -10,13 +10,30 @@ import (
 )
 
 func TestPreprocessIncludes(t *testing.T) {
-	src := `#include "pclib/macros.h"
+	tests := []struct {
+		source  string
+		headers map[string]string
+		want    string
+	}{
+		{
+			source: `#include "macros.h"
+#include "pragma_once.h"
+#include "pragma_once.h"
 
 int main() {
 }
-`
-	headers := map[string]string{
-		"macros.h": "using ll = long long;\n",
+`,
+			headers: map[string]string{
+				"macros.h":      "using ll = long long;\n",
+				"pragma_once.h": "#pragma once\nconst int PI = 3;\n",
+			},
+			want: `using ll = long long;
+const int PI = 3;
+
+int main() {
+}
+`,
+		},
 	}
 
 	dir, err := ioutil.TempDir("", "test")
@@ -24,30 +41,22 @@ int main() {
 		log.Fatal(err)
 	}
 	defer os.RemoveAll(dir)
-
 	log.Printf("created a tmp dir: %q", dir)
 
-	if err := os.Mkdir(filepath.Join(dir, "pclib"), 0750); err != nil {
-		log.Fatal(err)
-	}
-
-	for header, content := range headers {
-		p := filepath.Join(dir, "pclib", header)
-		if err := ioutil.WriteFile(p, []byte(content), 0644); err != nil {
-			log.Fatal(err)
+	for _, test := range tests {
+		for header, content := range test.headers {
+			p := filepath.Join(dir, header)
+			if err := ioutil.WriteFile(p, []byte(content), 0644); err != nil {
+				log.Fatal(err)
+			}
 		}
-	}
 
-	want := `using ll = long long;
-
-int main() {
-}
-`
-	var b bytes.Buffer
-	if err := Includes(bytes.NewReader([]byte(src)), &b, dir); err != nil {
-		t.Fatal(err)
-	}
-	if got := b.String(); got != want {
-		t.Errorf("got %s; want %s", got, want)
+		var b bytes.Buffer
+		if err := Includes(bytes.NewReader([]byte(test.source)), &b, dir); err != nil {
+			t.Fatal(err)
+		}
+		if got := b.String(); got != test.want {
+			t.Errorf("got %s; want %s", got, test.want)
+		}
 	}
 }

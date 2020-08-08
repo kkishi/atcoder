@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -20,30 +21,35 @@ var (
 	dbg       = flag.Bool("dbg", false, "")
 )
 
-func workspace(dir string) (string, error) {
+func pclibPath(dir string) (string, error) {
 	const ac = "atcoder"
 	i := strings.Index(dir, ac)
 	if i == -1 {
-		return "", fmt.Errorf("failed to determine workspace for dir: %q", dir)
+		return "", fmt.Errorf("failed to determine the pclib path for %q", dir)
 	}
-	return dir[0 : i+len(ac)], nil
+	return filepath.Join(dir[0:i+len(ac)], "pclib"), nil
 }
 
 func preprocessIncludes(dir, base string) (string, error) {
-	ws, err := workspace(dir)
+	p, err := pclibPath(dir)
 	if err != nil {
 		return "", err
 	}
-	in, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
+
+	r, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
 	if err != nil {
 		return "", err
 	}
-	defer in.Close()
+	defer r.Close()
+
 	tmpFile, err := ioutil.TempFile(dir, "*.cc")
 	if err != nil {
 		return "", err
 	}
-	return tmpFile.Name(), preprocess.Includes(in, tmpFile, ws)
+	w := bufio.NewWriter(tmpFile)
+	defer w.Flush()
+
+	return tmpFile.Name(), preprocess.Includes(r, w, p)
 }
 
 func run(dir, name string, arg ...string) error {
@@ -57,11 +63,11 @@ func run(dir, name string, arg ...string) error {
 }
 
 func build(dir, base string, dbg bool) error {
-	ws, err := workspace(dir)
+	p, err := pclibPath(dir)
 	if err != nil {
 		return err
 	}
-	args := []string{"-std=c++17", "-DDEBUG", "-I" + ws}
+	args := []string{"-std=c++17", "-DDEBUG", "-I" + p}
 	if dbg {
 		args = append(args, "-g", "-fsanitize=address,undefined")
 	} else {

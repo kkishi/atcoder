@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
-#include "pclib/dual_segment_tree.h"
-#include "pclib/macros.h"
+#include "dual_segment_tree.h"
+#include "macros.h"
 
 using namespace std;
 

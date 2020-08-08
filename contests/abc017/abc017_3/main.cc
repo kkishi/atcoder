@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "pclib/macros.h"
+#include "macros.h"
 
 struct D {
   int l, r, s;

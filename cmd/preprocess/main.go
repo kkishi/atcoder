@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"log"
 	"os"
@@ -28,7 +29,10 @@ func main() {
 	}
 	defer r.Close()
 
-	if err := preprocess.Includes(r, os.Stdout, *workspace); err != nil {
+	w := bufio.NewWriter(os.Stdout)
+	defer w.Flush()
+
+	if err := preprocess.Includes(r, w, *workspace); err != nil {
 		log.Fatal(err)
 	}
 }

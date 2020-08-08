@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
-#include "pclib/macros.h"
-#include "pclib/modint.h"
+#include "macros.h"
+#include "modint.h"
 
 using namespace std;
 
