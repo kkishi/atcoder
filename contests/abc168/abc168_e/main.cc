@@ -1,19 +1,8 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
-using ll = long long;
-
-ll gcd(ll a, ll b) {
-  if (a > b) {
-    return gcd(b, a);
-  }
-  if (b % a == 0) {
-    return a;
-  }
-  return gcd(b % a, a);
-}
 
 struct Rat {
   ll sign, n, d;
@@ -79,7 +68,7 @@ int main() {
   ll A_zeros = 0;
   ll B_zeros = 0;
 
-  REP(i, N) {
+  rep(i, N) {
     ll A, B;
     cin >> A >> B;
 

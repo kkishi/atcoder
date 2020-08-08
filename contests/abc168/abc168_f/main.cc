@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -31,16 +31,16 @@ class Grid {
     copy(xs.begin(), xs.end(), back_inserter(xs_));
     xs_.push_back(*xs.rbegin() + 1);
 
-    REP(i, xs_.size()) xi_[xs_[i]] = i;
+    rep(i, xs_.size()) xi_[xs_[i]] = i;
 
     ys_.push_back(*ys.begin() - 1);
     copy(ys.begin(), ys.end(), back_inserter(ys_));
     ys_.push_back(*ys.rbegin() + 1);
 
-    REP(i, ys_.size()) yi_[ys_[i]] = i;
+    rep(i, ys_.size()) yi_[ys_[i]] = i;
 
     grid_.resize(xs_.size() * 2 - 1);
-    REP(i, grid_.size()) { grid_[i].resize(ys_.size() * 2 - 1); }
+    rep(i, grid_.size()) { grid_[i].resize(ys_.size() * 2 - 1); }
   }
   void DrawLineX(int x1, int x2, int y) {
     if (x1 > x2) swap(x1, x2);
@@ -69,8 +69,8 @@ class Grid {
     return {xi(lower_x) + 1, yi(lower_y) + 1};
   }
   void Debug() const {
-    REP(i, grid_.size()) {
-      REP(j, grid_[i].size()) { cout << grid_[i][j].online; }
+    rep(i, grid_.size()) {
+      rep(j, grid_[i].size()) { cout << grid_[i][j].online; }
       cout << endl;
     }
   }
@@ -140,17 +140,17 @@ int main() {
 
   int N, M;
   cin >> N >> M;
-  REP(i, N) cin >> A[i] >> B[i] >> C[i];
-  REP(i, M) cin >> D[i] >> E[i] >> F[i];
+  rep(i, N) cin >> A[i] >> B[i] >> C[i];
+  rep(i, M) cin >> D[i] >> E[i] >> F[i];
 
   set<int> xs;
   set<int> ys;
-  REP(i, N) {
+  rep(i, N) {
     xs.insert(A[i]);
     xs.insert(B[i]);
     ys.insert(C[i]);
   }
-  REP(i, M) {
+  rep(i, M) {
     xs.insert(D[i]);
     ys.insert(E[i]);
     ys.insert(F[i]);
@@ -160,8 +160,8 @@ int main() {
 
   Grid grid(xs, ys);
 
-  REP(i, N) grid.DrawLineX(A[i], B[i], C[i]);
-  REP(i, M) grid.DrawLineY(D[i], E[i], F[i]);
+  rep(i, N) grid.DrawLineX(A[i], B[i], C[i]);
+  rep(i, M) grid.DrawLineY(D[i], E[i], F[i]);
 
   // grid.Debug();
 
@@ -173,7 +173,7 @@ int main() {
   grid.Visit(init);
   /*
   vector<vector<bool>> visited(grid.grid_x_ / 2 + 10);
-  REP(i, visited.size()) visited[i].resize(grid.grid_y_ / 2 + 10);
+  rep(i, visited.size()) visited[i].resize(grid.grid_y_ / 2 + 10);
   visited[init.first / 2][init.second / 2] = true;
   */
 
@@ -190,7 +190,7 @@ int main() {
       break;
     }
     ans += grid.AreaOf(here);
-    REP(i, 4) {
+    rep(i, 4) {
       auto [there, ok] = grid.Move(here, dx[i], dy[i]);
       if (!ok) {
         continue;
