@@ -53,7 +53,7 @@ func preprocessIncludes(dir, base string) (string, error) {
 	return tmpFile.Name(), preprocess.Includes(r, w, p)
 }
 
-func run(dir, name string, arg ...string) error {
+func runCommand(dir, name string, arg ...string) error {
 	log.Printf("$ %s %s", name, strings.Join(arg, " "))
 	cmd := exec.Command(name, arg...)
 	cmd.Dir = dir
@@ -74,7 +74,7 @@ func build(dir, base string, dbg bool) error {
 	} else {
 		args = append(args, "-O2")
 	}
-	return run(dir, "g++", append(args, base)...)
+	return runCommand(dir, "g++", append(args, base)...)
 }
 
 func test(dir string, dbg bool) error {
@@ -84,11 +84,37 @@ func test(dir string, dbg bool) error {
 	} else {
 		timeLimit = "3"
 	}
-	return run(dir, "oj", "t", "-t", timeLimit, "--mle", "1024")
+	return runCommand(dir, "oj", "t", "-t", timeLimit, "--mle", "1024")
 }
 
 func submit(dir, base string) error {
-	return run(dir, "oj", "submit", "-y", "--no-open", base)
+	return runCommand(dir, "oj", "submit", "-y", "--no-open", base)
+}
+
+func run(file string) error {
+	dir, base := filepath.Dir(file), filepath.Base(file)
+	if *runSubmit {
+		tempFile, err := preprocessIncludes(dir, base)
+		if err != nil {
+			fmt.Errorf("failed to preprocess includes: %w", err)
+		}
+		defer os.Remove(tempFile)
+		base = filepath.Base(tempFile)
+	}
+	if err := build(dir, base, *dbg); err != nil {
+		return fmt.Errorf("build failed: %w", err)
+	}
+	if *runTest {
+		if err := test(dir, *dbg); err != nil {
+			return fmt.Errorf("test failed: %w", err)
+		}
+	}
+	if *runSubmit && !*dryRun {
+		if err := submit(dir, base); err != nil {
+			return fmt.Errorf("submission failed: %w", err)
+		}
+	}
+	return nil
 }
 
 func main() {
@@ -96,26 +122,7 @@ func main() {
 	if *file == "" {
 		log.Fatal("--file is not specified")
 	}
-	dir, base := filepath.Dir(*file), filepath.Base(*file)
-	if *runSubmit {
-		tempFile, err := preprocessIncludes(dir, base)
-		if err != nil {
-			log.Fatal("failed to preprocess includes: %s", err)
-		}
-		defer os.Remove(tempFile)
-		base = filepath.Base(tempFile)
-	}
-	if err := build(dir, base, *dbg); err != nil {
-		log.Fatalf("build failed: %s", err)
-	}
-	if *runTest {
-		if err := test(dir, *dbg); err != nil {
-			log.Fatalf("test failed: %s", err)
-		}
-	}
-	if *runSubmit && !*dryRun {
-		if err := submit(dir, base); err != nil {
-			log.Fatalf("submission failed: %s", err)
-		}
+	if err := run(*file); err != nil {
+		log.Fatal(err)
 	}
 }
