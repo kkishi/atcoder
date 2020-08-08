@@ -19,6 +19,7 @@ var (
 	runTest   = flag.Bool("t", false, "")
 	runSubmit = flag.Bool("s", false, "")
 	dbg       = flag.Bool("dbg", false, "")
+	dryRun    = flag.Bool("dry_run", false, "")
 )
 
 func pclibPath(dir string) (string, error) {
@@ -112,7 +113,7 @@ func main() {
 			log.Fatalf("test failed: %s", err)
 		}
 	}
-	if *runSubmit {
+	if *runSubmit && !*dryRun {
 		if err := submit(dir, base); err != nil {
 			log.Fatalf("submission failed: %s", err)
 		}

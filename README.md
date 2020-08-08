@@ -5,8 +5,7 @@ Install online-judge-tools (oj).
 Install the Go commands.
 
 ```
-go install github.com/kkishi/atcoder/cmd/atcoder
-go install github.com/kkishi/atcoder/cmd/compete
+go install github.com/kkishi/atcoder/cmd/...
 ```
 
 For Emacs, add this to .emacs:

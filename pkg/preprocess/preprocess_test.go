@@ -9,6 +9,27 @@ import (
 	"testing"
 )
 
+func TestIsSTDHeaderInclude(t *testing.T) {
+	tests := []struct {
+		line string
+		want bool
+	}{
+		{
+			line: "#include <iostream>",
+			want: true,
+		},
+		{
+			line: "#include <unknown>",
+			want: false,
+		},
+	}
+	for _, test := range tests {
+		if got := isSTDHeaderInclude(test.line); got != test.want {
+			t.Errorf("isSTDHeaderInclude(%q) = %t; want %t", test.line, got, test.want)
+		}
+	}
+}
+
 func TestPreprocessIncludes(t *testing.T) {
 	tests := []struct {
 		source  string
