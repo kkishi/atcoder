@@ -1,4 +1,4 @@
-// go run compete.go --start="2020/06/21 14:00:00" --contest=abc171
+// compete --start="2020/06/21 14:00:00" --contest=abc171
 package main
 
 import (

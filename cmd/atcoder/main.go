@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -9,8 +8,9 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"regexp"
 	"strings"
+
+	"github.com/kkishi/atcoder/pkg/preprocess"
 )
 
 var (
@@ -20,6 +20,32 @@ var (
 	dbg       = flag.Bool("dbg", false, "")
 )
 
+func workspace(dir string) (string, error) {
+	const ac = "atcoder"
+	i := strings.Index(dir, ac)
+	if i == -1 {
+		return "", fmt.Errorf("failed to determine workspace for dir: %q", dir)
+	}
+	return dir[0 : i+len(ac)], nil
+}
+
+func preprocessIncludes(dir, base string) (string, error) {
+	ws, err := workspace(dir)
+	if err != nil {
+		return "", err
+	}
+	in, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
+	if err != nil {
+		return "", err
+	}
+	defer in.Close()
+	tmpFile, err := ioutil.TempFile(dir, "*.cc")
+	if err != nil {
+		return "", err
+	}
+	return tmpFile.Name(), preprocess.Includes(in, tmpFile, ws)
+}
+
 func run(dir, name string, arg ...string) error {
 	log.Printf("$ %s %s", name, strings.Join(arg, " "))
 	cmd := exec.Command(name, arg...)
@@ -28,15 +54,6 @@ func run(dir, name string, arg ...string) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
-}
-
-func workspace(dir string) (string, error) {
-	const ac = "atcoder"
-	i := strings.Index(dir, ac)
-	if i == -1 {
-		return "", fmt.Errorf("failed to determine workspace for dir: %q", dir)
-	}
-	return dir[0 : i+len(ac)], nil
 }
 
 func build(dir, base string, dbg bool) error {
@@ -61,45 +78,6 @@ func test(dir string, dbg bool) error {
 		timeLimit = "3"
 	}
 	return run(dir, "oj", "t", "-t", timeLimit, "--mle", "1024")
-}
-
-var pclibInclude = regexp.MustCompile("^#include \"(pclib/.*\\.h)\"$")
-
-func preprocessIncludes(dir, base string) (string, error) {
-	in, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
-	if err != nil {
-		return "", err
-	}
-	defer in.Close()
-	scanner := bufio.NewScanner(in)
-
-	tmpFile, err := ioutil.TempFile(dir, "*.cc")
-	if err != nil {
-		return "", err
-	}
-	writer := bufio.NewWriter(tmpFile)
-
-	ws, err := workspace(dir)
-	if err != nil {
-		return "", err
-	}
-
-	for scanner.Scan() {
-		l := scanner.Text()
-		m := pclibInclude.FindStringSubmatch(l)
-		if len(m) == 0 {
-			fmt.Fprintln(writer, l)
-			continue
-		}
-
-		header, err := os.OpenFile(filepath.Join(ws, m[1]), os.O_RDONLY, 0)
-		if err != nil {
-			return "", err
-		}
-		writer.ReadFrom(header)
-		header.Close()
-	}
-	return tmpFile.Name(), writer.Flush()
 }
 
 func submit(dir, base string) error {
