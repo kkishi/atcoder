@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -14,10 +14,10 @@ void setmax(long long &best, long long cand) {
 int main() {
   int N;
   cin >> N;
-  REP(i, N) cin >> A[i];
+  rep(i, N) cin >> A[i];
 
   const long long INF = 100000000000000000;
-  REP(i, N) REP(j, 2) REP(k, 3) dp[i][j][k] = -INF;
+  rep(i, N) rep(j, 2) rep(k, 3) dp[i][j][k] = -INF;
   dp[0][0][1] = 0;
   dp[0][1][0] = A[0];
   int maxskip = N % 2 == 0 ? 1 : 2;
