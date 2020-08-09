@@ -1,27 +1,6 @@
 #include <bits/stdc++.h>
 
-// #undef DEBUG  // Uncomment this line to forcefully disable debug print.
-#if DEBUG
-template <typename T>
-void debug(T value) {
-  std::cerr << value;
-}
-template <typename T, typename... Ts>
-void debug(T value, Ts... args) {
-  std::cerr << value << ", ";
-  debug(args...);
-}
-#define DBG(...)                \
-  cerr << #__VA_ARGS__ << ": "; \
-  debug(__VA_ARGS__);           \
-  cerr << " (L" << __LINE__ << ")" << endl
-#else
-#define DBG(...)
-#endif
-
-#define ALL(x) (x).begin(), (x).end()
-#define FOR(i, n) for (auto i : (n))
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
@@ -31,8 +10,8 @@ int main() {
   int Q;
   cin >> Q;
   bool flipped = false;
-  deque<char> que(ALL(S));
-  REP(q, Q) {
+  deque<char> que(all(S));
+  rep(q, Q) {
     int T;
     cin >> T;
     if (T == 1) {
@@ -48,9 +27,9 @@ int main() {
       que.push_back(C);
     }
   }
-  string s(ALL(que));
+  string s(all(que));
   if (flipped) {
-    reverse(ALL(s));
+    reverse(all(s));
   }
   cout << s << endl;
 }
