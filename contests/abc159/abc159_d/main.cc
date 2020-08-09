@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 typedef long long ll;
 
@@ -14,7 +14,7 @@ int main() {
   int N;
   cin >> N;
   map<int, int> m;
-  REP(i, N) {
+  rep(i, N) {
     cin >> A[i];
     m[A[i]]++;
   }
@@ -22,7 +22,7 @@ int main() {
   for (const auto it : m) {
     total += choose2(it.second);
   }
-  REP(i, N) {
+  rep(i, N) {
     ll n = m[A[i]];
     cout << (total - choose2(n) + choose2(n - 1)) << endl;
   }
