@@ -39,8 +39,8 @@ func rewrite(r io.Reader, w io.Writer) error {
 		l = strings.Replace(l, " REP(", " rep(", -1)
 		l = strings.Replace(l, " DBG(", " dbg(", 1)
 		l = strings.Replace(l, "ALL(", "all(", 1)
-		l = strings.Replace(l, ".pow(", ".Pow(", 1)
-		l = strings.Replace(l, "::combination(", "::Comb(", 1)
+		l = strings.Replace(l, ".pow(", ".Pow(", -1)
+		l = strings.Replace(l, "::combination(", "::Comb(", -1)
 		fmt.Fprintln(w, l)
 	}
 	return nil
