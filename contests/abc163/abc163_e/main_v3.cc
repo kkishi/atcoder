@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -16,15 +16,15 @@ long long absolute(long long x) {
 int main() {
   int N;
   cin >> N;
-  REP(i, N) cin >> A[i];
+  rep(i, N) cin >> A[i];
 
   vector<pair<long long, int>> v;
-  REP(i, N) v.push_back({-A[i], i});
+  rep(i, N) v.push_back({-A[i], i});
   sort(v.begin(), v.end());
 
   int left = 0, right = N - 1;
   long long ans = 0;
-  REP(i, N) {
+  rep(i, N) {
     int j = v[i].second;
     if (j - left >= right - j) {
       ans += -v[i].first * (j - left);

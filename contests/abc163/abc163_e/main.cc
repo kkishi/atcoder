@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -16,7 +16,7 @@ long long absolute(long long x) {
 int main() {
   int N;
   cin >> N;
-  REP(i, N) cin >> A[i];
+  rep(i, N) cin >> A[i];
 
   long long ans = 0;
   for (int i = 0; i <= N; ++i) {

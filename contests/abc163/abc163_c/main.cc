@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -11,10 +11,10 @@ int main() {
   int N;
   cin >> N;
 
-  REP(i, N) {
+  rep(i, N) {
     cin >> A[i];
     B[A[i] - 1]++;
   }
 
-  REP(i, N) cout << B[i] << endl;
+  rep(i, N) cout << B[i] << endl;
 }
