@@ -1,31 +1,6 @@
 #include <bits/stdc++.h>
 
-// #undef DEBUG  // Uncomment this line to forcefully disable debug print.
-#if DEBUG
-template <typename T>
-void debug(T value) {
-  std::cerr << value;
-}
-template <typename T, typename... Ts>
-void debug(T value, Ts... args) {
-  std::cerr << value << ", ";
-  debug(args...);
-}
-#define DBG(...)                              \
-  do {                                        \
-    cerr << #__VA_ARGS__ << ": ";             \
-    debug(__VA_ARGS__);                       \
-    cerr << " (L" << __LINE__ << ")" << endl; \
-  } while (0)
-#else
-#define DBG(...)
-#endif
-
-#define ALL(x) (x).begin(), (x).end()
-#define FOR(i, n) for (auto i : (n))
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
-
-using ll = long long;
+#include "macros.h"
 
 using namespace std;
 
@@ -44,7 +19,7 @@ struct S {
 ll N, A, B, C, D;
 
 void solve() {
-  DBG(N);
+  dbg(N);
 
   map<ll, ll> prev;
   map<ll, ll> seen;
@@ -56,27 +31,27 @@ void solve() {
   while (!que.empty()) {
     S here = que.top();
     que.pop();
-    DBG(here.cost, here.value, que.size(), seen.size());
+    dbg(here.cost, here.value, que.size(), seen.size());
     if (here.value == 0) {
       ll x = here.value;
       while (x != N) {
-        DBG(x);
+        dbg(x);
         x = prev[x];
       }
       cout << here.cost << endl;
       break;
     }
     auto push = [&prev, &seen, &que, &here](ll cost, ll value) {
-                  if (value < 0) return;
-                  S there = {here.cost + cost, value};
-                  auto it = seen.find(there.value);
-                  if (it != seen.end() && it->second <= there.cost) {
-                    return;
-                  }
-                  seen[there.value] = there.cost;
-                  prev[there.value] = here.value;
-                  que.push(there);
-                };
+      if (value < 0) return;
+      S there = {here.cost + cost, value};
+      auto it = seen.find(there.value);
+      if (it != seen.end() && it->second <= there.cost) {
+        return;
+      }
+      seen[there.value] = there.cost;
+      prev[there.value] = here.value;
+      que.push(there);
+    };
     if (here.value % 2 == 0) {
       push(A, here.value / 2);
     }
@@ -90,7 +65,7 @@ void solve() {
     for (ll d = -4; d <= 4; ++d) {
       ll value = here.value + d;
       ll mods[] = {2, 3, 5};
-      REP(i, 3) {
+      rep(i, 3) {
         ll m = mods[i];
         if (here.value % m != 0 && value % m == 0 && abs(d) < m) {
           push(D * abs(d), value);
@@ -122,7 +97,7 @@ void solve() {
 int main() {
   int T;
   cin >> T;
-  REP(t, T) {
+  rep(t, T) {
     cin >> N >> A >> B >> C >> D;
     solve();
     // if (t == 2) break;
