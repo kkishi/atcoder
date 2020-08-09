@@ -1,21 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "binary_search.h"
 #include "macros.h"
 
 using namespace std;
-
-template <typename T>
-T BinarySearch(T lo, T hi, std::function<bool(T)> pred) {
-  while (lo + 1 < hi) {
-    T mid = (hi - lo) / 2 + lo;
-    if (pred(mid)) {
-      lo = mid;
-    } else {
-      hi = mid;
-    }
-  }
-  return lo;
-}
 
 int main() {
   rd(ll, n, m, k);
