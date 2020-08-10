@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "rollinghash.h"
+#include "rolling_hash_match.h"
 
 using namespace std;
 
@@ -26,10 +26,10 @@ int main() {
       bs += '0' + b[i][bit];
     }
     bs += bs;
-    for (int m : Matches(bs, as)) {
+    for (int m : RollingHashMatches(bs, as)) {
       matches[bit][0][m] = true;
     }
-    for (int m : Matches(bs, nas)) {
+    for (int m : RollingHashMatches(bs, nas)) {
       matches[bit][1][m] = true;
     }
   }
