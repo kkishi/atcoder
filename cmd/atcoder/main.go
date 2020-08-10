@@ -68,12 +68,12 @@ func build(dir, base string) error {
 	if err != nil {
 		return err
 	}
-	args := []string{"-std=c++17", "-DDEBUG", "-I" + p}
+	args := []string{"-std=c++17", "-I" + p}
 	switch *compilationMode {
 	case "opt":
-		args = append(args, "-O2")
+		args = append(args, "-O2", "-DDEBUG")
 	case "dbg":
-		args = append(args, "-g", "-fsanitize=address,undefined")
+		args = append(args, "-g", "-fsanitize=address,undefined", "-DDEBUG")
 	case "prof":
 		args = append(args, "-O2", "-pg")
 	}
