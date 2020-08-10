@@ -15,11 +15,10 @@ import (
 )
 
 var (
-	file      = flag.String("file", "", "")
-	runTest   = flag.Bool("t", false, "")
-	runSubmit = flag.Bool("s", false, "")
-	dbg       = flag.Bool("dbg", false, "")
-	dryRun    = flag.Bool("dry_run", false, "")
+	runTest         = flag.Bool("t", false, "If true, run tests using the samples. Exit if it fails.")
+	runSubmit       = flag.Bool("s", false, "If true, submit the solution file.")
+	dryRun          = flag.Bool("dry_run", false, "If true, do not actually submit. Useful for excersizing the end to end workflow, especially the include preprocessing.")
+	compilationMode = flag.String("c", "opt", "Supported values: opt dbg prof")
 )
 
 func pclibPath(dir string) (string, error) {
@@ -63,23 +62,26 @@ func runCommand(dir, name string, arg ...string) error {
 	return cmd.Run()
 }
 
-func build(dir, base string, dbg bool) error {
+func build(dir, base string) error {
 	p, err := pclibPath(dir)
 	if err != nil {
 		return err
 	}
 	args := []string{"-std=c++17", "-DDEBUG", "-I" + p}
-	if dbg {
-		args = append(args, "-g", "-fsanitize=address,undefined")
-	} else {
+	switch *compilationMode {
+	case "opt":
 		args = append(args, "-O2")
+	case "dbg":
+		args = append(args, "-g", "-fsanitize=address,undefined")
+	case "prof":
+		args = append(args, "-O2", "-pg")
 	}
 	return runCommand(dir, "g++", append(args, base)...)
 }
 
-func test(dir string, dbg bool) error {
+func test(dir string) error {
 	var timeLimit string
-	if dbg {
+	if *compilationMode == "dbg" {
 		timeLimit = "10"
 	} else {
 		timeLimit = "3"
@@ -101,11 +103,11 @@ func run(file string) error {
 		defer os.Remove(tempFile)
 		base = filepath.Base(tempFile)
 	}
-	if err := build(dir, base, *dbg); err != nil {
+	if err := build(dir, base); err != nil {
 		return fmt.Errorf("build failed: %w", err)
 	}
 	if *runTest {
-		if err := test(dir, *dbg); err != nil {
+		if err := test(dir); err != nil {
 			return fmt.Errorf("test failed: %w", err)
 		}
 	}
@@ -117,12 +119,28 @@ func run(file string) error {
 	return nil
 }
 
+func toAbs(file string) string {
+	if filepath.IsAbs(file) {
+		return file
+	}
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	abs, err := filepath.Abs(filepath.Join(dir, file))
+	if err != nil {
+		log.Fatal(err)
+	}
+	return abs
+}
+
 func main() {
 	flag.Parse()
-	if *file == "" {
-		log.Fatal("--file is not specified")
+	args := flag.Args()
+	if len(args) != 1 {
+		log.Fatal("solution file not specified")
 	}
-	if err := run(*file); err != nil {
+	if err := run(toAbs(args[0])); err != nil {
 		log.Fatal(err)
 	}
 }

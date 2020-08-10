@@ -11,22 +11,25 @@ go install github.com/kkishi/atcoder/cmd/...
 For Emacs, add this to .emacs:
 
 ```
+(defun atcoder (opts)
+  "Run atcoder command with the commandline options given as OPTS."
+  (save-buffer)
+  (shell-command (concat "atcoder " opts " " (buffer-file-name (current-buffer)))))
 (defun ojt ()
-  (interactive)
-  (save-buffer)
-  (shell-command (concat "atcoder -t --file=" (buffer-file-name (current-buffer)))))
+  "Run oj -t."
+  (interactive) (atcoder "-t"))
 (defun ojd ()
-  (interactive)
-  (save-buffer)
-  (shell-command (concat "atcoder -t -dbg --file=" (buffer-file-name (current-buffer)))))
+  "Run oj -t with dbg build."
+  (interactive) (atcoder "-t -c dbg"))
+(defun ojp ()
+  "Run oj -t with prof build."
+  (interactive) (atcoder "-t -c prof"))
 (defun ojs ()
-  (interactive)
-  (save-buffer)
-  (shell-command (concat "atcoder -t -s --file=" (buffer-file-name (current-buffer)))))
+  "Run oj -t, then oj -submit if the test passes."
+  (interactive) (atcoder "-t -s"))
 (defun ojf ()
-  (interactive)
-  (save-buffer)
-  (shell-command (concat "atcoder -s --file=" (buffer-file-name (current-buffer)))))
+  "Run oj -submit without test."
+  (interactive) (atcoder "-s"))
 ```
 
 For VS Code, add this to keybindings.json:
