@@ -1,16 +1,14 @@
 #include <iostream>
 
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+
 using namespace std;
 
 int main() {
-  int N = 100;
+  int N = 1000;
   cout << N << endl;
-  for (int i = 1; i <= N / 10; ++i) {
-    for (int j = 0; j < 10; ++j) {
-      for (int k = 0; k < j; ++k) {
-        cout << (char)('a' + (rand() % 3));
-      }
-      cout << endl;
-    }
+  rep(i, N) {
+    rep(j, 1000) cout << (char)('a' + (rand() % 26));
+    cout << endl;
   }
 }
