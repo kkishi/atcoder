@@ -49,31 +49,6 @@ func (p *preprocessor) include(header string) error {
 	return nil
 }
 
-var stdHeaderList = []string{
-	"algorithm",
-	"cassert",
-	"cmath",
-	"ctime",
-	"functional",
-	"iostream",
-	"limits",
-	"map",
-	"math.h",
-	"numeric",
-	"optional",
-	"ostream",
-	"queue",
-	"random",
-	"set",
-	"sstream",
-	"stack",
-	"string",
-	"tuple",
-	"unistd.h",
-	"utility",
-	"vector",
-}
-
 var stdHeaders = map[string]bool{}
 
 func init() {
