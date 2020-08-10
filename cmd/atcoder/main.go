@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/kkishi/atcoder/pkg/preprocess"
 )
@@ -135,12 +136,16 @@ func toAbs(file string) string {
 }
 
 func main() {
+	s := time.Now()
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 {
 		log.Fatal("solution file not specified")
 	}
-	if err := run(toAbs(args[0])); err != nil {
-		log.Fatal(err)
+	err := run(toAbs(args[0]))
+	d := time.Now().Sub(s)
+	if err != nil {
+		log.Fatalf("fail (%s): %s", d, err)
 	}
+	log.Printf("success (%s)", d)
 }
