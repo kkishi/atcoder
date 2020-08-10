@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -12,7 +12,7 @@ int main() {
   cin >> N >> M;
 
   vector<vector<int>> edges(N);
-  REP(i, M) {
+  rep(i, M) {
     int A, B;
     cin >> A >> B;
     --A, --B;

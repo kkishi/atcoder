@@ -1,4 +1,4 @@
-// go run compete.go --start="2020/06/21 14:00:00" --contest=abc171
+// compete --start="2020/06/21 14:00:00" --contest=abc171
 package main
 
 import (
@@ -46,6 +46,17 @@ func exists(path string) bool {
 	return false
 }
 
+var tmpl = `#include <bits/stdc++.h>
+
+#include "macros.h"
+
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+}`
+
 func createDirs(c *Contest) {
 	for _, p := range c.Problems {
 		dir := path.Join(rootDir, c.Name, p)
@@ -54,10 +65,8 @@ func createDirs(c *Contest) {
 		}
 		mainCC := path.Join(dir, "main.cc")
 		if !exists(mainCC) {
-			if file, err := os.Create(mainCC); err != nil {
-				log.Fatal(err)
-			} else {
-				file.Close()
+			if err := ioutil.WriteFile(mainCC, []byte(tmpl), 0644); err != nil {
+				exit(err)
 			}
 		}
 	}

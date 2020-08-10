@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -51,7 +51,7 @@ int dfs(int h, vector<int>& assignments, const vector<vector<int>>& tot) {
 
 vector<vector<int>> cal(const vector<string>& s) {
   vector<vector<int>> tot(H + 1, vector<int>(W + 1));
-  REP(i, H) REP(j, W) {
+  rep(i, H) rep(j, W) {
     tot[i + 1][j + 1] =
         tot[i][j + 1] + tot[i + 1][j] - tot[i][j] + (s[i][j] == '1');
   }
@@ -61,7 +61,7 @@ vector<vector<int>> cal(const vector<string>& s) {
 int main() {
   cin >> H >> W >> K;
   vector<string> S(H);
-  REP(i, H) cin >> S[i];
+  rep(i, H) cin >> S[i];
 
   vector<int> v;
   cout << dfs(0, v, cal(S)) << endl;

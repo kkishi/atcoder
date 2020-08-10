@@ -1,31 +1,6 @@
 #include <bits/stdc++.h>
 
-// #undef DEBUG  // Uncomment this line to forcefully disable debug print.
-#if DEBUG
-template <typename T>
-void debug(T value) {
-  std::cerr << value;
-}
-template <typename T, typename... Ts>
-void debug(T value, Ts... args) {
-  std::cerr << value << ", ";
-  debug(args...);
-}
-#define DBG(...)                              \
-  do {                                        \
-    cerr << #__VA_ARGS__ << ": ";             \
-    debug(__VA_ARGS__);                       \
-    cerr << " (L" << __LINE__ << ")" << endl; \
-  } while (0)
-#else
-#define DBG(...)
-#endif
-
-#define ALL(x) (x).begin(), (x).end()
-#define FOR(i, n) for (auto i : (n))
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
-
-using ll = long long;
+#include "macros.h"
 
 using namespace std;
 
@@ -48,7 +23,7 @@ ll solve() {
       return -1;
     }
     maximum[i] = min((maximum[i - 1] - A[i - 1]) * 2, 100000000000000000LL);
-    DBG(i, maximum[i]);
+    dbg(i, maximum[i]);
   }
 
   if (A[0] > 0) {
@@ -62,13 +37,13 @@ ll solve() {
   ll nodes = A[N];
   ll ans = A[N];
   for (int i = N - 1; i >= 0; --i) {
-    DBG(i, nodes, A[i], maximum[i]);
+    dbg(i, nodes, A[i], maximum[i]);
     if (nodes / 2 + nodes % 2 + A[i] > maximum[i]) {
       return -1;
     }
     nodes = min(nodes + A[i], maximum[i]);
     ans += nodes;
-    DBG(nodes, ans);
+    dbg(nodes, ans);
   }
   return ans;
 }
@@ -76,7 +51,7 @@ ll solve() {
 int main() {
   cin >> N;
 
-  REP(i, N + 1) cin >> A[i];
+  rep(i, N + 1) cin >> A[i];
 
   cout << solve() << endl;
 }

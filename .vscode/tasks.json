@@ -5,28 +5,28 @@
             // Test
             "label": "t",
             "type": "shell",
-            "command": "go run oj/oj.go --file=${file} -t",
+            "command": "atcoder --file=${file} -t",
             "problemMatcher": []
         },
         {
             // Test with debug options
             "label": "d",
             "type": "shell",
-            "command": "go run oj/oj.go --file=${file} -t -dbg",
+            "command": "atcoder --file=${file} -t -dbg",
             "problemMatcher": []
         },
         {
             // Submit if test passes
             "label": "s",
             "type": "shell",
-            "command": "go run oj/oj.go --file=${file} -t -s",
+            "command": "atcoder --file=${file} -t -s",
             "problemMatcher": []
         },
         {
             // Submit without test
             "label": "f",
             "type": "shell",
-            "command": "go run oj/oj.go --file=${file} -s",
+            "command": "atcoder --file=${file} -s",
             "problemMatcher": []
         }
     ]

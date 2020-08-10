@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -11,9 +11,9 @@ int r[100000];
 int main() {
   int X, Y, A, B, C;
   cin >> X >> Y >> A >> B >> C;
-  REP(i, A) cin >> p[i];
-  REP(i, B) cin >> q[i];
-  REP(i, C) cin >> r[i];
+  rep(i, A) cin >> p[i];
+  rep(i, B) cin >> q[i];
+  rep(i, C) cin >> r[i];
 
   sort(p, p + A);
   sort(q, q + B);
