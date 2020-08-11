@@ -12,9 +12,6 @@ struct Query {
 };
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, N, M, Q);
 
   V<P> trains;

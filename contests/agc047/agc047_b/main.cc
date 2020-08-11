@@ -7,9 +7,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, n);
 
   V<string> s(n);

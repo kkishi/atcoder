@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+#include "fast_io.h"
 #include "macros.h"
 #include "mo.h"
 
@@ -24,9 +25,6 @@ struct DS {
 };
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, n, q);
   DS ds(n);
   rep(i, n) cin >> ds.c[i];

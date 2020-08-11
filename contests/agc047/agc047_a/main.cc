@@ -5,8 +5,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
   rd(int, n);
   map<pair<ll, ll>, ll> m;
   rep(i, n) {

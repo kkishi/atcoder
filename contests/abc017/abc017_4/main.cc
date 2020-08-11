@@ -6,9 +6,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, n, m);
   V<int> f(n);
   rep(i, n) cin >> f[i];

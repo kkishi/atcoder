@@ -6,9 +6,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, n, m);
 
   DualSegmentTree<int> tree(m, [](int a, int b) { return a + b; });

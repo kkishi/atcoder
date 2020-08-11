@@ -6,9 +6,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, n);
   vector<int> memo(n + 1, -1);
   function<int(int)> rec = [&](int x) {

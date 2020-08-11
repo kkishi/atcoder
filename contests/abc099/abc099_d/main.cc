@@ -5,9 +5,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, N, C);
   vector D(C, vector(C, 0));
   rep(i, C) rep(j, C) cin >> D[i][j];

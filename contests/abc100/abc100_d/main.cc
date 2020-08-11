@@ -5,9 +5,6 @@
 using namespace std;
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-
   rd(int, n, m);
   VV<ll> x(n, V<ll>(3));
   V<int> idx(n);
