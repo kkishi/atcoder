@@ -4,6 +4,8 @@
 #include "modint.h"
 #include "rerooting.h"
 
+using mint = ModInt<>;
+
 using namespace std;
 
 struct DP {

@@ -3,6 +3,8 @@
 #include "macros.h"
 #include "modint.h"
 
+using mint = ModInt<>;
+
 using namespace std;
 
 ModInt<998244353> dp[3001][3001];

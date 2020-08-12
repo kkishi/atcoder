@@ -5,13 +5,13 @@
 
 using namespace std;
 
-using mdint = ModInt<998244353>;
+using mint = ModInt<998244353>;
 
 int main() {
   rd(int, n, m, k);
-  mdint ans = 0;
+  mint ans = 0;
   for (int i = 0; i <= k; ++i) {
-    ans += mdint(m) * mdint(m - 1).Pow(n - 1 - i) * mdint::Comb(n - 1, i);
+    ans += mint(m) * mint(m - 1).Pow(n - 1 - i) * mint::Comb(n - 1, i);
   }
   wt(ans);
 }

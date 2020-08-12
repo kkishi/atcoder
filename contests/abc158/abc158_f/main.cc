@@ -2,6 +2,8 @@
 
 #include "macros.h"
 #include "modint.h"
+
+using mint = ModInt<>;
 #include "segment_tree.h"
 
 using namespace std;

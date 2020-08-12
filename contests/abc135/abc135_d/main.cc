@@ -3,6 +3,8 @@
 #include "macros.h"
 #include "modint.h"
 
+using mint = ModInt<>;
+
 using namespace std;
 
 int main() {

@@ -4,6 +4,8 @@
 #include "macros.h"
 #include "modint.h"
 
+using mint = ModInt<>;
+
 using namespace std;
 
 int A[10000];

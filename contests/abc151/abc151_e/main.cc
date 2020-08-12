@@ -3,6 +3,8 @@
 #include "macros.h"
 #include "modint.h"
 
+using mint = ModInt<>;
+
 int a[100000];
 mint combs[100000];
 

@@ -2,6 +2,8 @@
 
 #include "modint.h"
 
+using mint = ModInt<>;
+
 #define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;

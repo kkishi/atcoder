@@ -7,7 +7,7 @@
 
 using namespace std;
 
-using modint = ModInt<998244353>;
+using mint = ModInt<998244353>;
 
 struct Point {
   ll x, y, i;
@@ -44,18 +44,18 @@ int main() {
       tree.Set(yi, 1);
     }
   }
-  modint ans = 0;
+  mint ans = 0;
   for (auto [x, y, i] : p) {
     dbg(x, y, i);
     dbg(upper_left[i], lower_right[i], lower_left[i], upper_right[i]);
-    auto fun = [&](ll z) { return modint(2).Pow(z) - 1; };
+    auto fun = [&](ll z) { return mint(2).Pow(z) - 1; };
     ans += fun(upper_left[i]) * fun(lower_right[i]) *
-               modint(2).Pow(lower_left[i] + upper_right[i]) +
+               mint(2).Pow(lower_left[i] + upper_right[i]) +
            fun(lower_left[i]) * fun(upper_right[i]) *
-               modint(2).Pow(upper_left[i] + lower_right[i]) -
+               mint(2).Pow(upper_left[i] + lower_right[i]) -
            fun(upper_left[i]) * fun(lower_right[i]) * fun(lower_left[i]) *
                fun(upper_right[i]) +
-           modint(2).Pow(n - 1);
+           mint(2).Pow(n - 1);
   }
   wt(ans);
 }
