@@ -22,21 +22,7 @@ var (
 	compilationMode = flag.String("c", "opt", "Supported values: opt dbg prof")
 )
 
-func pclibPath(dir string) (string, error) {
-	const ac = "atcoder"
-	i := strings.Index(dir, ac)
-	if i == -1 {
-		return "", fmt.Errorf("failed to determine the pclib path for %q", dir)
-	}
-	return filepath.Join(dir[0:i+len(ac)], "pclib"), nil
-}
-
 func preprocessIncludes(dir, base string) (string, error) {
-	p, err := pclibPath(dir)
-	if err != nil {
-		return "", err
-	}
-
 	r, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
 	if err != nil {
 		return "", err
@@ -50,7 +36,7 @@ func preprocessIncludes(dir, base string) (string, error) {
 	w := bufio.NewWriter(tmpFile)
 	defer w.Flush()
 
-	return tmpFile.Name(), preprocess.Includes(r, w, p)
+	return tmpFile.Name(), preprocess.Includes(r, w)
 }
 
 func runCommand(dir, name string, arg ...string) error {
@@ -64,11 +50,7 @@ func runCommand(dir, name string, arg ...string) error {
 }
 
 func build(dir, base string) error {
-	p, err := pclibPath(dir)
-	if err != nil {
-		return err
-	}
-	args := []string{"-std=c++17", "-I" + p}
+	args := []string{"-std=c++17"}
 	switch *compilationMode {
 	case "opt":
 		args = append(args, "-O2", "-DDEBUG")

@@ -2,15 +2,21 @@
 
 Install online-judge-tools (oj).
 
-Install the Go commands.
+Install the Go commands:
 
+```console
+$ go install github.com/kkishi/atcoder/cmd/...
 ```
-go install github.com/kkishi/atcoder/cmd/...
+
+Add to .bashrc:
+
+```sh
+export CPLUS_INCLUDE_PATH="/path/to/atcoder/pclib:$CPLUS_INCLUDE_PATH"
 ```
 
 For Emacs, add this to .emacs:
 
-```
+```lisp
 (defun atcoder (opts)
   "Run atcoder command with the commandline options given as OPTS."
   (save-buffer)

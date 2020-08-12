@@ -9,18 +9,12 @@ import (
 	"github.com/kkishi/atcoder/pkg/preprocess"
 )
 
-var (
-	file      = flag.String("file", "", "")
-	workspace = flag.String("workspace", "", "")
-)
+var file = flag.String("file", "", "")
 
 func main() {
 	flag.Parse()
 	if *file == "" {
 		log.Fatal("--file is not specified")
-	}
-	if *workspace == "" {
-		log.Fatal("--workspace is not specified")
 	}
 
 	r, err := os.OpenFile(*file, os.O_RDONLY, 0)
@@ -32,7 +26,7 @@ func main() {
 	w := bufio.NewWriter(os.Stdout)
 	defer w.Flush()
 
-	if err := preprocess.Includes(r, w, *workspace); err != nil {
+	if err := preprocess.Includes(r, w); err != nil {
 		log.Fatal(err)
 	}
 }
