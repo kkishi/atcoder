@@ -59,21 +59,28 @@ int main() {
 
 	dir, err := ioutil.TempDir("", "test")
 	if err != nil {
-		log.Fatal(err)
+		t.Fatal(err)
 	}
 	defer os.RemoveAll(dir)
 	log.Printf("created a tmp dir: %q", dir)
+
+	pathenv := os.Getenv("CPLUS_INCLUDE_PATH")
+	defer os.Setenv("CPLUS_INCLUDE_PATH", pathenv)
+
+	if err := os.Setenv("CPLUS_INCLUDE_PATH", dir); err != nil {
+		t.Fatal("Setenv failed: ", err)
+	}
 
 	for _, test := range tests {
 		for header, content := range test.headers {
 			p := filepath.Join(dir, header)
 			if err := ioutil.WriteFile(p, []byte(content), 0644); err != nil {
-				log.Fatal(err)
+				t.Fatal(err)
 			}
 		}
 
 		var b bytes.Buffer
-		if err := Includes(bytes.NewReader([]byte(test.source)), &b, dir); err != nil {
+		if err := Includes(bytes.NewReader([]byte(test.source)), &b); err != nil {
 			t.Fatal(err)
 		}
 		if got := b.String(); got != test.want {

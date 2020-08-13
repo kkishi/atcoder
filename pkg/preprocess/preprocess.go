@@ -14,14 +14,28 @@ var includeExp = regexp.MustCompile("^#include \"(.*\\.h)\"$")
 var included = make(map[string]bool)
 
 type preprocessor struct {
-	w           io.Writer
-	includePath string
+	w io.Writer
 
 	lastPrintedLine string
 }
 
+func lookPath(file string) (string, error) {
+	path := os.Getenv("CPLUS_INCLUDE_PATH")
+	for _, dir := range filepath.SplitList(path) {
+		path := filepath.Join(dir, file)
+		if _, err := os.Stat(path); err == nil {
+			return path, nil
+		}
+	}
+	return "", fmt.Errorf("%q not found", file)
+}
+
 func (p *preprocessor) include(header string) error {
-	r, err := os.OpenFile(filepath.Join(p.includePath, header), os.O_RDONLY, 0)
+	path, err := lookPath(header)
+	if err != nil {
+		return err
+	}
+	r, err := os.OpenFile(path, os.O_RDONLY, 0)
 	if err != nil {
 		return err
 	}
@@ -84,10 +98,9 @@ func (p *preprocessor) print(l string) {
 	fmt.Fprintln(p.w, l)
 }
 
-func Includes(r io.Reader, w io.Writer, includePath string) error {
+func Includes(r io.Reader, w io.Writer) error {
 	p := &preprocessor{
-		w:           w,
-		includePath: includePath,
+		w: w,
 	}
 	s := bufio.NewScanner(r)
 	for s.Scan() {
