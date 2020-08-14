@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(ll, n, m);
   vector<ll> x(m);
-  rep(i, m) cin >> x[i];
+  cin >> x;
 
   sort(all(x));
   ll ans = x[m - 1] - x[0];

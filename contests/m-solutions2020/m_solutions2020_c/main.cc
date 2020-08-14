@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n, k);
   vector<int> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   for (int i = k; i < n; ++i) {
     if (a[i] > a[i - k]) {
       wt("Yes");

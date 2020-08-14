@@ -8,7 +8,7 @@ using namespace std;
 int main() {
   rd(ll, n, k);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   ll sum = accumulate(all(a), 0LL);
   map<ll, int> fs = Factorize(sum);
   vector<pair<ll, int>> v(all(fs));

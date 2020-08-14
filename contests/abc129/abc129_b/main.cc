@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> w(n);
-  rep(i, n) cin >> w[i];
+  cin >> w;
   vector<int> s(n + 1);
   rep(i, n) s[i + 1] = s[i] + w[i];
   int ans = 1000000;

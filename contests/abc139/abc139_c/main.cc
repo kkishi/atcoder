@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> h(n);
-  rep(i, n) cin >> h[i];
+  cin >> h;
   int ans = 0;
   int moved = 0;
   for (int i = 1; i < n; ++i) {

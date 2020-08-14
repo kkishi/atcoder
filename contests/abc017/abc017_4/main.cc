@@ -10,7 +10,7 @@ using namespace std;
 int main() {
   rd(int, n, m);
   V<int> f(n);
-  rep(i, n) cin >> f[i];
+  cin >> f;
 
   V<int> seen(m + 1);
   V<int> left(n);

@@ -8,8 +8,7 @@ using namespace std;
 int main() {
   rd(int, A, B);
   vector<int> a(A), b(B);
-  rep(i, A) cin >> a[i];
-  rep(i, B) cin >> b[i];
+  cin >> a >> b;
   reverse(all(a));
   reverse(all(b));
   vector<int> as(A + 1), bs(B + 1);

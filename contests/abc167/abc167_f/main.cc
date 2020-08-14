@@ -13,7 +13,7 @@ struct S {
 int main() {
   rd(int, n);
   vector<string> s(n);
-  rep(i, n) cin >> s[i];
+  cin >> s;
   vector<S> left, right;
   for (const string& si : s) {
     int lowest = 0, change = 0;

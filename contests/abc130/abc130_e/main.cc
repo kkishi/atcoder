@@ -9,10 +9,8 @@ using namespace std;
 
 int main() {
   rd(int, n, m);
-  vector<int> s(n);
-  rep(i, n) cin >> s[i];
-  vector<int> t(m);
-  rep(i, m) cin >> t[i];
+  vector<int> s(n), t(m);
+  cin >> s >> t;
 
   vector<vector<mint>> dp(n + 1, vector<mint>(m + 1));
   rep(i, n + 1) dp[i][0] = 1;

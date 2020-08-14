@@ -7,9 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> a(n), b(n), c(n);
-  rep(i, n) cin >> a[i];
-  rep(i, n) cin >> b[i];
-  rep(i, n) cin >> c[i];
+  cin >> a >> b >> c;
   int ans = 0;
   rep(i, n) {
     ans += b[i];

@@ -7,9 +7,9 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> target(3);
-  rep(i, 3) cin >> target[i];
+  cin >> target;
   vector<int> l(n);
-  rep(i, n) cin >> l[i];
+  cin >> l;
   vector<int> current(3);
   int ans = numeric_limits<int>::max();
   function<void(int, int)> dfs = [&](int depth, int used_mp) {

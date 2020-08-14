@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> p(n);
-  rep(i, n) cin >> p[i];
+  cin >> p;
   vector<bool> dp(n * 100 + 1);
   dp[0] = true;
   rep(i, n) {

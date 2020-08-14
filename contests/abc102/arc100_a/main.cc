@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(ll, n);
   V<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   rep(i, n) a[i] -= i + 1;
   sort(all(a));
   ll ans = 0;

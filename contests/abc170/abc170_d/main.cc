@@ -42,7 +42,7 @@ bool Eq(const map<int, int>& a, const map<int, int>& b) {
 int main() {
   rd(int, n);
   vector<int> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   vector<map<int, int>> fs(n);
   rep(i, n) { fs[i] = Factorize(a[i]); }
   map<map<int, int>, int> cnt;

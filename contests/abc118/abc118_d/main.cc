@@ -14,7 +14,7 @@ int main() {
   rd(int, n, m);
 
   vector<int> a(m);
-  rep(i, m) cin >> a[i];
+  cin >> a;
 
   vector<string> dp(n + 1);
   for (int i = 0; i <= n; ++i) {

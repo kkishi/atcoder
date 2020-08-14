@@ -9,7 +9,7 @@ using namespace std;
 int main() {
   rd(ll, n, m, t);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   Graph<ll> g(n), rg(n);
   rep(i, m) {
     rd(ll, a, b, c);

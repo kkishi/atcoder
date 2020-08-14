@@ -23,7 +23,7 @@ int main() {
   rd(int, x1, y1, x2, y2);
   --x1, --y1, --x2, --y2;
   vector<string> grid(h);
-  rep(i, h) cin >> grid[i];
+  cin >> grid;
 
   vector<vector<vector<bool>>> visited(h, vector(w, vector(4, false)));
   deque<State> que;

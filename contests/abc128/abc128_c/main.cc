@@ -15,7 +15,7 @@ int main() {
     }
   }
   vector<int> p(m);
-  rep(i, m) cin >> p[i];
+  cin >> p;
   int ans = 0;
   rep(s, 1 << n) {
     rep(i, m) {

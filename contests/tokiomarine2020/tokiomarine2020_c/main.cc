@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(ll, n, k);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   rep(i, k) {
     vector<ll> na(n);
     rep(j, n) na[j] = 1;

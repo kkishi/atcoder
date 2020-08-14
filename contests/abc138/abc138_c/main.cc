@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<double> v(n);
-  rep(i, n) cin >> v[i];
+  cin >> v;
   sort(all(v));
   double ans = (v[0] + v[1]) / 2;
   for (int i = 2; i < n; ++i) {

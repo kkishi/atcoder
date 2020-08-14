@@ -8,7 +8,7 @@ using namespace std;
 int main() {
   rd(int, n);
   V<int> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   sort(all(a));
   int ai = a[n - 1];
   int aj, ajm = -1;

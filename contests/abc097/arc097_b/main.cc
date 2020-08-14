@@ -8,7 +8,7 @@ using namespace std;
 int main() {
   rd(int, n, m);
   V<int> p(n);
-  rep(i, n) cin >> p[i];
+  cin >> p;
   DisjointSet ds(n);
   rep(i, m) {
     rd(int, x, y);

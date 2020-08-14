@@ -7,8 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> v(n), c(n);
-  rep(i, n) cin >> v[i];
-  rep(i, n) cin >> c[i];
+  cin >> v >> c;
   int ans = numeric_limits<int>::min();
   rep(s, 1 << n) {
     int x = 0, y = 0;

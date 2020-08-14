@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> h(n);
-  rep(i, n) cin >> h[i];
+  cin >> h;
   int ans = 0;
   while (true) {
     int maxi = *max_element(all(h));

@@ -7,10 +7,10 @@ using namespace std;
 int main() {
   rd(ll, a, b, q);
   vector<ll> s(a);
-  rep(i, a) cin >> s[i];
+  cin >> s;
   set<ll> ss(all(s));
   vector<ll> t(b);
-  rep(i, b) cin >> t[i];
+  cin >> t;
   set<ll> ts(all(t));
   while (q--) {
     rd(ll, x);

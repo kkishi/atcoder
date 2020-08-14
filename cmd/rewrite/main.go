@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -18,6 +19,8 @@ var (
 )
 
 const usingNamespaceSTD = "using namespace std;"
+
+var readVector = regexp.MustCompile("rep\\(i, .+\\) cin >> ([^[]+)\\[i\\];")
 
 func rewrite(r io.Reader, w io.Writer) error {
 	s := bufio.NewScanner(r)
@@ -41,6 +44,11 @@ func rewrite(r io.Reader, w io.Writer) error {
 		l = strings.Replace(l, "ALL(", "all(", 1)
 		l = strings.Replace(l, ".pow(", ".Pow(", -1)
 		l = strings.Replace(l, "::combination(", "::Comb(", -1)
+		if m := readVector.FindAllStringSubmatch(l, -1); len(m) != 0 {
+			// This drops leading spaces, but we rely on later clang-format runs.
+			l = fmt.Sprintf("cin >> %s;", m[0][1])
+		}
+
 		fmt.Fprintln(w, l)
 	}
 	return nil

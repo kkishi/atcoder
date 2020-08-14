@@ -13,7 +13,7 @@ using namespace std;
 int main() {
   rd(ll, n, k);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
 
   ll bit = 1, shifts = 0;
   while ((bit << 1) <= k) {

@@ -10,7 +10,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   mint ans = 0;
   rep(i, 60) {
     ll ones = 0;

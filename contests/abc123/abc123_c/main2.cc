@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(ll, n);
   vector<ll> transportation(5);
-  rep(i, 5) cin >> transportation[i];
+  cin >> transportation;
   vector<ll> population(6);
   population[0] = n;
   ll ans = 0;

@@ -13,7 +13,7 @@ struct Pair {
 int main() {
   rd(ll, n);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   sort(all(a), greater());
 
   ll ans = a[0];

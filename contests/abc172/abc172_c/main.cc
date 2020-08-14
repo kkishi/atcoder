@@ -8,8 +8,7 @@ using namespace std;
 int main() {
   rd(ll, n, m, k);
   vector<ll> a(n), b(m);
-  rep(i, n) cin >> a[i];
-  rep(i, m) cin >> b[i];
+  cin >> a >> b;
 
   vector<ll> sa(n + 1), sb(m + 1);
   rep(i, n) sa[i + 1] = sa[i] + a[i];

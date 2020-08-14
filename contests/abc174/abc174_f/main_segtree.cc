@@ -12,7 +12,7 @@ struct Q {
 int main() {
   rd(int, n, q);
   V<int> c(n);
-  rep(i, n) cin >> c[i];
+  cin >> c;
   V<Q> qs;
   rep(i, q) {
     rd(int, l, r);

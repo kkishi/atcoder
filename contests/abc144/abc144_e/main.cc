@@ -8,8 +8,7 @@ using namespace std;
 int main() {
   rd(ll, n, k);
   vector<ll> a(n), f(n);
-  rep(i, n) cin >> a[i];
-  rep(i, n) cin >> f[i];
+  cin >> a >> f;
   sort(all(a));
   sort(all(f), greater<ll>());
   auto check = [&](ll x) {

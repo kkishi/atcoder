@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   V<int> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   int ans = 0;
   rep(i, n) {
     while (a[i] % 2 == 0) {

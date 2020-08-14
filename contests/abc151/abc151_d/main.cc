@@ -55,7 +55,7 @@ class Grid {
 int main() {
   rd(int, H, W);
   vector<string> m(H);
-  rep(i, H) cin >> m[i];
+  cin >> m;
 
   int ans = 0;
   rep(sr, H) rep(sc, W) {

@@ -9,7 +9,7 @@ int main() {
   int n = 1 << k;
 
   vector<double> ratings(n);
-  rep(i, n) cin >> ratings[i];
+  cin >> ratings;
 
   map<pair<int, int>, double> memo;
   function<double(int, int)> prob = [&](int index, int wins) {

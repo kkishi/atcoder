@@ -27,7 +27,7 @@ struct DS {
 int main() {
   rd(int, n, q);
   DS ds(n);
-  rep(i, n) cin >> ds.c[i];
+  cin >> ds.c;
 
   Mo<int, DS> mo(ds);
   rep(i, q) {

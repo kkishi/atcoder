@@ -70,7 +70,7 @@ int main() {
   Problem p;
   cin >> p.D;
   p.c.resize(26);
-  rep(i, 26) cin >> p.c[i];
+  cin >> p.c;
   p.s.resize(p.D);
   rep(i, p.D) {
     p.s[i].resize(26);

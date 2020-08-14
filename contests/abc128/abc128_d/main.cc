@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n, k);
   vector<int> v(n);
-  rep(i, n) cin >> v[i];
+  cin >> v;
   int ans = 0;
   for (int l = 0; l <= min(k, n); ++l) {
     for (int r = 0; r + l <= min(k, n); ++r) {

@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n, k);
   vector<int> p(n);
-  rep(i, n) cin >> p[i];
+  cin >> p;
   sort(all(p));
   wt(accumulate(p.begin(), p.begin() + k, 0));
 }

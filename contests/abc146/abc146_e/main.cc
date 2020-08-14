@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(ll, n, k);
   vector<ll> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   map<ll, ll> seen;
   queue<ll> que;
   auto add = [&](ll x) {

@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n, x);
   vector<int> l(n);
-  rep(i, n) cin >> l[i];
+  cin >> l;
   int ans = 1;
   int cx = 0;
   rep(i, n) {

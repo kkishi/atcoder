@@ -7,8 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<ll> a(n + 1), b(n);
-  rep(i, n + 1) cin >> a[i];
-  rep(i, n) cin >> b[i];
+  cin >> a >> b;
   ll sum = accumulate(all(b), 0LL);
   rep(i, n) {
     ll s = min(a[i], b[i]);

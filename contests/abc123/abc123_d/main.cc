@@ -13,9 +13,7 @@ struct S {
 int main() {
   rd(ll, x, y, z, k);
   vector<ll> a(x), b(y), c(z);
-  rep(i, x) cin >> a[i];
-  rep(i, y) cin >> b[i];
-  rep(i, z) cin >> c[i];
+  cin >> a >> b >> c;
   sort(all(a), greater());
   sort(all(b), greater());
   sort(all(c), greater());

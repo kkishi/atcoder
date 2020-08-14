@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> a(n);
-  rep(i, n) cin >> a[i];
+  cin >> a;
   multiset<int, greater<int>> s;
   rep(i, n) s.insert(a[i]);
   rep(i, n) {

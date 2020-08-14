@@ -7,6 +7,6 @@ using namespace std;
 int main() {
   rd(int, n, x);
   V<int> m(n);
-  rep(i, n) cin >> m[i];
+  cin >> m;
   wt((x - accumulate(all(m), 0)) / *min_element(all(m)) + n);
 }

@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<string> w(n);
-  rep(i, n) cin >> w[i];
+  cin >> w;
   set<string> seen;
   bool ok = true;
   rep(i, n) {

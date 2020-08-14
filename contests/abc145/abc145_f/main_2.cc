@@ -11,7 +11,7 @@ const ll INF = 1LL << 60;
 int main() {
   rd(ll, n, K);
   vector<ll> h(n);
-  rep(i, n) cin >> h[i];
+  cin >> h;
 
   h.push_back(0);
   vector<ll> hc = Compress(h);
