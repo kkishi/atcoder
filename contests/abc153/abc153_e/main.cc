@@ -17,8 +17,8 @@ int main() {
   for (int i = 0; i <= H; ++i) {
     for (int n = 0; n < N; ++n) {
       ll j = i + A[n];
-      dp[j] = min(dp[j], dp[i] + B[n]);
-      if (j >= H) ans = min(ans, dp[j]);
+      chmin(dp[j], dp[i] + B[n]);
+      if (j >= H) chmin(ans, dp[j]);
     }
   }
   wt(ans);

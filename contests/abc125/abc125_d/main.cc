@@ -14,7 +14,7 @@ int main() {
       a = -a;
     }
     sum += a;
-    mini = min(mini, a);
+    chmin(mini, a);
   }
   if (minus % 2 == 1) {
     sum -= mini * 2;

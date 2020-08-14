@@ -9,7 +9,7 @@ int main() {
   int ans = 1000000;
   rep(i, n) {
     rd(int, c, t);
-    if (t <= T) ans = min(ans, c);
+    if (t <= T) chmin(ans, c);
   }
   if (ans == 1000000) {
     wt("TLE");

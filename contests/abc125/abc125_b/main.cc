@@ -15,7 +15,7 @@ int main() {
       x += v[i];
       y += c[i];
     }
-    ans = max(ans, x - y);
+    chmax(ans, x - y);
   }
   wt(ans);
 }

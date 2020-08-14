@@ -2,7 +2,6 @@
 
 #include "compress.h"
 #include "macros.h"
-#include "setmin.h"
 
 using namespace std;
 
@@ -21,12 +20,12 @@ int main() {
   dp[0][0][0] = 0;
   rep(i, n) rep(j, K + 1) rep(k, hc.size()) {
     if (j < K) {
-      Setmin(dp[i + 1][j + 1][k], dp[i][j][k]);
+      chmin(dp[i + 1][j + 1][k], dp[i][j][k]);
     }
-    Setmin(dp[i + 1][j][Uncompress(hc, h[i])],
-           dp[i][j][k] + max(0LL, h[i] - hc[k]));
+    chmin(dp[i + 1][j][Uncompress(hc, h[i])],
+          dp[i][j][k] + max(0LL, h[i] - hc[k]));
   }
   ll ans = INF;
-  rep(i, K + 1) rep(j, hc.size()) Setmin(ans, dp[n][i][j]);
+  rep(i, K + 1) rep(j, hc.size()) chmin(ans, dp[n][i][j]);
   wt(ans);
 }

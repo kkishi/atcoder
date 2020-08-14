@@ -15,6 +15,6 @@ int main() {
     r[i] = r[i + 1] + (s[i + 1] == 'E');
   }
   int ans = n;
-  rep(i, n) ans = min(ans, l[i] + r[i]);
+  rep(i, n) chmin(ans, l[i] + r[i]);
   wt(ans);
 }

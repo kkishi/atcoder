@@ -14,7 +14,7 @@ int main() {
     string s;
     cin >> s;
     m[s]++;
-    maximum = max(maximum, m[s]);
+    chmax(maximum, m[s]);
   }
 
   for (const auto p : m) {

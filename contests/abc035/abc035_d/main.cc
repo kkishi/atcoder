@@ -23,7 +23,7 @@ int main() {
   rep(i, n) {
     if (!dist[i] || !rdist[i]) continue;
     ll rem = t - *dist[i] - *rdist[i];
-    if (rem > 0) ans = max(ans, rem * a[i]);
+    if (rem > 0) chmax(ans, rem * a[i]);
   }
   wt(ans);
 }

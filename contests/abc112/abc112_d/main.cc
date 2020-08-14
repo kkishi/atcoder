@@ -12,7 +12,7 @@ int main() {
   function<void(map<int, int>::iterator, int)> dfs =
       [&](map<int, int>::iterator it, int x) {
         if (it == fs.end()) {
-          if (m / x >= n) ans = max(ans, x);
+          if (m / x >= n) chmax(ans, x);
           return;
         }
         rep(i, it->second + 1) {

@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmax.h"
 
 using namespace std;
 
@@ -16,8 +15,8 @@ int main() {
   rep(i, B) bs[i + 1] = bs[i] + b[i];
   vector dp(A + 1, vector(B + 1, 0));
   rep(i, A + 1) rep(j, B + 1) {
-    if (i > 0) Setmax(dp[i][j], as[i] + bs[j] - dp[i - 1][j]);
-    if (j > 0) Setmax(dp[i][j], as[i] + bs[j] - dp[i][j - 1]);
+    if (i > 0) chmax(dp[i][j], as[i] + bs[j] - dp[i - 1][j]);
+    if (j > 0) chmax(dp[i][j], as[i] + bs[j] - dp[i][j - 1]);
   }
   wt(dp[A][B]);
 }

@@ -33,7 +33,7 @@ int main() {
       dsum -= *dup.begin();
       dup.erase(dup.begin());
       dsum += s[i].d;
-      ans = max(ans, score());
+      chmax(ans, score());
     }
   }
   wt(ans);

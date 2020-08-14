@@ -18,7 +18,7 @@ int main() {
   rep(i, n + 1) {
     ll j = BinarySearch<ll>(0, m + 1, [&](ll x) { return k >= sa[i] + sb[x]; });
     if (k < sa[i] + sb[j]) break;
-    ans = max(ans, i + j);
+    chmax(ans, i + j);
   }
   wt(ans);
 }

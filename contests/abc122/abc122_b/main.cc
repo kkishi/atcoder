@@ -13,7 +13,7 @@ int main() {
     bool ok = true;
     for (int k = i; k <= j; ++k)
       if (!acgt(s[k])) ok = false;
-    if (ok) ans = max(ans, j - i + 1);
+    if (ok) chmax(ans, j - i + 1);
   }
   wt(ans);
 }

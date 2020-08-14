@@ -26,7 +26,7 @@ int main() {
       score += score_per_problem * solve;
       if (solve == p[i]) score += c[i];
     }
-    ans = min(ans, solved);
+    chmin(ans, solved);
   }
   wt(ans);
 }

@@ -20,7 +20,7 @@ ll solve(const string& t) {
     rep(j, 3) {
       rep(k, 3) {
         if (k != j) {
-          curr[j] = max(curr[j], prev[k]);
+          chmax(curr[j], prev[k]);
         }
       }
       curr[j] += Score(hand[j], t[i]);
@@ -28,7 +28,7 @@ ll solve(const string& t) {
     swap(curr, prev);
   }
   ll ret = 0;
-  rep(i, 3) ret = max(ret, prev[i]);
+  rep(i, 3) chmax(ret, prev[i]);
   return ret;
 }
 

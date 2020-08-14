@@ -36,7 +36,7 @@ int main() {
     for (int j : t) sum += e[j];
     for (int j : t) {
       double diff = p[i] * (sum / t.size() - (sum - e[j]) / (t.size() - 1));
-      maxi = max(maxi, diff);
+      chmax(maxi, diff);
     }
   }
   cout << setprecision(10) << fixed;

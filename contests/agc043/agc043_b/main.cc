@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmax.h"
 
 #define FOR(i, n) for (auto i : (n))
 
@@ -57,7 +56,7 @@ int main() {
   cout << s << endl;
   */
   char maximum = '0';
-  FOR(c, S) Setmax(maximum, c);
+  FOR(c, S) chmax(maximum, c);
   dbg(maximum);
   int cnt = 0;
   FOR(c, S) if (c == maximum)++ cnt;

@@ -30,8 +30,8 @@ int main() {
 
   ll ans = max(l[n], r[n]);
   for (int i = 1; i < n; ++i) {
-    ans = max(ans, l[i] - x[i - 1] + r[n - i]);
-    ans = max(ans, r[i] - rx[i - 1] + l[n - i]);
+    chmax(ans, l[i] - x[i - 1] + r[n - i]);
+    chmax(ans, r[i] - rx[i - 1] + l[n - i]);
   }
   wt(ans);
 }

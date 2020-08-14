@@ -16,7 +16,7 @@ int main() {
   V<int> left(n);
   int curr = 0;
   rep(i, n) {
-    curr = max(curr, seen[f[i]]);
+    chmax(curr, seen[f[i]]);
     left[i] = curr;
     seen[f[i]] = i + 1;
   }

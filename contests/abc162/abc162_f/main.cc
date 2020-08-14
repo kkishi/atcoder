@@ -1,15 +1,11 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
 long long A[2 * 100000];
 long long dp[2 * 100000][2][3];
-
-void setmax(long long &best, long long cand) {
-  if (best < cand) best = cand;
-}
 
 int main() {
   int N;
@@ -24,18 +20,18 @@ int main() {
   for (int i = 1; i < N; ++i) {
     for (int skipped = 0; skipped <= maxskip; ++skipped) {
       // Previous one is taken, do not take.
-      setmax(dp[i][0][skipped], dp[i - 1][1][skipped]);
+      chmax(dp[i][0][skipped], dp[i - 1][1][skipped]);
       // Previous one is not taken, take.
-      setmax(dp[i][1][skipped], dp[i - 1][0][skipped] + A[i]);
+      chmax(dp[i][1][skipped], dp[i - 1][0][skipped] + A[i]);
       if (skipped < maxskip) {
         // Previous one is not taken, do not take.
-        setmax(dp[i][0][skipped + 1], dp[i - 1][0][skipped]);
+        chmax(dp[i][0][skipped + 1], dp[i - 1][0][skipped]);
       }
     }
   }
   long long ans = -INF;
   for (int i = 0; i <= maxskip; ++i) {
-    setmax(ans, dp[N - 1 - i][1][maxskip - i]);
+    chmax(ans, dp[N - 1 - i][1][maxskip - i]);
   }
   cout << ans << endl;
 }

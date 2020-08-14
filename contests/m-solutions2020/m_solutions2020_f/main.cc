@@ -25,7 +25,7 @@ int main() {
         auto it = lower_bound(all(ri), x[i]);
         if (it != ri.begin()) {
           if (ll d = x[i] - *(it - 1); d > 0) {
-            t = min(t, d * 10 / 2);
+            chmin(t, d * 10 / 2);
           }
         }
       }
@@ -41,7 +41,7 @@ int main() {
         auto it = lower_bound(all(ri), x[i]);
         if (it != ri.begin()) {
           if (ll d = x[i] - *(it - 1); d > 0) {
-            t = min(t, d * 10);
+            chmin(t, d * 10);
           }
         }
       }

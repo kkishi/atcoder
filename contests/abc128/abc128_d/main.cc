@@ -22,7 +22,7 @@ int main() {
         sum += q.top();
         q.pop();
       }
-      ans = max(ans, sum);
+      chmax(ans, sum);
     }
   }
   wt(ans);

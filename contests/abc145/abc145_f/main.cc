@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmin.h"
 
 using namespace std;
 
@@ -24,13 +23,13 @@ int main() {
         rep(j, k + 1) {
           int nj = j + (e == 1 ? 0 : 1);
           if (nj > k) continue;
-          Setmin(dp[i + 1][nj][e],
-                 dp[i][j][d] + max(0LL, curr_height - prev_height));
+          chmin(dp[i + 1][nj][e],
+                dp[i][j][d] + max(0LL, curr_height - prev_height));
         }
       }
     }
   }
   ll ans = INF;
-  rep(i, k + 1) rep(j, 4) Setmin(ans, dp[n][i][j]);
+  rep(i, k + 1) rep(j, 4) chmin(ans, dp[n][i][j]);
   wt(ans);
 }

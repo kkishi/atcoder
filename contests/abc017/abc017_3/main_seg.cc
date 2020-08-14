@@ -16,6 +16,6 @@ int main() {
     tree.Update(l - 1, r, s);
   }
   int mini = numeric_limits<int>::max();
-  rep(i, m) mini = min(mini, tree.Get(i));
+  rep(i, m) chmin(mini, tree.Get(i));
   wt(total - mini);
 }

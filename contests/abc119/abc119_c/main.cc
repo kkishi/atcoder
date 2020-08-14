@@ -18,7 +18,7 @@ int main() {
         if (current[i] == 0) return;
         used_mp += abs(target[i] - current[i]);
       }
-      ans = min(ans, used_mp);
+      chmin(ans, used_mp);
       return;
     }
     rep(i, 4) {

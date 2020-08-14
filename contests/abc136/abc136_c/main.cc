@@ -17,7 +17,7 @@ int main() {
         return 0;
       }
     }
-    curr = min(curr, h[i]);
+    chmin(curr, h[i]);
   }
   wt("Yes");
 }

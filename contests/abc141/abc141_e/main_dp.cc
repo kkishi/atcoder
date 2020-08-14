@@ -14,7 +14,7 @@ int main() {
     for (int j = n - 1; j >= 0; --j) {
       if (s[i] == s[j]) {
         dp[i][j] = dp[i + 1][j + 1] + 1;
-        ans = max(ans, min(abs(i - j), dp[i][j]));
+        chmax(ans, min(abs(i - j), dp[i][j]));
       }
     }
   }

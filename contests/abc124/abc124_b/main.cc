@@ -12,7 +12,7 @@ int main() {
   int ans = 0;
   rep(i, n) {
     if (h[i] >= maxi) ++ans;
-    maxi = max(maxi, h[i]);
+    chmax(maxi, h[i]);
   }
   wt(ans);
 }

@@ -26,7 +26,7 @@ int main() {
       rep(i, m) { tmp += x[idx[i]][j]; }
       sum += abs(tmp);
     }
-    ans = max(ans, sum);
+    chmax(ans, sum);
   }
   wt(ans);
 }

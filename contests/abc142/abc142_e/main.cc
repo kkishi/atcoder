@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmin.h"
 
 using namespace std;
 
@@ -26,7 +25,7 @@ int main() {
   vector<int> dp(1 << n, INF);
   dp[0] = 0;
   rep(bits, (1 << n)) {
-    rep(i, m) Setmin(dp[bits | keys[i].bits], dp[bits] + keys[i].price);
+    rep(i, m) chmin(dp[bits | keys[i].bits], dp[bits] + keys[i].price);
   }
   int ans = dp[(1 << n) - 1];
   if (ans == INF) {

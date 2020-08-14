@@ -10,7 +10,7 @@ int main() {
   int ans = 0;
   for (int i = 0; i < N; ++i) {
     rd(int, p);
-    m = min(m, p);
+    chmin(m, p);
     if (m >= p) ++ans;
   }
   wt(ans);

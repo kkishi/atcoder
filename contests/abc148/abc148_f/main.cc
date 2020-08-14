@@ -40,14 +40,14 @@ int main() {
   while (!que.empty()) {
     int here = que.front();
     que.pop();
-    maxi = max(maxi, aoki[here]);
+    chmax(maxi, aoki[here]);
     // dbg(here, takahashi[here]);
     for (int there : edges[here]) {
       if (takahashi.count(there)) continue;
       if (aoki[there] <= takahashi[here] + 1) continue;
       takahashi[there] = takahashi[here] + 1;
       que.push(there);
-      maxi = max(maxi, aoki[there]);
+      chmax(maxi, aoki[there]);
     }
   }
   dbg(maxi);

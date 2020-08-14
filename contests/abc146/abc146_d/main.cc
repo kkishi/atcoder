@@ -35,7 +35,7 @@ int main() {
       assert(color[e.index] == 0);
       while (used.count(c)) ++c;
       color[e.index] = c;
-      max_color = max(max_color, c);
+      chmax(max_color, c);
       ++c;
       que.push(e.node);
     }

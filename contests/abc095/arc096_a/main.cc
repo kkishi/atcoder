@@ -11,7 +11,7 @@ int main() {
     int sum = i * 2 * c;
     if (x > i) sum += (x - i) * a;
     if (y > i) sum += (y - i) * b;
-    ans = min(ans, sum);
+    chmin(ans, sum);
   }
   wt(ans);
 }

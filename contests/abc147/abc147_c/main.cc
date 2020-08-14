@@ -32,7 +32,7 @@ int main() {
   int ans = 0;
   for (int s = 0; s < (1 << n); ++s) {
     if (check(s, v)) {
-      ans = max(ans, __builtin_popcount(s));
+      chmax(ans, __builtin_popcount(s));
     }
   }
   wt(ans);

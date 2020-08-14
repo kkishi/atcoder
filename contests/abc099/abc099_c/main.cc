@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmin.h"
 
 using namespace std;
 
@@ -12,12 +11,12 @@ int main() {
     if (x == 0) return 0;
     if (memo[x] == -1) {
       int mini = numeric_limits<int>::max();
-      Setmin(mini, 1 + rec(x - 1));
+      chmin(mini, 1 + rec(x - 1));
       for (int i = 6; i <= x; i *= 6) {
-        Setmin(mini, 1 + rec(x - i));
+        chmin(mini, 1 + rec(x - i));
       }
       for (int i = 9; i <= x; i *= 9) {
-        Setmin(mini, 1 + rec(x - i));
+        chmin(mini, 1 + rec(x - i));
       }
       memo[x] = mini;
     }

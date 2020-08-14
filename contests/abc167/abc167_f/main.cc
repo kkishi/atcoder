@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmin.h"
 
 using namespace std;
 
@@ -19,7 +18,7 @@ int main() {
     int lowest = 0, change = 0;
     for (char c : si) {
       change += c == '(' ? 1 : -1;
-      Setmin(lowest, change);
+      chmin(lowest, change);
     }
     if (change >= 0) {
       left.push_back({lowest, change});
@@ -28,7 +27,7 @@ int main() {
     lowest = 0, change = 0;
     for (int i = si.size() - 1; i >= 0; --i) {
       change += si[i] == ')' ? 1 : -1;
-      Setmin(lowest, change);
+      chmin(lowest, change);
     }
     right.push_back({lowest, change});
   }

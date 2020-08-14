@@ -26,7 +26,7 @@ class Grid {
       int row, col;
       std::tie(dist, row, col) = que.top();
       que.pop();
-      ret = max(ret, dist);
+      chmax(ret, dist);
       int dr[] = {1, -1, 0, 0};
       int dc[] = {0, 0, 1, -1};
       for (int i = 0; i < 4; ++i) {
@@ -61,7 +61,7 @@ int main() {
   rep(sr, H) rep(sc, W) {
     Grid<int> grid(H, W);
     rep(r, H) rep(c, W) grid.Set(r, c, m[r][c] == '.' ? 1 : -1);
-    ans = max(ans, grid.Distance(sr, sc));
+    chmax(ans, grid.Distance(sr, sc));
   }
   wt(ans);
 }

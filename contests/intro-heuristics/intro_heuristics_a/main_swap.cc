@@ -73,15 +73,6 @@ class Solution {
   int sat_;
 };
 
-template <typename T>
-bool Setmax(T& a, T b) {
-  if (a < b) {
-    a = b;
-    return true;
-  }
-  return false;
-}
-
 inline ll Now() {
   return chrono::duration_cast<chrono::milliseconds>(
              chrono::system_clock::now().time_since_epoch())
@@ -172,7 +163,7 @@ int main() {
       }
       // HACK
       change += (d - last[j]) * p.c[j] * 6;
-      if (Setmax(maxi, change)) {
+      if (chmax(maxi, change)) {
         chosen = j;
       }
     }

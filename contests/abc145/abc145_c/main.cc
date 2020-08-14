@@ -10,7 +10,7 @@ using Vec = Vector<double>;
 int main() {
   rd(int, n);
   vector<Vec> v(n);
-  rep(i, n) cin >> v[i];
+  cin >> v;
   sort(all(v));
   double sum = 0;
   int cnt = 0;

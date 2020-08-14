@@ -14,7 +14,7 @@ int main() {
   rep(i, n) {
     for (int j = t - 1; j >= 0; --j) {
       dp[j + f[i].first] = max(dp[j + f[i].first], dp[j] + f[i].second);
-      ans = max(ans, dp[j + f[i].first]);
+      chmax(ans, dp[j + f[i].first]);
     }
   }
   wt(ans);

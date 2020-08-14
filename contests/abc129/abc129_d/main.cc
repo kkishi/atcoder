@@ -32,7 +32,7 @@ int main() {
   rep(r, H) rep(c, W) if (s[r][c] == '.') {
     int res = -3;
     rep(i, 4) res += rec(dr[i], dc[i], r, c, memo[i]);
-    ans = max(ans, res);
+    chmax(ans, res);
   }
   wt(ans);
 }

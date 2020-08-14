@@ -14,7 +14,7 @@ int main() {
   rd(int, x1, y1, x2, y2);
   --x1, --y1, --x2, --y2;
   vector<string> grid(h);
-  rep(i, h) cin >> grid[i];
+  cin >> grid;
 
   State init = {x1, y1, 0};
   vector<vector<int>> seen(h, vector(w, -1));

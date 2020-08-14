@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 
+#include "macros.h"
 #include "segment_tree.h"
-
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
 
 using namespace std;
 
@@ -17,12 +16,12 @@ int main() {
   int N;
   cin >> N;
   vector<int> A(N);
-  rep(i, N) cin >> A[i];
+  cin >> A;
 
   SegmentTree<int> t(N, Gcd);
   rep(i, N) { t.Set(i, A[i]); }
 
   int ans = 0;
-  rep(i, N) ans = max(ans, Gcd(t.Aggregate(0, i), t.Aggregate(i + 1, N)));
+  rep(i, N) chmax(ans, Gcd(t.Aggregate(0, i), t.Aggregate(i + 1, N)));
   cout << ans << endl;
 }

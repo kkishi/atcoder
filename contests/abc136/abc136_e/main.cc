@@ -43,7 +43,7 @@ int main() {
     }
     ll ret = 0;
     rep(i, v[depth].second + 1) {
-      ret = max(ret, dfs(depth + 1, g));
+      chmax(ret, dfs(depth + 1, g));
       g *= v[depth].first;
     }
     return ret;

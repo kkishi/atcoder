@@ -29,7 +29,7 @@ int main() {
       sum -= c;
       if (z) ++k;
     }
-    ans = max(ans, sum);
+    chmax(ans, sum);
   }
   wt(ans);
 }

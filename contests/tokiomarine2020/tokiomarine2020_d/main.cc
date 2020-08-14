@@ -4,75 +4,54 @@
 
 using namespace std;
 
-const int kMax = int(1e5);
-int n;
-int v[1 << 18];
-int w[1 << 18];
-// int dp[20][kMax + 1];
-int q;
-int ans[kMax];
-int num_qs[1 << 18];
-int max_ls[1 << 18];
+const int kMaxCache = 1 << 11;
+const int kMaxL = int(1e5);
+int V_[1 << 18];
+int W[1 << 18];
+int dp[kMaxCache][kMaxL + 1];
 
-struct Query {
-  int v;
-  int l;
-  int index;
-};
-
-map<int, vector<Query>> queries;
-
-void setmax(int& a, int b) {
-  if (a < b) a = b;
-}
-
-void dfs(int depth, int node, const map<int, int>& dp) {
-  dbg(depth, node);
-  if (node >= n) {
-    return;
-  }
-  if (num_qs[node] == 0) {
-    return;
-  }
-  map<int, int> ndp(dp);
-  for (const auto p : dp) {
-    setmax(ndp[p.first + w[node]], p.second + v[node]);
-  }
-
-  for (const Query& query : queries[node]) {
-    // ans[query.index] = dp[depth + 1][query.l];
-    for (int i = query.l; i >= 0; --i) {
-      if (ndp[i] > 0) {
-        ans[query.index] = ndp[i];
-        break;
-      }
-    }
-    // ans[query.index] = ndp[query.l];
-  }
-  dfs(depth + 1, node * 2 + 1, ndp);
-  dfs(depth + 1, node * 2 + 2, ndp);
-}
+int Parent(int node) { return (node - 1) / 2; }
 
 int main() {
-  cin >> n;
-  rep(i, n) scanf("%d %d", &v[i], &w[i]);
+  rd(int, n);
+  rep(i, n) cin >> V_[i] >> W[i];
 
-  cin >> q;
+  for (int i = W[0]; i <= kMaxL; ++i) dp[0][i] = V_[0];
+  for (int node = 1; node < min(kMaxCache, n); ++node) {
+    int parent = Parent(node);
+    for (int i = 0; i <= kMaxL; ++i) dp[node][i] = dp[parent][i];
+    for (int i = kMaxL; i - W[node] >= 0; --i) {
+      chmax(dp[node][i], dp[parent][i - W[node]] + V_[node]);
+    }
+  }
+
+  rd(int, q);
   rep(i, q) {
-    int v, l;
-    scanf("%d %d", &v, &l);
+    rd(int, v, l);
     --v;
 
-    queries[v].push_back({v, l, i});
-
-    while (v) {
-      ++num_qs[v];
-      setmax(max_ls[v], l);
-      v = (v - 1) / 2;
+    if (v < kMaxCache) {
+      wt(dp[v][l]);
+    } else {
+      vector<int> vs, ws;
+      while (v >= kMaxCache) {
+        vs.push_back(V_[v]);
+        ws.push_back(W[v]);
+        v = Parent(v);
+      }
+      int ans = 0;
+      rep(i, 1 << vs.size()) {
+        int v_sum = 0;
+        int w_sum = 0;
+        rep(j, vs.size()) if ((i >> j) & 1) {
+          v_sum += vs[j];
+          w_sum += ws[j];
+        }
+        if (w_sum <= l) {
+          chmax(ans, v_sum + dp[v][l - w_sum]);
+        }
+      }
+      wt(ans);
     }
-    ++num_qs[0];
-    setmax(max_ls[0], l);
   }
-  dfs(1, 0, {{0, 0}});
-  rep(i, q) printf("%d\n", ans[i]);
 }

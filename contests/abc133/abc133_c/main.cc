@@ -14,7 +14,7 @@ int main() {
         wt(0);
         return 0;
       }
-      ans = min(ans, k);
+      chmin(ans, k);
     }
   }
   wt(ans);

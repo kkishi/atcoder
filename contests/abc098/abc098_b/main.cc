@@ -14,7 +14,7 @@ int main() {
     int cnt = 0;
     for (char c : a)
       if (b.count(c)) ++cnt;
-    ans = max(ans, cnt);
+    chmax(ans, cnt);
   }
   wt(ans);
 }

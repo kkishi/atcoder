@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmin.h"
 
 using namespace std;
 
@@ -15,20 +14,20 @@ int main() {
     if (depth == n) {
       ll S = 0;
       rep(i, n) S += p[i] * dist[i];
-      Setmin(ans[k], S);
+      chmin(ans[k], S);
       return;
     }
     rec(depth + 1, k, dist);
     {
       // x
       vector<ll> ndist = dist;
-      rep(i, n) Setmin(ndist[i], abs(x[i] - x[depth]));
+      rep(i, n) chmin(ndist[i], abs(x[i] - x[depth]));
       rec(depth + 1, k + 1, ndist);
     }
     {
       // y
       vector<ll> ndist = dist;
-      rep(i, n) Setmin(ndist[i], abs(y[i] - y[depth]));
+      rep(i, n) chmin(ndist[i], abs(y[i] - y[depth]));
       rec(depth + 1, k + 1, ndist);
     }
   };

@@ -39,8 +39,8 @@ int main() {
     ll ans = numeric_limits<ll>::max();
     for (ll sx : lohi(ss, x)) {
       for (ll tx : lohi(ts, x)) {
-        ans = min(ans, abs(x - sx) + abs(sx - tx));
-        ans = min(ans, abs(x - tx) + abs(tx - sx));
+        chmin(ans, abs(x - sx) + abs(sx - tx));
+        chmin(ans, abs(x - tx) + abs(tx - sx));
       }
     }
     wt(ans);

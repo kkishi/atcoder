@@ -13,7 +13,7 @@ int main() {
   for (int i = 1; i < n; ++i) {
     if (h[i] <= h[i - 1]) {
       ++moved;
-      ans = max(ans, moved);
+      chmax(ans, moved);
     } else {
       moved = 0;
     }

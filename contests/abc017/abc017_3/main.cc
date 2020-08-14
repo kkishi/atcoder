@@ -47,7 +47,7 @@ int main() {
 
   int ans = 0;
   for (int i = 1; i <= m; ++i) {
-    ans = max(ans, l[i] + r[i]);
+    chmax(ans, l[i] + r[i]);
   }
   wt(ans);
 }

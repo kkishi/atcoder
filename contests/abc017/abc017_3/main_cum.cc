@@ -19,7 +19,7 @@ int main() {
   int mini = numeric_limits<int>::max();
   rep(i, m) {
     sum += inc[i];
-    mini = min(mini, sum);
+    chmin(mini, sum);
   }
   wt(total - mini);
 }

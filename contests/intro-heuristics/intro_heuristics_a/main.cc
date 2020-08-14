@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "macros.h"
-#include "setmax.h"
 
 using namespace std;
 
@@ -26,7 +25,7 @@ int main() {
       }
       // HACK
       change += (d - last[j]) * c[j] * 6;
-      if (Setmax(maxi, change)) {
+      if (chmax(maxi, change)) {
         chosen = j;
       }
     }

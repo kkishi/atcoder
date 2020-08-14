@@ -37,7 +37,7 @@ int main() {
         }
       }
     }
-    ans = min(ans, sum);
+    chmin(ans, sum);
   } while (next_permutation(all(idx)));
   wt(ans);
 }
