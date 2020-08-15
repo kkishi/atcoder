@@ -12,7 +12,7 @@ int main() {
     vector<ll> na(n);
     rep(j, n) na[j] = 1;
     {
-      priority_queue<ll, vector<ll>, greater<ll>> que;
+      low_priority_queue<ll> que;
       rep(j, n) {
         while (!que.empty() && que.top() < j) que.pop();
         na[j] += que.size();
@@ -27,11 +27,9 @@ int main() {
         que.push(j - a[j]);
       }
     }
-    bool changed = false;
-    rep(j, n) if (na[j] != a[j]) changed = true;
-    if (!changed) break;
+    if (na == a) break;
     swap(a, na);
   }
-  rep(i, n) { cout << a[i] << " "; }
+  rep(i, n) cout << a[i] << " ";
   cout << endl;
 }
