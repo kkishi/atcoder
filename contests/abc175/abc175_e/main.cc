@@ -13,7 +13,7 @@ int main() {
   rep(i, K) cin >> r[i] >> c[i] >> v[i];
   VV<int> item(R + 1, V<int>(C + 1));
   rep(i, K) item[r[i]][c[i]] = v[i];
-  V<V<A>> dp(R + 1, V<A>(C + 1));
+  VV<A> dp(R + 1, V<A>(C + 1));
   rep(i, R) rep(j, C) {
     rep(t, 4) {
       chmax(dp[i + 1][j + 1][0], dp[i][j + 1][t]);
@@ -23,8 +23,6 @@ int main() {
       chmax(dp[i + 1][j + 1][t + 1], dp[i + 1][j + 1][t] + item[i + 1][j + 1]);
     }
   }
-  int ans = 0;
-  rep(i, 4) chmax(ans, dp[R][C][i]);
-  wt(ans);
+  wt(*max_element(all(dp[R][C])));
 #undef int
 }

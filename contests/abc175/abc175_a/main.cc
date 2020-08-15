@@ -6,13 +6,14 @@ using namespace std;
 
 int main() {
   rd(string, s);
-  if (s == "RRR") {
-    wt(3);
-  } else if (s == "SRR" || s == "RRS") {
-    wt(2);
-  } else if (s == "SSS") {
-    wt(0);
-  } else {
-    wt(1);
+  int ans = 0, cont = 0;
+  rep(i, 3) {
+    if (s[i] == 'R') {
+      ++cont;
+    } else {
+      cont = 0;
+    }
+    chmax(ans, cont);
   }
+  wt(ans);
 }
