@@ -21,7 +21,7 @@ int main() {
     }
     {
       priority_queue<ll> que;
-      for (ll j = n - 1; j >= 0; --j) {
+      rrep(j, n) {
         while (!que.empty() && que.top() > j) que.pop();
         na[j] += que.size();
         que.push(j - a[j]);

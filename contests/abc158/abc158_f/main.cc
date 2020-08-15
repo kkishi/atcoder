@@ -2,9 +2,9 @@
 
 #include "macros.h"
 #include "modint.h"
+#include "segment_tree.h"
 
 using mint = ModInt<>;
-#include "segment_tree.h"
 
 using namespace std;
 
@@ -14,29 +14,26 @@ struct Robot {
   bool operator<(const Robot& r) const { return X < r.X; }
 };
 
-Robot robot[200000];
 mint dp[200001];
 
-int Max(int a, int b) { return max(a, b); }
-
 int main() {
-  int N;
-  cin >> N;
+  rd(int, N);
 
+  V<Robot> robot(N);
   rep(i, N) cin >> robot[i].X >> robot[i].D;
-  sort(robot, robot + N);
+  sort(all(robot));
 
-  SegmentTree<int> tree(N, Max);
+  SegmentTree<int> tree(N, [](int a, int b) { return max(a, b); });
   rep(i, N) tree.Set(i, i);
 
   dp[N] = 1;
-  for (int i = N - 1; i >= 0; --i) {
+  rrep(i, N) {
     Robot r = {robot[i].Destination(), 0};
-    int n = lower_bound(robot, robot + N, r) - robot;
+    int n = lower_bound(all(robot), r) - robot.begin();
     int m = tree.Aggregate(i, n);
     tree.Set(i, m);
 
     dp[i] = dp[i + 1] + dp[m + 1];
   }
-  cout << dp[0] << endl;
+  wt(dp[0]);
 }

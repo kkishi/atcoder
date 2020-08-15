@@ -37,9 +37,7 @@ int main() {
   vector dp(k + 1, vector(v.size(), mint(0)));
   rep(i, v.size()) dp[1][i] = v[i].c;
   for (int i = 2; i <= k; ++i) {
-    for (int j = v.size() - 2; j >= 0; --j) {
-      dp[i - 1][j] += dp[i - 1][j + 1];
-    }
+    rrep(j, v.size() - 1) dp[i - 1][j] += dp[i - 1][j + 1];
     rep(j, v.size()) dp[i][j] = dp[i - 1][v.size() - 1 - j] * v[j].c;
   }
   wt(accumulate(all(dp[k]), mint(0)));

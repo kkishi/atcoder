@@ -25,7 +25,7 @@ int main() {
       continue;
     }
     lowest = 0, change = 0;
-    for (int i = si.size() - 1; i >= 0; --i) {
+    rrep(i, si.size()) {
       change += si[i] == ')' ? 1 : -1;
       chmin(lowest, change);
     }

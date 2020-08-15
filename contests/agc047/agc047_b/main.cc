@@ -46,7 +46,7 @@ int main() {
           auto match = [&](int k) {
             const string &si = s[k];
             if (si.size() < prefix.size()) return false;
-            for (int j = prefix.size() - 1; j >= 0; --j) {
+            rrep(j, prefix.size()) {
               if (si[j] != prefix[j]) return false;
             }
             return true;

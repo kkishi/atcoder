@@ -16,7 +16,8 @@ int main() {
       solved += p[i];
       score += p[i] * 100 * (i + 1) + c[i];
     }
-    for (int i = d - 1; i >= 0 && score < g; --i) {
+    rrep(i, d) {
+      if (score >= g) break;
       if ((s >> i) & 1) continue;
       ll score_per_problem = 100 * (i + 1);
       ll problems_to_solve =

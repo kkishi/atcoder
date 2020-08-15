@@ -22,14 +22,14 @@ int main() {
   }
   int le = 0;
   int lo = 0;
-  for (int i = s.size() - 1; i >= 1; --i) {
-    if (s[i] == 'L') {
+  rrep(i, s.size() - 1) {
+    if (s[i + 1] == 'L') {
       swap(le, lo);
       ++le;
     }
-    if (s[i - 1] == 'R') {
-      ans[i] += le;
-      ans[i - 1] += lo;
+    if (s[i] == 'R') {
+      ans[i + 1] += le;
+      ans[i] += lo;
       le = lo = 0;
     }
   }

@@ -9,7 +9,7 @@ int main() {
   vector<int> h(n);
   cin >> h;
   int curr = h[n - 1];
-  for (int i = n - 2; i >= 0; --i) {
+  rrep(i, n - 1) {
     if (h[i] > curr) {
       --h[i];
       if (h[i] > curr) {

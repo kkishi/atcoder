@@ -4,54 +4,30 @@
 
 using namespace std;
 
-int N;
-ll maximum[100001];
-ll A[100001];
-
 ll solve() {
-  if (N == 0) {
-    if (A[0] == 1) {
-      return 1;
-    } else {
-      return -1;
-    }
+  rd(int, N);
+  V<ll> A(N + 1);
+  cin >> A;
+
+  if (N == 0) return A[0] == 1 ? 1 : -1;
+
+  V<ll> maxi(100001);
+  maxi[0] = 1;
+  rep(i, N) {
+    if (maxi[i] - A[i] < 0) return -1;
+    maxi[i + 1] = min((maxi[i] - A[i]) * 2, 100000000000000000LL);
   }
 
-  maximum[0] = 1;
-  for (int i = 1; i <= N; ++i) {
-    if (maximum[i - 1] - A[i - 1] < 0) {
-      return -1;
-    }
-    maximum[i] = min((maximum[i - 1] - A[i - 1]) * 2, 100000000000000000LL);
-    dbg(i, maximum[i]);
-  }
-
-  if (A[0] > 0) {
-    return -1;
-  }
-
-  if (maximum[N] < A[N]) {
-    return -1;
-  }
+  if (A[0] > 0 || maxi[N] < A[N]) return -1;
 
   ll nodes = A[N];
   ll ans = A[N];
-  for (int i = N - 1; i >= 0; --i) {
-    dbg(i, nodes, A[i], maximum[i]);
-    if (nodes / 2 + nodes % 2 + A[i] > maximum[i]) {
-      return -1;
-    }
-    nodes = min(nodes + A[i], maximum[i]);
+  rrep(i, N) {
+    if (nodes / 2 + nodes % 2 + A[i] > maxi[i]) return -1;
+    nodes = min(nodes + A[i], maxi[i]);
     ans += nodes;
-    dbg(nodes, ans);
   }
   return ans;
 }
 
-int main() {
-  cin >> N;
-
-  rep(i, N + 1) cin >> A[i];
-
-  cout << solve() << endl;
-}
+int main() { wt(solve()); }

@@ -19,7 +19,7 @@ int main() {
       chmax(dp[i + 1][j + 1][0], dp[i][j + 1][t]);
       chmax(dp[i + 1][j + 1][t], dp[i + 1][j][t]);
     }
-    for (int t = 2; t >= 0; --t) {
+    rrep(t, 3) {
       chmax(dp[i + 1][j + 1][t + 1], dp[i + 1][j + 1][t] + item[i + 1][j + 1]);
     }
   }

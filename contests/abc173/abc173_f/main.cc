@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(ll, n);
   ll ans = 0;
-  for (ll i = n; i >= 1; --i) ans += i * (n + 1 - i);
+  rrep(i, n) ans += (i + 1) * (n - i);
   rep(i, n - 1) {
     rd(ll, u, v);
     if (u > v) swap(u, v);
