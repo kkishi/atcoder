@@ -15,14 +15,13 @@ int main() {
     g.AddEdge(v, u, w);
   }
   vector<ll> color(n, -1);
-  function<void(ll, ll, ll)> dfs = [&](ll node, ll parent, ll dist) {
+  Fix([&](auto dfs, ll node, ll parent, ll dist) -> void {
     color[node] = dist % 2;
     for (const auto& e : g.Edges(node)) {
       if (e.to == parent) continue;
       if (color[e.to] != -1) continue;
       dfs(e.to, node, dist + e.weight);
     }
-  };
-  dfs(0, -1, 0);
+  })(0, -1, 0);
   rep(i, n) wt(color[i]);
 }

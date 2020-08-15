@@ -12,7 +12,7 @@ int main() {
   cin >> l;
   vector<int> current(3);
   int ans = numeric_limits<int>::max();
-  function<void(int, int)> dfs = [&](int depth, int used_mp) {
+  Fix([&](auto dfs, int depth, int used_mp) {
     if (depth == n) {
       rep(i, 3) {
         if (current[i] == 0) return;
@@ -34,7 +34,6 @@ int main() {
         current[i] -= l[depth];
       }
     }
-  };
-  dfs(0, 0);
+  })(0, 0);
   wt(ans);
 }

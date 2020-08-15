@@ -34,7 +34,7 @@ int main() {
     return false;
   };
 
-  function<ll(int, ll)> dfs = [&](int depth, ll g) -> ll {
+  wt(Fix([&](auto dfs, int depth, ll g) -> ll {
     if (depth == v.size()) {
       if (check(g)) {
         return g;
@@ -47,7 +47,5 @@ int main() {
       g *= v[depth].first;
     }
     return ret;
-  };
-
-  wt(dfs(0, 1));
+  })(0, 1));
 }

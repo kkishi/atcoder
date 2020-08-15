@@ -15,8 +15,7 @@ int main() {
     graph[a].push_back(b);
     graph[b].push_back(a);
   }
-  function<mint(int, int, int, int)> dfs = [&](int node, int parent, int d1,
-                                               int d2) -> mint {
+  wt(Fix([&](auto dfs, int node, int parent, int d1, int d2) -> mint {
     int remaining = k - (d1 + d2);
     if (remaining <= 0) return 0;
     mint ret = remaining;
@@ -26,6 +25,5 @@ int main() {
       ++d1;
     }
     return ret;
-  };
-  wt(dfs(1, -1, 0, 0));
+  })(1, -1, 0, 0));
 }

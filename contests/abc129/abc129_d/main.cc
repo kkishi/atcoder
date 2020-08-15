@@ -15,8 +15,7 @@ int main() {
     s[i + 1] = '#' + row + '#';
   }
 
-  function<int(int, int, int, int, V<V<int>>&)> rec = [&](int dr, int dc, int r,
-                                                          int c, V<V<int>>& m) {
+  auto rec = Fix([&](auto rec, int dr, int dc, int r, int c, V<V<int>>& m) {
     if (s[r][c] == '#') {
       return 0;
     }
@@ -24,7 +23,7 @@ int main() {
       m[r][c] = rec(dr, dc, r + dr, c + dc, m) + 1;
     }
     return m[r][c];
-  };
+  });
   V<V<V<int>>> memo(4, V<V<int>>(H, V<int>(W, -1)));
   int ans = 0;
   int dr[] = {1, -1, 0, 0};

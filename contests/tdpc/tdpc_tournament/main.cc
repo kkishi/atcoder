@@ -12,7 +12,9 @@ int main() {
   cin >> ratings;
 
   map<pair<int, int>, double> memo;
-  function<double(int, int)> prob = [&](int index, int wins) {
+
+  cout << fixed << setprecision(9);
+  rep(i, n) wt(Fix([&](auto prob, int index, int wins) -> double {
     pair<int, int> key = {index, wins};
     double& m = memo[key];
     if (m == 0) {
@@ -37,8 +39,5 @@ int main() {
       }
     }
     return m;
-  };
-
-  cout << fixed << setprecision(9);
-  rep(i, n) wt(prob(i, k));
+  })(i, k));
 }
