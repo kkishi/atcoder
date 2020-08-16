@@ -11,5 +11,5 @@ int main() {
     rd(int, a);
     ++v[a - 1];
   }
-  rep(i, n) { wt(k - (q - v[i]) > 0 ? "Yes" : "No"); }
+  rep(i, n) wt(k > q - v[i]);
 }

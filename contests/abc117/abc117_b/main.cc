@@ -9,9 +9,7 @@ int main() {
   vector<int> l(n);
   cin >> l;
   int s = accumulate(all(l), 0);
-  rep(i, n) if (s - l[i] <= l[i]) {
-    wt("No");
-    return 0;
-  }
-  wt("Yes");
+  bool ok = true;
+  rep(i, n) if (s - l[i] <= l[i]) ok = false;
+  wt(ok);
 }

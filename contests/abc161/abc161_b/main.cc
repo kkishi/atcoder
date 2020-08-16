@@ -1,23 +1,13 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
-int A[100];
-
 int main() {
-  int N, M;
-  cin >> N >> M;
-  int sum = 0;
-  rep(i, N) {
-    cin >> A[i];
-    sum += A[i];
-  }
-  sort(A, A + N);
-  if (A[N - 1 - (M - 1)] * 4 * M >= sum) {
-    cout << "Yes" << endl;
-  } else {
-    cout << "No" << endl;
-  }
+  rd(int, n, m);
+  V<int> a(n);
+  cin >> a;
+  sort(all(a));
+  wt(a[n - m] * 4 * m >= accumulate(all(a), 0));
 }

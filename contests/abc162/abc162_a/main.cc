@@ -1,17 +1,10 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
 int main() {
-  string N;
-  cin >> N;
-  for (int i = 0; i < N.size(); ++i) {
-    if (N[i] == '7') {
-      cout << "Yes" << endl;
-      return 0;
-    }
-  }
-  cout << "No" << endl;
+  rd(string, n);
+  wt(n.find('7') != string::npos);
 }

@@ -23,5 +23,5 @@ int main() {
     cin >> b;
     rep(i, 3) rep(j, 3) if (A[i][j] == b) A[i][j] = 0;
   }
-  cout << (bingo() ? "Yes" : "No") << endl;
+  wt(bingo());
 }

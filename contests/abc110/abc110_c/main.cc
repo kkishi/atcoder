@@ -11,11 +11,7 @@ int main() {
     to[s[i] - 'a'].insert(t[i]);
     from[t[i] - 'a'].insert(s[i]);
   }
-  rep(i, 26) {
-    if (to[i].size() > 1 || from[i].size() > 1) {
-      wt("No");
-      return 0;
-    }
-  }
-  wt("Yes");
+  bool ok = true;
+  rep(i, 26) if (to[i].size() > 1 || from[i].size() > 1) ok = false;
+  wt(ok);
 }

@@ -6,5 +6,5 @@ using namespace std;
 
 int main() {
   rd(int, k, x);
-  wt((500 * k >= x) ? "Yes" : "No");
+  wt(500 * k >= x);
 }

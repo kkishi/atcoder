@@ -5,11 +5,6 @@
 using namespace std;
 
 int main() {
-  int A, B, C;
-  cin >> A >> B >> C;
-  if (A == B && B != C || B == C && C != A || C == A && A != B) {
-    cout << "Yes" << endl;
-  } else {
-    cout << "No" << endl;
-  }
+  rd(int, a, b, c);
+  wt(a == b && b != c || b == c && c != a || c == a && a != b);
 }

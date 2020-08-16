@@ -44,9 +44,5 @@ int main() {
     return curr;
   };
   optional<int> l = height(left), r = height(right);
-  if (l && r && *l == *r) {
-    wt("Yes");
-  } else {
-    wt("No");
-  }
+  wt(l && r && *l == *r);
 }

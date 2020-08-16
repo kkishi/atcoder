@@ -11,5 +11,5 @@ int main() {
   rep(i, N) cin >> A[i];
   ll sum = 0;
   rep(i, N) sum += A[i];
-  wt(sum >= H ? "Yes" : "No");
+  wt(sum >= H);
 }
