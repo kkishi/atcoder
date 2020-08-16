@@ -4,78 +4,49 @@
 
 using namespace std;
 
-struct S {
-  ll cost;
-  ll value;
-  bool operator<(const S& s) const {
-    return cost > s.cost;
-    if (cost != s.cost) {
-      cost > s.cost;
-    }
-    return value > s.value;
-  }
-};
-
-ll N, A, B, C, D;
-
-void solve() {
-  dbg(N);
-
-  map<ll, ll> prev;
-  map<ll, ll> seen;
-  seen[N] = 0;
-
-  priority_queue<S> que;
-  que.push({0, N});
-
-  while (!que.empty()) {
-    S here = que.top();
-    que.pop();
-    dbg(here.cost, here.value, que.size(), seen.size());
-    if (here.value == 1) {
-      ll x = here.value;
-      while (x != N) {
-        dbg(x);
-        x = prev[x];
-      }
-      cout << (here.cost + D) << endl;
-      break;
-    }
-    auto push = [&prev, &seen, &que, &here](const S& there) {
-      auto it = seen.find(there.value);
-      if (it != seen.end() && it->second < there.cost) {
-        return;
-      }
-      seen[there.value] = there.cost;
-      prev[there.value] = here.value;
-      que.push(there);
-    };
-    if (here.value % 2 == 0) {
-      ll dec = here.value / 2;
-      ll cost = min(dec * D, A);
-      push({here.cost + cost, here.value / 2});
-    }
-    if (here.value % 3 == 0) {
-      ll dec = here.value / 3 * 2;
-      ll cost = min(dec * D, B);
-      dbg(dec, cost);
-      push({here.cost + cost, here.value / 3});
-    }
-    if (here.value % 5 == 0) {
-      ll dec = here.value / 5 * 4;
-      ll cost = min(dec * D, C);
-      push({here.cost + cost, here.value / 5});
-    }
-    push({here.cost + D, here.value + 1});
-    push({here.cost + D, here.value - 1});
-  }
-}
-
 int main() {
-  int T;
-  cin >> T;
-  rep(t, T) {
-    cin >> N >> A >> B >> C >> D;
-    solve();
+  rd(int, T);
+  while (T--) {
+    rd(ll, N, A, B, C, D);
+
+    map<ll, ll> seen;
+    seen[N] = 0;
+
+    low_priority_queue<pair<ll, ll>> que;
+    que.push({0, N});
+
+    while (!que.empty()) {
+      auto [c, v] = que.top();
+      que.pop();
+      if (v == 0) {
+        wt(c);
+        break;
+      }
+      auto push = [&seen, &que](ll c, ll v) {
+        if (v < 0) return;
+        auto [it, ok] = seen.insert({v, c});
+        if (ok || it->second > c) {
+          it->second = c;
+          que.push({c, v});
+        }
+      };
+      if (v % 2 == 0) push(c + A, v / 2);
+      if (v % 3 == 0) push(c + B, v / 3);
+      if (v % 5 == 0) push(c + C, v / 5);
+      for (ll d = -4; d <= 4; ++d) {
+        ll nv = v + d;
+        bool ok = false;
+        ll mods[] = {2, 3, 5};
+        for (ll m : mods) {
+          if (v % m != 0 && nv % m == 0 && abs(d) < m) {
+            ok = true;
+          }
+        }
+        if (ok) push(c + D * abs(d), nv);
+      }
+      if (D * v > 0) {
+        push(c + D * v, 0);
+      }
+    }
   }
 }

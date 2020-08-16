@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   rd(int, n);
   vector<int> memo(n + 1, -1);
-  function<int(int)> rec = [&](int x) {
+  wt(Fix([&](auto rec, int x) {
     if (x == 0) return 0;
     if (memo[x] == -1) {
       int mini = numeric_limits<int>::max();
@@ -21,6 +21,5 @@ int main() {
       memo[x] = mini;
     }
     return memo[x];
-  };
-  wt(rec(n));
+  })(n));
 }

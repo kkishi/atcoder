@@ -6,9 +6,6 @@ using namespace std;
 
 template <typename T>
 class Grid {
-  template <typename U>
-  using pqueue = std::priority_queue<U, std::vector<U>, std::greater<U>>;
-
  public:
   Grid(int height, int width) : grid_(height, std::vector<T>(width)) {}
   void Set(int row, int col, T value) { grid_[row][col] = value; }
@@ -16,7 +13,7 @@ class Grid {
     if (grid_[src_row][src_col] < 0) {
       return -1;
     }
-    pqueue<std::tuple<T, int, int>> que;
+    low_priority_queue<std::tuple<T, int, int>> que;
     que.push(make_tuple(0, src_row, src_col));
     std::map<std::pair<int, int>, T> visited;
     visited[{src_row, src_col}] = 0;

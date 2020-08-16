@@ -24,7 +24,7 @@ int main() {
   cin >> n >> m;
   rep(i, n) cin >> a[i];
   sort(a, a + n);
-  for (int i = n - 1; i >= 0; --i) s[i] = s[i + 1] + a[i];
+  rrep(i, n) s[i] = s[i + 1] + a[i];
 
   ll x = BinarySearch<ll>(0, a[n - 1] * 2 + 1,
                           [&](ll x) { return count(x).first >= m; });

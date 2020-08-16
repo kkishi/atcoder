@@ -4,12 +4,6 @@
 
 using namespace std;
 
-// 001
-// 110
-// 011
-
-// 11
-
 int main() {
   rd(ll, n, k);
   vector<ll> a(n);

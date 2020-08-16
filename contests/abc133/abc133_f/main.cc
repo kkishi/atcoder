@@ -20,7 +20,7 @@ int main() {
   }
   vector<int> ins(n), outs(n);
   vector<int> depths;
-  function<void(int, int, int)> dfs = [&](int node, int parent, int depth) {
+  Fix([&](auto dfs, int node, int parent, int depth) -> void {
     int index = depths.size();
     ins[node] = index;
     depths.push_back(depth);
@@ -28,6 +28,5 @@ int main() {
       if (e.to == parent) continue;
       dfs(e.to, node, depth + 1);
     }
-  };
-  dfs(0, -1, 0);
+  })(0, -1, 0);
 }

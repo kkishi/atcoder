@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+#include "fast_io.h"
 #include "macros.h"
 
 using namespace std;
@@ -17,10 +18,12 @@ struct State {
   bool operator>(const State& dp) const { return dp < *this; }
 };
 
+ll dist[301][301];
+State seens[301][301];
+
 int main() {
   rd(ll, n, m, l);
 
-  vector<vector<ll>> dist(n + 1, vector<ll>(n + 1, 0LL));
   rep(i, m) {
     rd(ll, a, b, c);
     if (c <= l) {
@@ -28,15 +31,14 @@ int main() {
     }
   }
 
-  vector<map<int, State>> seens(n + 1);
   rep(i, n) {
     int city = i + 1;
     State init = {city, l, 0};
 
-    map<int, State>& seen = seens[city];
+    State* seen = seens[city];
     seen[city] = init;
 
-    priority_queue<State, vector<State>, greater<State>> que;
+    low_priority_queue<State> que;
     que.push(init);
 
     while (!que.empty()) {
@@ -54,21 +56,21 @@ int main() {
           there.remaining = l - d;
           ++there.refueling;
         }
-        const auto p = seen.find(there.city);
-        if (p != seen.end() && !(there < p->second)) continue;
-        seen[there.city] = there;
+        State& s = seen[there.city];
+        if (s.city == there.city && !(there < s)) continue;
+        s = there;
         que.push(there);
       }
     }
   }
-  rd(int, q);
+  rd(ll, q);
   rep(i, q) {
-    rd(int, s, t);
-    const auto p = seens[s].find(t);
-    if (p == seens[s].end()) {
+    rd(ll, s, t);
+    State& st = seens[s][t];
+    if (st.city == 0) {
       wt(-1);
     } else {
-      wt(p->second.refueling);
+      wt(st.refueling);
     }
   }
 }

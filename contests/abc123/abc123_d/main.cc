@@ -4,12 +4,6 @@
 
 using namespace std;
 
-struct S {
-  ll p;
-  int abi, ci;
-  bool operator<(const S& s) const { return p < s.p; }
-};
-
 int main() {
   rd(ll, x, y, z, k);
   vector<ll> a(x), b(y), c(z);
@@ -24,8 +18,7 @@ int main() {
       return;
     }
     tuple<ll, ll, ll> t = {ai, bi, ci};
-    if (seen.count(t)) return;
-    seen.insert(t);
+    if (!seen.insert(t).second) return;
     que.push({a[ai] + b[bi] + c[ci], t});
   };
   push(0, 0, 0);

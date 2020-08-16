@@ -19,7 +19,7 @@ int main() {
   unordered_map<RollingHash, array<int, 26>> m;
   for (auto &si : s) {
     vector<bitset<26>> cum(si.size() + 1);
-    for (int i = si.size() - 1; i >= 0; --i) {
+    rrep(i, si.size()) {
       cum[i] = cum[i + 1];
       cum[i].set(si[i] - 'a');
     }

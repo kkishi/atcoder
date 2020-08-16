@@ -12,7 +12,7 @@ int main() {
   vector<ll> ans(m);
   DisjointSet ds(n + 1);
   ll sum = n * (n - 1) / 2;
-  for (int i = m - 1; i >= 0; --i) {
+  rrep(i, m) {
     ans[i] = sum;
     if (!ds.Same(a[i], b[i])) {
       dbg(ds.Size(a[i]), ds.Size(b[i]));

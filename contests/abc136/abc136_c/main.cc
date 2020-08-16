@@ -10,7 +10,7 @@ int main() {
   cin >> h;
   int curr = h[n - 1];
   bool ok = true;
-  for (int i = n - 2; i >= 0; --i) {
+  rrep(i, n - 1) {
     if (h[i] > curr) {
       --h[i];
       if (h[i] > curr) {

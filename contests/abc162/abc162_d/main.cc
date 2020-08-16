@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
@@ -14,13 +14,12 @@ int rem(char a, char b) {
 }
 
 int main() {
-  int N;
-  string S;
-  cin >> N >> S;
+  rd(int, N);
+  rd(string, S);
 
-  for (int i = N - 1; i >= 0; --i) {
+  rrep(i, N) {
     int c = toInt(S[i]);
-    rep(j, 3) { dp[i][j] = (i == N - 1 ? 0 : dp[i + 1][j]) + (c == j ? 1 : 0); }
+    rep(j, 3) dp[i][j] = (i == N - 1 ? 0 : dp[i + 1][j]) + (c == j ? 1 : 0);
   }
   long long ans = 0;
   rep(i, N) {
@@ -37,5 +36,5 @@ int main() {
       ans += cnt;
     }
   }
-  cout << ans << endl;
+  wt(ans);
 }

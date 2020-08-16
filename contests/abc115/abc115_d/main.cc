@@ -29,7 +29,7 @@ int main() {
     p[i + 1] = p[i] * 2 + 1;
     b[i + 1] = b[i] * 2 + 2;
   }
-  function<ll(ll, ll)> rec = [&p, &b, &rec](ll n, ll x) {
+  wt(Fix([&p, &b](auto rec, ll n, ll x) {
     if (n == 0) return 1LL;
     if (x <= 1) return 0LL;
     --x;
@@ -48,6 +48,5 @@ int main() {
       return ps + rec(n - 1, x);
     }
     return ps + p[n - 1];
-  };
-  wt(rec(n, x));
+  })(n, x));
 }

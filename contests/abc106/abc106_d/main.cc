@@ -21,17 +21,17 @@ int main() {
   }
 
   vector<vector<int>> outside(N + 1, vector<int>(N + 1));
-  priority_queue<int> que;
+  low_priority_queue<int> que;
   for (int i = 1; i <= N; ++i) {
     for (int t : train[i - 1]) {
-      que.push(-t);
+      que.push(t);
     }
-    while (!que.empty() && -que.top() <= i) {
+    while (!que.empty() && que.top() <= i) {
       que.pop();
     }
-    priority_queue<int> que2 = que;
+    low_priority_queue<int> que2 = que;
     for (int j = i; j <= N; ++j) {
-      while (!que2.empty() && -que2.top() <= j) {
+      while (!que2.empty() && que2.top() <= j) {
         que2.pop();
       }
       outside[i][j] = que2.size();

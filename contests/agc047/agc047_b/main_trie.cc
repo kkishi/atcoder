@@ -19,8 +19,8 @@ int main() {
   }
 
   Trie trie;
-  function<bitset<26>(Trie&, const string&, int)> add_trie =
-      [&](Trie& t, const string& si, int i) {
+  auto add_trie =
+      Fix([&](auto add_trie, Trie& t, const string& si, int i) -> bitset<26> {
         bitset<26> have;
         if (i < si.size()) {
           if (t.children[si[i] - 'a'] == nullptr) {
@@ -34,7 +34,7 @@ int main() {
           rep(i, 26) if (have.test(i))++ t.value[i];
         }
         return have;
-      };
+      });
   for (const auto& si : s) {
     add_trie(trie, si, 0);
   }

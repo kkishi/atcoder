@@ -18,28 +18,20 @@ int main() {
     rep(i, n) mods[i] = a[i] % g;
     sort(all(mods));
     vector<ll> upper(n + 1);
-    for (int i = n - 1; i >= 0; --i) {
-      upper[i] = upper[i + 1] + g - mods[i];
-    }
+    rrep(i, n) upper[i] = upper[i + 1] + g - mods[i];
     vector<ll> lower(n + 1);
-    rep(i, n) { lower[i + 1] = lower[i] + mods[i]; }
+    rep(i, n) lower[i + 1] = lower[i] + mods[i];
     rep(i, n) {
       ll l = lower[i + 1], u = upper[i + 1];
-      dbg(g, l, u);
       if (l > k) continue;
-      if (l == u) {
-        return true;
-      }
+      if (l == u) return true;
     }
     return false;
   };
 
-  function<ll(int, ll)> dfs = [&](int depth, ll g) -> ll {
+  wt(Fix([&](auto dfs, int depth, ll g) -> ll {
     if (depth == v.size()) {
-      if (check(g)) {
-        return g;
-      }
-      return 0LL;
+      return check(g) ? g : 0;
     }
     ll ret = 0;
     rep(i, v[depth].second + 1) {
@@ -47,7 +39,5 @@ int main() {
       g *= v[depth].first;
     }
     return ret;
-  };
-
-  wt(dfs(0, 1));
+  })(0, 1));
 }

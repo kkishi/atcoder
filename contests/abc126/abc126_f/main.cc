@@ -31,12 +31,12 @@ int main() {
   dbg(xors);
 
   if (0 <= k && k < pow2) {
-    for (int i = 0; i < pow2; ++i) {
+    rep(i, pow2) {
       if (i == k) continue;
       cout << i << " ";
     }
     cout << k << " ";
-    for (int i = pow2 - 1; i >= 0; --i) {
+    rrep(i, pow2) {
       if (i == k) continue;
       cout << i << " ";
     }
