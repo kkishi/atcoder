@@ -9,15 +9,15 @@ int main() {
   vector<int> h(n);
   cin >> h;
   int curr = h[n - 1];
+  bool ok = true;
   rrep(i, n - 1) {
     if (h[i] > curr) {
       --h[i];
       if (h[i] > curr) {
-        wt("No");
-        return 0;
+        ok = false;
       }
     }
     chmin(curr, h[i]);
   }
-  wt("Yes");
+  wt(ok);
 }

@@ -6,5 +6,5 @@ using namespace std;
 
 int main() {
   rd(int, N, M);
-  wt(N == M ? "Yes" : "No");
+  wt(N == M);
 }

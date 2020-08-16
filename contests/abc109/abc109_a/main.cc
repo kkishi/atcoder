@@ -6,9 +6,7 @@ using namespace std;
 
 int main() {
   rd(int, a, b);
-  rep(i, 3) if (a * (i + 1) * b % 2 == 1) {
-    wt("Yes");
-    return 0;
-  }
-  wt("No");
+  bool ok = false;
+  rep(i, 3) if (a * (i + 1) * b % 2 == 1) ok = true;
+  wt(ok);
 }

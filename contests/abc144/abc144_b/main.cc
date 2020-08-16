@@ -6,14 +6,14 @@ using namespace std;
 
 int main() {
   rd(int, n);
+  bool ok = false;
   for (int a = 1; a <= 9; ++a) {
     if (n % a == 0) {
       int b = n / a;
       if (1 <= b && b <= 9) {
-        wt("Yes");
-        return 0;
+        ok = true;
       }
     }
   }
-  wt("No");
+  wt(ok);
 }

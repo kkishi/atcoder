@@ -12,4 +12,4 @@ bool ok() {
   return true;
 }
 
-int main() { wt(ok() ? "Yes" : "No"); }
+int main() { wt(ok()); }

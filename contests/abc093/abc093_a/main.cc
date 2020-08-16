@@ -7,5 +7,5 @@ using namespace std;
 int main() {
   rd(string, s);
   sort(all(s));
-  wt(s == "abc" ? "Yes" : "No");
+  wt(s == "abc");
 }

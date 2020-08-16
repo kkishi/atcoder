@@ -6,11 +6,11 @@ using namespace std;
 
 int main() {
   rd(int, n);
+  bool ok = false;
   for (int i = 0; i * 4 <= n; ++i) {
     if ((n - i * 4) % 7 == 0) {
-      wt("Yes");
-      return 0;
+      ok = true;
     }
   }
-  wt("No");
+  wt(ok);
 }

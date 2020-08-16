@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, x);
-  wt(x >= 30);
+  rd(int, a, b, c);
+  wt(a + b >= c);
 }

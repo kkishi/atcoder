@@ -5,9 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  rd(int, n, d, x);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
-  wt(a[n - m] * 4 * m >= accumulate(all(a), 0));
+  int ans = x;
+  rep(i, n) for (int j = 1; j <= d; j += a[i])++ ans;
+  wt(ans);
 }

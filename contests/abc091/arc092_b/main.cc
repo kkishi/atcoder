@@ -5,6 +5,4 @@
 using namespace std;
 
 int main() {
-  rd(int, x);
-  wt(x >= 30);
 }

@@ -18,5 +18,5 @@ int main() {
       }
     }
   }
-  wt(ok ? "Yes" : "No");
+  wt(ok);
 }
