@@ -4,17 +4,11 @@
 
 using namespace std;
 
-struct XY {
-  int x, y;
-  bool operator<(const XY& xy) const {
-    if (x != xy.x) return x < xy.x;
-    return y < xy.y;
-  }
-};
-
 int main() {
   rd(int, n);
-  V<XY> r(n), b(n);
+  V<pair<int, int>> r(n), b(n);
+#define x first
+#define y second
   rep(i, n) cin >> r[i].x >> r[i].y;
   rep(i, n) cin >> b[i].x >> b[i].y;
   sort(all(r));
