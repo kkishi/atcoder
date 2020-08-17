@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+#include "binary_search.h"
 #include "macros.h"
 
 using namespace std;
@@ -11,16 +12,10 @@ int main() {
   rd(ll, n, k);
   V<ld> a(n);
   cin >> a;
-  ld lo = 0, hi = *max_element(all(a));
-  rep(iter, 400) {
-    ld mid = (hi + lo) / 2;
+  ld ans = BinarySearch<ld>(*max_element(all(a)), 0, [&](ld mid) {
     ll cuts = 0;
     rep(i, n) cuts += (a[i] / mid) - eps;
-    if (cuts <= k) {
-      hi = mid;
-    } else {
-      lo = mid;
-    }
-  }
-  wt(ll(ceil(lo) + eps));
+    return cuts <= k;
+  });
+  wt(ll(ceil(ans) + eps));
 }
