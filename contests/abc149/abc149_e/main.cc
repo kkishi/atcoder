@@ -29,5 +29,5 @@ int main() {
   ll x = BinarySearch<ll>(0, a[n - 1] * 2 + 1,
                           [&](ll x) { return count(x).first >= m; });
   auto p = count(x);
-  wt(p.second - (p.first - m) * x)
+  wt(p.second - (p.first - m) * x);
 }
