@@ -11,7 +11,7 @@ int main() {
   ll ans = 0;
   ll l = 0;
   ll x = 0;
-  for (ll r = 0; r < n; ++r) {
+  rep(r, n) {
     while (x & a[r]) {
       x ^= a[l];
       ++l;

@@ -23,7 +23,7 @@ int main() {
   }
   long long ans = 0;
   rep(i, N) {
-    for (int j = i + 1; j + 1 < N; ++j) {
+    rep(j, i + 1, N - 1) {
       if (S[i] == S[j]) {
         continue;
       }

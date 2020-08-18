@@ -10,7 +10,7 @@ int main() {
   cin >> h;
   int ans = 0;
   int moved = 0;
-  for (int i = 1; i < n; ++i) {
+  rep(i, 1, n) {
     if (h[i] <= h[i - 1]) {
       ++moved;
       chmax(ans, moved);

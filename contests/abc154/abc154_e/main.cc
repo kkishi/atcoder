@@ -9,7 +9,7 @@ int dp_lo[101][5];
 
 int main() {
   rd(string, N);
-  rd(int, K);
+  ints(K);
   dp_eq[0][0] = 1;
   rep(i, N.size()) {
     for (int z = 0; z <= 3; ++z) {
@@ -25,5 +25,5 @@ int main() {
       dp_lo[i + 1][z + 1] += dp_lo[i][z] * (9 - d);
     }
   }
-  wt(dp_eq[N.size()][K] + dp_lo[N.size()][K])
+  wt(dp_eq[N.size()][K] + dp_lo[N.size()][K]);
 }

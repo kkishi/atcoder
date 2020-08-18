@@ -1,23 +1,18 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
 int main() {
-  int K;
-  cin >> K;
+  ints(K);
 
   queue<string> que;
-  for (int i = 1; i <= 9; ++i) {
-    string s = "0";
-    s[0] += i;
-    que.push(s);
-  }
-  for (int i = 0; i < K; ++i) {
+  rep(i, 9) que.push(string(1, '1' + i));
+  rep(i, K) {
     string here = que.front();
     if (i == K - 1) {
-      cout << here << endl;
+      wt(here);
       break;
     }
     que.pop();

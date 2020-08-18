@@ -9,7 +9,7 @@ using namespace std;
 
 int main() {
   ints(n, k);
-  vector<vector<int>> graph(n + 1);
+  VV<int> graph(n + 1);
   rep(i, n - 1) {
     ints(a, b);
     graph[a].push_back(b);

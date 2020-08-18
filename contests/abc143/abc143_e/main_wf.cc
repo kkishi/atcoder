@@ -10,7 +10,7 @@ const ll INF = 1LL << 60;
 int main() {
   rd(ll, n, m, l);
 
-  vector<vector<ll>> dist(n, vector<ll>(n, INF));
+  VV<ll> dist(n, V<ll>(n, INF));
   rep(i, m) {
     rd(ll, a, b, c);
     if (c <= l) {
@@ -20,7 +20,7 @@ int main() {
   }
   WarshallFloyd(dist);
 
-  vector<vector<ll>> dist2(n, vector<ll>(n, INF));
+  VV<ll> dist2(n, V<ll>(n, INF));
   rep(i, n) rep(j, n) if (dist[i][j] <= l) dist2[i][j] = 1;
   WarshallFloyd(dist2);
 

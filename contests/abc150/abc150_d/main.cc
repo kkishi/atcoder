@@ -4,13 +4,12 @@
 
 using namespace std;
 
-ll a[100000];
-
 int main() {
   rd(ll, n, m);
-  rep(i, n) cin >> a[i];
+  V<ll> a(n);
+  cin >> a;
 
-  rep(i, n) { a[i] /= 2; }
+  rep(i, n) a[i] /= 2;
   ll l = 1;
   rep(i, n) {
     l = l * a[i] / gcd(l, a[i]);
@@ -19,7 +18,6 @@ int main() {
       return 0;
     }
   }
-  dbg(l, m);
   rep(i, n) if (l / a[i] % 2 == 0) {
     wt(0);
     return 0;

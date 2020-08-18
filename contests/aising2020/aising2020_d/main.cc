@@ -19,9 +19,7 @@ int main() {
     if (mods_cache.count(mod) == 0) {
       vector<ll> m(n);
       m[0] = 1 % mod;
-      for (ll i = 1; i < n; ++i) {
-        m[i] = (m[i - 1] << 1) % mod;
-      }
+      rep(i, 1, n) m[i] = (m[i - 1] << 1) % mod;
       mods_cache[mod] = m;
     }
     return mods_cache[mod];

@@ -43,7 +43,7 @@ int main() {
     dbg(use[i]);
   }
   ll ans = 1LL << (N - 1);
-  for (int s = 1; s < (1 << M); ++s) {
+  rep(s, 1, (1 << M)) {
     int cnt = 0;
     ll u = 0;
     rep(i, M) {

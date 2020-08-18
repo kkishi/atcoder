@@ -4,17 +4,16 @@
 
 using namespace std;
 
-short l[2000];
-
 int main() {
   ints(n);
-  rep(i, n) cin >> l[i];
-  sort(l, l + n);
+  V<short> l(n);
+  cin >> l;
+  sort(all(l));
 
   int ans = 0;
-  for (int a = 0; a < n - 2; ++a) {
-    for (int b = a + 1; b < n - 1; ++b) {
-      for (int c = b + 1; c < n; ++c) {
+  rep(a, n - 2) {
+    rep(b, a + 1, n - 1) {
+      rep(c, b + 1, n) {
         if (l[c] >= l[a] + l[b]) {
           break;
         }

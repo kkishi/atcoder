@@ -12,7 +12,7 @@ const ll tens = 1e9;
 // Returns the number of pairs whose values are equal to or less than x.
 ll count(ll x) {
   ll cnt = 0;
-  for (int i = 1; i < n; ++i) {
+  rep(i, 1, n) {
     if (a[i] < 0) {
       if (a[i - 1] * a[i] <= x) {
         if (a[0] * a[i] <= x) {
@@ -41,6 +41,5 @@ int main() {
 
   ll x = BinarySearch<ll>(-tens * tens - 1, tens * tens + 1,
                           [&](ll x) { return count(x) < k; });
-  dbg(x, count(x - 1), count(x), count(x + 1));
   wt(x + 1);
 }

@@ -5,19 +5,17 @@
 using namespace std;
 
 int main() {
-  int N;
-  cin >> N;
+  ints(N);
 
   map<string, int> m;
   int maximum = 0;
-  rep(i, N) {
-    string s;
-    cin >> s;
+  rep(N) {
+    strings(s);
     m[s]++;
     chmax(maximum, m[s]);
   }
 
-  for (const auto p : m) {
-    if (p.second == maximum) cout << p.first << endl;
+  for (const auto& [k, v] : m) {
+    if (v == maximum) wt(k);
   }
 }

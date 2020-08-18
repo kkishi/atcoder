@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
+#include "macros.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
-
 using namespace std;
 
 int main() {
-  int N, K;
-  cin >> N >> K;
+  ints(N, K);
 
   mint minimum = 0;
   mint maximum = 0;
@@ -25,5 +23,5 @@ int main() {
     minimum += i;
     maximum += N - i;
   }
-  cout << ans << endl;
+  wt(ans);
 }

@@ -1,23 +1,17 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
-int p[100000];
-int q[100000];
-int r[100000];
-
 int main() {
-  int X, Y, A, B, C;
-  cin >> X >> Y >> A >> B >> C;
-  rep(i, A) cin >> p[i];
-  rep(i, B) cin >> q[i];
-  rep(i, C) cin >> r[i];
+  ints(X, Y, A, B, C);
+  V<int> p(A), q(B), r(C);
+  cin >> p >> q >> r;
 
-  sort(p, p + A);
-  sort(q, q + B);
-  sort(r, r + C);
+  sort(all(p));
+  sort(all(q));
+  sort(all(r));
 
   int ai = A - X;
   int bi = B - Y;
@@ -40,14 +34,8 @@ int main() {
   }
 
   long long ans = 0;
-  for (int i = ai; i < A; ++i) {
-    ans += p[i];
-  }
-  for (int i = bi; i < B; ++i) {
-    ans += q[i];
-  }
-  for (int i = ci; i < C; ++i) {
-    ans += r[i];
-  }
-  cout << ans << endl;
+  rep(i, ai, A) ans += p[i];
+  rep(i, bi, B) ans += q[i];
+  rep(i, ci, C) ans += r[i];
+  wt(ans);
 }

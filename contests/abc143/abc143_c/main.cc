@@ -9,7 +9,7 @@ int main() {
   strings(s);
   s += ' ';
   int ans = 0;
-  for (int i = 0; i < s.size() - 1; ++i) {
+  rep(i, s.size() - 1) {
     if (s[i + 1] != s[i]) ++ans;
   }
   wt(ans);

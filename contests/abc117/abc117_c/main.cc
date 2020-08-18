@@ -16,6 +16,6 @@ int main() {
   rep(i, m - 1) d[i] = x[i + 1] - x[i];
   sort(all(d), greater());
 
-  for (ll i = 0; i < min<ll>(n - 1, d.size()); ++i) ans -= d[i];
+  rep(i, min<ll>(n - 1, d.size())) ans -= d[i];
   wt(ans);
 }

@@ -20,9 +20,8 @@ int main() {
   priority_queue<Pair> que;
   que.push({a[0], a[1]});
   que.push({a[1], a[0]});
-  for (int i = 2; i < n; ++i) {
+  rep(i, 2, n) {
     Pair p = que.top();
-    dbg(i, ans, p.l, p.r, p.Min());
     que.pop();
     ans += p.Min();
     que.push({p.l, a[i]});

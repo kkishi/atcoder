@@ -4,18 +4,14 @@
 
 using namespace std;
 
-int h, w;
-int a[80][80];
-int b[80][80];
-
 const int kMax = 80 * 80 * 2;
 using bs = bitset<kMax * 2 + 1>;
 bs dp[81][81];
 
 int main() {
-  cin >> h >> w;
-  rep(i, h) rep(j, w) cin >> a[i][j];
-  rep(i, h) rep(j, w) cin >> b[i][j];
+  ints(h, w);
+  VV<int> a(h, V<int>(w)), b = a;
+  cin >> a >> b;
   dp[0][1][kMax] = 1;
   rep(i, h) rep(j, w) {
     int d = abs(a[i][j] - b[i][j]);

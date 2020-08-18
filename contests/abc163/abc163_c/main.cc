@@ -1,20 +1,13 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
-int A[2 * 100000];
-int B[2 * 100000];
-
 int main() {
-  int N;
-  cin >> N;
-
-  rep(i, N) {
-    cin >> A[i];
-    B[A[i] - 1]++;
-  }
-
-  rep(i, N) cout << B[i] << endl;
+  ints(n);
+  V<int> a(n - 1), b(n);
+  cin >> a;
+  rep(i, n - 1)++ b[a[i] - 1];
+  rep(i, n) wt(b[i]);
 }

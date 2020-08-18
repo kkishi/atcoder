@@ -4,9 +4,8 @@
 
 using namespace std;
 
-bool check(int s, const vector<vector<pair<int, int>>>& v) {
-  int n = v.size();
-  rep(i, n) {
+bool check(int s, const VV<pair<int, int>>& v) {
+  rep(i, v.size()) {
     if (!((s >> i) & 1)) continue;
     for (const auto& p : v[i]) {
       int j = p.first;
@@ -21,7 +20,7 @@ bool check(int s, const vector<vector<pair<int, int>>>& v) {
 
 int main() {
   ints(n);
-  vector<vector<pair<int, int>>> v(n);
+  VV<pair<int, int>> v(n);
   rep(i, n) {
     ints(a);
     rep(j, a) {
@@ -30,7 +29,7 @@ int main() {
     }
   }
   int ans = 0;
-  for (int s = 0; s < (1 << n); ++s) {
+  rep(s, 1 << n) {
     if (check(s, v)) {
       chmax(ans, __builtin_popcount(s));
     }

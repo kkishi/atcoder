@@ -36,12 +36,8 @@ int main() {
   }
 
   double ans = 0;
-  for (int two = fs[2]; two < 60; ++two) {
-    for (int three = fs[3]; three < 38; ++three) {
-      for (int five = fs[5]; five < 26; ++five) {
-        ans += dp[two][three][five];
-      }
-    }
+  rep(two, fs[2], 60) rep(three, fs[3], 38) rep(five, fs[5], 26) {
+    ans += dp[two][three][five];
   }
   printf("%.9f\n", ans);
 }

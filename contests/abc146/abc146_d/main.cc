@@ -11,7 +11,7 @@ struct Edge {
 
 int main() {
   ints(n);
-  vector<vector<Edge>> edges(n + 1);
+  VV<Edge> edges(n + 1);
   rep(i, n) {
     ints(a, b);
     edges[a].push_back({b, i});

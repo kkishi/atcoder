@@ -4,11 +4,9 @@
 
 using namespace std;
 
-int A[200000];
-
 int main() {
   ints(N);
-  rep(i, N) cin >> A[i];
-  set<int> s(A, A + N);
-  wt(s.size() == N ? "YES" : "NO");
+  V<int> A(N);
+  cin >> A;
+  wt(sz(set<int>(all(A))) == N ? "YES" : "NO");
 }

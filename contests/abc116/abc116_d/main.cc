@@ -28,7 +28,7 @@ int main() {
   auto square = [](ll x) { return x * x; };
   auto score = [&]() { return dsum + square(tset.size()); };
   ll ans = score();
-  for (int i = k; i < n; ++i) {
+  rep(i, k, n) {
     if (tset.insert(s[i].t).second && !dup.empty()) {
       dsum -= *dup.begin();
       dup.erase(dup.begin());

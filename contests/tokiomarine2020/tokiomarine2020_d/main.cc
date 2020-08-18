@@ -17,7 +17,7 @@ int main() {
   rep(i, n) cin >> V_[i] >> W[i];
 
   for (int i = W[0]; i <= kMaxL; ++i) dp[0][i] = V_[0];
-  for (int node = 1; node < min(kMaxCache, n); ++node) {
+  rep(node, 1, min(kMaxCache, n)) {
     int parent = Parent(node);
     for (int i = 0; i <= kMaxL; ++i) dp[node][i] = dp[parent][i];
     for (int i = kMaxL; i - W[node] >= 0; --i) {

@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 
+#include "macros.h"
+
 using namespace std;
 
 int main() {
-  int N;
-  cin >> N;
+  ints(N);
 
   long long ans = 0;
   for (int i = 1; i <= N; ++i) {
@@ -12,5 +13,5 @@ int main() {
       ans += i;
     }
   }
-  cout << ans << endl;
+  wt(ans);
 }

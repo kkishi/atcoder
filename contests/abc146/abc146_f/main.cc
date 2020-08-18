@@ -8,13 +8,13 @@ int main() {
   ints(n, m);
   strings(s);
 
-  vector<int> v;
+  V<int> v;
   int i = n;
   while (true) {
     int ni = max(0, i - m);
     while (s[ni] == '1' && ni < i) ++ni;
     if (ni == i) {
-      cout << -1 << endl;
+      wt(-1);
       return 0;
     }
     v.push_back(i - ni);

@@ -6,9 +6,7 @@ using namespace std;
 
 int main() {
   ints(n, k);
-  vector<int> a(n);
+  V<int> a(n);
   cin >> a;
-  for (int i = k; i < n; ++i) {
-    wt(a[i] > a[i - k]);
-  }
+  rep(i, k, n) wt(a[i] > a[i - k]);
 }

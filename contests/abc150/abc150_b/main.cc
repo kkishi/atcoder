@@ -8,7 +8,7 @@ int main() {
   ints(n);
   strings(s);
   int ans = 0;
-  for (int i = 0; i < s.size() - 2; ++i) {
+  rep(i, s.size() - 2) {
     if (s.substr(i, 3) == "ABC") ++ans;
   }
   wt(ans);

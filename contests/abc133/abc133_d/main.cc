@@ -12,7 +12,7 @@ int main() {
   rep(i, n) x0 += a[i] * ((i & 1) ? -1 : 1);
   x0 /= 2;
   cout << x0 * 2;
-  for (int i = 0; i < n - 1; ++i) {
+  rep(i, n - 1) {
     x0 = (a[i] - x0);
     cout << " " << x0 * 2;
   }

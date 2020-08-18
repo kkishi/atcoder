@@ -6,10 +6,10 @@ using namespace std;
 
 int main() {
   ints(n, d);
-  vector<vector<int>> xs(n, vector(d, 0));
-  rep(i, n) rep(j, d) cin >> xs[i][j];
+  VV<int> xs(n, V<int>(d));
+  cin >> xs;
   int ans = 0;
-  rep(i, n - 1) for (int j = i + 1; j < n; ++j) {
+  rep(i, n - 1) rep(j, i + 1, n) {
     int sum = 0;
     auto sq = [](int x) { return x * x; };
     rep(k, d) sum += sq(xs[i][k] - xs[j][k]);

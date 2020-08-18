@@ -6,12 +6,12 @@ using namespace std;
 
 int main() {
   ints(n);
-  vector<vector<int>> a(n, vector<int>(n - 1));
-  rep(i, n) rep(j, n - 1) cin >> a[i][j];
+  VV<int> a(n, V<int>(n - 1));
+  cin >> a;
 
   set<pair<int, int>> s1;
   set<pair<int, int>> s2;
-  vector<int> indice(n);
+  V<int> indice(n);
   auto advance = [&](int x) {
     int y = a[x][indice[x]] - 1;
     ++indice[x];
@@ -25,7 +25,7 @@ int main() {
   int ans = 0;
   int completed = 0;
   while (true) {
-    vector<pair<int, int>> v(all(s2));
+    V<pair<int, int>> v(all(s2));
     if (v.empty()) {
       wt(-1);
       return 0;

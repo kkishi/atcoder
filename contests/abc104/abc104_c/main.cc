@@ -9,7 +9,7 @@ int main() {
   vector<ll> p(d), c(d);
   rep(i, d) cin >> p[i] >> c[i];
   ll ans = numeric_limits<ll>::max();
-  for (int s = 0; s < (1 << d); ++s) {
+  rep(s, 1 << d) {
     ll solved = 0;
     ll score = 0;
     rep(i, d) if ((s >> i) & 1) {

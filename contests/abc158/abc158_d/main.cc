@@ -16,8 +16,7 @@ int main() {
       continue;
     }
     ints(F);
-    char C;
-    cin >> C;
+    rd(char, C);
     (((F == 1) ^ flipped) ? head : tail) += C;
   }
   reverse(all(head));

@@ -29,13 +29,11 @@ DP Calc(DP x) {
 }
 
 int main() {
-  int N;
-  cin >> N;
+  ints(N);
 
   vector<vector<int>> edges(N);
   rep(i, N - 1) {
-    int a, b;
-    cin >> a >> b;
+    ints(a, b);
     --a, --b;
     edges[a].push_back(b);
     edges[b].push_back(a);

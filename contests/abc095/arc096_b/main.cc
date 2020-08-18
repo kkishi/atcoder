@@ -29,7 +29,7 @@ int main() {
   V<ll> r = f(rx, rv);
 
   ll ans = max(l[n], r[n]);
-  for (int i = 1; i < n; ++i) {
+  rep(i, 1, n) {
     chmax(ans, l[i] - x[i - 1] + r[n - i]);
     chmax(ans, r[i] - rx[i - 1] + l[n - i]);
   }

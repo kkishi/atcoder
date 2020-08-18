@@ -6,13 +6,12 @@ using namespace std;
 
 int main() {
   rd(ll, n);
-  vector<ll> a(n);
+  V<ll> a(n);
   cin >> a;
   ll c = 1000;
-  for (int i = 0; i < n - 1; ++i) {
+  rep(i, n - 1) {
     if (a[i + 1] > a[i]) {
       ll d = c / a[i];
-      dbg(c, d, a[i], a[i + 1]);
       c -= d * a[i];
       c += d * a[i + 1];
     }

@@ -4,15 +4,12 @@
 
 using namespace std;
 
-ll H[200000];
-
 int main() {
   rd(ll, N, K);
-  rep(i, N) cin >> H[i];
-  sort(H, H + N);
+  V<ll> H(N);
+  cin >> H;
+  sort(all(H));
   ll ans = 0;
-  for (int i = 0; i < N - K; ++i) {
-    ans += H[i];
-  }
+  rep(i, N - K) ans += H[i];
   wt(ans);
 }

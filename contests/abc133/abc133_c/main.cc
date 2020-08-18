@@ -5,11 +5,12 @@
 using namespace std;
 
 int main() {
-  ll ans = numeric_limits<ll>::max();
-  rd(ll, l, r);
-  for (ll i = l; i < r; ++i) {
-    for (ll j = i + 1; j <= r; ++j) {
-      ll k = i * j % 2019;
+#define int ll
+  int ans = numeric_limits<int>::max();
+  ints(l, r);
+  rep(i, l, r) {
+    rep(j, i + 1, r + 1) {
+      int k = i * j % 2019;
       if (k == 0) {
         wt(0);
         return 0;

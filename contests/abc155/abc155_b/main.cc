@@ -4,22 +4,12 @@
 
 using namespace std;
 
-int N;
-int A[100];
-
 int main() {
-  cin >> N;
-  rep(i, N) cin >> A[i];
+  ints(N);
+  V<int> A(N);
+  cin >> A;
 
   bool ok = true;
-  rep(i, N) if (A[i] % 2 == 0 && (A[i] % 3 != 0 && A[i] % 5 != 0)) {
-    dbg(A[i]);
-    ok = false;
-  }
-
-  if (ok) {
-    cout << "APPROVED" << endl;
-  } else {
-    cout << "DENIED" << endl;
-  }
+  rep(i, N) if (A[i] % 2 == 0 && (A[i] % 3 != 0 && A[i] % 5 != 0)) ok = false;
+  wt(ok ? "APPROVED" : "DENIED");
 }
