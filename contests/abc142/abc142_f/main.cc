@@ -7,10 +7,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   Graph<int> graph(n);
   rep(i, m) {
-    rd(int, a, b);
+    ints(a, b);
     graph.AddEdge(a - 1, b - 1, 0);
   }
   vector<vector<int>> sccs = StronglyConnectedComponents(graph);

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   bool ok = false;
   for (int a = 1; a <= 9; ++a) {
     if (n % a == 0) {

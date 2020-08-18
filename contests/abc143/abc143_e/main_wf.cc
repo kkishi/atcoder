@@ -24,9 +24,9 @@ int main() {
   rep(i, n) rep(j, n) if (dist[i][j] <= l) dist2[i][j] = 1;
   WarshallFloyd(dist2);
 
-  rd(int, q);
+  ints(q);
   rep(i, q) {
-    rd(int, s, t);
+    ints(s, t);
     --s, --t;
     ll d = dist2[s][t];
     if (d == INF) {

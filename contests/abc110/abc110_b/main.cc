@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m, X, Y);
+  ints(n, m, X, Y);
   vector<int> x(n), y(m);
   cin >> x >> y;
   if (max(X, *max_element(all(x))) < min(Y, *min_element(all(y)))) {

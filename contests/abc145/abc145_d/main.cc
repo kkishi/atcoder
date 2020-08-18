@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, x, y);
+  ints(x, y);
   if ((x + y) % 3) {
     wt(0);
     return 0;

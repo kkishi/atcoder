@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<int> memo(n + 1, -1);
   wt(Fix([&](auto rec, int x) {
     if (x == 0) return 0;

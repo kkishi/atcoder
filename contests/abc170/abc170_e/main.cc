@@ -12,7 +12,7 @@ void Erase(Map& m, int value) {
 }
 
 int main() {
-  rd(int, n, q);
+  ints(n, q);
   vector<int> a(n), b(n);
   rep(i, n) cin >> a[i] >> b[i];
   vector<multiset<int, greater<int>>> kg(kMax + 1);
@@ -20,7 +20,7 @@ int main() {
   multiset<int> kgs;
   rep(i, kMax + 1) if (kg[i].size() > 0) { kgs.insert(*kg[i].begin()); }
   while (q--) {
-    rd(int, c, d);
+    ints(c, d);
     --c;
     auto& before = kg[b[c]];
     Erase(kgs, *before.begin());

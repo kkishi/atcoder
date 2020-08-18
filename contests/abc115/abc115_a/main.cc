@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, d);
+  ints(d);
   cout << "Christmas";
   rep(i, 25 - d) cout << " Eve";
   cout << endl;

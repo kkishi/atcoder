@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, r);
+  ints(r);
   if (r < 1200) {
     wt("ABC");
   } else if (r < 2800) {

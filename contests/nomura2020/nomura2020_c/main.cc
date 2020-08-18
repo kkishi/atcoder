@@ -5,7 +5,7 @@
 using namespace std;
 
 ll solve() {
-  rd(int, N);
+  ints(N);
   V<ll> A(N + 1);
   cin >> A;
 

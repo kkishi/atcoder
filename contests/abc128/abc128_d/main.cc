@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   vector<int> v(n);
   cin >> v;
   int ans = 0;

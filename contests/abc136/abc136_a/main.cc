@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, c);
+  ints(a, b, c);
   wt(max(0, c - (a - b)));
 }

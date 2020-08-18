@@ -8,7 +8,7 @@ int main() {
   rd(ll, n, q);
   vector<vector<int>> g(n + 1);
   rep(i, n - 1) {
-    rd(int, a, b);
+    ints(a, b);
     g[a].push_back(b);
     g[b].push_back(a);
   }

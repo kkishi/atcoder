@@ -6,12 +6,12 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   V<int> p(n);
   cin >> p;
   DisjointSet ds(n);
   rep(i, m) {
-    rd(int, x, y);
+    ints(x, y);
     ds.Union(x - 1, y - 1);
   }
   int ans = 0;

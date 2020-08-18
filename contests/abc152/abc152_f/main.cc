@@ -27,17 +27,17 @@ ll DFS(int curr, int dst, int prev, ll used,
 }
 
 int main() {
-  rd(int, N);
+  ints(N);
   vector<vector<Edge>> edges(N);
   rep(i, N - 1) {
-    rd(int, a, b);
+    ints(a, b);
     --a, --b;
     edges[a].push_back({i, b});
     edges[b].push_back({i, a});
   }
-  rd(int, M);
+  ints(M);
   rep(i, M) {
-    rd(int, u, v);
+    ints(u, v);
     --u, --v;
     use[i] = DFS(u, v, -1, 0, edges);
     dbg(use[i]);

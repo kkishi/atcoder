@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, n, a, b);
+  ints(n, a, b);
   wt(min(n * a, b));
 }

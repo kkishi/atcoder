@@ -11,7 +11,7 @@ bool Less(const string& a, const string& b) {
 
 int main() {
   const vector<int> cost = {-1, 2, 5, 5, 4, 5, 6, 3, 7, 6};
-  rd(int, n, m);
+  ints(n, m);
 
   vector<int> a(m);
   cin >> a;

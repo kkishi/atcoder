@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   map<int, int> fs = Factorize(m);
   int ans = 1;
   Fix([&](auto dfs, map<int, int>::iterator it, int x) {

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<int> h(n);
   cin >> h;
   int curr = h[n - 1];

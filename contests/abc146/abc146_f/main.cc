@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
-  rd(string, s);
+  ints(n, m);
+  strings(s);
 
   vector<int> v;
   int i = n;

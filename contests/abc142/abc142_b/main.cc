@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   int ans = 0;
   rep(i, n) {
-    rd(int, h);
+    ints(h);
     if (h >= k) ++ans;
   }
   wt(ans);

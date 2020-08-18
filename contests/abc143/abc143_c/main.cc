@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
-  rd(string, s);
+  ints(n);
+  strings(s);
   s += ' ';
   int ans = 0;
   for (int i = 0; i < s.size() - 1; ++i) {

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<pair<int, int>> v(n);
   rep(i, n) {
     cin >> v[i].first;

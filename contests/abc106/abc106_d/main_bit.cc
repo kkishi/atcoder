@@ -12,18 +12,18 @@ struct Query {
 };
 
 int main() {
-  rd(int, N, M, Q);
+  ints(N, M, Q);
 
   V<P> trains;
   rep(i, M) {
-    rd(int, L, R);
+    ints(L, R);
     trains.push_back({L - 1, R - 1});
   }
   sort(all(trains), [](const P& a, const P& b) { return a.second < b.second; });
 
   V<Query> queries;
   rep(i, Q) {
-    rd(int, p, q);
+    ints(p, q);
     queries.push_back({i, p - 1, q - 1});
   }
   sort(all(queries), [](const Query& a, const Query& b) { return a.r < b.r; });

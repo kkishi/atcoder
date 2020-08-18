@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   vector<ll> x(n);
   cin >> x;
   ll ans = numeric_limits<ll>::max();

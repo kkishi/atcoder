@@ -8,10 +8,10 @@ double e[600];
 double p[600];
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   VV<int> to(n);
   rep(i, m) {
-    rd(int, s, t);
+    ints(s, t);
     --s, --t;
     to[s].push_back(t);
   }

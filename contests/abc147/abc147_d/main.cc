@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<ll> a(n);
   cin >> a;
   mint ans = 0;

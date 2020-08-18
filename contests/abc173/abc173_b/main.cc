@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   map<string, int> m;
   rep(i, n) {
-    rd(string, s);
+    strings(s);
     m[s]++;
   }
   for (auto k : {"AC", "WA", "TLE", "RE"}) {

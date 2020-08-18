@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
-  rd(int, k);
+  strings(s);
+  ints(k);
   V<string> sub;
   rep(i, s.size()) rep(j, 5) if (i + j < s.size()) {
     sub.push_back(s.substr(i, j + 1));

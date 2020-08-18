@@ -10,7 +10,7 @@ struct Point {
 };
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<Point> ps(n);
   rep(i, n) cin >> ps[i].x >> ps[i].y;
   const int kMax = 100001;

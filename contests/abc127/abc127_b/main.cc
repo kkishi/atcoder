@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, r, d, x);
+  ints(r, d, x);
   rep(y, 10) {
     x = x * r - d;
     wt(x);

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, w, h);
+  ints(w, h);
   if (w * 3 == h * 4) {
     wt("4:3");
   } else {

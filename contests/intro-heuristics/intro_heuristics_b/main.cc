@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, D);
+  ints(D);
   vector<int> c(26);
   cin >> c;
   vector<vector<int>> s(D, vector<int>(26));
@@ -14,7 +14,7 @@ int main() {
   int sat = 0;
   vector<int> last(26);
   rep(i, D) {
-    rd(int, t);
+    ints(t);
     --t;
     int d = i + 1;
     last[t] = d;

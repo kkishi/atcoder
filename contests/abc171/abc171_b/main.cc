@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   vector<int> p(n);
   cin >> p;
   sort(all(p));

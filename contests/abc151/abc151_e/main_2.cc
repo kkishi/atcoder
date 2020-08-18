@@ -10,7 +10,7 @@ using namespace std;
 int a[100000];
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   rep(i, n) cin >> a[i];
   sort(a, a + n);
 

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b);
+  ints(a, b);
   if (a > b) {
     wt(a * 2 - 1);
   } else if (a == b) {

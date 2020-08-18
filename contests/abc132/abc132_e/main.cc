@@ -5,13 +5,13 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<vector<int>> g(n + 1);
   rep(i, m) {
-    rd(int, u, v);
+    ints(u, v);
     g[u].push_back(v);
   }
-  rd(int, s, t);
+  ints(s, t);
   vector<vector<bool>> visited(n + 1, vector<bool>(3));
   visited[s][0] = true;
   queue<tuple<int, int, int>> que;

@@ -10,7 +10,7 @@ struct S {
 };
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<string> s(n);
   cin >> s;
   vector<S> left, right;

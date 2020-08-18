@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   vector<mint> dp(k + 1);
   for (int i = k; i >= 1; --i) {
     dp[i] = mint(k / i).Pow(n);

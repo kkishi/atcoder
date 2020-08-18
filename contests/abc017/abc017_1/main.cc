@@ -7,7 +7,7 @@ using namespace std;
 int main() {
   int ans = 0;
   rep(i, 3) {
-    rd(int, s, c);
+    ints(s, c);
     ans += s * c;
   }
   wt(ans / 10);

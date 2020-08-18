@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, t);
+  ints(n, t);
   vector<pair<int, int>> f(n);
   rep(i, n) cin >> f[i].first >> f[i].second;
   sort(all(f));

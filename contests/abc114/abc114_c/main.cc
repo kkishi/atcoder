@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   int ans = 0;
   Fix([&](auto rec, string s, bool three, bool five, bool seven) {
     if (s.size() >= 10) return;

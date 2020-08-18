@@ -7,7 +7,7 @@ using namespace std;
 int A[200000];
 
 int main() {
-  rd(int, N);
+  ints(N);
   rep(i, N) cin >> A[i];
   set<int> s(A, A + N);
   wt(s.size() == N ? "YES" : "NO");

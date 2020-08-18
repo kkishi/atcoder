@@ -5,12 +5,12 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
 
   int total = 0;
   V<int> inc(m + 1);
   rep(i, n) {
-    rd(int, l, r, s);
+    ints(l, r, s);
     total += s;
     inc[l - 1] += s;
     inc[r] -= s;

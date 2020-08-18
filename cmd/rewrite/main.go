@@ -27,48 +27,54 @@ func rewrite(r io.Reader, w io.Writer) error {
 	s := bufio.NewScanner(r)
 	for s.Scan() {
 		l := s.Text()
-		if l == "// #undef DEBUG  // Uncomment this line to forcefully disable debug print." {
-			for s.Scan() {
-				l = s.Text()
-				if l == usingNamespaceSTD {
-					break
+		if false {
+			if l == "// #undef DEBUG  // Uncomment this line to forcefully disable debug print." {
+				for s.Scan() {
+					l = s.Text()
+					if l == usingNamespaceSTD {
+						break
+					}
 				}
+				fmt.Fprintln(w, "#include \"macros.h\"\n")
 			}
-			fmt.Fprintln(w, "#include \"macros.h\"\n")
-		}
-		if l == "#include \"setmin.h\"" {
-			s.Scan()
-			l = s.Text()
-		}
-		if l == "#include \"setmax.h\"" {
-			s.Scan()
-			l = s.Text()
-		}
-		l = strings.Replace(l, " in(", " rd(", 1)
-		l = strings.Replace(l, " CIN(", " rd(", 1)
-		l = strings.Replace(l, " out(", " wt(", 1)
-		l = strings.Replace(l, " COUT(", " wt(", 1)
-		l = strings.Replace(l, " REP(", " rep(", -1)
-		l = strings.Replace(l, " DBG(", " dbg(", 1)
-		l = strings.Replace(l, "ALL(", "all(", 1)
-		l = strings.Replace(l, ".pow(", ".Pow(", -1)
-		l = strings.Replace(l, "::combination(", "::Comb(", -1)
-		l = strings.Replace(l, "Setmax(", "chmax(", -1)
-		l = strings.Replace(l, "Setmin(", "chmin(", -1)
-		if m := readVector.FindAllStringSubmatch(l, -1); len(m) != 0 {
-			// This drops leading spaces, but we rely on later clang-format runs.
-			l = fmt.Sprintf("cin >> %s;", m[0][1])
-		}
-		if m := chmax.FindAllStringSubmatch(l, -1); len(m) != 0 {
-			for i, mi := range m[0] {
-				log.Println(i, mi)
+			if l == "#include \"setmin.h\"" {
+				s.Scan()
+				l = s.Text()
 			}
-			m := m[0]
-			log.Println(m[2], m[4])
-			if m[2] == m[4] {
-				l = fmt.Sprintf("%sch%s(%s, %s", m[1], m[3], m[2], m[5])
+			if l == "#include \"setmax.h\"" {
+				s.Scan()
+				l = s.Text()
 			}
-			// This drops leading spaces, but we rely on later clang-format runs.
+			l = strings.Replace(l, " in(", " rd(", 1)
+			l = strings.Replace(l, " CIN(", " rd(", 1)
+			l = strings.Replace(l, " out(", " wt(", 1)
+			l = strings.Replace(l, " COUT(", " wt(", 1)
+			l = strings.Replace(l, " REP(", " rep(", -1)
+			l = strings.Replace(l, " DBG(", " dbg(", 1)
+			l = strings.Replace(l, "ALL(", "all(", 1)
+			l = strings.Replace(l, ".pow(", ".Pow(", -1)
+			l = strings.Replace(l, "::combination(", "::Comb(", -1)
+			l = strings.Replace(l, "Setmax(", "chmax(", -1)
+			l = strings.Replace(l, "Setmin(", "chmin(", -1)
+		}
+		l = strings.Replace(l, " rd(int, ", " ints(", 1)
+		l = strings.Replace(l, " rd(string, ", " strings(", 1)
+		if false {
+			if m := readVector.FindAllStringSubmatch(l, -1); len(m) != 0 {
+				// This drops leading spaces, but we rely on later clang-format runs.
+				l = fmt.Sprintf("cin >> %s;", m[0][1])
+			}
+			if m := chmax.FindAllStringSubmatch(l, -1); len(m) != 0 {
+				for i, mi := range m[0] {
+					log.Println(i, mi)
+				}
+				m := m[0]
+				log.Println(m[2], m[4])
+				if m[2] == m[4] {
+					l = fmt.Sprintf("%sch%s(%s, %s", m[1], m[3], m[2], m[5])
+				}
+				// This drops leading spaces, but we rely on later clang-format runs.
+			}
 		}
 
 		fmt.Fprintln(w, l)

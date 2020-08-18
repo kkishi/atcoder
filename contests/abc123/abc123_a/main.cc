@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, c, d, e, k);
+  ints(a, b, c, d, e, k);
   if (e - a > k) {
     wt(":(");
   } else {

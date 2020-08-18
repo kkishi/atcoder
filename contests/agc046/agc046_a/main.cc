@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, x);
+  ints(x);
   wt(lcm(x, 360) / x);
 }

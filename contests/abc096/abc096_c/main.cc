@@ -8,7 +8,7 @@ int dr[] = {1, -1, 0, 0};
 int dc[] = {0, 0, 1, -1};
 
 int main() {
-  rd(int, h, w);
+  ints(h, w);
   V<string> s(h);
   rep(r, h) cin >> s[r];
   VV<bool> b(h + 2, V<bool>(w + 2));

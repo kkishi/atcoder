@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   V<pair<int, int>> r(n), b(n);
 #define x first
 #define y second

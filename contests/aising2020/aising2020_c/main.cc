@@ -10,7 +10,7 @@ int v(int x, int y, int z) {
 }
 
 int main() {
-  rd(int, n);
+  ints(n);
   for (int i = 1; i <= n; ++i) {
     int ans = 0;
     for (int x = 1; v(x, 1, 1) <= i; ++x) {

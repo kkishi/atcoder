@@ -20,12 +20,12 @@ bool check(int s, const vector<vector<pair<int, int>>>& v) {
 }
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<vector<pair<int, int>>> v(n);
   rep(i, n) {
-    rd(int, a);
+    ints(a);
     rep(j, a) {
-      rd(int, x, y);
+      ints(x, y);
       v[i].push_back({x - 1, y});
     }
   }

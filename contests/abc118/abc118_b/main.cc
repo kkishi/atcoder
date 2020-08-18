@@ -5,12 +5,12 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<int> food(m);
   rep(i, n) {
-    rd(int, k);
+    ints(k);
     rep(j, k) {
-      rd(int, a);
+      ints(a);
       food[a - 1]++;
     }
   }

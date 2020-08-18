@@ -5,11 +5,11 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   if (n == 1) {
     wt("Hello World");
     return 0;
   }
-  rd(int, a, b);
+  ints(a, b);
   wt(a + b);
 }

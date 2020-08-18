@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<int> v(n), c(n);
   cin >> v >> c;
   int ans = numeric_limits<int>::min();

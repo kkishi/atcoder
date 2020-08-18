@@ -25,13 +25,13 @@ struct DS {
 };
 
 int main() {
-  rd(int, n, q);
+  ints(n, q);
   DS ds(n);
   cin >> ds.c;
 
   Mo<int, DS> mo(ds);
   rep(i, q) {
-    rd(int, l, r);
+    ints(l, r);
     mo.AddQuery(l - 1, r);
   }
 

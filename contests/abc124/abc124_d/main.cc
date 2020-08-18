@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n, k);
-  rd(string, s);
+  ints(n, k);
+  strings(s);
   vector<pair<bool, int>> v;
   int l = -1;
   dbg(s);

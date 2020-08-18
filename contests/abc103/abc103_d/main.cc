@@ -7,10 +7,10 @@ using namespace std;
 using P = pair<int, int>;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<P> v;
   rep(i, m) {
-    rd(int, a, b);
+    ints(a, b);
     v.push_back({b, a});
   }
   sort(all(v));

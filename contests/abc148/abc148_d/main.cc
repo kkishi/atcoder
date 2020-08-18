@@ -7,7 +7,7 @@ using namespace std;
 int a[200000];
 
 int main() {
-  rd(int, n);
+  ints(n);
   rep(i, n) cin >> a[i];
   int last = 0;
   rep(i, n) {

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, c, x, y);
+  ints(a, b, c, x, y);
   int ans = numeric_limits<int>::max();
   for (int i = 0; i <= max(x, y); ++i) {
     int sum = i * 2 * c;

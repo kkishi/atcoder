@@ -12,7 +12,7 @@ int highest(int x) {
 ll cnt[10][10];
 
 int main() {
-  rd(int, N);
+  ints(N);
   for (int i = 1; i <= N; ++i) {
     ++cnt[i % 10][highest(i)];
   }

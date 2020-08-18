@@ -11,7 +11,7 @@ struct XY {
 };
 
 int main() {
-  rd(int, n);
+  ints(n);
   Graph<int> g(n * 2 + 2);
   V<XY> r(n), b(n);
   rep(i, n) cin >> r[i].x >> r[i].y;

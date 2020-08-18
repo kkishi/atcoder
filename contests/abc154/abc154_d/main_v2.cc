@@ -9,7 +9,7 @@ int p[200000];
 double exp(int i) { return p[i] * (p[i] + 1) / 2 / (double)(p[i]); }
 
 int main() {
-  rd(int, N, K);
+  ints(N, K);
   rep(i, N) cin >> p[i];
   double sum = 0;
   double ans = 0;

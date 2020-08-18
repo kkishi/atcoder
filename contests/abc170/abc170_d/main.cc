@@ -40,7 +40,7 @@ bool Eq(const map<int, int>& a, const map<int, int>& b) {
 }
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<int> a(n);
   cin >> a;
   vector<map<int, int>> fs(n);

@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
   rd(string, S, T);
-  rd(int, A, B);
+  ints(A, B);
   rd(string, U);
   (U == S ? A : B)--;
   wt(A, B);

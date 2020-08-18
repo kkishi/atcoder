@@ -10,7 +10,7 @@ int a[3000];
 using mint = ModInt<998244353>;
 
 int main() {
-  rd(int, n, s);
+  ints(n, s);
   rep(i, n) cin >> a[i];
   vector<mint> dp(s + 1);
   mint ans = 0;

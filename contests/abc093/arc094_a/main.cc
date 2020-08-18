@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, c);
+  ints(a, b, c);
   int ans = 0;
   while (true) {
     if (a > b) swap(a, b);

@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n, T);
+  ints(n, T);
   int ans = 1000000;
   rep(i, n) {
-    rd(int, c, t);
+    ints(c, t);
     if (t <= T) chmin(ans, c);
   }
   if (ans == 1000000) {

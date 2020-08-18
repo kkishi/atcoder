@@ -50,7 +50,7 @@ class Grid {
 };
 
 int main() {
-  rd(int, H, W);
+  ints(H, W);
   vector<string> m(H);
   cin >> m;
 

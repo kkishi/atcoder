@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<vector<pair<int, int>>> v(n);
   rep(i, m) {
-    rd(int, p, y);
+    ints(p, y);
     v[p - 1].push_back({y, i});
   }
   for (auto& vi : v) sort(all(vi));

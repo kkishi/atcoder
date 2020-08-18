@@ -8,10 +8,10 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   vector<vector<int>> graph(n + 1);
   rep(i, n - 1) {
-    rd(int, a, b);
+    ints(a, b);
     graph[a].push_back(b);
     graph[b].push_back(a);
   }

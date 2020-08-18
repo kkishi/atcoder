@@ -14,7 +14,7 @@ struct R {
 };
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<R> v(n);
   rep(i, n) {
     cin >> v[i].city >> v[i].point;

@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   multiset<int, greater<int>> ms;
   rep(i, 1 << n) {
-    rd(int, s);
+    ints(s);
     ms.insert(s);
   }
   vector<int> v;

@@ -12,13 +12,13 @@ struct Key {
 const int INF = 1 << 30;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<Key> keys(m);
   rep(i, m) {
-    rd(int, a, b);
+    ints(a, b);
     keys[i].price = a;
     rep(j, b) {
-      rd(int, c);
+      ints(c);
       keys[i].bits |= 1 << (c - 1);
     }
   }

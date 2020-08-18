@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b);
+  ints(a, b);
   wt(max(a, b) <= 8 ? "Yay!" : ":(");
 }

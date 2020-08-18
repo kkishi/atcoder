@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   map<pair<ll, ll>, ll> m;
   rep(i, n) {
-    rd(string, s);
+    strings(s);
     string l = s;
     ll two = 0, five = 0;
     rep(j, s.size()) if (s[j] == '.') {

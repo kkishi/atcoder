@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
 
   V<string> s(n);
   rep(i, n) {

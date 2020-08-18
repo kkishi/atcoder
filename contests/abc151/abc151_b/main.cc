@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, N, K, M);
+  ints(N, K, M);
   int sum = 0;
   rep(i, N - 1) {
-    rd(int, A);
+    ints(A);
     sum += A;
   }
   int ans = max(0, M * N - sum);

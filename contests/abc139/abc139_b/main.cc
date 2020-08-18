@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b);
+  ints(a, b);
   int c = 1;
   int ans = 0;
   while (c < b) {

@@ -21,7 +21,7 @@ map<rat, int> s1;
 map<rat, int> s2;
 
 int main() {
-  rd(int, N);
+  ints(N);
 
   ll zeros = 0;
 

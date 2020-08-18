@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, a);
-  rd(string, s);
+  ints(a);
+  strings(s);
   if (a >= 3200) {
     wt(s);
   } else {

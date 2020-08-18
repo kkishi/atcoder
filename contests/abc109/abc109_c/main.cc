@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, X);
+  ints(n, X);
   vector<int> x(n);
   cin >> x;
   int ans = abs(x[0] - X);

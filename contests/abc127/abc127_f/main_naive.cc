@@ -5,11 +5,11 @@
 using namespace std;
 
 int main() {
-  rd(int, q);
+  ints(q);
   vector<ll> as;
   ll bs = 0;
   while (q--) {
-    rd(int, t);
+    ints(t);
     if (t == 1) {
       rd(ll, a, b);
       as.push_back(a);

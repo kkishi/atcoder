@@ -7,9 +7,9 @@ using namespace std;
 
 int main() {
 #define int ll
-  rd(int, q);
+  ints(q);
   while (q--) {
-    rd(int, a, b);
+    ints(a, b);
     if (a * b <= 2) {
       wt(0);
       continue;

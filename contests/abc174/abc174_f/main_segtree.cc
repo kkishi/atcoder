@@ -10,12 +10,12 @@ struct Q {
 };
 
 int main() {
-  rd(int, n, q);
+  ints(n, q);
   V<int> c(n);
   cin >> c;
   V<Q> qs;
   rep(i, q) {
-    rd(int, l, r);
+    ints(l, r);
     --l, --r;
     qs.push_back({l, r, i, 0});
   }

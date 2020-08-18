@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, h, w);
+  ints(h, w);
   int H = h + 2, W = w + 2;
 
   V<string> s(H);

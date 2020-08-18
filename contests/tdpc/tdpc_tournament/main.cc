@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, k);
+  ints(k);
   int n = 1 << k;
 
   vector<double> ratings(n);

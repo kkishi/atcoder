@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   map<string, mint> m;
   m[""] = 1;
   while (n--) {

@@ -5,8 +5,8 @@
 using namespace std;
 
 bool ok() {
-  rd(int, n);
-  rd(string, s);
+  ints(n);
+  strings(s);
   if (n % 2) return false;
   rep(i, n / 2) if (s[i] != s[n / 2 + i]) return false;
   return true;

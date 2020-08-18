@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, h, w, k);
+  ints(h, w, k);
   vector<vector<mint>> dp(h + 1, vector<mint>(w));
   dp[0][0] = 1;
   rep(i, h) rep(s, 1 << (w - 1)) {

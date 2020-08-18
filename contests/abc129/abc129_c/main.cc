@@ -8,10 +8,10 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<bool> broken(n + 1);
   rep(i, m) {
-    rd(int, a);
+    ints(a);
     broken[a] = true;
   }
   vector<mint> dp(n + 2);

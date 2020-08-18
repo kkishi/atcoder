@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, m, k);
+  ints(m, k);
 
   if (m == 0) {
     if (k == 0) {

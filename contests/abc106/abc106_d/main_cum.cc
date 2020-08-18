@@ -5,11 +5,11 @@
 using namespace std;
 
 int main() {
-  rd(int, N, M, Q);
+  ints(N, M, Q);
 
   VV<int> trains(N + 1, V<int>(N + 1));
   rep(i, M) {
-    rd(int, L, R);
+    ints(L, R);
     trains[L][R]++;
   }
 
@@ -22,7 +22,7 @@ int main() {
   }
 
   rep(i, Q) {
-    rd(int, p, q);
+    ints(p, q);
     wt(sum[p][q]);
   }
 }

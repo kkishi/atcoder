@@ -17,7 +17,7 @@ struct Robot {
 mint dp[200001];
 
 int main() {
-  rd(int, N);
+  ints(N);
 
   V<Robot> robot(N);
   rep(i, N) cin >> robot[i].X >> robot[i].D;

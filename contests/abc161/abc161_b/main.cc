@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   V<int> a(n);
   cin >> a;
   sort(all(a));

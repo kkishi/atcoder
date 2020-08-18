@@ -8,8 +8,8 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, k);
-  rd(string, s);
+  ints(k);
+  strings(s);
 
   mint ans = 0;
   for (int last = 0; last <= k; ++last) {

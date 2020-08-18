@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   if (n & 1) n *= 2;
   wt(n);
 }

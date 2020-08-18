@@ -9,11 +9,11 @@ struct D {
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   dbg(n, m);
   V<D> ds;
   rep(i, n) {
-    rd(int, l, r, s);
+    ints(l, r, s);
     ds.push_back({l, r, s});
   }
 

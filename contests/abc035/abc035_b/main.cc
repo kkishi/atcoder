@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   int x = 0, y = 0;
   int q = 0;
   for (char c : s) {
@@ -16,7 +16,7 @@ int main() {
     if (c == '?') ++q;
   }
   int dist = abs(x) + abs(y);
-  rd(int, t);
+  ints(t);
   if (t == 1) {
     wt(dist + q);
   } else if (dist >= q) {

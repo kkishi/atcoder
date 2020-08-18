@@ -7,10 +7,10 @@ using namespace std;
 const int INF = 1 << 30;
 
 int main() {
-  rd(int, x, n);
+  ints(x, n);
   set<int> ps;
   rep(i, n) {
-    rd(int, p);
+    ints(p);
     ps.insert(p);
   }
   rep(i, 200) {

@@ -14,8 +14,8 @@ int rem(char a, char b) {
 }
 
 int main() {
-  rd(int, N);
-  rd(string, S);
+  ints(N);
+  strings(S);
 
   rrep(i, N) {
     int c = toInt(S[i]);

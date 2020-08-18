@@ -11,7 +11,7 @@ using namespace std;
 int A[10000];
 
 int main() {
-  rd(int, N);
+  ints(N);
   rep(i, N) cin >> A[i];
   map<int, int> m;
   rep(i, N) {

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   V<char> s(n);
   cin >> s;
   wt(count(all(s), 'Y') ? "Four" : "Three");

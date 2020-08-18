@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   map<string, ll> m;
   rep(i, n) {
-    rd(string, s);
+    strings(s);
     sort(all(s));
     ++m[s];
   }

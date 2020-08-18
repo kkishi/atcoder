@@ -28,8 +28,8 @@ struct Hash {
 Hash hashes[5000];
 
 int main() {
-  rd(int, n);
-  rd(string, s);
+  ints(n);
+  strings(s);
   rep(i, n) hashes[i].Add(s[i]);
   int ans = 0;
   for (int length = 2; length <= n / 2; ++length) {

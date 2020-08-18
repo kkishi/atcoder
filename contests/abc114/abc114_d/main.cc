@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   map<int, int> fs;
   for (int i = 2; i <= n; ++i) {
     for (auto [k, v] : Factorize(i)) fs[k] += v;

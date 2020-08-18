@@ -13,7 +13,7 @@ int dp[kMaxCache][kMaxL + 1];
 int Parent(int node) { return (node - 1) / 2; }
 
 int main() {
-  rd(int, n);
+  ints(n);
   rep(i, n) cin >> V_[i] >> W[i];
 
   for (int i = W[0]; i <= kMaxL; ++i) dp[0][i] = V_[0];
@@ -25,9 +25,9 @@ int main() {
     }
   }
 
-  rd(int, q);
+  ints(q);
   rep(i, q) {
-    rd(int, v, l);
+    ints(v, l);
     --v;
 
     if (v < kMaxCache) {

@@ -12,7 +12,7 @@ struct S {
 };
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
 
   set<int> x;
   for (int i = 1; i * i <= n; ++i) {

@@ -85,9 +85,9 @@ int main() {
 
   Solution s(p, t);
 
-  rd(int, m);
+  ints(m);
   while (m--) {
-    rd(int, d, q);
+    ints(d, q);
     --d, --q;
     s.Change(d, q);
     wt(s.Sat());

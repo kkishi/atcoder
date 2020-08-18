@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   V<string> s(n);
   cin >> s;
-  rd(int, m);
+  ints(m);
   V<string> t(m);
   cin >> t;
   int ans = 0;

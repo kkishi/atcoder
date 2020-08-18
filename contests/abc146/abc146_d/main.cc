@@ -10,10 +10,10 @@ struct Edge {
 };
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<vector<Edge>> edges(n + 1);
   rep(i, n) {
-    rd(int, a, b);
+    ints(a, b);
     edges[a].push_back({b, i});
     edges[b].push_back({a, i});
   }

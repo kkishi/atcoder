@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, c, k);
+  ints(a, b, c, k);
   int m = max({a, b, c});
   int ans = a + b + c - m;
   rep(i, k) m *= 2;

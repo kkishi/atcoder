@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, r);
+  ints(r);
   wt(r * r);
 }

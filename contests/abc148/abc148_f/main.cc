@@ -10,7 +10,7 @@ int main() {
   cin >> n >> u >> v;
   vector<vector<int>> edges(n);
   rep(i, n - 1) {
-    rd(int, a, b);
+    ints(a, b);
     --a, --b;
     edges[a].push_back(b);
     edges[b].push_back(a);

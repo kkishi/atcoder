@@ -5,13 +5,13 @@
 using namespace std;
 
 int main() {
-  rd(int, q);
+  ints(q);
   multiset<ll> lo, hi;
   ll lo_sum = 0, hi_sum = 0;
   optional<ll> mid;
   ll bs = 0;
   while (q--) {
-    rd(int, t);
+    ints(t);
     if (t == 1) {
       rd(ll, a, b);
       bs += b;

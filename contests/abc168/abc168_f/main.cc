@@ -36,7 +36,7 @@ void DrawLineY(Grid& g, int x, int y1, int y2) {
 }
 
 int main() {
-  rd(int, N, M);
+  ints(N, M);
 
   rep(i, N) cin >> A[i] >> B[i] >> C[i];
   rep(i, M) cin >> D[i] >> E[i] >> F[i];

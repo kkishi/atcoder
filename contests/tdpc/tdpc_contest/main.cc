@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<int> p(n);
   cin >> p;
   vector<bool> dp(n * 100 + 1);

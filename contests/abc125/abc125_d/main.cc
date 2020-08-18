@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   ll minus = 0, mini = numeric_limits<ll>::max(), sum = 0;
   rep(i, n) {
     rd(ll, a);

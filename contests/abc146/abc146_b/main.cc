@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
-  rd(string, s);
+  ints(n);
+  strings(s);
   rep(i, s.size()) s[i] = (s[i] - 'A' + n) % 26 + 'A';
   wt(s);
 }

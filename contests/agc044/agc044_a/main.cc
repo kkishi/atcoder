@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, T);
+  ints(T);
   while (T--) {
     rd(ll, N, A, B, C, D);
 

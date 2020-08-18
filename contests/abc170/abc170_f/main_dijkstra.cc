@@ -31,8 +31,8 @@ struct State {
 const int INF = 1 << 30;
 
 int main() {
-  rd(int, h, w, k);
-  rd(int, x1, y1, x2, y2);
+  ints(h, w, k);
+  ints(x1, y1, x2, y2);
   --x1, --y1, --x2, --y2;
   vector<string> grid(h);
   cin >> grid;

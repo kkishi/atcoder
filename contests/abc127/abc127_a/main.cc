@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b);
+  ints(a, b);
   if (a >= 13) {
     wt(b);
   } else if (a >= 6) {

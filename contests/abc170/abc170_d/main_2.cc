@@ -7,9 +7,9 @@ using namespace std;
 int cnt[1000001];
 
 int main() {
-  rd(int, n);
+  ints(n);
   rep(i, n) {
-    rd(int, a);
+    ints(a);
     ++cnt[a];
   }
   for (int i = 1; i <= 1000000; ++i) {

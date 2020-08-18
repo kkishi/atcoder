@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<string> w(n);
   cin >> w;
   set<string> seen;

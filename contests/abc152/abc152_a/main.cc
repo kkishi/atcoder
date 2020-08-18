@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, N, M);
+  ints(N, M);
   wt(N == M);
 }

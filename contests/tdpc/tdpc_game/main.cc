@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, A, B);
+  ints(A, B);
   vector<int> a(A), b(B);
   cin >> a >> b;
   reverse(all(a));

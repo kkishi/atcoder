@@ -8,7 +8,7 @@ using mint = ModInt<998244353>;
 using namespace std;
 
 int main() {
-  rd(int, a, b, c, d);
+  ints(a, b, c, d);
   VV<mint> dp(c + 2, V<mint>(d + 2));
   dp[a][b] = 1;
   for (int i = a; i <= c; ++i) {

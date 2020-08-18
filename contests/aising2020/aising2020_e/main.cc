@@ -10,7 +10,7 @@ struct Camel {
 };
 
 void solve() {
-  rd(int, n);
+  ints(n);
   ll ans = 0;
   vector<Camel> lc, rc;
   rep(i, n) {
@@ -54,6 +54,6 @@ void solve() {
 }
 
 int main() {
-  rd(int, t);
+  ints(t);
   while (t--) solve();
 }

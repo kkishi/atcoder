@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-  rd(int, h, w);
+  ints(h, w);
   V<string> s(h);
   cin >> s;
 

@@ -8,9 +8,9 @@ bool ac[100000];
 int wa[100000];
 
 int main() {
-  rd(int, N, M);
+  ints(N, M);
   rep(i, M) {
-    rd(int, p);
+    ints(p);
     rd(string, S);
     if (S == "AC") ac[p - 1] = true;
     if (S == "WA" && !ac[p - 1]) ++wa[p - 1];

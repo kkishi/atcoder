@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
-  rd(string, c);
+  ints(n);
+  strings(c);
   int l = 0, r = n - 1;
   int ans = 0;
   while (l < r) {

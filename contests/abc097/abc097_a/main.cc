@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, c, d);
+  ints(a, b, c, d);
   auto close = [&d](int a, int b) { return abs(a - b) <= d; };
   wt(close(a, c) || (close(a, b) && close(b, c)));
 }

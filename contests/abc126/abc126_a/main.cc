@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n, k);
-  rd(string, s);
+  ints(n, k);
+  strings(s);
   s[k - 1] = tolower(s[k - 1]);
   wt(s);
 }

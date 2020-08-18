@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
-  rd(int, k);
+  strings(s);
+  ints(k);
   rep(i, s.size()) {
     if (k == 1 || s[i] != '1') {
       wt(s[i]);

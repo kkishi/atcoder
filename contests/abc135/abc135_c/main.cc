@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<ll> a(n + 1), b(n);
   cin >> a >> b;
   ll sum = accumulate(all(b), 0LL);

@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b, x);
+  ints(a, b, x);
   wt(a <= x && x <= a + b ? "YES" : "NO");
 }

@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   priority_queue<int> que;
   rep(i, n) {
-    rd(int, a);
+    ints(a);
     que.push(a);
   }
   rep(i, m) {

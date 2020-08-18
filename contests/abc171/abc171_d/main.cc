@@ -5,12 +5,12 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<ll> a(n);
   cin >> a;
   map<ll, ll> m;
   rep(i, n) m[a[i]]++;
-  rd(int, q);
+  ints(q);
   ll sum = accumulate(all(a), 0LL);
   while (q--) {
     rd(ll, b, c);

@@ -5,12 +5,12 @@
 using namespace std;
 
 int main() {
-  rd(int, n, m);
+  ints(n, m);
   vector<vector<bool>> connected(m, vector(n, false));
   rep(i, m) {
-    rd(int, k);
+    ints(k);
     while (k--) {
-      rd(int, s);
+      ints(s);
       connected[i][s - 1] = true;
     }
   }

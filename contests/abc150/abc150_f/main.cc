@@ -6,14 +6,14 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
+  ints(n);
   vector<bitset<30>> a(n), b(n);
   rep(i, n) {
-    rd(int, x);
+    ints(x);
     a[i] = x;
   }
   rep(i, n) {
-    rd(int, x);
+    ints(x);
     b[i] = x;
   }
 

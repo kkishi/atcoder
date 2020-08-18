@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(int, k, x);
+  ints(k, x);
   wt(500 * k >= x);
 }

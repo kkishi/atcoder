@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-  rd(int, n);
-  rd(string, s);
+  ints(n);
+  strings(s);
   int ans = 0;
   rep(i, n + 1) {
     set<char> a, b;

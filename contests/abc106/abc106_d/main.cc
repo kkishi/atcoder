@@ -5,11 +5,11 @@
 using namespace std;
 
 int main() {
-  rd(int, N, M, Q);
+  ints(N, M, Q);
   vector<int> l(N + 2), r(N + 2);
   vector<vector<int>> train(N + 1);
   while (M--) {
-    rd(int, L, R);
+    ints(L, R);
     ++l[L];
     ++r[R];
     train[L].push_back(R);
@@ -38,7 +38,7 @@ int main() {
     }
   }
   while (Q--) {
-    rd(int, p, q);
+    ints(p, q);
     wt(rs[q] - ls[p - 1] + outside[p][q]);
   }
 }

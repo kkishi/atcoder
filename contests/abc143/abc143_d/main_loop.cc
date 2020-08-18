@@ -7,7 +7,7 @@ using namespace std;
 short l[2000];
 
 int main() {
-  rd(int, n);
+  ints(n);
   rep(i, n) cin >> l[i];
   sort(l, l + n);
 

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, s);
+  ints(s);
   set<int> seen;
   for (int i = 1; i <= 1000000; ++i) {
     if (!seen.insert(s).second) {

@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(int, n, k);
+  ints(n, k);
   int r = n - k;
   for (int i = 1; i <= k; ++i) {
     if (i > r + 1) {

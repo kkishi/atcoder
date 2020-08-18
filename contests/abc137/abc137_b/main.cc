@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, k, x);
+  ints(k, x);
   int maxi = min(1000000, x + (k - 1));
   int mini = max(-1000000, x - (k - 1));
   for (int i = mini; i <= maxi; ++i) {

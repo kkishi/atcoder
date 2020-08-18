@@ -11,7 +11,7 @@ ModInt<998244353> dp[3001][3001];
 int A[3000];
 
 int main() {
-  rd(int, N, S);
+  ints(N, S);
   rep(i, N) cin >> A[i];
 
   dp[0][0] = 1;
