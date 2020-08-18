@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
 int main() {
-  double L;
-  cin >> L;
+  rd(double, L);
   double l = L / 3;
-  cout << setprecision(20) << (l * l * l) << endl;
+  cout << setprecision(20);
+  wt(l * l * l);
 }

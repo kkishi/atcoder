@@ -2,9 +2,9 @@
 
 #include "macros.h"
 #include "modint.h"
+#include "rational.h"
 
 using mint = ModInt<>;
-#include "rational.h"
 
 using namespace std;
 

@@ -9,7 +9,7 @@ bool acgt(char c) { return string("ACGT").find(c) != string::npos; }
 int main() {
   strings(s);
   int ans = 0;
-  rep(i, s.size()) for (int j = i; j < s.size(); ++j) {
+  rep(i, s.size()) rep(j, i, s.size()) {
     bool ok = true;
     for (int k = i; k <= j; ++k)
       if (!acgt(s[k])) ok = false;

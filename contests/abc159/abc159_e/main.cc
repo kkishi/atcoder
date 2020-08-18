@@ -1,105 +1,52 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
-const int INF = 10 * 1000 * 1000;
-int H, W, K;
-int S[10][1000];
-int tot[10][1000];
+int main() {
+  ints(H, W, K);
+  V<string> s(H);
+  cin >> s;
 
-vector<vector<int>> cal(const vector<string>& s) {
-  vector<vector<int>> tot(H + 1, vector<int>(W + 1));
+  VV<int> tot(H + 1, V<int>(W + 1));
   rep(i, H) rep(j, W) {
     tot[i + 1][j + 1] =
         tot[i][j + 1] + tot[i + 1][j] - tot[i][j] + (s[i][j] == '1');
   }
 
-  rep(i, H) {
-    rep(j, W) cout << tot[i + 1][j + 1] << " ";
-    cout << endl;
-  }
-  cout << endl;
-
-  vector<vector<int>> dp(H + 1, vector<int>(W + 1));
-  rep(i, H) rep(j, W) {
+  vector<int> assignments;
+  wt(Fix([&](auto dfs, int h) -> int {
+    const int INF = 10 * 1000 * 1000;
+    if (h == H) {
+      int prev = -1;
+      int cuts = 0;
+      rep(w, W) {
+        bool need_cut = false;
+        rep(ai, assignments.size()) {
+          auto cnt = [&](int hh, int hw, int lh, int lw) {
+            return tot[hh][hw] - tot[lh][hw] - tot[hh][lw] + tot[lh][lw];
+          };
+          int lh = (ai == 0 ? 0 : assignments[ai - 1]);
+          int hh = assignments[ai];
+          int before = cnt(hh, w, lh, prev);
+          int after = cnt(hh, w + 1, lh, prev);
+          if (after - before > K) return INF;
+          if (after > K) need_cut = true;
+        }
+        if (need_cut) {
+          ++cuts;
+          prev = w;
+        }
+      }
+      return cuts + assignments.size() - 1;
+    }
     int ans = INF;
-    if (tot[i + 1][j + 1] <= K) {
-      ans = 0;
+    for (++h; h <= H; ++h) {
+      assignments.push_back(h);
+      chmin(ans, dfs(h));
+      assignments.pop_back();
     }
-    cout << i << " " << j << " " << ans << endl;
-    // horizontal
-    rep(i2, i) if (tot[i + 1][j + 1] - tot[i2 + 1][j + 1] <= K) {
-      ans = min(ans, dp[i2 + 1][j + 1] + 1);
-      cout << i2 << " " << ans << " " << tot[i2 + 1][j + 1] << " "
-           << dp[i2 + 1][j + 1] << endl;
-      cout << " " << tot[i + 1][j + 1] << " " << tot[i2 + 1][j + 1] << endl;
-    }
-    // diagonal
-    rep(j2, j) if (tot[i + 1][j + 1] - tot[i + 1][j2 + 1] <= K) {
-      ans = min(ans, dp[i + 1][j2 + 1] + 1);
-    }
-    dp[i + 1][j + 1] = ans;
-  }
-  return dp;
-}
-
-vector<string> flipw(const vector<string>& s) {
-  vector<string> t(s);
-  rep(i, H) rep(j, W) t[i][W - 1 - j] = s[i][j];
-  return t;
-}
-
-vector<string> fliph(const vector<string>& s) {
-  vector<string> t(s);
-  rep(i, H) rep(j, W) t[H - 1 - i][j] = s[i][j];
-  return t;
-}
-
-int main() {
-  cin >> H >> W >> K;
-  vector<string> S(H);
-  rep(i, H) cin >> S[i];
-  /*
-  auto v2 = flipw(S);
-  rep(i, H) cout << v2[i] << endl;
-
-  v2 = fliph(S);
-  rep(i, H) {
-    cout << v2[i] << endl;
-  }
-  */
-  vector<vector<int>> dp1 = cal(S);
-  rep(i, H) {
-    rep(j, W) cout << dp1[i + 1][j + 1] << " ";
-    cout << endl;
-  }
-  cout << endl;
-  vector<vector<int>> dp2 = cal(flipw(S));
-  rep(i, H) {
-    rep(j, W) cout << dp2[i + 1][j + 1] << " ";
-    cout << endl;
-  }
-  cout << endl;
-  vector<vector<int>> dp3 = cal(fliph(S));
-  rep(i, H) {
-    rep(j, W) cout << dp3[i + 1][j + 1] << " ";
-    cout << endl;
-  }
-  cout << endl;
-
-  int ans = dp1[H][W];
-  cout << ans << endl;
-  // horizontal
-  rep(i, H - 1) {
-    cout << i << " " << dp1[i + 1][W] << " " << dp3[H - 1 - i][W] << endl;
-    ans = min(ans, dp1[i + 1][W] + dp3[H - 1 - i][W] + 1);
-  }
-  // diagonal
-  rep(i, W - 1) {
-    cout << i << " " << dp1[H][i + 1] << " " << dp2[H][W - 1 - i] << endl;
-    ans = min(ans, dp1[H][i + 1] + dp2[H][W - 1 - i] + 1);
-  }
-  cout << ans << endl;
+    return ans;
+  })(0));
 }

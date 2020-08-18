@@ -5,15 +5,13 @@
 
 using namespace std;
 
-int A[3000];
-
 using mint = ModInt<998244353>;
 mint dp[3001][3001];
 
 int main() {
-  int N, S;
-  cin >> N >> S;
-  rep(i, N) cin >> A[i];
+  ints(N, S);
+  V<int> A(N);
+  cin >> A;
 
   dp[0][0] = 1;
   mint ans = 0;
@@ -29,5 +27,5 @@ int main() {
       }
     }
   }
-  cout << ans << endl;
+  wt(ans);
 }

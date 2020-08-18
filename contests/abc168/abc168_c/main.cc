@@ -1,14 +1,13 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "macros.h"
 
 using namespace std;
 
 double sq(double x) { return x * x; }
 
 int main() {
-  double A, B, H, M;
-  cin >> A >> B >> H >> M;
+  rd(double, A, B, H, M);
 
   double pi = 3.141592653589793;
   double at = (H + M / 60) / 12 * 2 * pi;

@@ -8,27 +8,21 @@ using namespace std;
 int Union(int a, int b) { return a | b; }
 
 int main() {
-  int N;
-  cin >> N;
+  ints(N);
   SegmentTree<int> tree(N, Union);
-  string S;
-  cin >> S;
+  strings(S);
   rep(i, N) tree.Set(i, 1 << (S[i] - 'a'));
-  rep(i, N) dbg(i, tree.Get(i));
-  int Q;
-  cin >> Q;
-  rep(q, Q) {
-    int t;
-    cin >> t;
+  ints(Q);
+  rep(Q) {
+    ints(t);
     if (t == 1) {
-      int i;
+      ints(i);
       char c;
-      cin >> i >> c;
+      cin >> c;
       tree.Set(i - 1, 1 << (c - 'a'));
     } else {
-      int l, r;
-      cin >> l >> r;
-      cout << __builtin_popcount(tree.Aggregate(l - 1, r)) << endl;
+      ints(l, r);
+      wt(__builtin_popcount(tree.Aggregate(l - 1, r)));
     }
   }
 }

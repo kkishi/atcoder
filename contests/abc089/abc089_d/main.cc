@@ -17,7 +17,7 @@ int main() {
   rep(i, n - d) cum[i + d] =
       cum[i] + abs(R[i + d] - R[i]) + abs(C[i + d] - C[i]);
   ints(q);
-  while (q--) {
+  rep(q) {
     ints(l, r);
     wt(cum[r - 1] - cum[l - 1]);
   }

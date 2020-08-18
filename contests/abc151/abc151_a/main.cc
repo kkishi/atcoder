@@ -7,5 +7,4 @@ using namespace std;
 int main() {
   rd(char, c);
   wt(++c);
-  dbg(c);
 }

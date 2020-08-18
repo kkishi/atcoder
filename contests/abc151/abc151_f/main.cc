@@ -9,7 +9,7 @@ using namespace std;
 using Vec = Vector<double>;
 
 int main() {
-  rd(int, N);
+  ints(N);
   V<Vec> vec(N);
   cin >> vec;
   cout << setprecision(10);

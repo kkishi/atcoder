@@ -5,29 +5,25 @@
 using namespace std;
 
 int main() {
-  string S;
-  cin >> S;
-  int Q;
-  cin >> Q;
+  strings(S);
+  ints(Q);
   bool flipped = false;
   string head, tail;
-  rep(q, Q) {
-    int T;
-    cin >> T;
+  rep(Q) {
+    ints(T);
     if (T == 1) {
       flipped = !flipped;
       continue;
     }
-    int F;
+    ints(F);
     char C;
-    cin >> F >> C;
+    cin >> C;
     (((F == 1) ^ flipped) ? head : tail) += C;
-    dbg(head, tail);
   }
   reverse(all(head));
   string s = head + S + tail;
   if (flipped) {
     reverse(all(s));
   }
-  cout << s << endl;
+  wt(s);
 }

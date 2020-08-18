@@ -23,16 +23,12 @@ using Grid = BoundGrid<GridState>;
 
 void DrawLineX(Grid& g, int x1, int x2, int y) {
   if (x1 > x2) swap(x1, x2);
-  for (int x = x1; x < x2; ++x) {
-    g.Boundary({x, y}, 0, -1).online = true;
-  }
+  rep(x, x1, x2) g.Boundary({x, y}, 0, -1).online = true;
 }
 
 void DrawLineY(Grid& g, int x, int y1, int y2) {
   if (y1 > y2) swap(y1, y2);
-  for (int y = y1; y < y2; ++y) {
-    g.Boundary({x, y}, -1, 0).online = true;
-  }
+  rep(y, y1, y2) g.Boundary({x, y}, -1, 0).online = true;
 }
 
 int main() {

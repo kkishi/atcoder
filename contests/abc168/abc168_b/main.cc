@@ -1,17 +1,16 @@
 #include <bits/stdc++.h>
 
+#include "macros.h"
+
 using namespace std;
 
 int main() {
-  int K;
-  string S;
-  cin >> K >> S;
+  ints(K);
+  strings(S);
 
   if (S.size() <= K) {
-    cout << S << endl;
+    wt(S);
   } else {
-    cout << S.substr(0, K);
-    cout << "...";
-    cout << endl;
+    wt(S.substr(0, K) + "...");
   }
 }

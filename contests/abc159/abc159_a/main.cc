@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
 
+#include "macros.h"
+
 using namespace std;
 
 int main() {
-  int N, M;
-  cin >> N >> M;
-  cout << ((N * (N - 1) / 2) + (M * (M - 1) / 2)) << endl;
+  ints(N, M);
+  wt(N * (N - 1) / 2 + M * (M - 1) / 2);
 }

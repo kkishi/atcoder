@@ -36,11 +36,9 @@ bool bingo() {
 
 int main() {
   rep(i, 3) rep(j, 3) cin >> A[i][j];
-  int N;
-  cin >> N;
+  ints(N);
   rep(n, N) {
-    int b;
-    cin >> b;
+    ints(b);
     rep(i, 3) rep(j, 3) if (A[i][j] == b) A[i][j] = 0;
   }
   wt(bingo());

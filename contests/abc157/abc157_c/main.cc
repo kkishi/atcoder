@@ -28,7 +28,7 @@ int main() {
   rep(n, N) maximum *= 10;
 
   int ans = -1;
-  for (int i = minimum; i < maximum; ++i) {
+  rep(i, minimum, maximum) {
     if (ok(i)) {
       ans = i;
       break;

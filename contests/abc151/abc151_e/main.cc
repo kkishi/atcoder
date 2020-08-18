@@ -20,12 +20,12 @@ int main() {
   sort(a, a + n);
 
   int l = k - 2;
-  for (int i = l; i <= n - 2; ++i) {
+  rep(i, l, n - 1) {
     combs[i] = combs[i - 1] + mint::Comb(i, l);
     dbg(i, combs[i]);
   }
   mint mins = 0;
-  for (int i = 0; i < n - (k - 1); ++i) {
+  rep(i, n - (k - 1)) {
     mins += mint(a[i]) * combs[n - i - 2];
     dbg(i, a[i], n - i - 2, combs[n - i - 2], mins);
   }
