@@ -46,7 +46,7 @@ int main() {
   for (int s = 1; s < (1 << M); ++s) {
     int cnt = 0;
     ll u = 0;
-    for (int i = 0; i < M; ++i) {
+    rep(i, M) {
       if (s & (1 << i)) {
         ++cnt;
         u |= use[i];

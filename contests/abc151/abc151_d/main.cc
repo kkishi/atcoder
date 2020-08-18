@@ -26,7 +26,7 @@ class Grid {
       chmax(ret, dist);
       int dr[] = {1, -1, 0, 0};
       int dc[] = {0, 0, 1, -1};
-      for (int i = 0; i < 4; ++i) {
+      rep(i, 4) {
         int nrow = row + dr[i];
         int ncol = col + dc[i];
         if (nrow < 0 || grid_.size() <= nrow || ncol < 0 ||

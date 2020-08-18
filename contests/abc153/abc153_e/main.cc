@@ -15,7 +15,7 @@ int main() {
   dp[0] = 0;
   ll ans = INF;
   for (int i = 0; i <= H; ++i) {
-    for (int n = 0; n < N; ++n) {
+    rep(n, N) {
       ll j = i + A[n];
       chmin(dp[j], dp[i] + B[n]);
       if (j >= H) chmin(ans, dp[j]);

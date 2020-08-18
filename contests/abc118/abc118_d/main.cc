@@ -18,7 +18,7 @@ int main() {
 
   vector<string> dp(n + 1);
   for (int i = 0; i <= n; ++i) {
-    for (int j = 0; j < m; ++j) {
+    rep(j, m) {
       int k = i - cost[a[j]];
       if (k < 0 || dp[k] == "" && k != 0) continue;
       string d = char('0' + a[j]) + dp[k];

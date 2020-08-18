@@ -8,7 +8,7 @@ int main() {
   ints(N);
   int m = numeric_limits<int>::max();
   int ans = 0;
-  for (int i = 0; i < N; ++i) {
+  rep(i, N) {
     ints(p);
     chmin(m, p);
     if (m >= p) ++ans;
