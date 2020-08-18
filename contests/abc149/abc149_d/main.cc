@@ -35,7 +35,7 @@ ll solve(const string& t) {
 int main() {
   rd(ll, n, k);
   rep(i, 3) cin >> score[hand[i]];
-  rd(string, t);
+  strings(t);
   vector<string> ts(k);
   rep(i, t.size()) { ts[i % k] += t[i]; }
   ll ans = 0;

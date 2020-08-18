@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 #define int ll
-  rd(int, n, k);
+  ints(n, k);
   int ans = 0;
   for (int b = k + 1; b <= n; ++b)
     for (int a = k; a <= n; a += b)

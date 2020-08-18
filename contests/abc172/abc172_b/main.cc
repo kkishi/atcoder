@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
   int ans = 0;
-  rd(string, a, b);
+  strings(a, b);
   rep(i, a.size()) if (a[i] != b[i])++ ans;
   wt(ans);
 }

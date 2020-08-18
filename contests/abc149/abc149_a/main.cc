@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(string, s, t);
+  strings(s, t);
   wt(t + s);
 }

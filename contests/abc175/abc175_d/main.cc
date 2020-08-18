@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 #define int ll
-  rd(int, n, k);
+  ints(n, k);
   V<int> p(n), c(n);
   cin >> p >> c;
   int ans = numeric_limits<int>::min();

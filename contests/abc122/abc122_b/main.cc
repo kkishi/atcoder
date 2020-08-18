@@ -7,7 +7,7 @@ using namespace std;
 bool acgt(char c) { return string("ACGT").find(c) != string::npos; }
 
 int main() {
-  rd(string, s);
+  strings(s);
   int ans = 0;
   rep(i, s.size()) for (int j = i; j < s.size(); ++j) {
     bool ok = true;

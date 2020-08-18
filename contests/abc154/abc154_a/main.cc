@@ -5,9 +5,9 @@
 using namespace std;
 
 int main() {
-  rd(string, S, T);
+  strings(S, T);
   ints(A, B);
-  rd(string, U);
+  strings(U);
   (U == S ? A : B)--;
   wt(A, B);
 }

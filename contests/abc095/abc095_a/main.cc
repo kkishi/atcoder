@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   wt(700 + count(all(s), 'o') * 100);
 }

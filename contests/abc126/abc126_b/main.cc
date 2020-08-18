@@ -12,7 +12,7 @@ string str(int x) {
 }
 
 int main() {
-  rd(string, s);
+  strings(s);
   bool yymm = false, mmyy = false;
   for (int year = 0; year <= 99; ++year) {
     for (int month = 1; month <= 12; ++month) {

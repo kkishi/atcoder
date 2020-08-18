@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   vector<int> ans(s.size());
   int re = 0;
   int ro = 0;

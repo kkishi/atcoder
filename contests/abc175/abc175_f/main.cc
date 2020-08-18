@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 #define int ll
-  rd(int, n);
+  ints(n);
   V<string> s(n);
   V<int> c(n);
   rep(i, n) cin >> s[i] >> c[i];

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s, t);
+  strings(s, t);
   int ans = 0;
   rep(i, 3) ans += s[i] == t[i];
   wt(ans);

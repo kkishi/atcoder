@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s, t);
+  strings(s, t);
   s += s;
   V<ll> last(26, -1);
   VV<ll> next(s.size(), V<ll>(26));

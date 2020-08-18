@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, x);
+  strings(x);
   reverse(all(x));
   while (!x.empty()) {
     if (set{'o', 'k', 'u'}.count(x[0])) {

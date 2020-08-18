@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(int, a, b);
+  ints(a, b);
   int ans = 0;
   for (int i = a; i <= b; ++i) {
     string s = to_string(i);

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   rep(i, s.size() - 1) if (s[i] == s[i + 1]) {
     wt("Bad");
     return 0;

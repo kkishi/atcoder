@@ -11,6 +11,6 @@ int solve(const string& s, int c) {
 }
 
 int main() {
-  rd(string, s);
+  strings(s);
   wt(min(solve(s, 0), solve(s, 1)));
 }

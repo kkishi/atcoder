@@ -11,7 +11,7 @@ ll calc(ll x) {
 
 int main() {
   rd(ll, n);
-  rd(string, x);
+  strings(x);
   ll p = count(all(x), '1');
 
   map<ll, vector<ll>> mods_cache;

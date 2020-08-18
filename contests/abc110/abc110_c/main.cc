@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s, t);
+  strings(s, t);
   vector<set<char>> to(26), from(26);
   rep(i, s.size()) {
     to[s[i] - 'a'].insert(t[i]);

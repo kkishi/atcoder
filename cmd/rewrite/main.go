@@ -57,8 +57,10 @@ func rewrite(r io.Reader, w io.Writer) error {
 			l = strings.Replace(l, "::combination(", "::Comb(", -1)
 			l = strings.Replace(l, "Setmax(", "chmax(", -1)
 			l = strings.Replace(l, "Setmin(", "chmin(", -1)
-			l = strings.Replace(l, " rd(int, ", " ints(", 1)
-			l = strings.Replace(l, " rd(string, ", " strings(", 1)
+		}
+		l = strings.Replace(l, " rd(int, ", " ints(", 1)
+		l = strings.Replace(l, " rd(string, ", " strings(", 1)
+		if false {
 			if m := readVector.FindAllStringSubmatch(l, -1); len(m) != 0 {
 				// This drops leading spaces, but we rely on later clang-format runs.
 				l = fmt.Sprintf("cin >> %s;", m[0][1])
@@ -74,20 +76,21 @@ func rewrite(r io.Reader, w io.Writer) error {
 				}
 				// This drops leading spaces, but we rely on later clang-format runs.
 			}
-		}
-		if m := simpleFor.FindAllStringSubmatch(l, -1); len(m) != 0 {
-			m := m[0]
-			for i, m := range m {
-				log.Println(i, m)
+			if m := simpleFor.FindAllStringSubmatch(l, -1); len(m) != 0 {
+				m := m[0]
+				for i, m := range m {
+					log.Println(i, m)
+				}
+				if m[2] == m[4] && m[4] == m[6] &&
+					m[3] == "0" {
+					log.Println("rep!")
+					l = fmt.Sprintf("%s rep(%s, %s)%s", m[1], m[2], m[5], m[7])
+				}
+				// This drops leading spaces, but we rely on later clang-format runs.
+				// l = fmt.Sprintf("cin >> %s;", m[0][1])
 			}
-			if m[2] == m[4] && m[4] == m[6] &&
-				m[3] == "0" {
-				log.Println("rep!")
-				l = fmt.Sprintf("%s rep(%s, %s)%s", m[1], m[2], m[5], m[7])
-			}
-			// This drops leading spaces, but we rely on later clang-format runs.
-			// l = fmt.Sprintf("cin >> %s;", m[0][1])
 		}
+		fmt.Fprintln(w, l)
 	}
 	return nil
 }

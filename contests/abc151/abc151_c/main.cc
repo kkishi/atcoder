@@ -11,7 +11,7 @@ int main() {
   ints(N, M);
   rep(i, M) {
     ints(p);
-    rd(string, S);
+    strings(S);
     if (S == "AC") ac[p - 1] = true;
     if (S == "WA" && !ac[p - 1]) ++wa[p - 1];
   }

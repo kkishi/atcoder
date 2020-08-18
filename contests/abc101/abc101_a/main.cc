@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   wt(count(all(s), '+') - count(all(s), '-'));
 }

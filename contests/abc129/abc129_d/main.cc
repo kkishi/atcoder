@@ -11,7 +11,7 @@ int main() {
   V<string> s(H);
   s[0] = s[H - 1] = string(W, '#');
   rep(i, h) {
-    rd(string, row);
+    strings(row);
     s[i + 1] = '#' + row + '#';
   }
 

@@ -8,7 +8,7 @@ using mint = ModInt<>;
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   vector<vector<mint>> dp(100001, vector<mint>(13, mint(0)));
   dp[0][0] = 1;
   rep(i, s.size()) {

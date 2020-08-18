@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   bool ok = true;
   rep(i, s.size()) {
     if (i % 2 == 1) {

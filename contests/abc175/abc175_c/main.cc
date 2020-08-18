@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 #define int ll
-  rd(int, x, k, d);
+  ints(x, k, d);
   if (x < 0) x = -x;
   if (x / d > k) {
     wt(x - k * d);

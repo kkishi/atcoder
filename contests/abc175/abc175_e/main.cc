@@ -8,7 +8,7 @@ int main() {
 #define int ll
   using A = array<int, 4>;
 
-  rd(int, R, C, K);
+  ints(R, C, K);
   V<int> r(K), c(K), v(K);
   rep(i, K) cin >> r[i] >> c[i] >> v[i];
   VV<int> item(R + 1, V<int>(C + 1));

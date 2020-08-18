@@ -18,6 +18,6 @@ bool ok(const string& s) {
 }
 
 int main() {
-  rd(string, s);
+  strings(s);
   wt(ok(s) ? "AC" : "WA");
 }

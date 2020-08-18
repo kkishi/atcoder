@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(string, n);
+  strings(n);
   wt(n.find('7') != string::npos);
 }

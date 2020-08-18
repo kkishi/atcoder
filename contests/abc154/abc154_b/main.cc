@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  rd(string, S);
+  strings(S);
   rep(i, S.size()) S[i] = 'x';
   wt(S);
 }

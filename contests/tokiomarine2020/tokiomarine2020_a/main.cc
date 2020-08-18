@@ -5,6 +5,6 @@
 using namespace std;
 
 int main() {
-  rd(string, s);
+  strings(s);
   wt(s.substr(0, 3));
 }
