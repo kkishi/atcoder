@@ -34,7 +34,7 @@ int main() {
     v.push_back({x, ci});
   }
 
-  vector dp(k + 1, vector(v.size(), mint(0)));
+  VV<mint> dp(k + 1, V<mint>(v.size()));
   rep(i, v.size()) dp[1][i] = v[i].c;
   for (int i = 2; i <= k; ++i) {
     rrep(j, v.size() - 1) dp[i - 1][j] += dp[i - 1][j + 1];

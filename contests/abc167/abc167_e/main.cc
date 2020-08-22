@@ -11,7 +11,7 @@ int main() {
   ints(n, m, k);
   mint ans = 0;
   for (int i = 0; i <= k; ++i) {
-    ans += mint(m) * mint(m - 1).Pow(n - 1 - i) * mint::Comb(n - 1, i);
+    ans += m * mint(m - 1).Pow(n - 1 - i) * mint::Comb(n - 1, i);
   }
   wt(ans);
 }

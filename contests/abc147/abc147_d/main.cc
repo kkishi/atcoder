@@ -15,7 +15,7 @@ int main() {
   rep(i, 60) {
     ll ones = 0;
     rep(j, n) if ((a[j] >> i) & 1)++ ones;
-    ans += mint(ones * (n - ones)) * mint(2).Pow(i);
+    ans += ones * (n - ones) * mint(2).Pow(i);
   }
   wt(ans);
 }

@@ -8,11 +8,10 @@ using mint = ModInt<>;
 
 using namespace std;
 
-int A[10000];
-
 int main() {
   ints(N);
-  rep(i, N) cin >> A[i];
+  V<int> A(N);
+  cin >> A;
   map<int, int> m;
   rep(i, N) {
     map<int, int> fs = Factorize(A[i]);
@@ -22,9 +21,9 @@ int main() {
   }
   mint lcm = 1;
   for (auto [k, v] : m) {
-    rep(i, v) { lcm *= k; }
+    rep(i, v) lcm *= k;
   }
   mint ans = 0;
-  rep(i, N) ans += lcm / mint(A[i]);
+  rep(i, N) ans += lcm / A[i];
   wt(ans);
 }
