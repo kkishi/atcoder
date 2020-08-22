@@ -5,6 +5,8 @@
 
 using namespace std;
 
+using rhash = RollingHash<>;
+
 int main() {
   ints(n);
 
@@ -16,14 +18,14 @@ int main() {
   sort(all(s), [](auto &a, auto &b) { return a.size() > b.size(); });
 
   ll ans = 0;
-  unordered_map<RollingHash, array<int, 26>> m;
+  unordered_map<rhash, array<int, 26>> m;
   for (auto &si : s) {
     vector<bitset<26>> cum(si.size() + 1);
     rrep(i, si.size()) {
       cum[i] = cum[i + 1];
       cum[i].set(si[i] - 'a');
     }
-    RollingHash h;
+    rhash h;
     rep(i, si.size() - 1) {
       rep(j, 26) {
         if (cum[i][j]) {
