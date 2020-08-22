@@ -4,6 +4,11 @@
 
 using namespace std;
 
+template <typename T>
+bool between(const T& v, const T& lo, const T& hi) {
+  return lo <= v && v <= hi;
+}
+
 int main() {
   ints(h, w);
   ints(ch, cw);
@@ -13,31 +18,28 @@ int main() {
   V<string> s(h);
   cin >> s;
 
-  map<pair<int, int>, int> seen;
+  int inf = numeric_limits<int>::max();
+  VV<int> dist(h, V<int>(w, inf));
   low_priority_queue<tuple<int, int, int>> que;
 
-  auto push = [&](int r, int c, int warp) {
-    if (r < 0 || h <= r || c < 0 || w <= c || s[r][c] == '#') return;
-    auto [it, ok] = seen.insert({{r, c}, warp});
-    if (!ok && warp >= it->second) return;
-    it->second = warp;
-    que.push({warp, r, c});
+  auto push = [&](int r, int c, int d) {
+    if (!between(r, 0, h - 1) || !between(c, 0, w - 1) || s[r][c] == '#')
+      return;
+    if (!chmin(dist[r][c], d)) return;
+    que.push({d, r, c});
   };
   push(ch, cw, 0);
 
   while (!que.empty()) {
-    auto [warp, r, c] = que.top();
+    auto [d, r, c] = que.top();
     que.pop();
-    if (r == dh && c == dw) {
-      wt(warp);
-      return 0;
-    }
     rep(i, 4) {
       int dr[] = {0, 1, 0, -1};
       int dc[] = {1, 0, -1, 0};
-      push(r + dr[i], c + dc[i], warp);
+      push(r + dr[i], c + dc[i], d);
     }
-    rep(dr, -2, 3) rep(dc, -2, 3) push(r + dr, c + dc, warp + 1);
+    rep(dr, -2, 3) rep(dc, -2, 3) push(r + dr, c + dc, d + 1);
   }
-  wt(-1);
+  int ans = dist[dh][dw];
+  wt(ans == inf ? -1 : ans);
 }
