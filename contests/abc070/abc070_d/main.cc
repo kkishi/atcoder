@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+#include "dijkstra.h"
 #include "graph.h"
 #include "macros.h"
 
@@ -8,27 +9,16 @@ using namespace std;
 int main() {
 #define int ll
   ints(n);
-  Graph<int> g(n);
+  Graph<int> g(n + 1);
   rep(n - 1) {
     ints(a, b, c);
-    --a, --b;
     g.AddEdge(a, b, c);
     g.AddEdge(b, a, c);
   }
   ints(q, k);
-  --k;
-  V<int> dist(n, -1);
-  dist[k] = 0;
-  Fix([&](auto dfs, int n, int p, int d) -> void {
-    dist[n] = d;
-    for (auto& e : g.Edges(n)) {
-      if (e.to == p) continue;
-      dfs(e.to, n, d + e.weight);
-    }
-  })(k, -1, 0);
+  V<optional<int>> dist = Dijkstra(g, k);
   rep(q) {
     ints(x, y);
-    --x, --y;
-    wt(dist[x] + dist[y]);
+    wt(*dist[x] + *dist[y]);
   }
 }

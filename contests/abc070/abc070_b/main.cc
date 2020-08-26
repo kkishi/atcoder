@@ -6,7 +6,5 @@ using namespace std;
 
 int main() {
   ints(a, b, c, d);
-  int ans = 0;
-  rep(i, 0, 101) if (a <= i && i < b && c <= i && i < d)++ ans;
-  wt(ans);
+  wt(max(0, min(b, d) - max(a, c)));
 }
