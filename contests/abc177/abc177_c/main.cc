@@ -11,9 +11,8 @@ int main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  V<mint> sum(n + 1);
-  rrep(i, n) sum[i] = sum[i + 1] + a[i];
+  mint sum = accumulate(all(a), mint(0));
   mint ans = 0;
-  rep(i, n - 1) ans += a[i] * sum[i + 1];
-  wt(ans);
+  rep(i, n) ans += (sum - a[i]) * a[i];
+  wt(ans / 2);
 }
