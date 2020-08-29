@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 
-#include "factorize.h"
 #include "macros.h"
 
 using namespace std;
@@ -10,14 +9,23 @@ int main() {
   V<int> a(n);
   cin >> a;
 
-  set<int> factors;
+  V<int> sieve(1000001, -1);
+  rep(i, 2, sz(sieve)) if (sieve[i] == -1) {
+    for (int j = i; j < sz(sieve); j += i) {
+      sieve[j] = i;
+    }
+  }
+  V<int> factors(1000001, -1);
   bool pc = true;
   rep(i, n) {
-    map<int, int> fs = Factorize(a[i]);
-    for (auto [key, _] : fs) {
-      if (!factors.insert(key).second) {
+    int ai = a[i];
+    while (ai != 1) {
+      int f = sieve[ai];
+      if (factors[f] != -1 && factors[f] != i) {
         pc = false;
       }
+      factors[f] = i;
+      ai /= f;
     }
   }
   if (pc) {
