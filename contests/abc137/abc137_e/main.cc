@@ -17,14 +17,12 @@ int main() {
     bg.AddEdge(b[i], a[i], 0);
   }
 
-  vector<ll> bgd;
-  BellmanFord(bg, n - 1, bgd);
+  auto [bgd, _] = BellmanFord(bg, n - 1);
 
   Graph<ll> g(n);
   rep(i, m) if (bgd[a[i]] == 0) g.AddEdge(a[i], b[i], p - c[i]);
 
-  vector<ll> d;
-  if (BellmanFord(g, 0, d)) {
+  if (auto [d, ok] = BellmanFord(g, 0); ok) {
     wt(max(-d[n - 1], 0LL));
   } else {
     wt(-1);
