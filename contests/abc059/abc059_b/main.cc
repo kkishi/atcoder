@@ -1,16 +1,11 @@
 #include <bits/stdc++.h>
 
+#include "bignum.h"
 #include "macros.h"
 
 using namespace std;
 
 int main() {
-  strings(a, b);
-  if (a == b) {
-    wt("EQUAL");
-  } else if (sz(a) < sz(b) || sz(a) == sz(b) && a < b) {
-    wt("LESS");
-  } else {
-    wt("GREATER");
-  }
+  rd(bigint, a, b);
+  wt(a == b ? "EQUAL" : a < b ? "LESS" : "GREATER");
 }
