@@ -22,7 +22,7 @@ int main() {
       tree.Set(i - 1, 1 << (c - 'a'));
     } else {
       ints(l, r);
-      wt(__builtin_popcount(tree.Aggregate(l - 1, r)));
+      wt(popcount(tree.Aggregate(l - 1, r)));
     }
   }
 }
