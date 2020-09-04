@@ -31,7 +31,7 @@ int main() {
   int ans = 0;
   rep(s, 1 << n) {
     if (check(s, v)) {
-      chmax(ans, __builtin_popcount(s));
+      chmax(ans, popcount(s));
     }
   }
   wt(ans);
