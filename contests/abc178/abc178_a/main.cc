@@ -6,5 +6,5 @@ using namespace std;
 
 int main() {
   ints(x);
-  wt(x == 1 ? 0 : 1);
+  wt(1 - x);
 }
