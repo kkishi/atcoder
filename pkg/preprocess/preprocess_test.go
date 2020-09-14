@@ -9,27 +9,6 @@ import (
 	"testing"
 )
 
-func TestIsSTDHeaderInclude(t *testing.T) {
-	tests := []struct {
-		line string
-		want bool
-	}{
-		{
-			line: "#include <iostream>",
-			want: true,
-		},
-		{
-			line: "#include <unknown>",
-			want: false,
-		},
-	}
-	for _, test := range tests {
-		if got := isSTDHeaderInclude(test.line); got != test.want {
-			t.Errorf("isSTDHeaderInclude(%q) = %t; want %t", test.line, got, test.want)
-		}
-	}
-}
-
 func TestPreprocessIncludes(t *testing.T) {
 	tests := []struct {
 		source  string
@@ -37,19 +16,32 @@ func TestPreprocessIncludes(t *testing.T) {
 		want    string
 	}{
 		{
-			source: `#include "macros.h"
-#include "pragma_once.h"
-#include "pragma_once.h"
+			source: `#include "a.h"
+#include "b.h"
 
 int main() {
 }
 `,
 			headers: map[string]string{
-				"macros.h":      "using ll = long long;\n",
-				"pragma_once.h": "#pragma once\nconst int PI = 3;\n",
+				"a.h": "#include \"b.h\"\n// a.h\n",
+				"b.h": "// b.h\n",
 			},
-			want: `using ll = long long;
-const int PI = 3;
+			want: `// b.h
+// a.h
+
+int main() {
+}
+`,
+		},
+		{
+			source: `#include <bits/stdc++.h>
+#include <vector>
+
+int main() {
+}
+`,
+			headers: map[string]string{},
+			want: `#include <bits/stdc++.h>
 
 int main() {
 }

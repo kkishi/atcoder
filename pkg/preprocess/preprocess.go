@@ -2,15 +2,15 @@ package preprocess
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"path/filepath"
 	"regexp"
 )
 
-var includeExp = regexp.MustCompile("^#include \"(.*\\.h)\"$")
+var includeExp = regexp.MustCompile("^#include [\"<](.+)[\">]$")
 var included = make(map[string]bool)
 
 type preprocessor struct {
@@ -18,6 +18,8 @@ type preprocessor struct {
 
 	lastPrintedLine string
 }
+
+var headerNotFound = errors.New("header not found")
 
 func lookPath(file string) (string, error) {
 	path := os.Getenv("CPLUS_INCLUDE_PATH")
@@ -27,7 +29,7 @@ func lookPath(file string) (string, error) {
 			return path, nil
 		}
 	}
-	return "", fmt.Errorf("%q not found", file)
+	return "", headerNotFound
 }
 
 func (p *preprocessor) include(header string) error {
@@ -40,26 +42,15 @@ func (p *preprocessor) include(header string) error {
 		return err
 	}
 	s := bufio.NewScanner(r)
-	if !s.Scan() {
+	if included[header] {
 		return nil
 	}
-	firstLine := s.Text()
-	if firstLine == "#pragma once" {
-		if included[header] {
-			log.Printf("skipping %q for #pragma once", header)
-			return nil
-		}
-	} else {
-		if err := p.line(firstLine); err != nil {
-			return err
-		}
-	}
+	included[header] = true
 	for s.Scan() {
 		if err := p.line(s.Text()); err != nil {
 			return err
 		}
 	}
-	included[header] = true
 	return nil
 }
 
@@ -71,19 +62,27 @@ func init() {
 	}
 }
 
-var stdIncludeExp = regexp.MustCompile("^#include <(.*)>$")
-
-func isSTDHeaderInclude(l string) bool {
-	m := stdIncludeExp.FindStringSubmatch(l)
-	return len(m) == 2 && stdHeaders[m[1]]
-}
-
 func (p *preprocessor) line(l string) error {
 	if m := includeExp.FindStringSubmatch(l); len(m) == 2 {
-		return p.include(m[1])
-	}
-	if isSTDHeaderInclude(l) {
-		return nil
+		header := m[1]
+		if header == "bits/stdc++.h" {
+			// We always include <bits/stdc++.h>.
+			p.print(l)
+			return nil
+		}
+		if stdHeaders[header] {
+			// STD headers should be unnecessary because <bits/stdc++.h>, so skip.
+			return nil
+		}
+		// Try including the header.
+		if err := p.include(m[1]); err == headerNotFound {
+			// If the header is not found in $CPLUS_INCLUDE_PATH, assume it's
+			// provided by the system, like boost.
+			p.print(l)
+			return nil
+		} else {
+			return err
+		}
 	}
 	p.print(l)
 	return nil
