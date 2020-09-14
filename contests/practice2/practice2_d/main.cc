@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
-#include "edmonds_karp.h"
-#include "graph.h"
+#include <atcoder/maxflow>
+
 #include "macros.h"
 
 using namespace std;
@@ -13,11 +13,8 @@ int main() {
 
   auto idx = [&](int r, int c) { return r * m + c; };
   int src = idx(n - 1, m - 1) + 1, dst = src + 1;
-  Graph<int> g(dst + 1);
-  auto add = [&](int u, int v) {
-    g.AddEdge(u, v, 1);
-    g.AddEdge(v, u, 0);
-  };
+  atcoder::mf_graph<int> g(dst + 1);
+  auto add = [&](int u, int v) { g.add_edge(u, v, 1); };
   int dr[] = {0, 1, 0, -1};
   int dc[] = {1, 0, -1, 0};
   rep(r, n) rep(c, m) {
@@ -36,27 +33,27 @@ int main() {
     }
   }
 
-  auto [total, flow] = EdmondsKarp(g, src, dst);
-  rep(r, n) rep(c, m) rep(k, 4) {
-    int nr = r + dr[k];
-    int nc = c + dc[k];
-    if (0 <= nr && nr < n && 0 <= nc && nc < m &&
-        flow[idx(r, c)][idx(nr, nc)] == 1) {
-      if (k == 0) {
+  wt(g.flow(src, dst));
+  auto edges = g.edges();
+  for (const auto& e : g.edges()) {
+    if (e.from < src && e.to < src && e.flow == 1) {
+      auto ridx = [&](int i) { return make_pair(i / m, i % m); };
+      auto [r, c] = ridx(e.from);
+      auto [nr, nc] = ridx(e.to);
+      if (c + 1 == nc) {
         s[r][c] = '>';
         s[nr][nc] = '<';
-      } else if (k == 1) {
+      } else if (r + 1 == nr) {
         s[r][c] = 'v';
         s[nr][nc] = '^';
-      } else if (k == 2) {
+      } else if (c - 1 == nc) {
         s[r][c] = '<';
         s[nr][nc] = '>';
-      } else {
+      } else if (r - 1 == nr) {
         s[r][c] = '^';
         s[nr][nc] = 'v';
       }
     }
   }
-  wt(total);
   rep(i, n) wt(s[i]);
 }
