@@ -2,18 +2,16 @@
 
 #include <atcoder/maxflow>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   V<string> s(n);
   cin >> s;
 
   auto idx = [&](int r, int c) { return r * m + c; };
   int src = idx(n - 1, m - 1) + 1, dst = src + 1;
-  atcoder::mf_graph<int> g(dst + 1);
+  atcoder::mf_graph<i32> g(dst + 1);
   auto add = [&](int u, int v) { g.add_edge(u, v, 1); };
   int dr[] = {0, 1, 0, -1};
   int dc[] = {1, 0, -1, 0};

@@ -2,11 +2,9 @@
 
 #include <atcoder/convolution>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   V<int> a(n), b(m);
   cin >> a >> b;

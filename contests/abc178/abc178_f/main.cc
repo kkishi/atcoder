@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> a(n), b(n);
   cin >> a >> b;
@@ -20,7 +18,7 @@ int main() {
   for (auto [_, v] : tot) {
     if (v > n) {
       wt("No");
-      return 0;
+      return;
     }
   }
 

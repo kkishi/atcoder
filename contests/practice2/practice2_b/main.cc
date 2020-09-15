@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bit.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n, q);
   V<int> a(n);
   cin >> a;

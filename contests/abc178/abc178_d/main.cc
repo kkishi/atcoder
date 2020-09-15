@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(s);
   V<mint> dp(s + 1);
   rep(i, 3, s + 1) {

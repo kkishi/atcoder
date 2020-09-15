@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
-#include "macros.h"
 #include "segment_tree.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, q);
   V<int> a(n);
   cin >> a;
