@@ -4,7 +4,6 @@
 #include "fast_io.h"
 #include "graph.h"
 #include "strongly_connected_component.h"
-#include "topological_sort.h"
 
 void Main() {
   ints(n, m);
@@ -18,18 +17,10 @@ void Main() {
   V<int> scc_index(n);
   rep(i, scc.size()) for (int u : scc[i]) scc_index[u] = i;
 
-  Graph<int> h(scc.size());
-  rep(u, n) for (const auto& e : g.Edges(u)) {
-    int v = e.to;
-    int ui = scc_index[u], vi = scc_index[v];
-    if (ui != vi) h.AddEdge(ui, vi);
-  }
-  V<int> ts = TopologicalSort(h);
-
   wt(scc.size());
-  for (int i : ts) {
-    cout << scc[i].size();
-    for (int j : scc[i]) cout << " " << j;
+  for (const auto& scci : scc) {
+    cout << scci.size();
+    for (int j : scci) cout << " " << j;
     cout << endl;
   }
 }
