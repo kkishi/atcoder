@@ -4,5 +4,6 @@
 
 void Main() {
   rd(char, s, t);
-  wt(char(s == 'Y' ? toupper(t) : t));
+  if (s == 'Y') t = toupper(t);
+  wt(t);
 }

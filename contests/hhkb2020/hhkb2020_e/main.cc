@@ -27,8 +27,6 @@ void Main() {
   mint ans = 0;
   rep(i, h) rep(j, w) if (s[i][j] == '.') {
     int x = l[i][j] + r[i][j] + u[i][j] + d[i][j] - 3;
-    dbg(l[i][j], r[i][j], u[i][j], d[i][j]);
-    dbg(i, j, x);
     ans += mint(2).Pow(tot) - mint(2).Pow(tot - x);
   }
   wt(ans);
