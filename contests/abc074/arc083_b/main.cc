@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "warshall_floyd.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n);
   VV<int> a(n, V<int>(n));
   cin >> a;
@@ -14,7 +11,7 @@ int main() {
   WarshallFloyd(b);
   if (a != b) {
     wt(-1);
-    return 0;
+    return;
   }
   V<tuple<int, int, int>> e;
   rep(i, n - 1) rep(j, i + 1, n) e.push_back({a[i][j], i, j});

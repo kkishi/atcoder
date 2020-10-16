@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  vector<ll> a(n);
+void Main() {
+  ints(n, k);
+  vector<int> a(n);
   cin >> a;
   rep(i, k) {
-    vector<ll> na(n);
+    vector<int> na(n);
     rep(j, n) na[j] = 1;
     {
-      low_priority_queue<ll> que;
+      low_priority_queue<int> que;
       rep(j, n) {
         while (!que.empty() && que.top() < j) que.pop();
         na[j] += que.size();
@@ -20,7 +18,7 @@ int main() {
       }
     }
     {
-      priority_queue<ll> que;
+      priority_queue<int> que;
       rrep(j, n) {
         while (!que.empty() && que.top() > j) que.pop();
         na[j] += que.size();

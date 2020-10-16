@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, c);
-  V<ll> x(n), v(n);
+void Main() {
+  ints(n, c);
+  V<int> x(n), v(n);
   rep(i, n) cin >> x[i] >> v[i];
-  auto f = [&n](const V<ll>& x, const V<ll>& v) {
-    V<ll> y(n + 1);
-    ll p = 0;
-    ll c = 0;
+  auto f = [&n](const V<int>& x, const V<int>& v) {
+    V<int> y(n + 1);
+    int p = 0;
+    int c = 0;
     rep(i, n) {
       c = c + v[i] - (x[i] - p);
       p = x[i];
@@ -19,16 +17,16 @@ int main() {
     }
     return y;
   };
-  V<ll> rx = x;
+  V<int> rx = x;
   reverse(all(rx));
   rep(i, n) rx[i] = c - rx[i];
-  V<ll> rv = v;
+  V<int> rv = v;
   reverse(all(rv));
 
-  V<ll> l = f(x, v);
-  V<ll> r = f(rx, rv);
+  V<int> l = f(x, v);
+  V<int> r = f(rx, rv);
 
-  ll ans = max(l[n], r[n]);
+  int ans = max(l[n], r[n]);
   rep(i, 1, n) {
     chmax(ans, l[i] - x[i - 1] + r[n - i]);
     chmax(ans, r[i] - rx[i - 1] + l[n - i]);

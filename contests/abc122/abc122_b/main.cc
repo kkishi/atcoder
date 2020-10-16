@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool acgt(char c) { return string("ACGT").find(c) != string::npos; }
 
-int main() {
+void Main() {
   strings(s);
   int ans = 0;
   rep(i, s.size()) rep(j, i, s.size()) {

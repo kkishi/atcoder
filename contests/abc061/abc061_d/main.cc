@@ -1,14 +1,11 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bellman_ford.h"
 #include "dijkstra.h"
 #include "graph.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n, m);
   V<int> a(m), b(m), c(m);
   rep(i, m) {

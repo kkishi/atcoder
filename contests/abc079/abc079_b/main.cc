@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  ll dp[87];
+void Main() {
+  int dp[87];
   dp[0] = 2;
   dp[1] = 1;
   rep(i, 2, 87) dp[i] = dp[i - 1] + dp[i - 2];

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(S);
   wt((S.find("A") != string::npos) && (S.find("B") != string::npos));
 }

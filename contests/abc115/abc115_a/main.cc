@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(d);
   cout << "Christmas";
   rep(i, 25 - d) cout << " Eve";

@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int dp[1000][1000];
 int dr[] = {0, 1, 0, -1};
@@ -14,7 +12,7 @@ struct State {
   int& ref() { return dp[r][c]; };
 };
 
-int main() {
+void Main() {
   ints(h, w);
   ints(ch, cw);
   --ch, --cw;
@@ -40,7 +38,7 @@ int main() {
     que.pop();
     if (here.r == dh && here.c == dw) {
       wt(here.warp);
-      return 0;
+      return;
     }
     rep(i, 4) {
       State there = here;

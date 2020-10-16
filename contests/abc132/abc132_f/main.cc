@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
-
-using namespace std;
 
 struct S {
   int x, c;
 };
 
-int main() {
+void Main() {
   ints(n, k);
 
   set<int> x;

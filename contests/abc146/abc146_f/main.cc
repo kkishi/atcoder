@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   strings(s);
 
@@ -15,7 +13,7 @@ int main() {
     while (s[ni] == '1' && ni < i) ++ni;
     if (ni == i) {
       wt(-1);
-      return 0;
+      return;
     }
     v.push_back(i - ni);
     i = ni;
@@ -26,7 +24,7 @@ int main() {
         cout << v[i];
       }
       cout << endl;
-      return 0;
+      return;
     }
   }
 }

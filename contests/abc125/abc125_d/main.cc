@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
-  ll minus = 0, mini = numeric_limits<ll>::max(), sum = 0;
+  int minus = 0, mini = numeric_limits<int>::max(), sum = 0;
   rep(i, n) {
-    rd(ll, a);
+    ints(a);
     if (a < 0) {
       ++minus;
       a = -a;

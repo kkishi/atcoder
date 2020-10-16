@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a, b);
   for (int i = 1; i <= 3; ++i) {
     if (i != a && i != b) {

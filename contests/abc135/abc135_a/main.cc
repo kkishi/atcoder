@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, a, b);
+void Main() {
+  ints(a, b);
   if (a == b) {
     wt(0);
   } else if ((a + b) % 2 == 0) {

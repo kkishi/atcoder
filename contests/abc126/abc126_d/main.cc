@@ -1,21 +1,19 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "graph.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  Graph<ll> g(n);
+void Main() {
+  ints(n);
+  Graph<int> g(n);
   rep(i, n - 1) {
-    rd(ll, u, v, w);
+    ints(u, v, w);
     --u, --v;
     g.AddEdge(u, v, w);
     g.AddEdge(v, u, w);
   }
-  vector<ll> color(n, -1);
-  Fix([&](auto dfs, ll node, ll parent, ll dist) -> void {
+  vector<int> color(n, -1);
+  Fix([&](auto dfs, int node, int parent, int dist) -> void {
     color[node] = dist % 2;
     for (const auto& e : g.Edges(node)) {
       if (e.to == parent) continue;

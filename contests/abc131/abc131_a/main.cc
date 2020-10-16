@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   rep(i, s.size() - 1) if (s[i] == s[i + 1]) {
     wt("Bad");
-    return 0;
+    return;
   }
   wt("Good");
 }

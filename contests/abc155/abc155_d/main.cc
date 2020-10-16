@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
-#include "macros.h"
 
-using namespace std;
-
-ll n, k;
-ll a[2 * 100000];
-const ll tens = 1e9;
+int n, k;
+int a[2 * 100000];
+const int tens = 1e9;
 
 // Returns the number of pairs whose values are equal to or less than x.
-ll count(ll x) {
-  ll cnt = 0;
+int count(int x) {
+  int cnt = 0;
   rep(i, 1, n) {
     if (a[i] < 0) {
       if (a[i - 1] * a[i] <= x) {
@@ -34,12 +32,12 @@ ll count(ll x) {
   return cnt;
 }
 
-int main() {
+void Main() {
   cin >> n >> k;
   rep(i, n) cin >> a[i];
   sort(a, a + n);
 
-  ll x = BinarySearch<ll>(-tens * tens - 1, tens * tens + 1,
-                          [&](ll x) { return count(x) < k; });
+  int x = BinarySearch<int>(-tens * tens - 1, tens * tens + 1,
+                            [&](int x) { return count(x) < k; });
   wt(x + 1);
 }

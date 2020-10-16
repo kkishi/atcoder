@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  ll ans = 1LL << 60;
-  for (ll i = 1; i * i <= n; ++i) {
+void Main() {
+  ints(n);
+  int ans = 1LL << 60;
+  for (int i = 1; i * i <= n; ++i) {
     if (n % i == 0) {
       chmin(ans, (i - 1) + (n / i - 1));
     }

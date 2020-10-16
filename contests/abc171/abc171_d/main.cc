@@ -1,35 +1,26 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
-  vector<ll> a(n);
+  vector<int> a(n);
   cin >> a;
-  map<ll, ll> m;
+  map<int, int> m;
   rep(i, n) m[a[i]]++;
   ints(q);
-  ll sum = accumulate(all(a), 0LL);
+  int sum = accumulate(all(a), 0LL);
   while (q--) {
-    rd(ll, b, c);
+    ints(b, c);
     auto it = m.find(b);
     if (it == m.end()) {
       wt(sum);
       continue;
     }
-    ll diff = (c - it->first) * it->second;
+    int diff = (c - it->first) * it->second;
     sum += diff;
     wt(sum);
     m[c] += it->second;
     m.erase(it);
   }
-  /*
-  ll ans = 0;
-  for (auto [k, v] : m) {
-    ans += k * v;
-  }
-  wt(ans);
-  */
 }

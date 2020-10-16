@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct S {
   int begin, end;
@@ -17,7 +15,7 @@ ostream& operator<<(ostream& os, const S& s) {
   return os;
 }
 
-int main() {
+void Main() {
   ints(h, w);
   V<int> a(h), b(h);
   rep(i, h) {

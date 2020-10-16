@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   auto check = [&s](int l) {
     rep(i, l) if (s[i] != s[i + l]) return false;
@@ -12,6 +10,6 @@ int main() {
   };
   rrep(l, sz(s) / 2) if (check(l)) {
     wt(l * 2);
-    return 0;
+    return;
   }
 }

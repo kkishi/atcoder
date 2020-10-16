@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s, t);
   V<string> cand;
   for (int i = 0; i + t.size() <= s.size(); ++i) {

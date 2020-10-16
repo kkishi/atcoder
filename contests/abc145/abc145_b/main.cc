@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool ok() {
   ints(n);
@@ -12,4 +10,4 @@ bool ok() {
   return true;
 }
 
-int main() { wt(ok()); }
+void Main() { wt(ok()); }

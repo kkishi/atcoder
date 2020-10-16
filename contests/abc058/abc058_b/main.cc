@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(o, e);
   string ans{o + e};
   rep(i, sz(o)) ans[i * 2] = o[i];

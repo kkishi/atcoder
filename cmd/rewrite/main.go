@@ -9,8 +9,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"regexp"
-	"strings"
 )
 
 var (
@@ -18,78 +16,124 @@ var (
 	inPlace = flag.Bool("w", false, "")
 )
 
-const usingNamespaceSTD = "using namespace std;"
-
-var readVector = regexp.MustCompile("rep\\(i, .+\\) cin >> ([^[]+)\\[i\\];")
-var chmax = regexp.MustCompile("^(.*) ([^\\s]+) = (max|min)\\(([^\\s]+), (.*)$")
-var simpleFor = regexp.MustCompile("^(.*) for \\(int ([^\\s]+) = ([^\\s]+); ([^\\s]+) < ([^\\s]+); \\+\\+([^\\s]+)\\)(.*)$")
+func sliceEq(a, b []string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i, ai := range a {
+		if b[i] != ai {
+			return false
+		}
+	}
+	return true
+}
 
 func rewrite(r io.Reader, w io.Writer) error {
 	s := bufio.NewScanner(r)
+	var lines []string
 	for s.Scan() {
-		l := s.Text()
-		if false {
-			if l == "// #undef DEBUG  // Uncomment this line to forcefully disable debug print." {
-				for s.Scan() {
-					l = s.Text()
-					if l == usingNamespaceSTD {
-						break
-					}
-				}
-				fmt.Fprintln(w, "#include \"macros.h\"\n")
+		lines = append(lines, s.Text())
+	}
+	var rules = []struct {
+		from []string
+		to   []string
+	}{
+		{
+			from: []string{
+				"#include \"macros.h\"",
+				"",
+				"using namespace std;",
+				"",
+				"int main() {",
+			},
+			to: []string{
+				"#include \"atcoder.h\"",
+				"",
+				"void Main() {",
+			},
+		},
+		{
+			from: []string{
+				"#include \"macros.h\"",
+				"#include \"modint.h\"",
+				"",
+				"using mint = ModInt<>;",
+				"",
+				"using namespace std;",
+				"",
+				"int main() {",
+			},
+			to: []string{
+				"#include \"atcoder.h\"",
+				"#include \"modint.h\"",
+				"",
+				"using mint = ModInt<>;",
+				"",
+				"void Main() {",
+			},
+		},
+		{
+			from: []string{
+				"#include \"macros.h\"",
+			},
+			to: []string{
+				"#include \"atcoder.h\"",
+			},
+		},
+		{
+			from: []string{
+				"using namespace std;",
+			},
+			to: []string{
+				"",
+			},
+		},
+		{
+			from: []string{
+				"int main() {",
+			},
+			to: []string{
+				"void Main() {",
+			},
+		},
+		{
+			from: []string{
+				"  return 0;",
+			},
+			to: []string{
+				"  return;",
+			},
+		},
+		{
+			from: []string{
+				"    return 0;",
+			},
+			to: []string{
+				"    return;",
+			},
+		},
+		{
+			from: []string{
+				"      return 0;",
+			},
+			to: []string{
+				"      return;",
+			},
+		},
+	}
+	for _, r := range rules {
+		var newLines []string
+		for i := 0; i < len(lines); i++ {
+			if i+len(r.from) <= len(lines) && sliceEq(lines[i:i+len(r.from)], r.from) {
+				newLines = append(newLines, r.to...)
+				i += len(r.from) - 1
+			} else {
+				newLines = append(newLines, lines[i])
 			}
-			if l == "#include \"setmin.h\"" {
-				s.Scan()
-				l = s.Text()
-			}
-			if l == "#include \"setmax.h\"" {
-				s.Scan()
-				l = s.Text()
-			}
-			l = strings.Replace(l, " in(", " rd(", 1)
-			l = strings.Replace(l, " CIN(", " rd(", 1)
-			l = strings.Replace(l, " out(", " wt(", 1)
-			l = strings.Replace(l, " COUT(", " wt(", 1)
-			l = strings.Replace(l, " REP(", " rep(", -1)
-			l = strings.Replace(l, " DBG(", " dbg(", 1)
-			l = strings.Replace(l, "ALL(", "all(", 1)
-			l = strings.Replace(l, ".pow(", ".Pow(", -1)
-			l = strings.Replace(l, "::combination(", "::Comb(", -1)
-			l = strings.Replace(l, "Setmax(", "chmax(", -1)
-			l = strings.Replace(l, "Setmin(", "chmin(", -1)
 		}
-		l = strings.Replace(l, " rd(int, ", " ints(", 1)
-		l = strings.Replace(l, " rd(string, ", " strings(", 1)
-		if false {
-			if m := readVector.FindAllStringSubmatch(l, -1); len(m) != 0 {
-				// This drops leading spaces, but we rely on later clang-format runs.
-				l = fmt.Sprintf("cin >> %s;", m[0][1])
-			}
-			if m := chmax.FindAllStringSubmatch(l, -1); len(m) != 0 {
-				for i, mi := range m[0] {
-					log.Println(i, mi)
-				}
-				m := m[0]
-				log.Println(m[2], m[4])
-				if m[2] == m[4] {
-					l = fmt.Sprintf("%sch%s(%s, %s", m[1], m[3], m[2], m[5])
-				}
-				// This drops leading spaces, but we rely on later clang-format runs.
-			}
-			if m := simpleFor.FindAllStringSubmatch(l, -1); len(m) != 0 {
-				m := m[0]
-				for i, m := range m {
-					log.Println(i, m)
-				}
-				if m[2] == m[4] && m[4] == m[6] &&
-					m[3] == "0" {
-					log.Println("rep!")
-					l = fmt.Sprintf("%s rep(%s, %s)%s", m[1], m[2], m[5], m[7])
-				}
-				// This drops leading spaces, but we rely on later clang-format runs.
-				// l = fmt.Sprintf("cin >> %s;", m[0][1])
-			}
-		}
+		lines = newLines
+	}
+	for _, l := range lines {
 		fmt.Fprintln(w, l)
 	}
 	return nil

@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+#include "atcoder.h"
 
-int main() {}
+void Main() {
+}

@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
+#undef int
 #include "bignum.h"
-#include "macros.h"
+#define int i64
 
-using namespace std;
-
-int main() {
-  ll A;
-  decfloat B;
-  cin >> A >> B;
-  cout << ll(A * B) << endl;
+void Main() {
+  ints(a);
+  rd(decfloat, b);
+  wt(int(a * b));
 }

@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
+void Main() {
+  ints(n);
   --n;
-  ll x = 26;
+  int x = 26;
   int l = 1;
   while (n >= x) {
     n -= x;

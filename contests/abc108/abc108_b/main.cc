@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "geometry.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(x1, y1, x2, y2);
   Vector<int> v1 = {x1, y1}, v2 = {x2, y2};
   Vector<int> v = v2 - v1;

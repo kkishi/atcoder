@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
-  vector<ll> a(n + 1), b(n);
+  vector<int> a(n + 1), b(n);
   cin >> a >> b;
-  ll sum = accumulate(all(b), 0LL);
+  int sum = accumulate(all(b), 0LL);
   rep(i, n) {
-    ll s = min(a[i], b[i]);
+    int s = min(a[i], b[i]);
     b[i] -= s;
     a[i] -= s;
     s = min(a[i + 1], b[i]);

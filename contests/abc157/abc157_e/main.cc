@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "segment_tree.h"
-
-using namespace std;
 
 int Union(int a, int b) { return a | b; }
 
-int main() {
+void Main() {
   ints(N);
   SegmentTree<int> tree(N, Union);
   strings(S);

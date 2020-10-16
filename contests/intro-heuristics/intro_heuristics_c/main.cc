@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Problem {
   int D;
@@ -66,7 +64,7 @@ class Solution {
   int sat_;
 };
 
-int main() {
+void Main() {
   Problem p;
   cin >> p.D;
   p.c.resize(26);

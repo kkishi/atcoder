@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 #include "segment_tree.h"
 
 using mint = ModInt<>;
-
-using namespace std;
 
 struct Robot {
   int X, D;
@@ -16,7 +14,7 @@ struct Robot {
 
 mint dp[200001];
 
-int main() {
+void Main() {
   ints(N);
 
   V<Robot> robot(N);

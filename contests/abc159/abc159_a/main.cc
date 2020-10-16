@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(N, M);
   wt(N * (N - 1) / 2 + M * (M - 1) / 2);
 }

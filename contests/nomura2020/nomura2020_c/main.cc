@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-ll solve() {
+int solve() {
   ints(N);
-  V<ll> A(N + 1);
+  V<int> A(N + 1);
   cin >> A;
 
   if (N == 0) return A[0] == 1 ? 1 : -1;
 
-  V<ll> maxi(100001);
+  V<int> maxi(100001);
   maxi[0] = 1;
   rep(i, N) {
     if (maxi[i] - A[i] < 0) return -1;
@@ -20,8 +18,8 @@ ll solve() {
 
   if (A[0] > 0 || maxi[N] < A[N]) return -1;
 
-  ll nodes = A[N];
-  ll ans = A[N];
+  int nodes = A[N];
+  int ans = A[N];
   rrep(i, N) {
     if (nodes / 2 + nodes % 2 + A[i] > maxi[i]) return -1;
     nodes = min(nodes + A[i], maxi[i]);
@@ -30,4 +28,4 @@ ll solve() {
   return ans;
 }
 
-int main() { wt(solve()); }
+void Main() { wt(solve()); }

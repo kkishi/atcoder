@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int s(int x) { return x * x; }
 int v(int x, int y, int z) {
   return s(x) + s(y) + s(z) + x * y + y * z + z * x;
 }
 
-int main() {
+void Main() {
   ints(n);
   for (int i = 1; i <= n; ++i) {
     int ans = 0;

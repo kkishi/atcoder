@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bignum.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   rd(bigint, a, b);
   wt(a == b ? "EQUAL" : a < b ? "LESS" : "GREATER");
 }

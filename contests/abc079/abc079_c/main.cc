@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(a);
   rep(s, 1 << 3) {
     int sum = a[0] - '0';
@@ -22,7 +20,7 @@ int main() {
         cout << a[i + 1];
       }
       cout << "=7" << endl;
-      return 0;
+      return;
     }
   }
 }

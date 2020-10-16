@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "factorize.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   map<int, int> fs;
   for (int i = 2; i <= n; ++i) {

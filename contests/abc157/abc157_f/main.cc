@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
 #include "geometry.h"
-#include "macros.h"
-
-using namespace std;
 
 using Vec = Vector<double>;
 using Circ = Circle<double>;
@@ -34,7 +32,7 @@ bool Ok(double t) {
   return false;
 }
 
-int main() {
+void Main() {
   cin >> N >> K;
   rep(i, N) cin >> p[i].x >> p[i].y >> c[i];
   cout << setprecision(20) << BinarySearch<double>(10000000, 0, Ok) << endl;

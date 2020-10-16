@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a, b);
   if (1 <= a && a <= 9 && 1 <= b && b <= 9) {
     wt(a * b);

@@ -1,14 +1,11 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "factorize.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  ll N;
-  cin >> N;
-  map<ll, int> m = Factorize(N);
+void Main() {
+  ints(N);
+  map<int, int> m = Factorize(N);
   int ans = 0;
   for (const auto p : m) {
     dbg(p.first, p.second);

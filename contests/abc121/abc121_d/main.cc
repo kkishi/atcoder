@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-ll y(ll x) {
+int y(int x) {
   switch (x % 4) {
     case 0:
       return x;
@@ -17,7 +15,7 @@ ll y(ll x) {
   }
 }
 
-int main() {
-  rd(ll, a, b);
+void Main() {
+  ints(a, b);
   wt(y(b) ^ y(a - 1));
 }

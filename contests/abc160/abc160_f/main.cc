@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 #include "rerooting.h"
 
 using mint = ModInt<>;
-
-using namespace std;
 
 struct DP {
   int size;
@@ -28,7 +26,7 @@ DP Calc(DP x) {
           mint::Fact(x.size + 1)};
 }
 
-int main() {
+void Main() {
   ints(N);
 
   vector<vector<int>> edges(N);

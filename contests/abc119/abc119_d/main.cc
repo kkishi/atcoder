@@ -1,21 +1,19 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, a, b, q);
-  vector<ll> s(a);
+void Main() {
+  ints(a, b, q);
+  vector<int> s(a);
   cin >> s;
-  set<ll> ss(all(s));
-  vector<ll> t(b);
+  set<int> ss(all(s));
+  vector<int> t(b);
   cin >> t;
-  set<ll> ts(all(t));
+  set<int> ts(all(t));
   while (q--) {
-    rd(ll, x);
-    auto lohi = [](const set<ll>& s, ll x) {
-      vector<ll> v;
+    ints(x);
+    auto lohi = [](const set<int>& s, int x) {
+      vector<int> v;
       auto it = s.lower_bound(x);
       if (it == s.end()) {
         --it;
@@ -27,18 +25,11 @@ int main() {
           v.push_back(*it);
         }
       }
-      /*
-      dbg(x);
-      for (ll sx : s) cerr << sx << " ";
-      cerr << endl;
-      for (ll sx : v) cerr << sx << " ";
-      cerr << endl;
-      */
       return v;
     };
-    ll ans = numeric_limits<ll>::max();
-    for (ll sx : lohi(ss, x)) {
-      for (ll tx : lohi(ts, x)) {
+    int ans = numeric_limits<int>::max();
+    for (int sx : lohi(ss, x)) {
+      for (int tx : lohi(ts, x)) {
         chmin(ans, abs(x - sx) + abs(sx - tx));
         chmin(ans, abs(x - tx) + abs(tx - sx));
       }

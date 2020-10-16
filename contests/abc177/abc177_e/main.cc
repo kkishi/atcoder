@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
@@ -30,13 +28,13 @@ int main() {
   }
   if (pc) {
     wt("pairwise coprime");
-    return 0;
+    return;
   }
   int sgcd = a[0];
   rep(i, 1, n) sgcd = gcd(sgcd, a[i]);
   if (sgcd == 1) {
     wt("setwise coprime");
-    return 0;
+    return;
   }
   wt("not coprime");
 }

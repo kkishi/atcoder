@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   for (;; ++n) {
     string s = to_string(n);
@@ -13,7 +11,7 @@ int main() {
       if (c != s[0]) ok = false;
     if (ok) {
       wt(n);
-      return 0;
+      return;
     }
   }
 }

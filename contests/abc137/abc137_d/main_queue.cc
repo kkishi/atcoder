@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   vector<pair<int, int>> job(n);
   rep(i, n) cin >> job[i].first >> job[i].second;

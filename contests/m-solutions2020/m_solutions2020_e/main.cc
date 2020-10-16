@@ -1,19 +1,17 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  vector<ll> x(n), y(n), p(n);
+void Main() {
+  ints(n);
+  vector<int> x(n), y(n), p(n);
   rep(i, n) cin >> x[i] >> y[i] >> p[i];
-  vector<ll> ans(n + 1, numeric_limits<ll>::max());
-  vector<ll> dist(n);
+  vector<int> ans(n + 1, numeric_limits<int>::max());
+  vector<int> dist(n);
   rep(i, n) dist[i] = min(abs(x[i]), abs(y[i]));
-  Fix([&](auto rec, int depth, int k, vector<ll> dist) {
+  Fix([&](auto rec, int depth, int k, vector<int> dist) {
     if (depth == n) {
-      ll S = 0;
+      int S = 0;
       rep(i, n) S += p[i] * dist[i];
       chmin(ans[k], S);
       return;
@@ -21,13 +19,13 @@ int main() {
     rec(depth + 1, k, dist);
     {
       // x
-      vector<ll> ndist = dist;
+      vector<int> ndist = dist;
       rep(i, n) chmin(ndist[i], abs(x[i] - x[depth]));
       rec(depth + 1, k + 1, ndist);
     }
     {
       // y
-      vector<ll> ndist = dist;
+      vector<int> ndist = dist;
       rep(i, n) chmin(ndist[i], abs(y[i] - y[depth]));
       rec(depth + 1, k + 1, ndist);
     }

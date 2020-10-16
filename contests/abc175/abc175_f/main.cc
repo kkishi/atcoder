@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n);
   V<string> s(n);
   V<int> c(n);
@@ -20,7 +17,7 @@ int main() {
     q.pop();
     if (cost != 0 && empty(h)) {
       wt(cost);
-      return 0;
+      return;
     }
     rep(i, n) {
       P t(h);

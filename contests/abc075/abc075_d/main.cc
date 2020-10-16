@@ -1,13 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "compress.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
-
+void Main() {
   ints(N, K);
   V<int> x(N), y(N);
   rep(i, N) cin >> x[i] >> y[i];

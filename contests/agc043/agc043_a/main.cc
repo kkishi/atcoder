@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 const int INF = 1000000;
 
-int main() {
+void Main() {
   int H, W;
   cin >> H >> W;
 

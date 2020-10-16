@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "fast_io.h"
-#include "macros.h"
-
-using namespace std;
 
 struct State {
   int city;
-  ll remaining;
-  ll refueling;
+  int remaining;
+  int refueling;
   bool operator<(const State& dp) const {
     if (refueling != dp.refueling) {
       return refueling < dp.refueling;
@@ -18,14 +16,14 @@ struct State {
   bool operator>(const State& dp) const { return dp < *this; }
 };
 
-ll dist[301][301];
+int dist[301][301];
 State seens[301][301];
 
-int main() {
-  rd(ll, n, m, l);
+void Main() {
+  ints(n, m, l);
 
   rep(i, m) {
-    rd(ll, a, b, c);
+    ints(a, b, c);
     if (c <= l) {
       dist[a][b] = dist[b][a] = c;
     }
@@ -49,7 +47,7 @@ int main() {
         State there = here;
         there.city = j + 1;
         if (here.city == there.city) continue;
-        ll d = dist[here.city][there.city];
+        int d = dist[here.city][there.city];
         if (d == 0) continue;
         there.remaining -= d;
         if (there.remaining < 0) {
@@ -63,9 +61,9 @@ int main() {
       }
     }
   }
-  rd(ll, q);
+  ints(q);
   rep(i, q) {
-    rd(ll, s, t);
+    ints(s, t);
     State& st = seens[s][t];
     if (st.city == 0) {
       wt(-1);

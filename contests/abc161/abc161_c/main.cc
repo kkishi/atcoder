@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+#include "atcoder.h"
 
-int main() {
-  long long N, K;
-  cin >> N >> K;
+void Main() {
+  ints(N, K);
   N %= K;
-  cout << min(abs(N - K), N) << endl;
+  wt(min(abs(N - K), N));
 }

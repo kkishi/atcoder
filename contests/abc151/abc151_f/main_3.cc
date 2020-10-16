@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 complex<double> c[50];
 
-int main() {
+void Main() {
   rd(int, n);
   rep(i, n) {
     double x, y;

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<V<V<int>>> f(n, V<V<int>>(5, V<int>(2)));
   cin >> f;

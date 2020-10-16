@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Edge {
   int node;
   int index;
 };
 
-int main() {
+void Main() {
   ints(n);
   VV<Edge> edges(n + 1);
   rep(i, n) {

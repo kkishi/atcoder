@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
+void Main() {
+  ints(n);
   if (!n) {
     wt(0);
-    return 0;
+    return;
   }
   string ans;
-  ll bit = 1;
+  int bit = 1;
   while (n) {
     if (abs(n) % 2 == 1) {
       n -= 1;

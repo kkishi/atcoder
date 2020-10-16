@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(k, x);
   int maxi = min(1000000, x + (k - 1));
   int mini = max(-1000000, x - (k - 1));

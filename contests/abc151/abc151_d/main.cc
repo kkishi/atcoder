@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "grid.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(H, W);
   vector<string> m(H);
   cin >> m;

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   rd(int, h, w);
   vector a(h, vector(w, 0));
   rep(i, h) rep(j, w) cin >> a[i][j];

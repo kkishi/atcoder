@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int Dfs(int l, int mult, int node, vector<tuple<int, int, int>>& v) {
   if (l == 1) {
@@ -18,7 +16,7 @@ int Dfs(int l, int mult, int node, vector<tuple<int, int, int>>& v) {
   return n;
 }
 
-int main() {
+void Main() {
   rd(int, l);
   vector<tuple<int, int, int>> v;
   int n = Dfs(l, 1, 0, v);

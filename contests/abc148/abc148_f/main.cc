@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int n, u, v;
 
-int main() {
+void Main() {
   cin >> n >> u >> v;
   vector<vector<int>> edges(n);
   rep(i, n - 1) {

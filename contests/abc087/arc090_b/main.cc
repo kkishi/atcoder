@@ -1,13 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "graph.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
-
+void Main() {
   ints(n, m);
   Graph<int> g(n);
   rep(i, m) {
@@ -32,7 +28,7 @@ int main() {
         if (seen[v] != inf) {
           if (seen[v] != w) {
             wt("No");
-            return false;
+            return;
           }
           continue;
         }

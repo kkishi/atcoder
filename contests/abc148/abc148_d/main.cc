@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int a[200000];
 
-int main() {
+void Main() {
   ints(n);
   rep(i, n) cin >> a[i];
   int last = 0;

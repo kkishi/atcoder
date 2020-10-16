@@ -1,13 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-#include "modint.h"
+#include "atcoder.h"
 
-using mint = ModInt<>;
-
-using namespace std;
-
-int main() {
+void Main() {
   int n, k;
   cin >> n >> k;
 

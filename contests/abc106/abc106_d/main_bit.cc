@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bit.h"
-#include "macros.h"
-
-using namespace std;
 
 using P = pair<int, int>;
 
@@ -11,7 +9,7 @@ struct Query {
   int i, l, r;
 };
 
-int main() {
+void Main() {
   ints(N, M, Q);
 
   V<P> trains;

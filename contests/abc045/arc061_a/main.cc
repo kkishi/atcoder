@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   strings(s);
   wt(Fix([&](auto dfs, int i, int sum) {
     if (i == sz(s)) return sum;

@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Construction {
-  ll s, t, x;
+  int s, t, x;
   bool operator<(const Construction& c) const { return s < c.s; }
 };
 
-int main() {
-  rd(ll, n, q);
+void Main() {
+  ints(n, q);
 
   vector<Construction> c(n);
   rep(i, n) {
@@ -20,17 +18,17 @@ int main() {
   }
   sort(all(c));
 
-  vector<pair<ll, int>> p(q);
+  vector<pair<int, int>> p(q);
   rep(i, q) {
     cin >> p[i].first;
     p[i].second = i;
   }
   sort(all(p));
 
-  multiset<ll> active;
-  low_priority_queue<pair<ll, ll>> que;
+  multiset<int> active;
+  low_priority_queue<pair<int, int>> que;
   auto cit = c.begin();
-  vector<ll> ans(q);
+  vector<int> ans(q);
 
   for (auto [d, index] : p) {
     while (cit != c.end() && cit->s <= d) {

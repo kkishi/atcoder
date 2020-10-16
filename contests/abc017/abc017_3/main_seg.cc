@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "dual_segment_tree.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
 
   DualSegmentTree<int> tree(m, [](int a, int b) { return a + b; });

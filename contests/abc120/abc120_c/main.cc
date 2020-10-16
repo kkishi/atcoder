@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   vector<int> v(2);
   rep(i, s.size())++ v[s[i] - '0'];

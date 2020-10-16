@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct State {
   int r, c;
   int cost;
 };
 
-int main() {
+void Main() {
   ints(h, w, k);
   ints(x1, y1, x2, y2);
   --x1, --y1, --x2, --y2;
@@ -17,7 +15,7 @@ int main() {
   cin >> grid;
 
   State init = {x1, y1, 0};
-  vector<vector<int>> seen(h, vector(w, -1));
+  vector<vector<int>> seen(h, vector(w, -1L));
   seen[x1][y1] = 0;
   queue<State> que;
   que.push(init);
@@ -28,7 +26,7 @@ int main() {
     que.pop();
     if (here.r == x2 && here.c == y2) {
       wt(here.cost);
-      return 0;
+      return;
     }
     int dr[] = {1, -1, 0, 0};
     int dc[] = {0, 0, 1, -1};

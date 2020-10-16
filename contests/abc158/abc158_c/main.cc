@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(A, B);
   int ans = -1;
   rep(i, 1500) if (i * 2 / 25 == A && i / 10 == B) {

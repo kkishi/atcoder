@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  V<ll> a(n);
+void Main() {
+  ints(n);
+  V<int> a(n);
   cin >> a;
-  ll c = 1000;
+  int c = 1000;
   rep(i, n - 1) {
     if (a[i + 1] > a[i]) {
-      ll d = c / a[i];
+      int d = c / a[i];
       c -= d * a[i];
       c += d * a[i + 1];
     }

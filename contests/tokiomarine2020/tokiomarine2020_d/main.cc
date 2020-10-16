@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 const int kMaxCache = 1 << 11;
 const int kMaxL = int(1e5);
@@ -12,7 +10,7 @@ int dp[kMaxCache][kMaxL + 1];
 
 int Parent(int node) { return (node - 1) / 2; }
 
-int main() {
+void Main() {
   ints(n);
   rep(i, n) cin >> V_[i] >> W[i];
 

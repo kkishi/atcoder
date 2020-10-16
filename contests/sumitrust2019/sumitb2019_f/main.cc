@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(t1, t2, a1, a2, b1, b2);
   if (a1 > b1) {
     swap(a1, b1);
@@ -16,18 +13,18 @@ int main() {
   // A1 < B1
   if (A2 < B2) {
     wt(0);
-    return 0;
+    return;
   }
   // A2 > B2
   int A = A1 + A2;
   int B = B1 + B2;
   if (A == B) {
     wt("infinity");
-    return 0;
+    return;
   }
   if (A < B) {
     wt(0);
-    return 0;
+    return;
   }
   int C = A - B;
   int D = (B1 - A1) / C * 2;

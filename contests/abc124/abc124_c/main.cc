@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int solve(const string& s, int c) {
   int ret = 0;
@@ -10,7 +8,7 @@ int solve(const string& s, int c) {
   return ret;
 }
 
-int main() {
+void Main() {
   strings(s);
   wt(min(solve(s, 0), solve(s, 1)));
 }

@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int dp[4000][3];
 
@@ -13,7 +11,7 @@ int rem(char a, char b) {
   rep(i, 3) if (s[i] != a && s[i] != b) return i;
 }
 
-int main() {
+void Main() {
   ints(N);
   strings(S);
 

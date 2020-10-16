@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   rd(int, n, k);
   vector<double> dp(max(k, n) + 1);
   for (int i = max(k, n); i >= 1; --i) {

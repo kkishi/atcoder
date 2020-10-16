@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "warshall_floyd.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(h, w);
   VV<int> c(10, V<int>(10));
   cin >> c;

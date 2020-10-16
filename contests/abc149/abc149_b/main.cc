@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, a, b, k);
-  ll c = min(a, k);
+void Main() {
+  ints(a, b, k);
+  int c = min(a, k);
   a -= c;
   k -= c;
   c = min(b, k);

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
 #define FOR(i, n) for (auto i : (n))
-
-using namespace std;
 
 template <class iter>
 string conv(iter begin, iter end) {
@@ -34,7 +32,7 @@ string simplify(const string& s) {
   return ret;
 }
 
-int main() {
+void Main() {
   int N;
   cin >> N;
   string S;

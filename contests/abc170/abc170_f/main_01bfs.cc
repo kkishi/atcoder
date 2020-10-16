@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Position {
   int r, c, dir;
@@ -18,7 +16,7 @@ struct State {
   Cost cost;
 };
 
-int main() {
+void Main() {
   ints(h, w, k);
   ints(x1, y1, x2, y2);
   --x1, --y1, --x2, --y2;
@@ -44,7 +42,7 @@ int main() {
     dbg(here.cost.strokes, here.cost.dist);
     if (here.position.r == x2 && here.position.c == y2) {
       wt(here.cost.strokes);
-      return 0;
+      return;
     }
     {
       int dr[] = {1, -1, 0, 0};

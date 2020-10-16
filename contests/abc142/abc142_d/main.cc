@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "factorize.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, a, b);
+void Main() {
+  ints(a, b);
   wt(Factorize(gcd(a, b)).size() + 1);
 }

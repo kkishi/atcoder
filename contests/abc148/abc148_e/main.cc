@@ -1,18 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "bignum.h"
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
+void Main() {
+  ints(n);
   if (n % 2) {
     wt(0);
   } else {
-    ll ans = 0;
-    ll fives = 1;
-    while (bigint(fives) * 5 <= n) {
+    int ans = 0;
+    int fives = 1;
+    while (__int128_t(fives) * 5 <= n) {
       fives *= 5;
       ans += n / fives / 2;
     }

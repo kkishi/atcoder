@@ -2,4 +2,5 @@
 
 #include "atcoder.h"
 
-void Main() {}
+void Main() {
+}

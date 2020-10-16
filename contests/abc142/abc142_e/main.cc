@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Key {
   int price;
@@ -11,7 +9,7 @@ struct Key {
 
 const int INF = 1 << 30;
 
-int main() {
+void Main() {
   ints(n, m);
   vector<Key> keys(m);
   rep(i, m) {

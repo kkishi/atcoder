@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   auto rec = Fix([](auto rec, int d, int n) -> pair<int, int> {
     if (n == 0) return {0, 0};
     if (n == 1) return {0, d};

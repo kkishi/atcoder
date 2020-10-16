@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  ll ans = 0;
-  ll l = 0;
-  ll x = 0;
+  int ans = 0;
+  int l = 0;
+  int x = 0;
   rep(r, n) {
     while (x & a[r]) {
       x ^= a[l];

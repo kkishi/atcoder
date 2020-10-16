@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 template <typename T>
 struct Vector {
@@ -64,7 +62,7 @@ std::ostream& operator<<(std::ostream& os, const Vector<T>& v) {
 
 using Vec = Vector<double>;
 
-int main() {
+void Main() {
   rd(int, n);
   vector<Vec> v(n);
   rep(i, n) cin >> v[i];

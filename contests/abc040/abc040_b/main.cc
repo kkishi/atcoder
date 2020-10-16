@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   int ans = numeric_limits<int>::max();
   for (int i = 1; i * i <= n; ++i) {

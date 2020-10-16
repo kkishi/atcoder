@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "disjointset.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, m);
-  vector<ll> a(m), b(m);
+void Main() {
+  ints(n, m);
+  vector<int> a(m), b(m);
   rep(i, m) cin >> a[i] >> b[i];
-  vector<ll> ans(m);
+  vector<int> ans(m);
   DisjointSet ds(n + 1);
-  ll sum = n * (n - 1) / 2;
+  int sum = n * (n - 1) / 2;
   rrep(i, m) {
     ans[i] = sum;
     if (!ds.Same(a[i], b[i])) {

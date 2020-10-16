@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int A[3][3];
 
@@ -14,7 +12,7 @@ bool bingo() {
   return false;
 }
 
-int main() {
+void Main() {
   rep(i, 3) rep(j, 3) cin >> A[i][j];
   int N;
   cin >> N;

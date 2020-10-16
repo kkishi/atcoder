@@ -1,19 +1,17 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "graph.h"
-#include "macros.h"
-
-using namespace std;
 
 struct Weight {
   int color, length;
 };
 
-int main() {
-  rd(int, n, q);
+void Main() {
+  ints(n, q);
   Graph<Weight> g(n);
   rep(i, n - 1) {
-    rd(int, a, b, c, d);
+    ints(a, b, c, d);
     --a, --b;
     g.AddEdge(a, b, {c, d});
     g.AddEdge(b, a, {c, d});

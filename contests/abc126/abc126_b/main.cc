@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 string str(int x) {
   string ret = "00";
@@ -11,7 +9,7 @@ string str(int x) {
   return ret;
 }
 
-int main() {
+void Main() {
   strings(s);
   bool yymm = false, mmyy = false;
   for (int year = 0; year <= 99; ++year) {

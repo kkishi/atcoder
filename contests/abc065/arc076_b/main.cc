@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "disjointset.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n);
   V<pair<int, int>> x(n), y(n);
   rep(i, n) {

@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool Less(const string& a, const string& b) {
   if (a.size() != b.size()) return a.size() < b.size();
   return a < b;
 }
 
-int main() {
+void Main() {
   const vector<int> cost = {-1, 2, 5, 5, 4, 5, 6, 3, 7, 6};
   ints(n, m);
 

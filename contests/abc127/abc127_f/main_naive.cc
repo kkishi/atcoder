@@ -1,24 +1,22 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(q);
-  vector<ll> as;
-  ll bs = 0;
+  vector<int> as;
+  int bs = 0;
   while (q--) {
     ints(t);
     if (t == 1) {
-      rd(ll, a, b);
+      ints(a, b);
       as.push_back(a);
       bs += b;
     } else {
       sort(all(as));
-      ll mid = as[(as.size() - 1) / 2];
-      ll sum = bs;
-      for (ll a : as) sum += abs(mid - a);
+      int mid = as[(as.size() - 1) / 2];
+      int sum = bs;
+      for (int a : as) sum += abs(mid - a);
       wt(mid, sum);
     }
   }

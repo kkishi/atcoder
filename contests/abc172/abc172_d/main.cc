@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  vector<ll> p(n + 1);
-  ll ans = 0;
-  for (ll i = 1; i <= n; ++i) {
-    for (ll j = i; j <= n; j += i) {
+void Main() {
+  ints(n);
+  vector<int> p(n + 1);
+  int ans = 0;
+  for (int i = 1; i <= n; ++i) {
+    for (int j = i; j <= n; j += i) {
       ++p[j];
     }
     ans += i * p[i];

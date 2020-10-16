@@ -1,23 +1,21 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, x, y, z, k);
-  vector<ll> a(x), b(y), c(z);
+void Main() {
+  ints(x, y, z, k);
+  vector<int> a(x), b(y), c(z);
   cin >> a >> b >> c;
   sort(all(a), greater());
   sort(all(b), greater());
   sort(all(c), greater());
-  set<tuple<ll, ll, ll>> seen;
-  priority_queue<pair<ll, tuple<ll, ll, ll>>> que;
-  auto push = [&](ll ai, ll bi, ll ci) {
+  set<tuple<int, int, int>> seen;
+  priority_queue<pair<int, tuple<int, int, int>>> que;
+  auto push = [&](int ai, int bi, int ci) {
     if (ai == a.size() || bi == b.size() || ci == c.size()) {
       return;
     }
-    tuple<ll, ll, ll> t = {ai, bi, ci};
+    tuple<int, int, int> t = {ai, bi, ci};
     if (!seen.insert(t).second) return;
     que.push({a[ai] + b[bi] + c[ci], t});
   };

@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
+int dp[1000001][2];
 
-ll dp[1000001][2];
-
-int main() {
+void Main() {
   string N;
   cin >> N;
 

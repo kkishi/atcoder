@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
@@ -18,7 +16,7 @@ int main() {
     int cnt = st.count(ai);
     if (cnt == 0) {
       wt(0);
-      return 0;
+      return;
     }
     ans *= cnt;
     st.erase(st.find(ai));

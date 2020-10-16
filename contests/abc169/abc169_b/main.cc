@@ -1,27 +1,25 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int N;
-ll A[100000];
-ll kMax = 1000000000000000000;
+int A[100000];
+int kMax = 1000000000000000000;
 
-int main() {
+void Main() {
   cin >> N;
   rep(i, N) {
     cin >> A[i];
     if (A[i] == 0) {
       cout << "0" << endl;
-      return 0;
+      return;
     }
   }
-  ll ans = 1;
+  int ans = 1;
   rep(i, N) {
     if (A[i] > kMax / ans) {
       cout << -1 << endl;
-      return 0;
+      return;
     }
     ans *= A[i];
   }

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a, b, c, d);
   int sign = a + b - (c + d);
   wt(sign > 0 ? "Left" : sign == 0 ? "Balanced" : "Right");

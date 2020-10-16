@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "disjointset.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   DisjointSet ds(n);
   rep(m) {

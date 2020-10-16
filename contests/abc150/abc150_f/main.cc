@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "rolling_hash_match.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   vector<bitset<30>> a(n), b(n);
   rep(i, n) {

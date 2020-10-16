@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(N);
-  VV<ll> dp(N.size() + 1, V<ll>(2));
+  VV<int> dp(N.size() + 1, V<int>(2));
 
   dp[0][0] = 0;
   dp[0][1] = 1;

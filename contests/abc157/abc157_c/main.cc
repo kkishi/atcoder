@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int N, M;
 int s[5], c[5];
@@ -17,7 +15,7 @@ bool ok(int i) {
   return true;
 }
 
-int main() {
+void Main() {
   cin >> N >> M;
   rep(i, M) cin >> s[i] >> c[i];
 

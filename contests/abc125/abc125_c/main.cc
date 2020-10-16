@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "segment_tree.h"
-
-using namespace std;
 
 int Gcd(int a, int b) {
   if (a == 0) return b;
@@ -12,7 +10,7 @@ int Gcd(int a, int b) {
   return gcd(a, b);
 }
 
-int main() {
+void Main() {
   int N;
   cin >> N;
   vector<int> A(N);

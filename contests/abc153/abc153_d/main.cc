@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-ll dfs(ll x) {
+int dfs(int x) {
   if (x == 1) {
     return 1;
   }
   return 1 + 2 * dfs(x / 2);
 }
 
-int main() {
-  rd(ll, H);
+void Main() {
+  ints(H);
   wt(dfs(H));
 }

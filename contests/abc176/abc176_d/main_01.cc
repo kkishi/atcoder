@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 template <typename T>
 bool between(const T& v, const T& lo, const T& hi) {
   return lo <= v && v <= hi;
 }
 
-int main() {
+void Main() {
   ints(h, w);
   ints(ch, cw);
   --ch, --cw;
@@ -29,7 +27,7 @@ int main() {
     auto [r, c] = que.front();
     que.pop_front();
     auto ok = [&](int r, int c) {
-      return between(r, 0, h - 1) && between(c, 0, w - 1) && s[r][c] == '.';
+      return between(r, 0L, h - 1) && between(c, 0L, w - 1) && s[r][c] == '.';
     };
     rep(i, 4) {
       int dr[] = {0, 1, 0, -1};

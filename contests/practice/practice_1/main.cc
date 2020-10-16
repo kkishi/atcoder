@@ -1,13 +1,9 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  int a, b, c;
-  cin >> a >> b >> c;
-  string s;
-  cin >> s;
+void Main() {
+  ints(a, b, c);
+  strings(s);
   cout << (a + b + c) << " " << s << endl;
 }

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(d, n);
   int cnt = 0;
   for (int i = 1;; ++i) {
@@ -17,7 +15,7 @@ int main() {
     if (cnt2 == d) ++cnt;
     if (cnt == n) {
       wt(i);
-      return 0;
+      return;
     }
   }
 }

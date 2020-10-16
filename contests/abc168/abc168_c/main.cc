@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 double sq(double x) { return x * x; }
 
-int main() {
+void Main() {
   rd(double, A, B, H, M);
 
   double pi = 3.141592653589793;

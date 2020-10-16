@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(A, B, C, d);
   int ans = 0;
   rep(a, A + 1) rep(b, B + 1) rep(c, C + 1) {

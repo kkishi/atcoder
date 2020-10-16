@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int N;
 int X[100];
@@ -12,7 +10,7 @@ int cost(int i, int x) {
   return a * a;
 }
 
-int main() {
+void Main() {
   cin >> N;
   rep(i, N) cin >> X[i];
 

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   rd(char, c);
   wt("aiueo"s.find(c) != string::npos ? "vowel" : "consonant");
 }

@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "geometry.h"
-#include "macros.h"
-
-using namespace std;
 
 using Vec = Vector<double>;
 
-int main() {
+void Main() {
   rd(int, n);
   vector<Vec> v(n);
   cin >> v;

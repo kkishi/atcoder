@@ -1,20 +1,18 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Camel {
-  ll k, x;
+  int k, x;
   bool operator<(const Camel& c) const { return x < c.x; }
 };
 
 void solve() {
   ints(n);
-  ll ans = 0;
+  int ans = 0;
   vector<Camel> lc, rc;
   rep(i, n) {
-    rd(ll, k, l, r);
+    ints(k, l, r);
     if (l >= r) {
       ans += r;
       lc.push_back({k, l - r});
@@ -53,7 +51,7 @@ void solve() {
   wt(ans);
 }
 
-int main() {
+void Main() {
   ints(t);
   while (t--) solve();
 }

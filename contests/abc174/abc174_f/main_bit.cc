@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bit.h"
-#include "macros.h"
-
-using namespace std;
 
 struct Q {
   int l, r, i, v;
 };
 
-int main() {
+void Main() {
   ints(n, q);
   V<int> c(n);
   cin >> c;

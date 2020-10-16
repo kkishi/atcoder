@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "segment_tree.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(H, W, m);
   VV<int> hw(H);
   V<int> hm(H), wm(W);

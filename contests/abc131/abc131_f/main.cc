@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "disjointset.h"
-#include "macros.h"
-
-using namespace std;
 
 struct Point {
   int x, y;
 };
 
-int main() {
+void Main() {
   ints(n);
   vector<Point> ps(n);
   rep(i, n) cin >> ps[i].x >> ps[i].y;
@@ -19,7 +17,7 @@ int main() {
     xs[p.y].insert(p.x);
   }
 
-  ll ans = 0;
+  int ans = 0;
   {
     DisjointSet dsx(kMax);
     for (const set<int>& s : xs)
@@ -34,7 +32,7 @@ int main() {
       roots.insert(root);
     }
     for (int r : roots) {
-      ans += ll(dsx.Size(r)) * ll(y_unique[r].size()) - y_count[r];
+      ans += int(dsx.Size(r)) * int(y_unique[r].size()) - y_count[r];
     }
   }
   wt(ans);

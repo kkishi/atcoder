@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 long long A[2 * 100000];
 long long dp[2 * 100000][3];
 
-int main() {
+void Main() {
   int N;
   cin >> N;
   rep(i, N) cin >> A[i];

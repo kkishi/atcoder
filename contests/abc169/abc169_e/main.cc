@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int A[200000];
 int B[200000];
 
-int main() {
-  rd(int, N);
+void Main() {
+  ints(N);
   rep(i, N) cin >> A[i] >> B[i];
   sort(A, A + N);
   sort(B, B + N);

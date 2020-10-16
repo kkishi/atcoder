@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   int ans = numeric_limits<int>::max();
   ints(l, r);
   rep(i, l, r) {
@@ -13,7 +10,7 @@ int main() {
       int k = i * j % 2019;
       if (k == 0) {
         wt(0);
-        return 0;
+        return;
       }
       chmin(ans, k);
     }

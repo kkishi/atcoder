@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, a, v, b, w, t);
+void Main() {
+  ints(a, v, b, w, t);
   if (w >= v) {
     wt("NO");
-    return 0;
+    return;
   }
   if (abs(a - b) <= t * abs(v - w)) {
     wt("YES");

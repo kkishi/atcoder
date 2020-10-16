@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "segment_tree.h"
-
-using namespace std;
 
 struct Q {
   int l, r, i, v;
 };
 
-int main() {
+void Main() {
   ints(n, q);
   V<int> c(n);
   cin >> c;

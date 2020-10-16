@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, k);
-  ll sum = 0;
-  ll x = 7;
+void Main() {
+  ints(k);
+  int sum = 0;
+  int x = 7;
   rep(i, k + 1) {
     sum = (sum + x) % k;
     if (sum == 0) {
       wt(i + 1);
-      return 0;
+      return;
     }
     x = x * 10 % k;
   }

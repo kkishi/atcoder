@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 using P = pair<int, int>;
 
-int main() {
+void Main() {
   ints(n, m);
   vector<P> v;
   rep(i, m) {

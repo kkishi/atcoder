@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+#include "atcoder.h"
 
-int main() {
-  double A, B, H, M;
-  cin >> A >> B >> H >> M;
+void Main() {
+  rd(double, A, B, H, M);
 
   double pi = acos(-1);
   double at = (H + M / 60) / 12 * 2 * pi;

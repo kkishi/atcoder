@@ -1,13 +1,10 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "dijkstra.h"
 #include "graph.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n);
   Graph<int> g(n + 1);
   rep(n - 1) {

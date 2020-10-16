@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bound_grid.h"
 #include "compress.h"
-#include "macros.h"
-
-using namespace std;
 
 const int kMax = 1000;
 int A[kMax];
@@ -31,7 +29,7 @@ void DrawLineY(Grid& g, int x, int y1, int y2) {
   rep(y, y1, y2) g.Boundary({x, y}, -1, 0).online = true;
 }
 
-int main() {
+void Main() {
   ints(N, M);
 
   rep(i, N) cin >> A[i] >> B[i] >> C[i];
@@ -86,8 +84,8 @@ int main() {
       }
       Coord there = {here.x + dx[i], here.y + dy[i]};
       if (!grid.InBounds(there)) {
-        cout << "INF" << endl;
-        return 0;
+        wt("INF");
+        return;
       }
       GridState& s = grid.StateOf(there);
       if (s.visited) {

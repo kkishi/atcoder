@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int dp_eq[101][5];
 int dp_lo[101][5];
 
-int main() {
-  rd(string, N);
+void Main() {
+  strings(N);
   ints(K);
   dp_eq[0][0] = 1;
   rep(i, N.size()) {

@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct S {
   int lowest, change;
   bool operator<(const S& s) const { return lowest > s.lowest; }
 };
 
-int main() {
+void Main() {
   ints(n);
   vector<string> s(n);
   cin >> s;
