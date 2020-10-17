@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#undef int
 #include "bignum.h"
 
 void Main() {
