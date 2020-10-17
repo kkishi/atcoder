@@ -5,19 +5,15 @@
 
 using mint = ModInt<>;
 
-// This solution is TLE.
 void Main() {
   ints(n, a, b, c);
-  vector memo(n + 1, vector(n + 1, optional<mint>()));
-  wt(Fix([&](auto rec, int na, int nb) -> mint {
-    optional<mint>& m = memo[na][nb];
-    if (!m) {
-      if (na == 0 || nb == 0) {
-        m = 0;
-      } else {
-        m = (100 + a * rec(na - 1, nb) + b * rec(na, nb - 1)) / (100 - c);
-      }
-    }
-    return *m;
-  })(n, n));
+  mint A = 0;
+  mint B = 0;
+  mint pa = a / mint(a + b);
+  mint pb = b / mint(a + b);
+  rep(i, n) {
+    A += pa.Pow(n) * pb.Pow(i) * mint::Comb(n - 1 + i, i) * (n + i);
+    B += pb.Pow(n) * pa.Pow(i) * mint::Comb(n - 1 + i, i) * (n + i);
+  }
+  wt((A + B) * 100 / mint(100 - c));
 }

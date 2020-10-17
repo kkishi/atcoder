@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "fast_io.h"
 #include "graph.h"
 #include "strongly_connected_component.h"
 

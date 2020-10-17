@@ -24,6 +24,7 @@ void solve() {
   auto calc = [&ans](const vector<Camel>& cs) {
     multiset<Camel> m;
     for (const auto& c : cs) {
+      if (c.k == 0) continue;
       if (m.size() == c.k) {
         auto it = m.begin();
         if (it->x >= c.x) {

@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "fast_io.h"
 
 struct State {
   int city;

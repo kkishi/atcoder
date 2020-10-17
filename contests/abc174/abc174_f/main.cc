@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "fast_io.h"
 #include "mo.h"
 
 struct DS {

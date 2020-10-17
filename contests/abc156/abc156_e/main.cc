@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "modint.h"
+
+using mint = ModInt<>;
 
 void Main() {
   int n, k;
