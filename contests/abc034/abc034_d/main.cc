@@ -7,7 +7,6 @@ void Main() {
   ints(n, k);
   V<int> w(n), p(n);
   rep(i, n) cin >> w[i] >> p[i];
-  cout << fixed << setprecision(20);
   wt(BinarySearch<double>(0, 100, [&](double x) {
     V<double> v;
     rep(i, n) v.push_back(w[i] * (p[i] - x));

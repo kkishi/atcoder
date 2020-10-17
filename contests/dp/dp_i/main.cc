@@ -16,6 +16,5 @@ void Main() {
   }
   double ans = 0;
   rep(i, n / 2 + 1) ans += dp[n][n - i];
-  cout << fixed << setprecision(20);
   wt(ans);
 }

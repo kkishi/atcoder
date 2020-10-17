@@ -35,5 +35,5 @@ bool Ok(double t) {
 void Main() {
   cin >> N >> K;
   rep(i, N) cin >> p[i].x >> p[i].y >> c[i];
-  cout << setprecision(20) << BinarySearch<double>(10000000, 0, Ok) << endl;
+  wt(BinarySearch<double>(10000000, 0, Ok));
 }

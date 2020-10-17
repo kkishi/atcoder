@@ -15,6 +15,5 @@ void Main() {
     sum += exp(i);
     chmax(ans, sum);
   }
-  cout << setprecision(20);
   wt(ans);
 }

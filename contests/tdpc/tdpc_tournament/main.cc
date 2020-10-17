@@ -6,12 +6,11 @@ void Main() {
   ints(k);
   int n = 1 << k;
 
-  vector<double> ratings(n);
+  V<double> ratings(n);
   cin >> ratings;
 
   map<pair<int, int>, double> memo;
 
-  cout << fixed << setprecision(9);
   rep(i, n) wt(Fix([&](auto prob, int index, int wins) -> double {
     pair<int, int> key = {index, wins};
     double& m = memo[key];

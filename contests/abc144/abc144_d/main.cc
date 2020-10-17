@@ -5,7 +5,6 @@
 void Main() {
   const double pi = acos(-1);
   rd(double, a, b, x);
-  cout << setprecision(20);
   double half = a * a * b / 2;
   if (x < half) {
     double y = x / (a * b / 2);

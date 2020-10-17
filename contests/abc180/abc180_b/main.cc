@@ -16,7 +16,6 @@ void Main() {
     chmax(c, ax);
   }
   wt(m);
-  cout << fixed << setprecision(20);
   wt(sqrt(u));
   wt(c);
 }

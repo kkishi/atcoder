@@ -3,7 +3,7 @@
 #include "atcoder.h"
 
 void Main() {
-  rd(int, n, k);
+  ints(n, k);
   vector<double> dp(max(k, n) + 1);
   for (int i = max(k, n); i >= 1; --i) {
     if (i >= k) {
@@ -17,6 +17,5 @@ void Main() {
   for (int i = 1; i <= n; ++i) {
     p += dp[i] / n;
   }
-  cout << setprecision(20);
   wt(p);
 }

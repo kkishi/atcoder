@@ -33,6 +33,5 @@ void Main() {
       chmax(maxi, diff);
     }
   }
-  cout << setprecision(10) << fixed;
   wt(e[0] - maxi);
 }

@@ -9,7 +9,6 @@ void Main() {
   V<int> cnt(4);
   rep(i, n)++ cnt[a[i]];
   vector dp(n + 1, vector(n + 1, vector(n + 1, optional<double>())));
-  cout << fixed << setprecision(20);
   wt(Fix([&](auto rec, int i, int j, int k) -> double {
     auto& d = dp[i][j][k];
     if (!d) {

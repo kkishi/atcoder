@@ -12,5 +12,5 @@ void Main() {
   double bt = (M / 60) * 2 * pi;
   double bx = cos(bt) * B;
   double by = sin(bt) * B;
-  cout << setprecision(20) << hypot(ax - bx, ay - by) << endl;
+  wt(hypot(ax - bx, ay - by));
 }

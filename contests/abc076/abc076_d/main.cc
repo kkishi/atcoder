@@ -23,22 +23,17 @@ void Main() {
   V<int> maxi(T + 1, numeric_limits<int>::max());
   rep(i, n) {
     rep(j, st[i], st[i + 1] + 1) chmin(maxi[j], v[i]);
-    for (int t = st[i]; t >= 0; --t) {
-      chmin(maxi[t], v[i] + (st[i] - t));
-    }
+    rrep(t, st[i] + 1) chmin(maxi[t], v[i] + (st[i] - t));
   }
-  rep(i, T + 1) { dbg(i * 0.5, maxi[i] * 0.5); }
   double ans = 0;
   {
     int v = 0;
-    rep(i, T + 1) {
+    rep(i, T) {
       assert(v <= maxi[i]);
       int nv = min(v + 1, maxi[i + 1]);
       ans += (nv + v) / 2.0;
       v = nv;
-      dbg(i / 2.0, v / 2.0, ans / 4.0);
     }
   }
-  cout << fixed << setprecision(15);
   wt(ans / 4);
 }

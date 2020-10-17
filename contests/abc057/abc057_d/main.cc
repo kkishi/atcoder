@@ -10,7 +10,6 @@ void Main() {
   sort(all(v), greater());
   int sum = accumulate(v.begin(), v.begin() + a, 0LL);
 
-  cout << fixed << setprecision(20);
   wt(sum / double(a));
 
   map<int, int> cnt;
