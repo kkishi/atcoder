@@ -1,55 +1,54 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "segment_tree.h"
-
-map<pair<int, int>, int> cache;
-
-int Aggregate(const vector<int>& p, const SegmentTree<int>& tree, int begin,
-              int end) {
-  if (end == begin) return 0;
-  if (end - begin == 1) return p[begin];
-  if (end - begin == 2) return max(p[begin], p[begin + 1]);
-  pair<int, int> k = {begin, end};
-  int& v = cache[k];
-  if (v == 0) {
-    v = tree.Aggregate(begin, end);
-    dbg("not cached");
-  } else {
-    dbg("cached");
-  }
-  return v;
-}
-
-int rec(int begin, int end, int maximum, const vector<int>& p,
-        const SegmentTree<int>& tree, map<int, int>& index) {
-  if (end - begin < 2) return 0;
-  if (maximum == 0) maximum = Aggregate(p, tree, begin, end);
-  int maximum_i = index[maximum];
-  int second_maximum = max(Aggregate(p, tree, begin, maximum_i),
-                           Aggregate(p, tree, maximum_i + 1, end));
-  int second_maximum_i = index[second_maximum];
-  int left = min(maximum_i, second_maximum_i);
-  int right = max(maximum_i, second_maximum_i);
-  dbg(begin, end, maximum, second_maximum);
-  dbg(begin, end, left, right);
-  return (left - begin + 1) * (end - right) * second_maximum +
-         rec(begin, right, (left == maximum_i ? maximum : second_maximum), p,
-             tree, index) +
-         rec(left + 1, end, (right == maximum_i ? maximum : second_maximum), p,
-             tree, index) -
-         rec(left + 1, right, 0, p, tree, index);
-}
 
 void Main() {
   ints(n);
-  SegmentTree<int> tree(n, [](int a, int b) { return max(a, b); });
-  map<int, int> index;
-  vector<int> p(n);
-  rep(i, n) {
-    cin >> p[i];
-    tree.Set(i, p[i]);
-    index[p[i]] = i;
+  V<int> p(n);
+  cin >> p;
+  int ans = 0;
+  rep(2) {
+    V<int> l(n);
+    {
+      stack<pair<int, int>> s;
+      s.push({numeric_limits<int>::max(), -1});
+      rep(i, n) {
+        while (s.top().first < p[i]) {
+          s.pop();
+        }
+        l[i] = i - s.top().second;
+        s.push({p[i], i});
+      }
+    }
+    VV<int> rr(n);
+    {
+      stack<pair<int, int>> s;
+      s.push({numeric_limits<int>::max(), n});
+      rrep(i, n) {
+        while (s.top().first < p[i]) {
+          s.pop();
+        }
+        if (int j = s.top().second; j != n) {
+          rr[j].push_back(i);
+        }
+        s.push({p[i], i});
+      }
+    }
+    V<int> r(n);
+    {
+      set<pair<int, int>> s;
+      s.insert({numeric_limits<int>::max(), n});
+      rrep(i, n) {
+        for (int j : rr[i]) {
+          auto it = s.lower_bound({p[j], 0});
+          r[j] = it->second - i;
+        }
+        while (s.begin()->first < p[i]) s.erase(s.begin());
+        s.insert({p[i], i});
+      }
+    }
+    rep(i, n) ans += p[i] * l[i] * r[i];
+    reverse(all(p));
   }
-  wt(rec(0, n, n, p, tree, index));
+  wt(ans);
 }
