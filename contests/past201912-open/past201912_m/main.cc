@@ -9,7 +9,6 @@ void Main() {
   rep(i, n) cin >> a[i] >> b[i];
   V<int> c(m), d(m);
   rep(i, m) cin >> c[i] >> d[i];
-  cout << fixed << setprecision(20);
   wt(BinarySearch<double>(0, 1e20, [&](double x) {
     V<double> v;
     rep(i, n) v.push_back(b[i] - a[i] * x);
