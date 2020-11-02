@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   VV<int> a(n, V<int>(n - 1));
   cin >> a;
@@ -28,7 +26,7 @@ int main() {
     V<pair<int, int>> v(all(s2));
     if (v.empty()) {
       wt(-1);
-      return 0;
+      return;
     }
     for (const auto p : v) {
       advance(p.first);

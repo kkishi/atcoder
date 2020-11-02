@@ -1,20 +1,17 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(int, n);
+void Main() {
+  ints(n);
   double ans = 0;
-  rep(i, n) {
+  rep(n) {
     rd(double, x);
-    rd(string, u);
+    strings(u);
     if (u == "BTC") {
       x *= 380000;
     }
     ans += x;
   }
-  cout << setprecision(20);
   wt(ans);
 }

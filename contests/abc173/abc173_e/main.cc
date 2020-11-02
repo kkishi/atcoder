@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  vector<ll> p;
-  vector<ll> z;
-  vector<ll> m;
+void Main() {
+  ints(n, k);
+  V<int> p, z, m;
   rep(i, n) {
-    rd(ll, a);
+    ints(a);
     if (a == 0) {
       z.push_back(0);
     } else if (a > 0) {
@@ -50,8 +46,8 @@ int main() {
       wt(0);
     } else {
       mint ans = 1;
-      ll pi = 0;
-      ll mi = 0;
+      int pi = 0;
+      int mi = 0;
       sort(all(p), greater());
       sort(all(m), greater());
       while (pi + mi < k) {
@@ -60,7 +56,7 @@ int main() {
           assert(pi < p.size());
           ans *= p[pi];
           wt(ans);
-          return 0;
+          return;
         }
         if (pi + 1 >= p.size()) {
           assert(mi + 1 < m.size());
@@ -71,8 +67,8 @@ int main() {
           ans *= p[pi] * p[pi + 1];
           pi += 2;
         } else {
-          ll px = p[pi] * p[pi + 1];
-          ll mx = m[mi] * m[mi + 1];
+          int px = p[pi] * p[pi + 1];
+          int mx = m[mi] * m[mi + 1];
           if (px > mx) {  // ?
             ans *= p[pi] * p[pi + 1];
             pi += 2;

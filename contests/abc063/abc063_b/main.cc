@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   set<char> ss(all(s));
   wt(sz(s) == sz(ss) ? "yes" : "no");

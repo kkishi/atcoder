@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> s(n);
   cin >> s;
@@ -15,7 +13,7 @@ int main() {
   }
   rrep(i, 10001) if (i % 10 != 0 && dp[i]) {
     wt(i);
-    return 0;
+    return;
   }
   wt(0);
 }

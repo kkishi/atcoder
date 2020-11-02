@@ -1,22 +1,20 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Pair {
-  ll l, r;
-  ll Min() const { return min(l, r); }
+  int l, r;
+  int Min() const { return min(l, r); }
   bool operator<(const Pair& p) const { return Min() < p.Min(); }
 };
 
-int main() {
-  rd(ll, n);
-  vector<ll> a(n);
+void Main() {
+  ints(n);
+  vector<int> a(n);
   cin >> a;
   sort(all(a), greater());
 
-  ll ans = a[0];
+  int ans = a[0];
   priority_queue<Pair> que;
   que.push({a[0], a[1]});
   que.push({a[1], a[0]});

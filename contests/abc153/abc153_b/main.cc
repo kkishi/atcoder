@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, H, N);
-  V<ll> A(N);
+void Main() {
+  ints(H, N);
+  V<int> A(N);
   cin >> A;
   wt(accumulate(all(A), 0) >= H);
 }

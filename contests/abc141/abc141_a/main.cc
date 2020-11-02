@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   vector<string> v = {"Sunny", "Cloudy", "Rainy"};
   rep(i, v.size()) if (v[i] == s) {

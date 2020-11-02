@@ -1,15 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n, s);
   if (n == s) {
     wt(n + 1);
-    return 0;
+    return;
   }
   int b = 2;
   for (; b * b <= n; ++b) {
@@ -21,7 +18,7 @@ int main() {
     }
     if (f == s) {
       wt(b);
-      return 0;
+      return;
     }
   }
   while (b <= n) {
@@ -31,7 +28,7 @@ int main() {
     int base = c + d % c;
     if (base <= s && s <= c + d && (s - base) % c == 0) {
       wt(b + e - (s - base) / c);
-      return 0;
+      return;
     }
     b += e + 1;
   }

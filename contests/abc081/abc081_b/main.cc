@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
@@ -13,7 +11,7 @@ int main() {
     rep(i, n) {
       if (a[i] % 2 == 1) {
         wt(ans);
-        return 0;
+        return;
       }
       a[i] /= 2;
     }

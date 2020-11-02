@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "rolling_hash.h"
-
-using namespace std;
 
 using rhash = RollingHash<>;
 
-int main() {
+void Main() {
   ints(n);
 
   V<string> s(n);
@@ -17,7 +15,7 @@ int main() {
   }
   sort(all(s), [](auto &a, auto &b) { return a.size() > b.size(); });
 
-  ll ans = 0;
+  int ans = 0;
   unordered_map<rhash, array<int, 26>> m;
   for (auto &si : s) {
     vector<bitset<26>> cum(si.size() + 1);

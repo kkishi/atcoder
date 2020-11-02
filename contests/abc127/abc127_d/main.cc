@@ -1,25 +1,23 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, m);
-  map<ll, ll> as;
+void Main() {
+  ints(n, m);
+  map<int, int> as;
   rep(i, n) {
-    rd(ll, a);
+    ints(a);
     ++as[a];
   }
   rep(i, m) {
-    rd(ll, b, c);
-    ll changed = 0;
+    ints(b, c);
+    int changed = 0;
     while (changed < n && b > 0) {
       auto [k, v] = *as.begin();
       if (k >= c) {
         break;
       }
-      ll change = min(b, v);
+      int change = min(b, v);
       if (change == v) {
         as.erase(as.begin());
       } else {
@@ -30,7 +28,7 @@ int main() {
     }
     as[c] += changed;
   }
-  ll ans = 0;
+  int ans = 0;
   for (auto [k, v] : as) ans += k * v;
   wt(ans);
 }

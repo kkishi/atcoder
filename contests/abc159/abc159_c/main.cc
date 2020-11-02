@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   rd(double, L);
   double l = L / 3;
-  cout << setprecision(20);
   wt(l * l * l);
 }

@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, k);
-  vector<ll> x(n);
+  vector<int> x(n);
   cin >> x;
-  ll ans = numeric_limits<ll>::max();
+  int ans = numeric_limits<int>::max();
   rep(i, k - 1, n) {
-    ll l = x[i - (k - 1)], h = x[i];
+    int l = x[i - (k - 1)], h = x[i];
     chmin(ans, h - l + min(abs(h), abs(l)));
   }
   wt(ans);

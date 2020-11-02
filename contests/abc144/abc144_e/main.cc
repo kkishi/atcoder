@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  vector<ll> a(n), f(n);
+void Main() {
+  ints(n, k);
+  vector<int> a(n), f(n);
   cin >> a >> f;
   sort(all(a));
-  sort(all(f), greater<ll>());
-  auto check = [&](ll x) {
-    ll training = 0;
+  sort(all(f), greater());
+  auto check = [&](int x) {
+    int training = 0;
     rep(i, n) {
       if (a[i] * f[i] > x) {
         training += a[i] - x / f[i];
@@ -20,7 +18,7 @@ int main() {
     }
     return training > k;
   };
-  ll x = BinarySearch<ll>(0, 1e12L + 1, check);
+  int x = BinarySearch<int>(0, 1e12L + 1, check);
   if (!check(x)) {
     wt(x);
   } else {

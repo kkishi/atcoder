@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "factorize.h"
-#include "macros.h"
 
-using namespace std;
+void Main() {
+  ints(n, d);
 
-int main() {
-  rd(ll, n, d);
-
-  map<ll, int> fs = Factorize(d);
+  map<int, int> fs = Factorize(d);
   for (auto [k, _] : fs) {
     if (!set{2, 3, 5}.count(k)) {
       wt(0);
-      return 0;
+      return;
     }
   }
 

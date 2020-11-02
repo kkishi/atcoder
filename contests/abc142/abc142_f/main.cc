@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "graph.h"
-#include "macros.h"
 #include "strongly_connected_component.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   Graph<int> graph(n);
   rep(i, m) {
@@ -65,7 +63,7 @@ int main() {
     } while (u != next.begin()->first);
     wt(v.size());
     for (int u : v) wt(u + 1);
-    return 0;
+    return;
   }
   wt(-1);
 }

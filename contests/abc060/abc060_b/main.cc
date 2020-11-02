@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a, b, c);
   bool ok = false;
   rep(i, 1, 100) if (a * i % b == c) ok = true;

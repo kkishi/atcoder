@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   while (s.size() >= 2 && s.substr(0, 2) == "hi") s = s.substr(2);
   wt(s.empty());

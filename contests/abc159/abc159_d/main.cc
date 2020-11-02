@@ -1,26 +1,24 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int A[2 * 100000];
 
-ll choose2(ll n) { return n * (n - 1) / 2; }
+int choose2(int n) { return n * (n - 1) / 2; }
 
-int main() {
+void Main() {
   ints(N);
   map<int, int> m;
   rep(i, N) {
     cin >> A[i];
     m[A[i]]++;
   }
-  ll total = 0;
+  int total = 0;
   for (const auto it : m) {
     total += choose2(it.second);
   }
   rep(i, N) {
-    ll n = m[A[i]];
+    int n = m[A[i]];
     wt(total - choose2(n) + choose2(n - 1));
   }
 }

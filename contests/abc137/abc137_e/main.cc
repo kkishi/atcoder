@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "bellman_ford.h"
 #include "graph.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, m, p);
+void Main() {
+  ints(n, m, p);
 
   V<int> a(m), b(m), c(m);
-  Graph<ll> bg(n);
+  Graph<int> bg(n);
   rep(i, m) {
     cin >> a[i] >> b[i] >> c[i];
     --a[i], --b[i];
@@ -19,7 +17,7 @@ int main() {
 
   auto [bgd, _] = BellmanFord(bg, n - 1);
 
-  Graph<ll> g(n);
+  Graph<int> g(n);
   rep(i, m) if (bgd[a[i]] == 0) g.AddEdge(a[i], b[i], p - c[i]);
 
   if (auto [d, ok] = BellmanFord(g, 0); ok) {

@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(l);
   vector<mint> dp_eq(l.size() + 1), dp_lo(l.size() + 1);
   dp_eq[0] = 1;

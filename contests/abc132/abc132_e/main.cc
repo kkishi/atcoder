@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   vector<vector<int>> g(n + 1);
   rep(i, m) {
@@ -21,7 +19,7 @@ int main() {
     que.pop();
     if (node == t && step == 0) {
       wt(dist);
-      return 0;
+      return;
     }
     for (int child : g[node]) {
       int nstep = step + 1;

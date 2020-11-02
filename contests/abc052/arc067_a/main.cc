@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "factorize.h"
-#include "macros.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   map<int, int> fs;
   rep(i, 2, n + 1) for (auto [k, v] : Factorize(i)) fs[k] += v;

@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  vector<pair<ll, ll>> ai(n);
+void Main() {
+  ints(n);
+  vector<pair<int, int>> ai(n);
   rep(i, n) {
     cin >> ai[i].first;
     ai[i].second = i;
   }
   sort(all(ai), greater());
-  VV<ll> dp(n + 1, V<ll>(n + 1));
+  VV<int> dp(n + 1, V<int>(n + 1));
   rep(i, n) rep(j, i + 1) {
     auto [a, index] = ai[i];
     chmax(dp[i + 1][j + 1], dp[i][j] + a * abs(index - j));

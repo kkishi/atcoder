@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(x, a, b);
   wt((abs(x - a) < abs(x - b)) ? 'A' : 'B');
 }

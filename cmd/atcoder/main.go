@@ -69,7 +69,7 @@ func test(dir string) error {
 	} else {
 		timeLimit = "3"
 	}
-	return runCommand(dir, "oj", "t", "-t", timeLimit, "--mle", "1024")
+	return runCommand(dir, "oj", "t", "-t", timeLimit, "--mle", "1024", "-e", "0.000000001")
 }
 
 func submit(dir, base string) error {

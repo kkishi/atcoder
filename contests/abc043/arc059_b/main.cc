@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   rep(i, 26) {
     rep(j, 2, 4) {
@@ -15,7 +13,7 @@ int main() {
         }
         if (x > j / 2) {
           wt(k + 1, k + j);
-          return 0;
+          return;
         }
       }
     }

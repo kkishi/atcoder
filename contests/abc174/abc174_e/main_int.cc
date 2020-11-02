@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  V<ll> a(n);
+void Main() {
+  ints(n, k);
+  V<int> a(n);
   cin >> a;
-  wt(BinarySearch<ll>(*max_element(all(a)), 0, [&](ll mid) {
-    ll cuts = 0;
+  wt(BinarySearch<int>(*max_element(all(a)), 0, [&](int mid) {
+    int cuts = 0;
     rep(i, n) cuts += (a[i] - 1) / mid;
     return cuts <= k;
   }));

@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   if (n == 1) {
     wt("Hello World");
-    return 0;
+    return;
   }
   ints(a, b);
   wt(a + b);

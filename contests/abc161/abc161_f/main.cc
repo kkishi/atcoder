@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "factorize.h"
-#include "macros.h"
 
-using namespace std;
-
-bool OK(ll N, ll K) {
+bool OK(int N, int K) {
   while (N != 1) {
     if (N % K == 0) {
       N /= K;
@@ -19,9 +17,9 @@ bool OK(ll N, ll K) {
   return true;
 }
 
-using iter = map<ll, int>::const_iterator;
+using iter = map<int, int>::const_iterator;
 
-void dfs(set<ll>& s, ll K, iter it, iter end) {
+void dfs(set<int>& s, int K, iter it, iter end) {
   if (it == end) {
     if (K > 1) {
       s.insert(K);
@@ -37,19 +35,19 @@ void dfs(set<ll>& s, ll K, iter it, iter end) {
   }
 }
 
-int main() {
-  rd(ll, N);
+void Main() {
+  ints(N);
 
-  map<ll, int> f1 = Factorize(N - 1);
-  set<ll> s1;
+  map<int, int> f1 = Factorize(N - 1);
+  set<int> s1;
   dfs(s1, 1, all(f1));
 
-  map<ll, int> f2 = Factorize(N);
-  set<ll> s2;
+  map<int, int> f2 = Factorize(N);
+  set<int> s2;
   dfs(s2, 1, all(f2));
 
-  ll ans = s1.size();
-  for (ll x : s2) {
+  int ans = s1.size();
+  for (int x : s2) {
     if (OK(N, x)) {
       ++ans;
     }

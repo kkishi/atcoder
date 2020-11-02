@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a, b);
   wt((a % 3 == 0 || b % 3 == 0 || (a + b) % 3 == 0) ? "Possible"
                                                     : "Impossible");

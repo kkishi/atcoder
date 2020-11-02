@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   strings(s);
   rep(i, 2) rep(j, 2) {
@@ -14,7 +12,7 @@ int main() {
         (ans[1] ^ (s[0] == 'x') ^ ans[0]) == ans[n - 1]) {
       rep(k, n) cout << "SW"[ans[k]];
       cout << endl;
-      return 0;
+      return;
     }
   }
   wt(-1);

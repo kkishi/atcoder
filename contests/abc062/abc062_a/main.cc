@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int g(int x) {
   switch (x) {
@@ -17,7 +15,7 @@ int g(int x) {
   return 0;
 }
 
-int main() {
+void Main() {
   ints(x, y);
   wt(g(x) == g(y));
 }

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   int v[5];
   rep(i, 5) cin >> v[i];
   wt(15 - accumulate(v, v + 5, 0));

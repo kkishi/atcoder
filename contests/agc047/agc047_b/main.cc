@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
 #include "bit.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
 
   V<string> s(n);
@@ -20,7 +18,7 @@ int main() {
   rep(i, n) len[i] = {s[i].size(), i};
   sort(all(len), greater());
 
-  ll ans = 0;
+  int ans = 0;
   for (char alpha = 'a'; alpha <= 'z'; ++alpha) {
     auto lit = len.begin();
     set<int> avail_set;

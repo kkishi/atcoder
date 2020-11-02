@@ -1,18 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  ll ans = 0;
+void Main() {
+  ints(n);
+  int ans = 0;
   rrep(i, n) ans += (i + 1) * (n - i);
   rep(i, n - 1) {
-    rd(ll, u, v);
+    ints(u, v);
     if (u > v) swap(u, v);
-    ll x = u * (n - (v - 1));
-    ans -= x;
+    ans -= u * (n - (v - 1));
   }
   wt(ans);
 }

@@ -1,31 +1,29 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  vector<ll> a(n);
+void Main() {
+  ints(n, k);
+  vector<int> a(n);
   cin >> a;
-  map<ll, ll> seen;
-  queue<ll> que;
-  auto add = [&](ll x) {
+  map<int, int> seen;
+  queue<int> que;
+  auto add = [&](int x) {
     seen[x]++;
     que.push(x);
     if (que.size() == k) {
-      ll y = que.front();
+      int y = que.front();
       dbg(x, y);
       que.pop();
       seen[y]--;
     }
   };
   add(0);
-  ll sum = 0;
-  ll ans = 0;
+  int sum = 0;
+  int ans = 0;
   rep(i, n) {
     sum += a[i];
-    ll adj = (sum - (i + 1)) % k;
+    int adj = (sum - (i + 1)) % k;
     ans += seen[adj];
     add(adj);
   }

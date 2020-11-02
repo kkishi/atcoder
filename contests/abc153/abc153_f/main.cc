@@ -1,28 +1,26 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "dual_segment_tree.h"
-#include "macros.h"
-
-using namespace std;
 
 struct Monster {
-  ll X, H;
+  int X, H;
   bool operator<(const Monster& m) const { return X < m.X; }
 };
 
 Monster monster[200000];
 
-ll Add(ll a, ll b) { return a + b; }
+int Add(int a, int b) { return a + b; }
 
-int main() {
-  rd(ll, N, D, A);
+void Main() {
+  ints(N, D, A);
   rep(i, N) cin >> monster[i].X >> monster[i].H;
   sort(monster, monster + N);
 
-  DualSegmentTree<ll> tree(N, Add);
+  DualSegmentTree<int> tree(N, Add);
   rep(i, N) tree.Update(i, i + 1, monster[i].H);
 
-  ll ans = 0;
+  int ans = 0;
   int mi = 0;
   while (mi < N) {
     int h = tree.Get(mi);
@@ -32,7 +30,7 @@ int main() {
     }
     Monster max_m = {monster[mi].X + D * 2, 0};
     int ub = upper_bound(monster, monster + N, max_m) - monster;
-    ll cnt = (h + A - 1) / A;
+    int cnt = (h + A - 1) / A;
     tree.Update(mi, ub, -cnt * A);
     ans += cnt;
   }

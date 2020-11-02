@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
-  vector<ll> a(n);
+  vector<int> a(n);
   cin >> a;
-  ll x0 = 0;
+  int x0 = 0;
   rep(i, n) x0 += a[i] * ((i & 1) ? -1 : 1);
   x0 /= 2;
   cout << x0 * 2;

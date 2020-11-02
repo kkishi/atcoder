@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, k);
   V<bool> d(10);
   rep(k) {
@@ -20,7 +18,7 @@ int main() {
           return true;
         }(i)) {
       wt(i);
-      return 0;
+      return;
     }
   }
 }

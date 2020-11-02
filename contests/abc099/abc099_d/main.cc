@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(N, C);
   vector D(C, vector(C, 0));
   rep(i, C) rep(j, C) cin >> D[i][j];
@@ -18,17 +16,17 @@ int main() {
       cs.push_back(c[j][k]);
     }
     rep(j, C) {
-      ll sum = 0;
+      int sum = 0;
       for (int csi : cs) sum += D[csi - 1][j];
       cost[i].push_back({sum, j});
     }
     sort(all(cost[i]));
   }
-  ll ans = numeric_limits<ll>::max();
+  int ans = numeric_limits<int>::max();
   V<int> idx = {0, 1, 2};
   do {
     set<int> used;
-    ll sum = 0;
+    int sum = 0;
     rep(i, 3) {
       for (auto& p : cost[idx[i]]) {
         if (used.insert(p.second).second) {

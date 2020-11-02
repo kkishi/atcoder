@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n, k);
   V<pair<int, int>> v(n);
   rep(i, n) cin >> v[i].first >> v[i].second;
@@ -15,7 +12,7 @@ int main() {
     cnt += v[i].second;
     if (cnt >= k) {
       wt(v[i].first);
-      return 0;
+      return;
     }
   }
 }

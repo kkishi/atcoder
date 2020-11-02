@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(X, Y, A, B, C);
   V<int> p(A), q(B), r(C);
   cin >> p >> q >> r;

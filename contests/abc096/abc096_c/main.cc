@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int dr[] = {1, -1, 0, 0};
 int dc[] = {0, 0, 1, -1};
 
-int main() {
+void Main() {
   ints(h, w);
   V<string> s(h);
   rep(r, h) cin >> s[r];
@@ -18,7 +16,7 @@ int main() {
     rep(i, 4) if (b[r + 1 + dr[i]][c + 1 + dc[i]]) ok = true;
     if (!ok) {
       wt("No");
-      return 0;
+      return;
     }
   }
   wt("Yes");

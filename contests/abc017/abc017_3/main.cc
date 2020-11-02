@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
 struct D {
   int l, r, s;
 };
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   dbg(n, m);
   V<D> ds;

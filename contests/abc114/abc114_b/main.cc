@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   int ans = 10000;
   rep(i, s.size() - 2) chmin(ans, abs(stoi(s.substr(i, 3)) - 753));

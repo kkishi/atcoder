@@ -1,33 +1,31 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct S {
-  ll t, d, i;
+  int t, d, i;
 };
 
-int main() {
-  rd(ll, n, k);
+void Main() {
+  ints(n, k);
   vector<S> s(n);
   rep(i, n) {
     cin >> s[i].t >> s[i].d;
     s[i].i = i;
   }
   sort(all(s), [](const S& a, const S& b) { return a.d > b.d; });
-  set<ll> tset;
-  ll dsum = 0;
-  multiset<ll> dup;
+  set<int> tset;
+  int dsum = 0;
+  multiset<int> dup;
   rep(i, k) {
     dsum += s[i].d;
     if (!tset.insert(s[i].t).second) {
       dup.insert(s[i].d);
     }
   }
-  auto square = [](ll x) { return x * x; };
+  auto square = [](int x) { return x * x; };
   auto score = [&]() { return dsum + square(tset.size()); };
-  ll ans = score();
+  int ans = score();
   rep(i, k, n) {
     if (tset.insert(s[i].t).second && !dup.empty()) {
       dsum -= *dup.begin();

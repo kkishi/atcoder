@@ -1,14 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 #include "rational.h"
 
 using mint = ModInt<>;
-
-using namespace std;
-
-using rat = Rational<ll>;
+using rat = Rational<int>;
 
 bool operator<(const rat& a, const rat& b) {
   if (a.p() != b.p()) {
@@ -20,16 +17,16 @@ bool operator<(const rat& a, const rat& b) {
 map<rat, int> s1;
 map<rat, int> s2;
 
-int main() {
+void Main() {
   ints(N);
 
-  ll zeros = 0;
+  int zeros = 0;
 
-  ll A_zeros = 0;
-  ll B_zeros = 0;
+  int A_zeros = 0;
+  int B_zeros = 0;
 
   rep(i, N) {
-    rd(ll, A, B);
+    ints(A, B);
 
     if (A == 0 && B == 0) {
       ++zeros;

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
+void Main() {
+  ints(n);
   wt(n * (n + 1) / 2 - n);
 }

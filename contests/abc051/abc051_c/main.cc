@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(sx, sy, tx, ty);
   int dx = tx - sx, dy = ty - sy;
   V<pair<char, int>> v{{'U', dy}, {'R', dx},     {'D', dy},     {'L', dx},

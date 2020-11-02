@@ -1,18 +1,15 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
 #include "geometry.h"
-#include "macros.h"
-
-using namespace std;
 
 using Vec = Vector<double>;
 
-int main() {
+void Main() {
   ints(N);
   V<Vec> vec(N);
   cin >> vec;
-  cout << setprecision(10);
   wt(BinarySearch<double>(10000000000, 0, [&](double mid) {
     rep(i, N) rep(j, i) {
       vector<Vec> vs =

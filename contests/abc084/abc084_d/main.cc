@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "prime.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   V<bool> s = Sieve(100000);
   V<int> sum(100001);
   rep(i, 1, 100001) {

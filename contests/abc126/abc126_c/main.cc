@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(int, n, k);
+void Main() {
+  ints(n, k);
   vector<double> dp(max(k, n) + 1);
   for (int i = max(k, n); i >= 1; --i) {
     if (i >= k) {
@@ -19,6 +17,5 @@ int main() {
   for (int i = 1; i <= n; ++i) {
     p += dp[i] / n;
   }
-  cout << setprecision(20);
   wt(p);
 }

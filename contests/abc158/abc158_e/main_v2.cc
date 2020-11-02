@@ -1,25 +1,23 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 const int kMax = 2 * 100000;
-ll tens[kMax];
-ll cnt[10000];
+int tens[kMax];
+int cnt[10000];
 
-int main() {
-  ll N, P;
+void Main() {
+  int N, P;
   cin >> N >> P;
   string S;
   cin >> S;
 
   int p[] = {2, 5};
   rep(i, 2) if (P == p[i]) {
-    ll cnt = 0;
+    int cnt = 0;
     rep(j, S.size()) if ((S[j] - '0') % p[i] == 0) { cnt += j + 1; }
     cout << cnt << endl;
-    return 0;
+    return;
   }
 
   // dbg(N, S, P);
@@ -30,17 +28,17 @@ int main() {
     // dbg(i, tens[i]);
   }
 
-  ll mod = 0;
-  map<ll, ll> cnt;
+  int mod = 0;
+  map<int, int> cnt;
   reverse(all(S));
   rep(i, N) {
     mod = (mod + (S[i] - '0') * tens[i]) % P;
     cnt[mod]++;
     dbg(S[i], mod, cnt[mod]);
   }
-  ll ans = 0;
+  int ans = 0;
   for (auto it : cnt) {
-    ll k, v;
+    int k, v;
     tie(k, v) = it;
     if (k != 0) --v;
     ans += v * (v + 1) / 2;

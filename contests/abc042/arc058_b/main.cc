@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(h, w, a, b);
   mint ans = mint::Comb((h - 1) + (w - 1), (h - 1));
   rep(i, a) {

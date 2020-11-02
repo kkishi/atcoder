@@ -1,10 +1,7 @@
 #include <bits/stdc++.h>
 
-#include "fast_io.h"
-#include "macros.h"
+#include "atcoder.h"
 #include "mo.h"
-
-using namespace std;
 
 struct DS {
   DS(int n) : c(n), kinds(n), unique_kinds(0) {}
@@ -24,7 +21,7 @@ struct DS {
   int unique_kinds;
 };
 
-int main() {
+void Main() {
   ints(n, q);
   DS ds(n);
   cin >> ds.c;

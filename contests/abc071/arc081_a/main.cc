@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
@@ -17,7 +14,7 @@ int main() {
       --i;
       if (x.size() == 2) {
         wt(x[0] * x[1]);
-        return 0;
+        return;
       }
     }
   }

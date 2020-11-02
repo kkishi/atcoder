@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, N, K);
-  V<ll> H(N);
+void Main() {
+  ints(N, K);
+  V<int> H(N);
   cin >> H;
   sort(all(H));
-  ll ans = 0;
+  int ans = 0;
   rep(i, N - K) ans += H[i];
   wt(ans);
 }

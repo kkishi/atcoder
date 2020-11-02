@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Trie {
   array<int, 26> value = {};
   array<unique_ptr<Trie>, 26> children;
 };
 
-int main() {
+void Main() {
   ints(n);
 
   V<string> s(n);
@@ -38,7 +36,7 @@ int main() {
   for (const auto& si : s) {
     add_trie(trie, si, 0);
   }
-  ll ans = 0;
+  int ans = 0;
   for (const auto& si : s) {
     const Trie* t = &trie;
     rep(i, si.size() - 1) t = t->children[si[i] - 'a'].get();

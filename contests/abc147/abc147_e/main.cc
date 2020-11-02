@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 const int kMax = 80 * 80 * 2;
 using bs = bitset<kMax * 2 + 1>;
 bs dp[81][81];
 
-int main() {
+void Main() {
   ints(h, w);
   VV<int> a(h, V<int>(w)), b = a;
   cin >> a >> b;
@@ -20,6 +18,6 @@ int main() {
   }
   rep(i, 80 * 80 * 40 + 1) if (dp[h][w][i + kMax]) {
     wt(i);
-    return 0;
+    return;
   }
 }

@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct Problem {
   int D;
@@ -73,13 +71,13 @@ class Solution {
   int sat_;
 };
 
-inline ll Now() {
+inline int Now() {
   return chrono::duration_cast<chrono::milliseconds>(
              chrono::system_clock::now().time_since_epoch())
       .count();
 }
 
-void Improve(const Problem& p, Solution& sol, ll start) {
+void Improve(const Problem& p, Solution& sol, int start) {
   while (true) {
     while (true) {
       bool improved = false;
@@ -131,8 +129,8 @@ void Improve(const Problem& p, Solution& sol, ll start) {
   }
 }
 
-int main() {
-  ll start = Now();
+void Main() {
+  int start = Now();
 
   Problem p;
   cin >> p.D;

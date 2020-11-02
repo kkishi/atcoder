@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-ll solve(ll n, ll m) {
+int solve(int n, int m) {
   if (n == 1 && m == 1) return 1;
   if (n == 1 || m == 1) return max(n, m) - 2;
   return (n - 2) * (m - 2);
 }
 
-int main() {
-  rd(ll, n, m);
+void Main() {
+  ints(n, m);
   wt(solve(n, m));
 }

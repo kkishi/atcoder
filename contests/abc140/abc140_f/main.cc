@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   multiset<int, greater<int>> ms;
   rep(i, 1 << n) {
@@ -20,7 +18,7 @@ int main() {
       const auto it = ms.lower_bound(v[j] - 1);
       if (it == ms.end()) {
         wt("No");
-        return 0;
+        return;
       }
       v.push_back(*it);
       ms.erase(it);

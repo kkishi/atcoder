@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(h, w);
   int H = h + 2, W = w + 2;
 
@@ -17,7 +15,7 @@ int main() {
 
   auto rec = Fix([&](auto rec, int dr, int dc, int r, int c, V<V<int>>& m) {
     if (s[r][c] == '#') {
-      return 0;
+      return 0L;
     }
     if (m[r][c] == -1) {
       m[r][c] = rec(dr, dc, r + dr, c + dc, m) + 1;

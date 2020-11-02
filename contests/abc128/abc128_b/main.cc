@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 struct R {
   string city;
@@ -13,7 +11,7 @@ struct R {
   }
 };
 
-int main() {
+void Main() {
   ints(n);
   vector<R> v(n);
   rep(i, n) {

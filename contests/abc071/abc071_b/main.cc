@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   strings(s);
   set<char> ss(all(s));
   rep(i, 26) if (char c = 'a' + i; !ss.count(c)) {
     wt(c);
-    return 0;
+    return;
   }
   wt("None");
 }

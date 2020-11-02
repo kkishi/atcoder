@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
-#include "macros.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n, a, b);
   V<int> h(n);
   cin >> h;

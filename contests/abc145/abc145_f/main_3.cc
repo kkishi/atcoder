@@ -1,23 +1,21 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
+const int INF = 1LL << 60;
 
-const ll INF = 1LL << 60;
-
-int main() {
-  ll n, K;
+void Main() {
+  int n, K;
   cin >> n >> K;
-  vector<ll> h(n + 1);
+  vector<int> h(n + 1);
   rep(i, n) cin >> h[i + 1];
 
-  vector<vector<ll>> dp(n + 1, vector<ll>(n + 1, INF));
+  vector<vector<int>> dp(n + 1, vector<int>(n + 1, INF));
   dp[0][0] = 0;
   for (int i = 1; i <= n; ++i) rep(j, n) rep(k, i) {
       chmin(dp[i][j + 1], dp[k][j] + max(0LL, h[i] - h[k]));
     }
-  ll ans = INF;
+  int ans = INF;
   rep(i, n + 1) chmin(ans, dp[i][n - K]);
   cout << ans << endl;
 }

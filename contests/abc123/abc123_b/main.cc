@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   vector<int> v(5);
   cin >> v;
   auto ceil10 = [](int x) { return (x + 9) / 10 * 10; };

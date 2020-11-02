@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-const ll kMods[] = {
+const int kMods[] = {
     1000000007,
     1000992299,
     999119999,
 };
 
 struct Hash {
-  ll hash[3];
+  int hash[3];
   void Add(char c) {
     rep(i, 3) { hash[i] = (hash[i] * 26 + c - 'a') % kMods[i]; }
   }
@@ -27,7 +25,7 @@ struct Hash {
 
 Hash hashes[5000];
 
-int main() {
+void Main() {
   ints(n);
   strings(s);
   rep(i, n) hashes[i].Add(s[i]);

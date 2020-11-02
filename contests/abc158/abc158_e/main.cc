@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
+int dp[2][10000];
 
-ll dp[2][10000];
-
-int main() {
+void Main() {
   ints(N, P);
   strings(S);
-  ll ans = 0;
+  int ans = 0;
   rep(i, N) {
     int curr = i % 2;
     int prev = 1 - curr;

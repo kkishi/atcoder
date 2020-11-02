@@ -1,29 +1,24 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
+#undef int
 #include "bignum.h"
-#include "macros.h"
+#define int i64
 
-using namespace std;
-
-int N;
-bigint A[100000];
-ll kMax = 1000000000000000000;
-
-int main() {
-  cin >> N;
-  rep(i, N) {
-    cin >> A[i];
-    if (A[i] == 0) {
-      cout << 0 << endl;
-      return 0;
-    }
+void Main() {
+  ints(n);
+  V<bigint> a(n);
+  cin >> a;
+  if (find(all(a), 0) != a.end()) {
+    wt(0);
+    return;
   }
   bigint ans = 1;
-  rep(i, N) {
-    ans *= A[i];
-    if (ans > kMax) {
-      cout << -1 << endl;
-      return 0;
+  rep(i, n) {
+    ans *= a[i];
+    if (ans > 1000000000000000000) {
+      wt(-1);
+      return;
     }
   }
   wt(ans);

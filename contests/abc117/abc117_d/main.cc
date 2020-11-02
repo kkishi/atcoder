@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  vector<ll> a(n);
+void Main() {
+  ints(n, k);
+  vector<int> a(n);
   cin >> a;
 
-  ll bit = 1, shifts = 0;
+  int bit = 1, shifts = 0;
   while ((bit << 1) <= k) {
     bit <<= 1;
     ++shifts;
@@ -18,13 +16,13 @@ int main() {
   vector<int> cnt(shifts + 1);
   rep(i, n) rep(j, shifts + 1) if ((a[i] >> j) & 1)++ cnt[j];
 
-  ll x = 0;
+  int x = 0;
   for (int i = shifts; i >= 0; --i) {
     if ((x | (1LL << i)) > k) continue;
     if (cnt[i] < (n - cnt[i])) x |= (1LL << i);
   }
   dbg(x);
-  ll ans = 0;
-  for (ll ai : a) ans += ai ^ x;
+  int ans = 0;
+  for (int ai : a) ans += ai ^ x;
   wt(ans);
 }

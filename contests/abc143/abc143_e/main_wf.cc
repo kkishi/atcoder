@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "warshall_floyd.h"
 
-using namespace std;
+const int INF = 1LL << 60;
 
-const ll INF = 1LL << 60;
+void Main() {
+  ints(n, m, l);
 
-int main() {
-  rd(ll, n, m, l);
-
-  VV<ll> dist(n, V<ll>(n, INF));
+  VV<int> dist(n, V<int>(n, INF));
   rep(i, m) {
-    rd(ll, a, b, c);
+    ints(a, b, c);
     if (c <= l) {
       --a, --b;
       dist[a][b] = dist[b][a] = c;
@@ -20,7 +18,7 @@ int main() {
   }
   WarshallFloyd(dist);
 
-  VV<ll> dist2(n, V<ll>(n, INF));
+  VV<int> dist2(n, V<int>(n, INF));
   rep(i, n) rep(j, n) if (dist[i][j] <= l) dist2[i][j] = 1;
   WarshallFloyd(dist2);
 
@@ -28,7 +26,7 @@ int main() {
   rep(i, q) {
     ints(s, t);
     --s, --t;
-    ll d = dist2[s][t];
+    int d = dist2[s][t];
     if (d == INF) {
       wt(-1);
     } else {

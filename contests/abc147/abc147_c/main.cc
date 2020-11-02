@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool check(int s, const VV<pair<int, int>>& v) {
   rep(i, v.size()) {
@@ -18,7 +16,7 @@ bool check(int s, const VV<pair<int, int>>& v) {
   return true;
 }
 
-int main() {
+void Main() {
   ints(n);
   VV<pair<int, int>> v(n);
   rep(i, n) {

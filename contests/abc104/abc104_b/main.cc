@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool ok(const string& s) {
   if (s[0] != 'A') {
@@ -17,7 +15,7 @@ bool ok(const string& s) {
   return lower == s.size() - 2;
 }
 
-int main() {
+void Main() {
   strings(s);
   wt(ok(s) ? "AC" : "WA");
 }

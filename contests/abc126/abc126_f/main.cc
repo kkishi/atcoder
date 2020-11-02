@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(m, k);
 
   if (m == 0) {
@@ -13,7 +11,7 @@ int main() {
     } else {
       wt(-1);
     }
-    return 0;
+    return;
   }
   if (m == 1) {
     if (k == 0) {
@@ -21,7 +19,7 @@ int main() {
     } else {
       wt(-1);
     }
-    return 0;
+    return;
   }
 
   int pow2 = 1 << m;

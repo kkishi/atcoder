@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool pal(const string& s) {
   string t = s;
@@ -10,7 +8,7 @@ bool pal(const string& s) {
   return s == t;
 }
 
-int main() {
+void Main() {
   strings(s);
   string a = s.substr(0, (s.size() - 1) / 2);
   string b = s.substr((s.size() + 3) / 2 - 1);

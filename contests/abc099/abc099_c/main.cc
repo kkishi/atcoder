@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   vector<int> memo(n + 1, -1);
-  wt(Fix([&](auto rec, int x) {
+  wt(Fix([&](auto rec, int x) -> int {
     if (x == 0) return 0;
     if (memo[x] == -1) {
       int mini = numeric_limits<int>::max();

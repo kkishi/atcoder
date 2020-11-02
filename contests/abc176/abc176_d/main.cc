@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 template <typename T>
 bool between(const T& v, const T& lo, const T& hi) {
   return lo <= v && v <= hi;
 }
 
-int main() {
+void Main() {
   ints(h, w);
   ints(ch, cw);
   --ch, --cw;
@@ -23,7 +21,7 @@ int main() {
   low_priority_queue<tuple<int, int, int>> que;
 
   auto push = [&](int r, int c, int d) {
-    if (!between(r, 0, h - 1) || !between(c, 0, w - 1) || s[r][c] == '#')
+    if (!between(r, 0L, h - 1) || !between(c, 0L, w - 1) || s[r][c] == '#')
       return;
     if (!chmin(dist[r][c], d)) return;
     que.push({d, r, c});

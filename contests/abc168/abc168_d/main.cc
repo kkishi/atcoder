@@ -1,20 +1,16 @@
 #include <bits/stdc++.h>
 
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
-
-using namespace std;
+#include "atcoder.h"
 
 int A[2 * 100000];
 int B[2 * 100000];
 
-int main() {
-  int N, M;
-  cin >> N >> M;
+void Main() {
+  ints(N, M);
 
   vector<vector<int>> edges(N);
   rep(i, M) {
-    int A, B;
-    cin >> A >> B;
+    ints(A, B);
     --A, --B;
     edges[A].push_back(B);
     edges[B].push_back(A);
@@ -48,7 +44,7 @@ int main() {
   }
   if (!ok) {
     cout << "No" << endl;
-    return 0;
+    return;
   }
   cout << "Yes" << endl;
   for (int i = 1; i < N; ++i) {

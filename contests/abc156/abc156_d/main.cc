@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, a, b);
   wt(mint(2).Pow(n) - 1 - mint::CombSlow(n, a) - mint::CombSlow(n, b));
 }

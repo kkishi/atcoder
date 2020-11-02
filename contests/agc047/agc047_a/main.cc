@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
-  map<pair<ll, ll>, ll> m;
+  map<pair<int, int>, int> m;
   rep(i, n) {
     strings(s);
     string l = s;
-    ll two = 0, five = 0;
+    int two = 0, five = 0;
     rep(j, s.size()) if (s[j] == '.') {
       string r = s.substr(j + 1);
       l = s.substr(0, j) += r;
@@ -18,7 +16,7 @@ int main() {
       five -= r.size();
     }
     {
-      ll x = atoll(l.c_str());
+      int x = atoll(l.c_str());
       while (x % 2 == 0) {
         ++two;
         x /= 2;
@@ -30,7 +28,7 @@ int main() {
     }
     ++m[{two, five}];
   }
-  ll ans = 0;
+  int ans = 0;
   for (auto [a, b] : m) {
     for (auto [c, d] : m) {
       auto [e, f] = a;

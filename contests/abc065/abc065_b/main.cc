@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
@@ -13,7 +11,7 @@ int main() {
     i = a[i] - 1;
     if (i == 1) {
       wt(j + 1);
-      return 0;
+      return;
     }
   }
   wt(-1);

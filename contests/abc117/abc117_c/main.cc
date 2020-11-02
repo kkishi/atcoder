@@ -1,21 +1,19 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, m);
-  vector<ll> x(m);
+void Main() {
+  ints(n, m);
+  vector<int> x(m);
   cin >> x;
 
   sort(all(x));
-  ll ans = x[m - 1] - x[0];
+  int ans = x[m - 1] - x[0];
 
-  vector<ll> d(m - 1);
+  vector<int> d(m - 1);
   rep(i, m - 1) d[i] = x[i + 1] - x[i];
   sort(all(d), greater());
 
-  rep(i, min<ll>(n - 1, d.size())) ans -= d[i];
+  rep(i, min(n - 1, d.size())) ans -= d[i];
   wt(ans);
 }

@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   using A = array<int, 4>;
 
   ints(R, C, K);
@@ -24,5 +21,4 @@ int main() {
     }
   }
   wt(*max_element(all(dp[R][C])));
-#undef int
 }

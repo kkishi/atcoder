@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(w, h, n);
   int minx = 0, maxx = w, miny = 0, maxy = h;
   rep(n) {

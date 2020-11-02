@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a, b, k);
   for (int i = min(a, b);; --i) {
     if (a % i + b % i == 0) {
       --k;
       if (k == 0) {
         wt(i);
-        return 0;
+        return;
       }
     }
   }

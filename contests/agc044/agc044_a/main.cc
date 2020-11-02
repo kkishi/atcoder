@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(T);
   while (T--) {
-    rd(ll, N, A, B, C, D);
+    ints(N, A, B, C, D);
 
-    map<ll, ll> seen;
+    map<int, int> seen;
     seen[N] = 0;
 
-    low_priority_queue<pair<ll, ll>> que;
+    low_priority_queue<pair<int, int>> que;
     que.push({0, N});
 
     while (!que.empty()) {
@@ -22,7 +20,7 @@ int main() {
         wt(c);
         break;
       }
-      auto push = [&seen, &que](ll c, ll v) {
+      auto push = [&seen, &que](int c, int v) {
         if (v < 0) return;
         auto [it, ok] = seen.insert({v, c});
         if (ok || it->second > c) {
@@ -33,11 +31,11 @@ int main() {
       if (v % 2 == 0) push(c + A, v / 2);
       if (v % 3 == 0) push(c + B, v / 3);
       if (v % 5 == 0) push(c + C, v / 5);
-      for (ll d = -4; d <= 4; ++d) {
-        ll nv = v + d;
+      for (int d = -4; d <= 4; ++d) {
+        int nv = v + d;
         bool ok = false;
-        ll mods[] = {2, 3, 5};
-        for (ll m : mods) {
+        int mods[] = {2, 3, 5};
+        for (int m : mods) {
           if (v % m != 0 && nv % m == 0 && abs(d) < m) {
             ok = true;
           }

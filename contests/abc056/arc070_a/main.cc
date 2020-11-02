@@ -1,16 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(x);
   for (int i = 1;; ++i) {
     if (i * (i + 1) / 2 >= x) {
       wt(i);
-      return 0;
+      return;
     }
   }
 }

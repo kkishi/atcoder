@@ -1,13 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 bool ac[100000];
 int wa[100000];
 
-int main() {
+void Main() {
   ints(N, M);
   rep(i, M) {
     ints(p);

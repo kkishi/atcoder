@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 const int kMax = 200000;
 
@@ -16,7 +14,7 @@ void Erase(Map& m, int v) {
   }
 }
 
-int main() {
+void Main() {
   ints(n, q);
   vector<int> a(n), b(n);
   rep(i, n) cin >> a[i] >> b[i];

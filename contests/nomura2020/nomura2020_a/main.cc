@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(H1, M1, H2, M2, K);
   cout << ((H2 * 60 + M2) - (H1 * 60 + M1) - K) << endl;
 }

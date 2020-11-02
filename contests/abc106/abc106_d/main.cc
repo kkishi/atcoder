@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(N, M, Q);
   vector<int> l(N + 2), r(N + 2);
   vector<vector<int>> train(N + 1);

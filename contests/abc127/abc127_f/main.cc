@@ -1,19 +1,17 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(q);
-  multiset<ll> lo, hi;
-  ll lo_sum = 0, hi_sum = 0;
-  optional<ll> mid;
-  ll bs = 0;
+  multiset<int> lo, hi;
+  int lo_sum = 0, hi_sum = 0;
+  optional<int> mid;
+  int bs = 0;
   while (q--) {
     ints(t);
     if (t == 1) {
-      rd(ll, a, b);
+      ints(a, b);
       bs += b;
       if (!mid) {
         mid = a;
@@ -21,7 +19,7 @@ int main() {
         lo.insert(a);
         lo_sum += *mid - a;
         while (lo.size() > hi.size()) {
-          ll change = *mid - *lo.rbegin();
+          int change = *mid - *lo.rbegin();
 
           hi.insert(*mid);
           hi_sum += change * hi.size();
@@ -35,7 +33,7 @@ int main() {
         hi.insert(a);
         hi_sum += a - *mid;
         while (lo.size() + 1 < hi.size()) {
-          ll change = *hi.begin() - *mid;
+          int change = *hi.begin() - *mid;
 
           lo.insert(*mid);
           lo_sum += change * lo.size();

@@ -1,13 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-double e[600];
-double p[600];
-
-int main() {
+void Main() {
   ints(n, m);
   VV<int> to(n);
   rep(i, m) {
@@ -15,6 +10,7 @@ int main() {
     --s, --t;
     to[s].push_back(t);
   }
+  V<double> e(600), p(600);
   rrep(i, n) {
     for (int j : to[i]) {
       e[i] += (e[j] + 1) / to[i].size();
@@ -37,6 +33,5 @@ int main() {
       chmax(maxi, diff);
     }
   }
-  cout << setprecision(10) << fixed;
   wt(e[0] - maxi);
 }

@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
-
-using namespace std;
 
 int a[3000];
 
 using mint = ModInt<998244353>;
 
-int main() {
+void Main() {
   ints(n, s);
   rep(i, n) cin >> a[i];
   vector<mint> dp(s + 1);

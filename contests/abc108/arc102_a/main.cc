@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, k);
-  ll x = n / k;
-  ll ans = x * x * x;
+void Main() {
+  ints(n, k);
+  int x = n / k;
+  int ans = x * x * x;
   if (!(k & 1)) {
-    ll y = (n + k / 2) / k;
+    int y = (n + k / 2) / k;
     ans += y * y * y;
   }
   wt(ans);

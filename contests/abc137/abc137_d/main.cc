@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "binary_search.h"
-#include "macros.h"
 #include "segment_tree.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   vector<pair<int, int>> job(n);
   rep(i, n) cin >> job[i].second >> job[i].first;

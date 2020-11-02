@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
-
-#define int ll
+#include "atcoder.h"
 
 int f(int h, int w) {
   int ans = numeric_limits<int>::max();
@@ -17,7 +13,7 @@ int f(int h, int w) {
   return min(h % 3 == 0 ? 0 : w, ans);
 }
 
-main() {
+void Main() {
   ints(h, w);
   wt(min(f(h, w), f(w, h)));
 }

@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
-
-using namespace std;
+#include "atcoder.h"
 
 typedef unsigned long long ull;
 const int kMax = 500;
@@ -10,133 +8,159 @@ int N;
 ull S[kMax];
 ull T[kMax];
 ull U[kMax];
-ull V[kMax];
+ull V_[kMax];
 
 ull u[kMax];
 ull v[kMax];
 
-struct State {
-  ull must;
-  ull mustnot;
-};
+// -1 unknown
+int mat[kMax][kMax];
 
-State mat[kMax][kMax];
-
-int main() {
-  cin >> N;
-  REP(i, N) cin >> S[i];
-  REP(i, N) cin >> T[i];
-  REP(i, N) cin >> U[i];
-  REP(i, N) cin >> V[i];
-
-  bool ok = true;
-  REP(r, N) {
-    REP(c, N) {
-      State& s = mat[r][c];
-      s.must = 0;
-      s.mustnot = 0;
-
-      /*
-      cout << S[r] << " " << T[c] << endl;
-      cout << U[r] << " " << bitset<8>(U[r]) << " " << bitset<8>(~U[r]) << endl;
-      cout << V[c] << " " << bitset<8>(V[c]) << " " << bitset<8>(~V[c]) << endl;
-      */
-
+bool solve(ull bit) {
+  rep(r, N) {
+    rep(c, N) {
+      ull u = U[r] & bit;
+      ull v = V_[c] & bit;
+      int uw;
       if (S[r] == 0) {
-        s.must |= U[r];
+        if (u == 0) {
+          // Want 0.
+          uw = -1;
+        } else {
+          uw = 1;
+        }
       } else {
-        s.mustnot |= ~U[r];
+        if (u == 0) {
+          uw = 0;
+        } else {
+          // Want 1.
+          uw = -2;
+        }
       }
+      int vw;
       if (T[c] == 0) {
-        s.must |= V[c];
+        if (v == 0) {
+          vw = -1;
+        } else {
+          vw = 1;
+        }
       } else {
-        s.mustnot |= ~V[c];
+        if (v == 0) {
+          vw = 0;
+        } else {
+          vw = -2;
+        }
       }
-
-      cout << r << " " << c << ": ";
-      cout << "must:" << bitset<8>(s.must)
-           << " mustnot:" << bitset<8>(s.mustnot) << endl;
-
-      if (s.must & s.mustnot) {
-        ok = false;
+      if (uw >= 0 && vw >= 0) {
+        if (uw != vw) {
+          return false;
+        } else {
+          mat[r][c] = uw;
+        }
+      } else if (uw >= 0) {
+        mat[r][c] = uw;
+      } else if (vw >= 0) {
+        mat[r][c] = vw;
+      } else if (uw == vw) {
+        mat[r][c] = uw == -1 ? 0 : 1;
+        ;
+      } else {
+        mat[r][c] = -1;
       }
     }
   }
-  REP(r, N) {
-    u[r] = mat[r][0].must;
-    REP(c, N) {
+  int R = 0;
+  rep(r, N) {
+    if (S[r] == 0 && (U[r] & bit) == 0) {
+      bool ok = false;
+      rep(c, N) if (mat[r][c] == 0) { ok = true; }
+      if (!ok)
+        --R;
+      else
+        rep(c, N) if (mat[r][c] == -1) mat[r][c] = 1;
+    } else if (S[r] == 1 && (U[r] & bit) == bit) {
+      bool ok = false;
+      rep(c, N) if (mat[r][c] == 1) { ok = true; }
+      if (!ok)
+        ++R;
+      else
+        rep(c, N) if (mat[r][c] == -1) mat[r][c] = 0;
+    }
+  }
+  int C = 0;
+  rep(c, N) {
+    if (T[c] == 0 && (V_[c] & bit) == 0) {
+      bool ok = false;
+      rep(r, N) if (mat[r][c] == 0) { ok = true; }
+      if (!ok)
+        --C;
+      else
+        rep(r, N) if (mat[r][c] == -1) mat[r][c] = 1;
+    } else if (T[c] == 1 && (V_[c] & bit) == bit) {
+      bool ok = false;
+      rep(r, N) if (mat[r][c] == 1) { ok = true; }
+      if (!ok)
+        ++C;
+      else
+        rep(r, N) if (mat[r][c] == -1) mat[r][c] = 0;
+    }
+  }
+  int done = 0;
+  rep(r, N) rep(c, N) if (mat[r][c] == -1) {
+    int seen = 0;
+    rep(c2, N) if (mat[r][c2] == -1) {
+      mat[r][c2] = (done + seen) % 2;
+      ++seen;
+    }
+    ++done;
+  }
+  // Check
+  rep(r, N) {
+    int x = mat[r][0];
+    rep(c, N) {
       if (S[r] == 0)
-        u[r] &= mat[r][c].must;
+        x &= mat[r][c];
       else
-        u[r] |= mat[r][c].must;
-      // u[r] |= mat[r][c].must;
+        x |= mat[r][c];
     }
-    cout << "must u: " << r << " " << bitset<8>(u[r]) << endl;
+    if (x != ((U[r] & bit) != 0)) return false;
   }
-  REP(c, N) {
-    v[c] = mat[0][c].must;
-    REP(r, N) {
+  rep(c, N) {
+    int x = mat[0][c];
+    rep(r, N) {
       if (T[c] == 0)
-        v[c] &= mat[r][c].must;
+        x &= mat[r][c];
       else
-        v[c] |= mat[r][c].must;
-      // v[c] |= mat[r][c].must;
+        x |= mat[r][c];
     }
-    cout << "must v: " << c << " " << bitset<8>(v[c]) << endl;
-    ;
+    if (x != ((V_[c] & bit) != 0)) return false;
   }
-  if (ok) {
-    /*
-    REP(r, N) {
-      ull x = 0;
-      REP(c, N) x |= ~mat[r][c].mustnot;
-      cout << x << endl
-      REP(c, N) x &= mat[r][c].must;
-      cout << x << endl;
-    }
-    */
-    REP(r, N) {
-      REP(c, N) {
-        const State& s = mat[r][c];
-        ull want = U[r] | V[c];
-        cout << "want     " << r << " " << c << " " << bitset<8>(want) << endl;
-        cout << "must     " << r << " " << c << " " << bitset<8>(s.must)
-             << endl;
-        cout << "must not " << r << " " << c << " " << bitset<8>(s.mustnot)
-             << endl;
-        cout << "optional " << r << " " << c << " "
-             << bitset<8>(~s.must & ~s.mustnot) << endl;
-        ull want2 = (U[r] | V[c]) & ~(u[r] | v[c]);
-        cout << bitset<8>(want2) << endl;
-        // cout << r << " " << c << " " << want << endl;
-        // cout << (want & (~s.mustnot));
-      }
-    }
+  return true;
+}
 
-    REP(r, N) {
-      REP(c, N) {
-        if (c > 0) cout << " ";
-        const State& s = mat[r][c];
+ull ans[kMax][kMax];
 
-        ull want = (U[r] | V[c]) & ~(u[r] | v[c]);
-        // cout << bitset<8>(want) << endl;
-        /*
-        if (S[r] == 0) {
-          want |= U[r];
-        }
-        if (T[c] == 0) {
-          want |= V[c];
-        }
-        */
+void Main() {
+  cin >> N;
+  rep(i, N) cin >> S[i];
+  rep(i, N) cin >> T[i];
+  rep(i, N) cin >> U[i];
+  rep(i, N) cin >> V_[i];
 
-        // ull want = U[r] | V[c];
-        // ull want = u[r] | v[c];
-        // cout << r << " " << c << " " << want << endl;
-        cout << (s.must | (want & (~s.mustnot)));
-      }
-      cout << endl;
+  ull bit = 1;
+  rep(b, 64) {
+    if (!solve(bit)) {
+      cout << -1 << endl;
+      return;
     }
-  } else {
-    cout << -1 << endl;
+    rep(r, N) rep(c, N) if (mat[r][c] == 1) ans[r][c] |= bit;
+    bit <<= 1;
+  }
+  rep(r, N) {
+    rep(c, N) {
+      if (c) cout << " ";
+      cout << ans[r][c];
+    }
+    cout << endl;
   }
 }

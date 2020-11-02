@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-#define int ll
+void Main() {
   ints(n, a, b);
   V<int> v(n);
   cin >> v;
@@ -13,7 +10,6 @@ int main() {
   sort(all(v), greater());
   int sum = accumulate(v.begin(), v.begin() + a, 0LL);
 
-  cout << fixed << setprecision(20);
   wt(sum / double(a));
 
   map<int, int> cnt;

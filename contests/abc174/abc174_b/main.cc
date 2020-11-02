@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n, d);
+void Main() {
+  ints(n, d);
   int ans = 0;
   rep(i, n) {
-    rd(ll, x, y);
+    ints(x, y);
     if (x * x + y * y <= d * d) {
       ++ans;
     }

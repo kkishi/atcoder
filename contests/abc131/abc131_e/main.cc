@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, k);
   int sum = 0;
   VV<int> v(n);
@@ -17,7 +15,7 @@ int main() {
   }
   if (sum < k) {
     wt(-1);
-    return 0;
+    return;
   }
   int m = 0;
   for (const auto& vi : v) m += sz(vi);

@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 
-using namespace std;
+#include "atcoder.h"
 
-int main() {
-  double A, B, H, M;
-  cin >> A >> B >> H >> M;
+void Main() {
+  rd(double, A, B, H, M);
 
   double pi = acos(-1);
   double at = (H + M / 60) / 12 * 2 * pi;
@@ -13,5 +12,5 @@ int main() {
   double bt = (M / 60) * 2 * pi;
   double bx = cos(bt) * B;
   double by = sin(bt) * B;
-  cout << setprecision(20) << hypot(ax - bx, ay - by) << endl;
+  wt(hypot(ax - bx, ay - by));
 }

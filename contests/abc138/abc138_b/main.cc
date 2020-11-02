@@ -1,16 +1,13 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(int, n);
+void Main() {
+  ints(n);
   double sum = 0;
   rep(i, n) {
     rd(double, a);
     sum += 1 / a;
   }
-  cout << setprecision(20);
   wt(1 / sum);
 }

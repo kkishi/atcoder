@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, m);
   priority_queue<int> que;
   rep(i, n) {
@@ -16,7 +14,7 @@ int main() {
     que.pop();
     que.push(a / 2);
   }
-  ll ans = 0;
+  int ans = 0;
   while (!que.empty()) {
     ans += que.top();
     que.pop();

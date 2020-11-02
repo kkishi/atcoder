@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n, t);
   vector<pair<int, int>> f(n);
   rep(i, n) cin >> f[i].first >> f[i].second;

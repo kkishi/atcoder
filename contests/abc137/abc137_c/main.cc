@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
-  map<string, ll> m;
+  map<string, int> m;
   rep(i, n) {
     strings(s);
     sort(all(s));
     ++m[s];
   }
-  ll ans = 0;
+  int ans = 0;
   for (auto [_, cnt] : m) {
     ans += cnt * (cnt - 1) / 2;
   }

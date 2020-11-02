@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   vector<string> v = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
   strings(s);
   rep(i, v.size()) if (v[i] == s) {
     wt(7 - i);
-    return 0;
+    return;
   }
 }

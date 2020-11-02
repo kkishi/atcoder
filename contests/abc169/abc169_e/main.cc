@@ -1,19 +1,18 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int A[200000];
-int B[200000];
-
-int main() {
-  rd(int, N);
-  rep(i, N) cin >> A[i] >> B[i];
-  sort(A, A + N);
-  sort(B, B + N);
-  if (N % 2 == 0) {
+void Main() {
+  ints(n);
+  V<int> a(n), b(n);
+  rep(i, n) cin >> a[i] >> b[i];
+  sort(all(a));
+  sort(all(b));
+  if (n % 2) {
+    wt(b[n / 2] - a[n / 2] + 1);
   } else {
-    wt(B[N / 2] - A[N / 2] + 1);
+    int am = a[n / 2 - 1] + a[n / 2];
+    int bm = b[n / 2 - 1] + b[n / 2];
+    wt(bm - am + 1);
   }
 }

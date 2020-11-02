@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
-
-using namespace std;
+#include "atcoder.h"
 
 int digits(int x) {
   int ret = 0;
@@ -13,7 +11,7 @@ int digits(int x) {
   return ret;
 }
 
-int main() {
+void Main() {
   ints(n);
   int ans = 0;
   rep(i, n) if (digits(i + 1) % 2 == 1)++ ans;

@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(a1, a2, a3);
   wt((a1 + a2 + a3) >= 22 ? "bust" : "win");
 }

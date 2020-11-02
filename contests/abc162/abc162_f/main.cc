@@ -1,17 +1,15 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
+int dp[2 * 100000][2][3];
 
-ll dp[2 * 100000][2][3];
-
-int main() {
+void Main() {
   ints(N);
-  V<ll> A(N);
+  V<int> A(N);
   cin >> A;
 
-  const ll INF = 100000000000000000;
+  const int INF = 100000000000000000;
   rep(i, N) rep(j, 2) rep(k, 3) dp[i][j][k] = -INF;
   dp[0][0][1] = 0;
   dp[0][1][0] = A[0];
@@ -28,7 +26,7 @@ int main() {
       }
     }
   }
-  ll ans = -INF;
+  int ans = -INF;
   rep(i, maxskip + 1) chmax(ans, dp[N - 1 - i][1][maxskip - i]);
   wt(ans);
 }

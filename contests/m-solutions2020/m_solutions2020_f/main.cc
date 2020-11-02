@@ -1,22 +1,20 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
-  rd(ll, n);
-  vector<ll> x(n), y(n);
+void Main() {
+  ints(n);
+  vector<int> x(n), y(n);
   vector<char> u(n);
   rep(i, n) cin >> x[i] >> y[i] >> u[i];
 
-  const ll M = 400001;
-  const ll inf = numeric_limits<ll>::max();
-  ll t = inf;
+  const int M = 400001;
+  const int inf = numeric_limits<int>::max();
+  int t = inf;
   rep(rot, 4) {
     // R L
     {
-      vector<vector<ll>> r(M);
+      vector<vector<int>> r(M);
       rep(i, n) if (u[i] == 'R') r[y[i]].push_back(x[i]);
       rep(i, M) sort(all(r[i]));
       rep(i, n) if (u[i] == 'L') {
@@ -24,7 +22,7 @@ int main() {
         if (ri.empty()) continue;
         auto it = lower_bound(all(ri), x[i]);
         if (it != ri.begin()) {
-          if (ll d = x[i] - *(it - 1); d > 0) {
+          if (int d = x[i] - *(it - 1); d > 0) {
             chmin(t, d * 10 / 2);
           }
         }
@@ -32,7 +30,7 @@ int main() {
     }
     // R U
     {
-      vector<vector<ll>> r(M);
+      vector<vector<int>> r(M);
       rep(i, n) if (u[i] == 'R') r[x[i] + y[i]].push_back(x[i]);
       rep(i, M) sort(all(r[i]));
       rep(i, n) if (u[i] == 'U') {
@@ -40,7 +38,7 @@ int main() {
         if (ri.empty()) continue;
         auto it = lower_bound(all(ri), x[i]);
         if (it != ri.begin()) {
-          if (ll d = x[i] - *(it - 1); d > 0) {
+          if (int d = x[i] - *(it - 1); d > 0) {
             chmin(t, d * 10);
           }
         }

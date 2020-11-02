@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
-
-using namespace std;
 
 using mint = ModInt<998244353>;
 mint dp[3001][3001];
 
-int main() {
+void Main() {
   ints(N, S);
   V<int> A(N);
   cin >> A;

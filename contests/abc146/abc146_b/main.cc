@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   strings(s);
   rep(i, s.size()) s[i] = (s[i] - 'A' + n) % 26 + 'A';

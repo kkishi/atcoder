@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(n);
   vector<int> a(n);
   cin >> a;
-  ll ans = 0;
+  int ans = 0;
   rep(i, n) ans += a[i] - 1;
   wt(ans);
 }

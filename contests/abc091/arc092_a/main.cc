@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
+#include "atcoder.h"
 #include "edmonds_karp.h"
 #include "graph.h"
-#include "macros.h"
-
-using namespace std;
 
 struct XY {
   int x, y;
 };
 
-int main() {
+void Main() {
   ints(n);
   Graph<int> g(n * 2 + 2);
   V<XY> r(n), b(n);

@@ -1,23 +1,21 @@
 #include <bits/stdc++.h>
 
-#include "macros.h"
+#include "atcoder.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
-using namespace std;
-
-int main() {
+void Main() {
   ints(x, y);
   if ((x + y) % 3) {
     wt(0);
-    return 0;
+    return;
   }
   int n = (2 * y - x) / 3;
   int m = (2 * x - y) / 3;
   if (n < 0 || m < 0) {
     wt(0);
-    return 0;
+    return;
   }
   wt(mint::Comb(n + m, m));
 }
