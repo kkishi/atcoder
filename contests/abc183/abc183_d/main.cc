@@ -4,20 +4,14 @@
 
 void Main() {
   ints(n, w);
-  V<pair<int, int>> inc;
+  V<int> inc(200001);
   rep(n) {
     ints(s, t, p);
-    inc.emplace_back(s, p);
-    inc.emplace_back(t, -p);
+    inc[s] += p;
+    inc[t] -= p;
   }
-  sort(all(inc));
-  int der = 0;
+  rep(i, sz(inc) - 1) inc[i + 1] += inc[i];
   bool ok = true;
-  rep(i, sz(inc)) {
-    auto [t0, d0] = inc[i];
-    auto [t1, d1] = inc[i + 1];
-    der += d0;
-    if (t1 - t0 > 0 && der > w) ok = false;
-  }
+  rep(i, sz(inc)) if (inc[i] > w) ok = false;
   wt(ok);
 }

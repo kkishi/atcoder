@@ -28,6 +28,7 @@ contests/abc126/abc126_d/main.cc\
 contests/abc131/abc131_e/main.cc\
 contests/abc157/abc157_f/main.cc\
 contests/abc168/abc168_d/main.cc\
+contests/abc182/abc182_b/main.cc\
 contests/arc106/arc106_c/main.cc\
 contests/arc106/arc106_d/main.cc\
 contests/ddcc2020-qual/ddcc2020_qual_c/main.cc\
