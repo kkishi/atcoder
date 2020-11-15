@@ -29,6 +29,5 @@ void Main() {
     int d = j;
     ans += exp(fact[n] - (fact[a] + fact[b] + fact[c] + fact[d]) - denom);
   }
-  cout << fixed << setprecision(20);
   wt(ans);
 }
