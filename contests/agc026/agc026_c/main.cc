@@ -5,23 +5,21 @@
 void Main() {
   ints(n);
   strings(s);
-  V<map<string, int>> l(n + 1), r(n + 1);
+  map<pair<string, string>, int> l, r;
   rep(bits, 1 << n) {
     auto bit = [&](int i) { return (bits >> i) & 1; };
     {
-      string t;
-      rep(i, n) if (bit(i)) t += s[i];
-      rrep(i, n) if (!bit(i)) t += s[i];
-      ++l[popcount(bits)][t];
+      string x, y;
+      rep(i, n)(bit(i) ? x : y) += s[i];
+      ++l[{x, y}];
     }
     {
-      string t;
-      rrep(i, n) if (!bit(i)) t += s[n + i];
-      rep(i, n) if (bit(i)) t += s[n + i];
-      ++r[popcount(bits)][t];
+      string x, y;
+      rrep(i, n)(bit(i) ? y : x) += s[n + i];
+      ++r[{x, y}];
     }
   }
   int ans = 0;
-  rep(i, n + 1) for (auto [k, v] : l[i]) ans += v * r[n - i][k];
+  for (auto [k, v] : l) ans += v * r[k];
   wt(ans);
 }
