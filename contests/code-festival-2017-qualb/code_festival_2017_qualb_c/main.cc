@@ -11,25 +11,28 @@ void Main() {
     to[a].push_back(b);
     to[b].push_back(a);
   }
-  V<bool> visited_odd(n);
-  V<bool> visited_even(n);
+  V<int> colors(n, -1);
   stack<pair<int, int>> stk;
   stk.push({0, 0});
+  bool ok = true;
   while (!stk.empty()) {
-    auto [node, dist_parity] = stk.top();
+    auto [node, color] = stk.top();
     stk.pop();
-    V<bool>& visited = dist_parity ? visited_odd : visited_even;
-    if (visited[node]) continue;
-    visited[node] = true;
+    int& c = colors[node];
+    if (c != -1) {
+      if (c != color) ok = false;
+      continue;
+    }
+    c = color;
     for (int child : to[node]) {
-      stk.push({child, 1 - dist_parity});
+      stk.push({child, 1 - color});
     }
   }
   auto nC2 = [](int n) { return n * (n - 1) / 2; };
   int ans = nC2(n) - m;
-  int cnt = 0;
-  rep(i, n) if (visited_even[i] && !visited_odd[i])++ cnt;
-  if (cnt > 0) {
+  if (ok) {
+    int cnt = 0;
+    rep(i, n) if (colors[i] == 0)++ cnt;
     ans -= nC2(cnt) + nC2(n - cnt);
   }
   wt(ans);
