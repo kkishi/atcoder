@@ -7,3 +7,7 @@ test/
 # Ignore contest inputs.
 in/
 out/
+
+# Ignore auxiliary binaries.
+gen
+naive
