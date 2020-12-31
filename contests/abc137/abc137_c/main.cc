@@ -11,8 +11,6 @@ void Main() {
     ++m[s];
   }
   int ans = 0;
-  for (auto [_, cnt] : m) {
-    ans += cnt * (cnt - 1) / 2;
-  }
+  each(_, cnt, m) ans += cnt * (cnt - 1) / 2;
   wt(ans);
 }

@@ -5,7 +5,7 @@
 bool check(int s, const VV<pair<int, int>>& v) {
   rep(i, v.size()) {
     if (!hasbit(s, i)) continue;
-    for (const auto& p : v[i]) {
+    each(p, v[i]) {
       int j = p.first;
       bool honest = hasbit(s, j);
       if (p.second == 1 != honest) {

@@ -1,18 +1,10 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "binary_search.h"
 #undef int
 #include "bignum.h"
 #define int i64
-
-template <typename T>
-T BinarySearch(T ok, T ng, std::function<bool(T)> pred) {
-  while ((ok > ng ? ok - ng : ng - ok) > 1) {
-    T mid = ok + (ng - ok) / 2;
-    (pred(mid) ? ok : ng) = mid;
-  }
-  return ok;
-}
 
 void Main() {
   int x, y;
@@ -40,7 +32,7 @@ void Main() {
   assert(hi - lo < 10);
 
   bool ok = false;
-  for (bigint n = lo; n <= hi; ++n) {
+  rep(n, lo, hi + 1) {
     bigint m = BinarySearch<bigint>(1, n + 1, [&](bigint m) {
       // x / y <= (n * (n + 1) / 2 - m) / n
       return x * 2 * n <= y * (n * (n + 1) - m * 2);

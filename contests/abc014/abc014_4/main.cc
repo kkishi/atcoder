@@ -17,7 +17,7 @@ void Main() {
   V<int> dist(N);
   Fix([&](auto rec, int n, int p, int d) -> void {
     dist[n] = d;
-    for (const auto& e : g.Edges(n)) {
+    each(e, g.Edges(n)) {
       if (e.to == p) continue;
       parent[0][e.to] = n;
       rec(e.to, n, d + 1);

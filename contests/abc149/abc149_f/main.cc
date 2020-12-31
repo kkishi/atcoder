@@ -19,7 +19,7 @@ void Main() {
   VV<int> sizes(n);
   Fix([&](auto rec, int i, int p) -> int {
     int size = 1;
-    for (int c : to[i]) {
+    each(c, to[i]) {
       if (c == p) continue;
       int cs = rec(c, i);
       size += cs;
@@ -39,7 +39,7 @@ void Main() {
     // Count all combinations where node i is white and is part of a tree.
     mint all = 1;  // All combinations.
     mint one = 0;  // Only one subtree contains a black node.
-    for (int c : sizes[i]) {
+    each(c, sizes[i]) {
       all *= two[c];
       one += two[c] - 1;
     }

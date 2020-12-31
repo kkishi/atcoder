@@ -5,7 +5,7 @@
 void Main() {
   strings(s);
   map<int, int> cnt;
-  for (char c : s) cnt[c - '0']++;
+  each(c, s) cnt[c - '0']++;
   bool ok = false;
   int len = min(sz(s), 3);
   int ten = 1;
@@ -18,7 +18,7 @@ void Main() {
       x /= 10;
     }
     bool ok2 = true;
-    for (auto [k, v] : m) {
+    each(k, v, m) {
       if (cnt[k] < v) ok2 = false;
     }
     if (ok2) ok = true;
