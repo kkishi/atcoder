@@ -8,7 +8,7 @@ int B[2 * 100000];
 void Main() {
   ints(N, M);
 
-  vector<vector<int>> edges(N);
+  VV<int> edges(N);
   rep(i, M) {
     ints(A, B);
     --A, --B;

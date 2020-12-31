@@ -4,7 +4,7 @@
 
 void Main() {
   ints(n, m);
-  vector<vector<bool>> connected(m, vector(n, false));
+  vector connected(m, V<bool>(n));
   rep(i, m) {
     ints(k);
     while (k--) {

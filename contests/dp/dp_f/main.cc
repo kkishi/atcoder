@@ -4,8 +4,8 @@
 
 void Main() {
   strings(s, t);
-  VV<int> dp(sz(s) + 1, V<int>(sz(t) + 1, 0));
-  vector p(sz(s) + 1, vector(sz(t) + 1, pair<int, int>()));
+  vector dp(sz(s) + 1, V<int>(sz(t) + 1));
+  vector p(sz(s) + 1, V<pair<int, int>>(sz(t) + 1));
   rep(i, sz(s)) rep(j, sz(t)) {
     if (s[i] == t[j])
       if (chmax(dp[i + 1][j + 1], dp[i][j] + 1)) {
