@@ -11,14 +11,14 @@ void Main() {
   V<int> x;
   rep(s, 1 << n1) {
     int xi = 0;
-    rep(i, n1) if ((s >> i) & 1) xi += a[i];
+    rep(i, n1) if (hasbit(s, i)) xi += a[i];
     x.push_back(xi);
   }
   sort(all(x));
   V<int> y;
   rep(s, 1 << n2) {
     int yi = 0;
-    rep(i, n2) if ((s >> i) & 1) yi += a[i + n1];
+    rep(i, n2) if (hasbit(s, i)) yi += a[i + n1];
     y.push_back(yi);
   }
   sort(all(y));

@@ -28,7 +28,7 @@ void Main() {
   auto lca = [&](int a, int b) {
     if (dist[a] > dist[b]) swap(a, b);
     int d = dist[b] - dist[a];
-    rep(i, 30) if ((d >> i) & 1) b = parent[i][b];
+    rep(i, 30) if (hasbit(d, i)) b = parent[i][b];
     if (a == b) return a;
     rrep(i, 30) if (int pa = parent[i][a], pb = parent[i][b]; pa != pb) {
       a = pa, b = pb;

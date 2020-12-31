@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#define bit(s, i) ((s >> i) & 1)
 
 void Main() {
   ints(n);
@@ -14,7 +13,7 @@ void Main() {
   int ans = inf;
   vector dp(1 << n, vector(n, inf));
   dp[1][0] = 0;
-  rep(s, 1 << n) rep(i, n) if (bit(s, i)) rep(j, n) if (!bit(s, j)) {
+  rep(s, 1 << n) rep(i, n) if (hasbit(s, i)) rep(j, n) if (!hasbit(s, j)) {
     chmin(dp[s | (1 << j)][j], dp[s][i] + dist(i, j));
   }
   rep(i, n) chmin(ans, dp[(1 << n) - 1][i] + dist(i, 0));

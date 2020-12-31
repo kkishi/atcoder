@@ -10,7 +10,7 @@ void Main() {
     map<int, int> m;
     rep(s, 1 << sz(w)) {
       int v = 0;
-      rep(i, sz(w)) if ((s >> i) & 1) v += w[i];
+      rep(i, sz(w)) if (hasbit(s, i)) v += w[i];
       ++m[v];
     }
     return m;

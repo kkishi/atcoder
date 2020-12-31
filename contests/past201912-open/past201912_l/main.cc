@@ -21,7 +21,7 @@ void Main() {
   double ans = numeric_limits<double>::max();
   rep(s, 1 << m) {
     V<bool> use(nm);
-    rep(i, nm) use[i] = (i < n) ? true : ((s >> (i - n)) & 1);
+    rep(i, nm) use[i] = (i < n) || hasbit(s, i - n);
     DisjointSet ds(nm);
     double sum = 0;
     for (auto [c, i, j] : v) {

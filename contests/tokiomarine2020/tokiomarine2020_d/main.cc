@@ -41,7 +41,7 @@ void Main() {
       rep(i, 1 << vs.size()) {
         int v_sum = 0;
         int w_sum = 0;
-        rep(j, vs.size()) if ((i >> j) & 1) {
+        rep(j, vs.size()) if (hasbit(i, j)) {
           v_sum += vs[j];
           w_sum += ws[j];
         }

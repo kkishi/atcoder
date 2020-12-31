@@ -19,7 +19,7 @@ void Main() {
     rep(i, m) {
       int cnt = 0;
       rep(j, n) {
-        if (connected[i][j] && ((s >> j) & 1)) {
+        if (connected[i][j] && hasbit(s, j)) {
           ++cnt;
         }
       }

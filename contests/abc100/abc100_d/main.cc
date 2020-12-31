@@ -14,7 +14,7 @@ void Main() {
   rep(s, 1 << 3) {
     auto f = [&](int i) {
       int ret = 0;
-      rep(j, 3) { ret += x[i][j] * (((s >> j) & 1) ? 1 : -1); }
+      rep(j, 3) { ret += x[i][j] * (hasbit(s, j) ? 1 : -1); }
       return ret;
     };
     sort(all(idx), [&](int a, int b) { return f(a) > f(b); });

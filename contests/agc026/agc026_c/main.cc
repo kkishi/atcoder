@@ -7,7 +7,7 @@ void Main() {
   strings(s);
   map<pair<string, string>, int> l, r;
   rep(bits, 1 << n) {
-    auto bit = [&](int i) { return (bits >> i) & 1; };
+    auto bit = [&](int i) { return hasbit(bits, i); };
     {
       string x, y;
       rep(i, n)(bit(i) ? x : y) += s[i];

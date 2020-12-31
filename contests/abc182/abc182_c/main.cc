@@ -14,7 +14,7 @@ void Main() {
   int ans = l;
   rep(s, 1 << l) {
     int x = 0;
-    rep(i, l) if ((s >> i) & 1)(x *= 10) += d[i];
+    rep(i, l) if (hasbit(s, i))(x *= 10) += d[i];
     if (x % 3 == 0) chmin(ans, l - popcount(s));
   }
   if (ans == l) {

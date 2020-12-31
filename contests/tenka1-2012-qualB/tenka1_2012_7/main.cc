@@ -36,9 +36,8 @@ void Main() {
   V<int> dp(1 << n, numeric_limits<int>::max());
   rep(s, 1 << n) {
     bool ok = true;
-    auto bit = [](int bits, int i) { return (bits >> i) & 1; };
-    rep(i, n - 1) if (bit(s, i)) {
-      rep(j, i + 1, n) if (bit(s, j) && overlap[i][j]) ok = false;
+    rep(i, n - 1) if (hasbit(s, i)) {
+      rep(j, i + 1, n) if (hasbit(s, j) && overlap[i][j]) ok = false;
     }
     if (ok) {
       dp[s] = 1;

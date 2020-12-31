@@ -10,7 +10,7 @@ void Main() {
   rep(hs, 1 << h) rep(ws, 1 << w) {
     int black = 0;
     rep(i, h) rep(j, w) {
-      bool red = ((hs >> i) & 1) || ((ws >> j) & 1);
+      bool red = hasbit(hs, i) || hasbit(ws, j);
       if (c[i][j] == '#' && !red) ++black;
     }
     if (black == k) ++ans;

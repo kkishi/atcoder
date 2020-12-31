@@ -13,9 +13,8 @@ void Main() {
   int ans = 0;
   rep(s, 1 << n) {
     bool ok = true;
-    rep(i, n - 1)
-        rep(j, i + 1, n) if (((s >> i) & 1) && ((s >> j) & 1) && !g[i][j]) ok =
-            false;
+    rep(i, n - 1) rep(j, i + 1, n) if (hasbit(s, i) && hasbit(s, j) && !g[i][j])
+        ok = false;
     if (ok) chmax(ans, popcount(s));
   }
   wt(ans);

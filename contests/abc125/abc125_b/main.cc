@@ -9,7 +9,7 @@ void Main() {
   int ans = numeric_limits<int>::min();
   rep(s, 1 << n) {
     int x = 0, y = 0;
-    rep(i, n) if ((s >> i) & 1) {
+    rep(i, n) if (hasbit(s, i)) {
       x += v[i];
       y += c[i];
     }

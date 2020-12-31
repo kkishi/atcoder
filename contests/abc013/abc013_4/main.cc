@@ -15,7 +15,7 @@ void Main() {
   rep(i, 1, 40) rep(j, n) ordn[i][j] = ordn[i - 1][ordn[i - 1][j]];
   V<int> ans(n);
   iota(all(ans), 0);
-  rep(i, 40) if ((d >> i) & 1) rep(j, n) ans[j] = ordn[i][ans[j]];
+  rep(i, 40) if (hasbit(d, i)) rep(j, n) ans[j] = ordn[i][ans[j]];
   V<int> rans(n);
   rep(i, n) rans[ans[i]] = i;
   rep(i, n) wt(rans[i] + 1);

@@ -11,7 +11,7 @@ void Main() {
     int n = N / 2;
     rep(i, 1 << n) {
       int vs = 0, ws = 0;
-      rep(j, n) if ((i >> j) & 1) {
+      rep(j, n) if (hasbit(i, j)) {
         vs += v[j];
         ws += w[j];
       }
@@ -23,7 +23,7 @@ void Main() {
     int ans = 0;
     rep(i, 1 << (N - n)) {
       int vs = 0, ws = 0;
-      rep(j, (N - n)) if ((i >> j) & 1) {
+      rep(j, (N - n)) if (hasbit(i, j)) {
         vs += v[j + n];
         ws += w[j + n];
       }
