@@ -8,6 +8,6 @@ void Main() {
   cin >> a;
   int m = *min_element(all(a));
   int ans = 0;
-  rep(i, sz(a)) ans += a[i] - m;
+  each(ai, a) ans += ai - m;
   wt(ans);
 }

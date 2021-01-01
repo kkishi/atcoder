@@ -23,22 +23,13 @@ void Main() {
     rep(i, m) xy[x[i]].push_back(y[i]);
 
     BIT<int> ys(h);
-    V<bool> ys_aux(h);
-    rep(i, hy[0] + 1) {
-      ys.Add(i, 1);
-      ys_aux[i] = true;
-    }
+    rep(i, hy[0] + 1) ys.Add(i, 1);
 
     int cnt = 0, excess = 0;
     rep(i, hx + 1) {
       cnt += hy[i] + 1;
       excess += ys.Sum(hy[i]);
-      for (int y : xy[i]) {
-        if (ys_aux[y]) {
-          ys_aux[y] = false;
-          ys.Add(y, -1);
-        }
-      }
+      for (int y : xy[i]) ys.Set(y, 0);
     }
     return {cnt, excess};
   };
