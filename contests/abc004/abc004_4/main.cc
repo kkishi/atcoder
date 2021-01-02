@@ -4,7 +4,7 @@
 
 void Main() {
   ints(r, g, b);
-  int ans = numeric_limits<int>::max() / 10;
+  int ans = big;
   // Try all placements where marbles of each color are placed consecutively.
   rep(L, -300, 300) rep(R, -300, 300) if (R - L >= g) {
     // Red: [L-r, L)

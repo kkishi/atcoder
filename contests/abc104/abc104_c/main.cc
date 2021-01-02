@@ -6,7 +6,7 @@ void Main() {
   ints(d, g);
   vector<int> p(d), c(d);
   rep(i, d) cin >> p[i] >> c[i];
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(s, 1 << d) {
     int solved = 0;
     int score = 0;

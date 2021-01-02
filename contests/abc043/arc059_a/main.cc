@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(i, -100, 101) {
     int sum = 0;
 #define sq(x) ((x) * (x))

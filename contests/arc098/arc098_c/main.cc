@@ -10,7 +10,7 @@ void Main() {
   V<int> b = a;
   sort(all(b));
 
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(i, n) {  // OK to use x in a if x >= b[i].
     multiset<int> s, r;
     rep(j, n + 1) {

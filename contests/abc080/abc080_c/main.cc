@@ -8,7 +8,7 @@ void Main() {
   cin >> f;
   VV<int> p(n, V<int>(11));
   cin >> p;
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(s, 1, 1 << 10) {
     V<int> c(n);
     rep(i, 5) rep(j, 2) {

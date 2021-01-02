@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   vector<int> v(n), c(n);
   cin >> v >> c;
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(s, 1 << n) {
     int x = 0, y = 0;
     rep(i, n) if (hasbit(s, i)) {

@@ -42,11 +42,10 @@ void Main() {
   } else {
     int mv = *max_element(all(v));
     assert(mv <= 1000);
-    int inf = numeric_limits<int>::max() / 10;
     int size = N * mv;
-    V<int> dp(size + 1, inf);
+    V<int> dp(size + 1, big);
     dp[0] = 0;
-    rep(i, N) rrep(j, size + 1 - v[i]) if (dp[j] != inf) {
+    rep(i, N) rrep(j, size + 1 - v[i]) if (dp[j] != big) {
       chmin(dp[j + v[i]], dp[j] + w[i]);
     }
     int ans = 0;

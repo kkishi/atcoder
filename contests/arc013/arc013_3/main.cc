@@ -9,8 +9,8 @@ void Main() {
     V<int> x(3);
     cin >> x;
     ints(m);
-    V<int> lo(3, numeric_limits<int>::max());
-    V<int> hi(3, numeric_limits<int>::min());
+    V<int> lo(3, big);
+    V<int> hi(3, -big);
     rep(m) {
       V<int> v(3);
       cin >> v;

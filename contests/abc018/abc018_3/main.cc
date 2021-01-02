@@ -6,8 +6,7 @@ void Main() {
   ints(r, c, k);
   V<string> s(r);
   cin >> s;
-  const int inf = numeric_limits<int>::max() / 10;
-  VV<int> dist(r, V<int>(c, inf));
+  VV<int> dist(r, V<int>(c, big));
   queue<pair<int, int>> que;
   rep(i, r) rep(j, c) if (s[i][j] == 'x') {
     dist[i][j] = 0;

@@ -5,15 +5,13 @@
 #include "atcoder.h"
 #include "modint.h"
 
-const int inf = numeric_limits<int>::max() / 10;
-
 struct S {
   int l, m;
 };
 
 S op(S a, S b) { return {min(a.l, b.l), min(a.m, b.m)}; }
 
-S e() { return {inf, inf}; }
+S e() { return {big, big}; }
 
 using F = optional<int>;
 
@@ -37,14 +35,14 @@ void Main() {
     --a;
     int x;
     if (a == 0) {
-      x = inf;
+      x = big;
     } else {
       x = tree.prod(a - 1, a).m;
-      if (x != inf) x -= a - 1;
+      if (x != big) x -= a - 1;
     }
     tree.apply(a, b, x);
     int ans = tree.prod(0, w).m;
-    if (ans == inf) {
+    if (ans == big) {
       wt(-1);
     } else {
       wt(ans + i + 1);

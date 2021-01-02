@@ -11,7 +11,7 @@ void Main() {
   int y = k % 50;
   rep(i, 50) a[i] += x;
   rep(y) {
-    int mi, m = numeric_limits<int>::max();
+    int mi, m = big;
     rep(i, 50) if (chmin(m, a[i])) mi = i;
     rep(i, 50) if (i != mi) {
       assert(a[i] > 0);

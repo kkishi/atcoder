@@ -7,9 +7,7 @@ void Main() {
   V<int> a(l);
   cin >> a;
 
-  const int inf = numeric_limits<int>::max() / 10;
-
-  vector dp(l + 1, vector(5, inf));
+  vector dp(l + 1, vector(5, big));
   rep(i, 5) dp[0][i] = 0;
 
   rep(i, l) {
@@ -20,7 +18,7 @@ void Main() {
     rep(j, 5) rep(k, j + 1) chmin(dp[i + 1][j], dp[i][k] + c[k]);
   }
 
-  int ans = inf;
+  int ans = big;
   rep(i, 5) chmin(ans, dp[l][i]);
   wt(ans);
 }

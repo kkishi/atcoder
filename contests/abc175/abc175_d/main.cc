@@ -6,7 +6,7 @@ void Main() {
   ints(n, k);
   V<int> p(n), c(n);
   cin >> p >> c;
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(init, n) {
     V<int> score(n, -1);
     V<int> prev(n, -1);

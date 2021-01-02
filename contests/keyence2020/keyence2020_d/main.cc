@@ -14,8 +14,7 @@ void Main() {
     }
   }
 
-  const int inf = numeric_limits<int>::max() / 10;
-  vector dp(1 << n, vector<int>(n, inf));
+  vector dp(1 << n, vector<int>(n, big));
   rep(i, n) dp[1 << i][i] = i;
   rep(s, 1 << n) rep(i, n) if (hasbit(s, i)) {
     int p = popcount(s);
@@ -29,7 +28,7 @@ void Main() {
     }
   }
 
-  int ans = inf;
+  int ans = big;
   rep(i, n) chmin(ans, dp[(1 << n) - 1][i]);
-  wt(ans == inf ? -1 : ans);
+  wt(ans == big ? -1 : ans);
 }

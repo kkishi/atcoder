@@ -24,7 +24,7 @@ void Main() {
   };
 
   sort(all(w));
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   do {
     V<int> sum(n + 1);
     rep(i, n) sum[i + 1] = sum[i] + w[i];

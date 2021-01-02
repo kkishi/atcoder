@@ -22,7 +22,7 @@ void Main() {
     }
     sort(all(cost[i]));
   }
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   V<int> idx = {0, 1, 2};
   do {
     set<int> used;

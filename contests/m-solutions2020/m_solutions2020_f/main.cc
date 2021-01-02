@@ -9,8 +9,7 @@ void Main() {
   rep(i, n) cin >> x[i] >> y[i] >> u[i];
 
   const int M = 400001;
-  const int inf = numeric_limits<int>::max();
-  int t = inf;
+  int t = big;
   rep(rot, 4) {
     // R L
     {
@@ -54,7 +53,7 @@ void Main() {
           map<char, char>{{'R', 'U'}, {'L', 'D'}, {'U', 'L'}, {'D', 'R'}}[u[i]];
     }
   }
-  if (t == inf) {
+  if (t == big) {
     wt("SAFE");
   } else {
     wt(t);

@@ -27,7 +27,7 @@ void Main() {
       }
       return v;
     };
-    int ans = numeric_limits<int>::max();
+    int ans = big;
     for (int sx : lohi(ss, x)) {
       for (int tx : lohi(ts, x)) {
         chmin(ans, abs(x - sx) + abs(sx - tx));

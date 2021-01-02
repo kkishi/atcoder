@@ -23,7 +23,7 @@ void Main() {
   }
   dbg(l);
   dbg(r);
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   for (int i = 0; i < n; i += 2) {
     auto it = ws.lower_bound(h[i]);
     if (it == ws.end()) --it;

@@ -9,7 +9,7 @@ using S = int;
 
 S op(S a, S b) { return max(a, b); }
 
-S e() { return numeric_limits<int>::min(); }
+S e() { return -big; }
 
 using F = int;
 

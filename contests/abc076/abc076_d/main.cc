@@ -20,7 +20,7 @@ void Main() {
   rep(i, n) st[i + 1] = st[i] + t[i];
 
   int T = st[n];
-  V<int> maxi(T + 1, numeric_limits<int>::max());
+  V<int> maxi(T + 1, big);
   rep(i, n) {
     rep(j, st[i], st[i + 1] + 1) chmin(maxi[j], v[i]);
     rrep(t, st[i] + 1) chmin(maxi[t], v[i] + (st[i] - t));

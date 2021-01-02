@@ -8,7 +8,7 @@ void Main() {
   cin >> x;
   int m = 0;
   double u = 0;
-  int c = numeric_limits<int>::min();
+  int c = -big;
   for (int xi : x) {
     int ax = abs(xi);
     m += ax;

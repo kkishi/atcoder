@@ -7,9 +7,9 @@ void Main() {
   V<int> x(n), y(n);
   rep(i, n) cin >> x[i] >> y[i];
 
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(2) {
-    int maxi = numeric_limits<int>::min(), mini = numeric_limits<int>::max();
+    int maxi = -big, mini = big;
     rep(i, n) {
       chmax(maxi, x[i] + y[i]);
       chmin(mini, x[i] + y[i]);

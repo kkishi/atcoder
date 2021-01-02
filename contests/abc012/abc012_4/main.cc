@@ -5,8 +5,7 @@
 
 void Main() {
   ints(n, m);
-  const int inf = numeric_limits<int>::max() / 10;
-  VV<int> dist(n, V<int>(n, inf));
+  VV<int> dist(n, V<int>(n, big));
   rep(i, n) dist[i][i] = 0;
   rep(m) {
     ints(a, b, t);
@@ -14,7 +13,7 @@ void Main() {
     dist[a][b] = dist[b][a] = t;
   }
   WarshallFloyd(dist);
-  int ans = inf;
+  int ans = big;
   rep(i, n) {
     int maxi = 0;
     rep(j, n) chmax(maxi, dist[i][j]);

@@ -9,7 +9,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  P inf = {numeric_limits<int>::max() / 10, 0};
+  P inf = {big, 0};
 
   SegmentTree<P> t(
       n, [](P a, P b) { return min(a, b); }, inf);

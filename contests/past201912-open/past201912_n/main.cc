@@ -14,7 +14,7 @@ void Main() {
   set<int> s(all(r));
   s.insert(0);
   low_priority_queue<pair<int, int>> que;
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   int cost = 0;
   auto it = idx.begin();
   for (int L : s) {

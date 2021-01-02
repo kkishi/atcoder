@@ -10,11 +10,9 @@ void Main() {
   V<int> rsum(l + 1);
   rrep(i, l) rsum[i] = rsum[i + 1] + a[i];
 
-  const int inf = numeric_limits<int>::max() / 10;
+  int ans = big;
 
-  int ans = inf;
-
-  vector dp(l + 1, vector(3, inf));
+  vector dp(l + 1, vector(3, big));
   rep(i, 3) dp[0][i] = 0;
 
   int sum = 0;

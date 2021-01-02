@@ -6,8 +6,7 @@ void Main() {
   ints(n, m);
   V<int> a(n), b(m);
   cin >> a >> b;
-  int inf = numeric_limits<int>::max() / 10;
-  vector dp(n + 1, vector(m + 1, inf));
+  vector dp(n + 1, vector(m + 1, big));
   dp[0][0] = 0;
   rep(i, m) dp[0][i + 1] = i + 1;
   rep(i, n) dp[i + 1][0] = i + 1;

@@ -9,7 +9,7 @@ void Main() {
     v.push_back(x % 10);
   }
   reverse(all(v));
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(i, sz(v)) rep(j, 10) rep(k, 10) {
     V<int> u = v;
     u[i] = j;

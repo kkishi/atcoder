@@ -34,7 +34,7 @@ void Main() {
       if (que.size() == n) right[i] = sum;
     }
   }
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(i, n - 1, 2 * n) chmax(ans, left[i] - right[i + 1]);
   wt(ans);
 }

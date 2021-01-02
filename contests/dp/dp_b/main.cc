@@ -6,8 +6,7 @@ void Main() {
   ints(n, k);
   V<int> h(n);
   cin >> h;
-  const int inf = numeric_limits<int>::max() / 10;
-  V<int> dp(n, inf);
+  V<int> dp(n, big);
   dp[0] = 0;
   rep(i, 1, n) rep(j, k) {
     int l = i - 1 - j;

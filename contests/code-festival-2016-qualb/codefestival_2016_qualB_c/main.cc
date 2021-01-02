@@ -6,9 +6,8 @@ void Main() {
   ints(w, h);
   V<int> p(w), q(h);
   cin >> p >> q;
-  int inf = numeric_limits<int>::max() / 10;
-  p.push_back(inf);
-  q.push_back(inf);
+  p.push_back(big);
+  q.push_back(big);
   sort(all(p));
   sort(all(q));
   int x = w + 1;

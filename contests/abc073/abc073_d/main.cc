@@ -7,8 +7,7 @@ void Main() {
   ints(n, m, R);
   V<int> r(R);
   cin >> r;
-  int inf = numeric_limits<int>::max() / 10;
-  VV<int> dist(n, V<int>(n, inf));
+  VV<int> dist(n, V<int>(n, big));
   rep(m) {
     ints(a, b, c);
     --a, --b;
@@ -16,7 +15,7 @@ void Main() {
   }
   WarshallFloyd(dist);
   sort(all(r));
-  int ans = inf;
+  int ans = big;
   do {
     int sum = 0;
     rep(i, R - 1) sum += dist[r[i] - 1][r[i + 1] - 1];

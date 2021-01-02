@@ -8,7 +8,7 @@ void Main() {
   ints(h, w, t);
   V<string> s(h);
   cin >> s;
-  wt(BinarySearch<int>(1, numeric_limits<int>::max() / 10, [&](int x) {
+  wt(BinarySearch<int>(1, big, [&](int x) {
     Grid<int> grid(h, w);
     int sr, sc, gr, gc;
     rep(i, h) rep(j, w) {

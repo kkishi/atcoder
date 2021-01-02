@@ -8,7 +8,7 @@ using S = int;
 
 S op(S a, S b) { return min(a, b); }
 
-S e() { return numeric_limits<int>::max(); }
+S e() { return big; }
 
 using F = int;
 

@@ -33,7 +33,7 @@ void Main() {
     }
   }
 
-  V<int> dp(1 << n, numeric_limits<int>::max());
+  V<int> dp(1 << n, big);
   rep(s, 1 << n) {
     bool ok = true;
     rep(i, n - 1) if (hasbit(s, i)) {

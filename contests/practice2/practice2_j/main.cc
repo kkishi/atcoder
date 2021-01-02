@@ -9,7 +9,7 @@ void Main() {
   V<int> a(n);
   cin >> a;
   SegmentTree<int> tree(
-      n, [](int a, int b) { return max(a, b); }, numeric_limits<int>::min());
+      n, [](int a, int b) { return max(a, b); }, -big);
   rep(i, n) tree.Set(i, a[i]);
   rep(q) {
     ints(t, x, v);

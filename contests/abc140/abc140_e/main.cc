@@ -11,7 +11,7 @@ void Main() {
     V<int> l(n);
     {
       stack<pair<int, int>> s;
-      s.push({numeric_limits<int>::max(), -1});
+      s.push({big, -1});
       rep(i, n) {
         while (s.top().first < p[i]) {
           s.pop();
@@ -23,7 +23,7 @@ void Main() {
     VV<int> rr(n);
     {
       stack<pair<int, int>> s;
-      s.push({numeric_limits<int>::max(), n});
+      s.push({big, n});
       rrep(i, n) {
         while (s.top().first < p[i]) {
           s.pop();
@@ -37,7 +37,7 @@ void Main() {
     V<int> r(n);
     {
       set<pair<int, int>> s;
-      s.insert({numeric_limits<int>::max(), n});
+      s.insert({big, n});
       rrep(i, n) {
         for (int j : rr[i]) {
           auto it = s.lower_bound({p[j], 0});

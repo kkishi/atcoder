@@ -5,8 +5,7 @@
 
 void Main() {
   ints(n, m);
-  int inf = numeric_limits<int>::max() / 10;
-  vector dist(n, vector(n, inf));
+  vector dist(n, vector(n, big));
   rep(i, n) dist[i][i] = 0;
   rep(m) {
     ints(a, b, c);

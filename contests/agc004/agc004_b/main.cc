@@ -6,7 +6,7 @@ void Main() {
   ints(n, x);
   V<int> a(n);
   cin >> a;
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(y, n) {
     int sum = 0;
     multiset<int> s;

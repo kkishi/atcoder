@@ -18,12 +18,12 @@ void Main() {
   }
 
   bigint hi =
-      BinarySearch<bigint>(1, numeric_limits<int>::max(), [&](bigint n) {
+      BinarySearch<bigint>(1, big, [&](bigint n) {
         // (n * (n + 1) / 2 - n) / n <= x / y
         return (n - 1) * y <= x * 2;
       });
   bigint lo =
-      BinarySearch<bigint>(numeric_limits<int>::max(), 0, [&](bigint n) {
+      BinarySearch<bigint>(big, 0, [&](bigint n) {
         // x / y <= (n * (n + 1) / 2 - 1) / n
         return x * 2 * n <= (n * (n + 1) - 2) * y;
       });

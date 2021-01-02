@@ -13,8 +13,7 @@ void Main() {
   }
   V<bool> used(m);
   rep(i, n) {
-    int inf = numeric_limits<int>::max() / 10;
-    V<int> dist(n, inf);
+    V<int> dist(n, big);
     dist[i] = 0;
     low_priority_queue<tuple<int, int, int>> que;
     que.push({0, i, -1});

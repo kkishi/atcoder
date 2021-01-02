@@ -24,14 +24,14 @@ void Main() {
     auto& d = dp[g];
     if (!d) {
       if (depth % 2 == 0) {
-        d = {numeric_limits<int>::min(), 0};
+        d = {-big, 0};
         rep(i, 3) rep(j, 3) if (g[i][j] == ' ') {
           g[i][j] = 'o';
           chmax(d, rec(depth + 1, g));
           g[i][j] = ' ';
         }
       } else {
-        d = {numeric_limits<int>::max(), 0};
+        d = {big, 0};
         rep(i, 3) rep(j, 3) if (g[i][j] == ' ') {
           g[i][j] = 'x';
           chmin(d, rec(depth + 1, g));

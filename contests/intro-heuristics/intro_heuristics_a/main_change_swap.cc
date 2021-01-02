@@ -147,7 +147,7 @@ void Main() {
   vector<int> last(26);
   rep(i, p.D) {
     int d = i + 1;
-    int maxi = numeric_limits<int>::min();
+    int maxi = -big;
     int chosen;
     rep(j, 26) {
       int change = p.s[i][j];

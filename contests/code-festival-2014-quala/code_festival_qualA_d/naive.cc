@@ -4,7 +4,7 @@
 
 void Main() {
   ints(a, k);
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(i, 1, 10000000) {
     if (abs(a - i) > ans) continue;
     V<bool> u(10);

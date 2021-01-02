@@ -11,8 +11,7 @@ void Main() {
   rep(i, N) rep(j, M) if (grid[i][j] == 's') sr = i, sc = j;
   auto bfs = [&](double x) {
     queue<pair<int, int>> que;
-    int inf = numeric_limits<int>::max() / 10;
-    vector dist(N, vector(M, inf));
+    vector dist(N, vector(M, big));
     que.push({sr, sc});
     dist[sr][sc] = 0;
     while (!que.empty()) {

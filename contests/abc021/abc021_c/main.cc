@@ -16,8 +16,7 @@ void Main() {
     to[y].push_back(x);
   }
 
-  const int inf = numeric_limits<int>::max() / 10;
-  V<int> dist(n, inf);
+  V<int> dist(n, big);
   V<mint> cnt(n);
   dist[a] = 0;
   cnt[a] = 1;

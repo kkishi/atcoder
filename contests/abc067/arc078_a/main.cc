@@ -8,7 +8,7 @@ void Main() {
   cin >> a;
   V<int> s(n + 1);
   rep(i, n) s[i + 1] = s[i] + a[i];
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(i, n - 1) chmin(ans, abs(s[n] - s[i + 1] - s[i + 1]));
   wt(ans);
 }

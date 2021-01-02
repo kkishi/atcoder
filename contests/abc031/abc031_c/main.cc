@@ -6,10 +6,10 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(ti, n) {
     int x;
-    int maxi = numeric_limits<int>::min();
+    int maxi = -big;
     rep(ai, n) if (ai != ti) {
       int i = ti, j = ai;
       if (i > j) swap(i, j);

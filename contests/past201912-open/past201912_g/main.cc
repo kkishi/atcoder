@@ -11,7 +11,7 @@ void Main() {
       a[i][j] = a[j][i] = ai;
     }
   }
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   Fix([&](auto rec, int depth, V<int> groups, int score) {
     if (depth == n) {
       chmax(ans, score);

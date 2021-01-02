@@ -13,9 +13,8 @@ void Main() {
     g.AddEdge(r, l, -d);
   }
 
-  const int inf = numeric_limits<int>::max();
-  V<int> seen(n, inf);
-  rep(i, n) if (seen[i] == inf) {
+  V<int> seen(n, big);
+  rep(i, n) if (seen[i] == big) {
     seen[i] = 0;
     queue<pair<int, int>> que;
     que.push({i, 0});
@@ -25,7 +24,7 @@ void Main() {
       for (const auto& e : g.Edges(u)) {
         int v = e.to;
         int w = p + e.weight;
-        if (seen[v] != inf) {
+        if (seen[v] != big) {
           if (seen[v] != w) {
             wt("No");
             return;

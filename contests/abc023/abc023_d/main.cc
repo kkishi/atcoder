@@ -7,7 +7,7 @@ void Main() {
   ints(n);
   V<int> h(n), s(n);
   rep(i, n) cin >> h[i] >> s[i];
-  wt(BinarySearch<int>(numeric_limits<int>::max(), 0, [&](int x) {
+  wt(BinarySearch<int>(big, 0, [&](int x) {
     V<int> v;
     rep(i, n) {
       if (h[i] > x) return false;
