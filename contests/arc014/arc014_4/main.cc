@@ -7,7 +7,7 @@ void Main() {
   V<int> l(n);
   cin >> l;
   V<int> L;
-  rep(i, n - 1) L.push_back(l[i + 1] - l[i] - 1);
+  rep(i, n - 1) L.pb(l[i + 1] - l[i] - 1);
   sort(all(L));
   V<int> s(n);
   rep(i, n - 1) s[i + 1] = s[i] + L[i];

@@ -41,7 +41,7 @@ void Main() {
     }
     int ans = INF;
     for (++h; h <= H; ++h) {
-      assignments.push_back(h);
+      assignments.pb(h);
       chmin(ans, dfs(h));
       assignments.pop_back();
     }

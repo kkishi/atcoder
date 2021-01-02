@@ -29,7 +29,7 @@ void Main() {
   }
   vector<S> v;
   for (auto [x, ci] : c) {
-    v.push_back({x, ci});
+    v.pb({x, ci});
   }
 
   VV<mint> dp(k + 1, V<mint>(v.size()));

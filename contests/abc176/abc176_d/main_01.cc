@@ -41,7 +41,7 @@ void Main() {
       int nr = r + dr;
       int nc = c + dc;
       if (ok(nr, nc) && chmin(dist[nr][nc], dist[r][c] + 1)) {
-        que.push_back({nr, nc});
+        que.pb({nr, nc});
       }
     }
   }

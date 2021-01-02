@@ -11,7 +11,7 @@ void Main() {
     map<int, int> m;
     for (int j = i; j < n; j += 2) m[v[j]]++;
     for (auto [k, v] : m) {
-      counts[i].push_back({v, k});
+      counts[i].pb({v, k});
     }
     sort(all(counts[i]), greater());
   }

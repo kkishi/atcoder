@@ -17,7 +17,7 @@ optional<V<int>> Solve(int n, int a, int b) {
   rep(i, a) {
     V<int> v;
     int c = (n - idx - (a - i) + 1);
-    rep(j, min(b, c)) v.push_back(++idx);
+    rep(j, min(b, c)) v.pb(++idx);
     copy(v.rbegin(), v.rend(), back_inserter(ans));
   }
   return ans;

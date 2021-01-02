@@ -14,8 +14,8 @@ void Main() {
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    to[a].push_back(b);
-    to[b].push_back(a);
+    to[a].pb(b);
+    to[b].pb(a);
   }
 
   TreeDP<int> tdp(to, Combine, Calc, 1);

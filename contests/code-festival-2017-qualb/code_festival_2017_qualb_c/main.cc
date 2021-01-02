@@ -8,8 +8,8 @@ void Main() {
   rep(m) {
     ints(a, b);
     --a, --b;
-    to[a].push_back(b);
-    to[b].push_back(a);
+    to[a].pb(b);
+    to[b].pb(a);
   }
   V<int> colors(n, -1);
   stack<pair<int, int>> stk;

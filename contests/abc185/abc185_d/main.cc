@@ -6,8 +6,8 @@ void Main() {
   ints(n, m);
   V<int> a(m);
   cin >> a;
-  a.push_back(0);
-  a.push_back(n + 1);
+  a.pb(0);
+  a.pb(n + 1);
   sort(all(a));
   int mini = n;
   rep(i, sz(a) - 1) {

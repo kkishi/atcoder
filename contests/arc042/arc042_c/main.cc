@@ -8,7 +8,7 @@ void Main() {
   rep(i, n) cin >> a[i] >> b[i];
 
   V<pair<int, int>> ab;
-  rep(i, n) ab.emplace_back(a[i], b[i]);
+  rep(i, n) ab.eb(a[i], b[i]);
   sort(all(ab), greater{});
 
   V<int> dp(p + 101);

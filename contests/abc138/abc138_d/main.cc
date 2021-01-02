@@ -7,8 +7,8 @@ void Main() {
   vector<vector<int>> g(n + 1);
   rep(i, n - 1) {
     ints(a, b);
-    g[a].push_back(b);
-    g[b].push_back(a);
+    g[a].pb(b);
+    g[b].pb(a);
   }
   vector<int> xs(n + 1);
   rep(i, q) {

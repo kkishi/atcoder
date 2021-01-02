@@ -19,7 +19,7 @@ int Solve() {
 
   rep(i, n) if (s[i] == '1') {
     V<int> b;
-    rep(j, i + 1, n) if (s[j] == '0') b.push_back(a[j]);
+    rep(j, i + 1, n) if (s[j] == '0') b.pb(a[j]);
     if (!Check(a[i], b)) return 1;
   }
   return 0;

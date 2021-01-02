@@ -7,7 +7,7 @@ void Main() {
   VV<int> hostile(n);
   rep(m) {
     ints(a, b);
-    hostile[a - 1].push_back(b - 1);
+    hostile[a - 1].pb(b - 1);
   }
   strings(s);
   auto hostile_to = [&](const V<bool>& v) {

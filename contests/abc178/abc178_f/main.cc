@@ -49,12 +49,12 @@ void Main() {
         // Fill ra and rb with the remaining elements from A and B,
         // respectively.
         V<int> ra;
-        rep(c - ci) ra.push_back(x);
+        rep(c - ci) ra.pb(x);
         for (++ait; ait != rac.end(); ++ait) {
-          rep(ait->first) ra.push_back(ait->second);
+          rep(ait->first) ra.pb(ait->second);
         }
         V<int> rb;
-        for (auto [c, x] : rem) rep(c) rb.push_back(x);
+        for (auto [c, x] : rem) rep(c) rb.pb(x);
         assert(sz(ra) == sz(rb));
 
         // Elements from ra and rb are different, except for the remaining x
@@ -72,13 +72,13 @@ void Main() {
           swap(rc, rb);
         }
 
-        rep(i, sz(ra)) ans.push_back({ra[i], rb[i]});
+        rep(i, sz(ra)) ans.pb({ra[i], rb[i]});
         goto out;
       }
       // Pair x and y, then continue.
       auto [d, y] = *it;
       rbc.erase(it);
-      ans.push_back({x, y});
+      ans.pb({x, y});
       if (d > 1) rbc.insert({d - 1, y});
     }
   }

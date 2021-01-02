@@ -7,12 +7,12 @@ int Dfs(int l, int mult, int node, vector<tuple<int, int, int>>& v) {
     return node;
   }
   if (even(l)) {
-    v.push_back({node, node + 1, 0});
-    v.push_back({node, node + 1, mult});
+    v.pb({node, node + 1, 0});
+    v.pb({node, node + 1, mult});
     return Dfs(l / 2, mult * 2, node + 1, v);
   }
   int n = Dfs(l - 1, mult, node, v);
-  v.push_back({node, n, (l - 1) * mult});
+  v.pb({node, n, (l - 1) * mult});
   return n;
 }
 

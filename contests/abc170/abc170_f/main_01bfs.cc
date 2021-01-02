@@ -32,7 +32,7 @@ void Main() {
     if (front) {
       que.push_front(s);
     } else {
-      que.push_back(s);
+      que.pb(s);
     }
   };
   rep(dir, 4) push(State{{x1, y1, dir}, {1, 0}}, false);

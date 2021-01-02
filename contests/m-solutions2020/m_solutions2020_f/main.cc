@@ -14,7 +14,7 @@ void Main() {
     // R L
     {
       vector<vector<int>> r(M);
-      rep(i, n) if (u[i] == 'R') r[y[i]].push_back(x[i]);
+      rep(i, n) if (u[i] == 'R') r[y[i]].pb(x[i]);
       rep(i, M) sort(all(r[i]));
       rep(i, n) if (u[i] == 'L') {
         const auto& ri = r[y[i]];
@@ -30,7 +30,7 @@ void Main() {
     // R U
     {
       vector<vector<int>> r(M);
-      rep(i, n) if (u[i] == 'R') r[x[i] + y[i]].push_back(x[i]);
+      rep(i, n) if (u[i] == 'R') r[x[i] + y[i]].pb(x[i]);
       rep(i, M) sort(all(r[i]));
       rep(i, n) if (u[i] == 'U') {
         const auto& ri = r[x[i] + y[i]];

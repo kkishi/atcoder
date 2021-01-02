@@ -17,7 +17,7 @@ void Main() {
       ints(a);
       V<int> v;
       rep(i, n) if (f[a - 1][i]) rep(j, n) if (j != a - 1 && f[i][j])
-          v.push_back(j);
+          v.pb(j);
       for (int i : v) f[a - 1][i] = true;
     }
   }

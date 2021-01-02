@@ -12,7 +12,7 @@ void Main() {
       string ts = s;
       rep(j, t.size()) ts[i + j] = t[j];
       rep(i, ts.size()) if (ts[i] == '?') ts[i] = 'a';
-      cand.push_back(ts);
+      cand.pb(ts);
     }
   }
   if (cand.empty()) {

@@ -8,12 +8,12 @@ void Main() {
   V<tuple<int, bool, int, int>> e;
   rep(m) {
     ints(a, b, y);
-    e.emplace_back(y, false, a, b);
+    e.eb(y, false, a, b);
   }
   ints(q);
   rep(i, q) {
     ints(v, w);
-    e.emplace_back(w, true, v, i);
+    e.eb(w, true, v, i);
   }
   sort(all(e), greater());
   DisjointSet ds(n);

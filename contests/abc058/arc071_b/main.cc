@@ -14,8 +14,8 @@ void Main() {
   sort(all(oy));
 
   V<mint> x, y;
-  rep(i, n - 1) x.push_back(ox[i + 1] - ox[i]);
-  rep(i, m - 1) y.push_back(oy[i + 1] - oy[i]);
+  rep(i, n - 1) x.pb(ox[i + 1] - ox[i]);
+  rep(i, m - 1) y.pb(oy[i + 1] - oy[i]);
 
   mint x2 = 0;
   rep(i, sz(x)) x2 += x[i] * (i + 1) * (n - 1 - i);

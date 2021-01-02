@@ -17,12 +17,12 @@ void Main() {
       auto it = s.lower_bound(x);
       if (it == s.end()) {
         --it;
-        v.push_back(*it);
+        v.pb(*it);
       } else {
-        v.push_back(*it);
+        v.pb(*it);
         if (it != s.begin()) {
           --it;
-          v.push_back(*it);
+          v.pb(*it);
         }
       }
       return v;

@@ -7,7 +7,7 @@ void Main() {
   VV<int> hs(100001);
   rep(i, n) {
     ints(h);
-    hs[h].push_back(i);
+    hs[h].pb(i);
   }
   set<int> s{-1, n};
   V<int> ans(n);

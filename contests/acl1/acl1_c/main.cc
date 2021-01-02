@@ -13,7 +13,7 @@ void Main() {
   V<VV<int>> dps;
   rep(r, n) rep(c, m) {
     if (s[r][c] != 'o') continue;
-    p.push_back({r, c});
+    p.pb({r, c});
     VV<int> dp(n, V<int>(m, -1));
     dp[r][c] = 0;
     rep(nr, r, n) rep(nc, c, m) {
@@ -21,7 +21,7 @@ void Main() {
       if (nr > 0 && dp[nr - 1][nc] != -1) chmax(dp[nr][nc], dp[nr - 1][nc] + 1);
       if (nc > 0 && dp[nr][nc - 1] != -1) chmax(dp[nr][nc], dp[nr][nc - 1] + 1);
     }
-    dps.push_back(dp);
+    dps.pb(dp);
   }
 
   int src = sz(p) + n * m, dst = src + 1;

@@ -9,7 +9,7 @@ void Main() {
     if (c == 'B') {
       if (!v.empty()) v.pop_back();
     } else {
-      v.push_back(c);
+      v.pb(c);
     }
   }
   for (char c : v) cout << c;

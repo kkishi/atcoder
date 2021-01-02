@@ -58,7 +58,7 @@ void Main() {
     vector<int> v;
     int u = next.begin()->first;
     do {
-      v.push_back(u);
+      v.pb(u);
       u = next[u];
     } while (u != next.begin()->first);
     wt(v.size());

@@ -8,7 +8,7 @@ V<int> Solve(int n) {
   V<int> ans;
   rep(i, n / 8) {
     V<int> v{2, 3, 4, 6, 8, 9, 10, 12};
-    for (int vi : v) ans.push_back(i * 12 + vi);
+    for (int vi : v) ans.pb(i * 12 + vi);
   }
 
   int rem = n % 8;
@@ -20,7 +20,7 @@ V<int> Solve(int n) {
   if (rem == 5) v = {2, 3, 4, 6, 9};
   if (rem == 6) v = {2, 3, 4, 8, 9, 10};
   if (rem == 7) v = {2, 3, 4, 6, 8, 9, 10};
-  for (int vi : v) ans.push_back(n / 8 * 12 + vi);
+  for (int vi : v) ans.pb(n / 8 * 12 + vi);
 
   return ans;
 }

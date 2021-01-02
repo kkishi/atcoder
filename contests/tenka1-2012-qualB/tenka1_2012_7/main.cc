@@ -12,16 +12,16 @@ void Main() {
     auto intervals = [](string s, string e) {
       V<pair<string, string>> v;
       if (e <= "24:00") {
-        v.emplace_back(s, e);
+        v.eb(s, e);
       } else {
-        v.emplace_back(s, "24:00");
+        v.eb(s, "24:00");
         e[0] -= 2;
         e[1] -= 4;
         if (e[1] < '0') {
           e[0] -= 1;
           e[1] += 10;
         }
-        v.emplace_back("00:00", e);
+        v.eb("00:00", e);
       }
       return v;
     };

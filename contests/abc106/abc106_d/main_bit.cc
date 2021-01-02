@@ -15,14 +15,14 @@ void Main() {
   V<P> trains;
   rep(i, M) {
     ints(L, R);
-    trains.push_back({L - 1, R - 1});
+    trains.pb({L - 1, R - 1});
   }
   sort(all(trains), [](const P& a, const P& b) { return a.second < b.second; });
 
   V<Query> queries;
   rep(i, Q) {
     ints(p, q);
-    queries.push_back({i, p - 1, q - 1});
+    queries.pb({i, p - 1, q - 1});
   }
   sort(all(queries), [](const Query& a, const Query& b) { return a.r < b.r; });
 

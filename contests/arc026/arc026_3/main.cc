@@ -8,7 +8,7 @@ void Main() {
   V<tuple<int, int, int>> v;
   rep(n) {
     ints(l, r, c);
-    v.emplace_back(l, r, c);
+    v.eb(l, r, c);
   }
   sort(all(v));
   DualSegmentTree<int> t(

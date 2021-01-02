@@ -10,7 +10,7 @@ void Main() {
     ints(L, R);
     ++l[L];
     ++r[R];
-    train[L].push_back(R);
+    train[L].pb(R);
   }
   vector<int> ls(N + 2), rs(N + 2);
   rep(i, N) {

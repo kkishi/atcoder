@@ -30,9 +30,9 @@ void Main() {
 
   V<int> vs;
   for (auto [_, v] : reps) {
-    vs.push_back(v);
+    vs.pb(v);
     as.erase(as.find(v));
   }
-  for (auto a : as) vs.push_back(a);
+  for (auto a : as) vs.pb(a);
   wt(accumulate(vs.begin(), vs.begin() + x, int(0)));
 }

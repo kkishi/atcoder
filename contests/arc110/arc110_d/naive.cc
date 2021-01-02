@@ -26,7 +26,7 @@ int Solve(int n, int m, const V<int>& a) {
       return;
     }
     rep(i, a[depth], rem + 1) {
-      xs.push_back(i);
+      xs.pb(i);
       rec(depth + 1, rem - i, xs);
       xs.pop_back();
     }

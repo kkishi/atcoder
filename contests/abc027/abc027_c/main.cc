@@ -20,7 +20,7 @@ void Main() {
   */
   V<int> v;
   while (n) {
-    v.push_back(n & 1);
+    v.pb(n & 1);
     n >>= 1;
   }
   reverse(all(v));

@@ -6,7 +6,7 @@ void Main() {
   ints(a, K);
   V<int> v;
   for (int x = a; x; x /= 10) {
-    v.push_back(x % 10);
+    v.pb(x % 10);
   }
   reverse(all(v));
   int ans = big;

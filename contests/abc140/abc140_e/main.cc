@@ -29,7 +29,7 @@ void Main() {
           s.pop();
         }
         if (int j = s.top().second; j != n) {
-          rr[j].push_back(i);
+          rr[j].pb(i);
         }
         s.push({p[i], i});
       }

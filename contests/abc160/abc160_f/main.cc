@@ -33,8 +33,8 @@ void Main() {
   rep(i, N - 1) {
     ints(a, b);
     --a, --b;
-    edges[a].push_back(b);
-    edges[b].push_back(a);
+    edges[a].pb(b);
+    edges[b].pb(a);
   }
 
   TreeDP<DP> tdp(edges, Combine, Calc, {0, 1, 1});

@@ -10,7 +10,7 @@ void Main() {
   dbg(s);
   rep(i, n) if (i + 1 == n || s[i] != s[i + 1]) {
     bool zero = s[i] == '0';
-    v.push_back({zero, i - l});
+    v.pb({zero, i - l});
     l = i;
     // dbg(v.back());
   }

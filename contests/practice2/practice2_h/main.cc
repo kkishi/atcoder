@@ -48,7 +48,7 @@ void Main() {
     if (t[i] == f[i]) {
       ok = false;
     } else {
-      v.push_back((t[i] > f[i] ? x : y)[i]);
+      v.pb((t[i] > f[i] ? x : y)[i]);
     }
   }
   wt(ok);

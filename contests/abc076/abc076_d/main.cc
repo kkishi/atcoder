@@ -12,8 +12,8 @@ void Main() {
     v[i] *= 2;
   }
 
-  t.push_back(0);
-  v.push_back(0);
+  t.pb(0);
+  v.pb(0);
   ++n;
 
   V<int> st(n + 1);

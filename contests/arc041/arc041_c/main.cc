@@ -11,16 +11,16 @@ void Main() {
     V<int> y;
     V<char> e;
     if (d[0] == 'L') {
-      y.push_back(0);
-      e.push_back('R');
+      y.pb(0);
+      e.pb('R');
     }
     rep(i, n) {
-      y.push_back(x[i]);
-      e.push_back(d[i]);
+      y.pb(x[i]);
+      e.pb(d[i]);
     }
     if (d.back() == 'R') {
-      y.push_back(l + 1);
-      e.push_back('L');
+      y.pb(l + 1);
+      e.pb('L');
     }
     swap(x, y);
     swap(d, e);

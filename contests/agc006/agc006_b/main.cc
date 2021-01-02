@@ -8,7 +8,7 @@ int Simulate(V<int> v) {
     auto mid = [](int a, int b, int c) {
       return a + b + c - min({a, b, c}) - max({a, b, c});
     };
-    rep(i, sz(v) - 2) nv.push_back(mid(v[i], v[i + 1], v[i + 2]));
+    rep(i, sz(v) - 2) nv.pb(mid(v[i], v[i + 1], v[i + 2]));
     swap(v, nv);
   }
   return v[0];

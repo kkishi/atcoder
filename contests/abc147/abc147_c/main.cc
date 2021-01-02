@@ -23,7 +23,7 @@ void Main() {
     ints(a);
     rep(j, a) {
       ints(x, y);
-      v[i].push_back({x - 1, y});
+      v[i].pb({x - 1, y});
     }
   }
   int ans = 0;

@@ -12,12 +12,12 @@ void Main() {
 
   V<int> c;
   rep(i, d) {
-    c.push_back(l[i]);
-    c.push_back(r[i]);
+    c.pb(l[i]);
+    c.pb(r[i]);
   }
   rep(i, k) {
-    c.push_back(s[i]);
-    c.push_back(t[i]);
+    c.pb(s[i]);
+    c.pb(t[i]);
   }
   c = Compress(c);
 
@@ -40,7 +40,7 @@ void Main() {
         }
       }
       if (v[ti]) {
-        ans.push_back(i + 1);
+        ans.pb(i + 1);
         break;
       }
     }

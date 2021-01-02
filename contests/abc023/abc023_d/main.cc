@@ -12,7 +12,7 @@ void Main() {
     rep(i, n) {
       if (h[i] > x) return false;
       int t = (x - h[i]) / s[i];
-      v.push_back(t);
+      v.pb(t);
     }
     sort(all(v));
     rep(i, n) if (v[i] < i) return false;

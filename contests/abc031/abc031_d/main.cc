@@ -10,7 +10,7 @@ void Main() {
     int vi;
     cin >> vi >> w[i];
     while (vi) {
-      v[i].push_back(vi % 10);
+      v[i].pb(vi % 10);
       vi /= 10;
     }
     reverse(all(v[i]));

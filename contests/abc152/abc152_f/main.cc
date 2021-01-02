@@ -29,8 +29,8 @@ void Main() {
   rep(i, N - 1) {
     ints(a, b);
     --a, --b;
-    edges[a].push_back({i, b});
-    edges[b].push_back({i, a});
+    edges[a].pb({i, b});
+    edges[b].pb({i, a});
   }
   ints(M);
   rep(i, M) {

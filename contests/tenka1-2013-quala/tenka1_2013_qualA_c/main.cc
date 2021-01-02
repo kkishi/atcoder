@@ -18,9 +18,9 @@ void Main() {
       v.pop_back();
       continue;
     }
-    v.push_back(x);
+    v.pb(x);
     if (sz(v) == m) {
-      vs.push_back(v);
+      vs.pb(v);
       continue;
     }
     rep(i, 1, 4) {
@@ -44,7 +44,7 @@ void Main() {
           goto bail;
         }
       }
-      seq.push_back(i);
+      seq.pb(i);
       rec();
       seq.pop_back();
     bail:
@@ -64,12 +64,12 @@ void Main() {
     for (auto& [k, v] : dp) {
       V<int> nk;
       if (sz(k) == 4) {
-        rep(i, 3) nk.push_back(k[i + 1]);
+        rep(i, 3) nk.pb(k[i + 1]);
       } else {
         nk = k;
       }
       rep(i, sz(vs)) {
-        nk.push_back(i);
+        nk.pb(i);
         if (valid.count(nk)) {
           ndp[nk] += v;
         }

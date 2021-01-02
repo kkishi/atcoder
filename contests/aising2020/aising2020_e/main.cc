@@ -15,10 +15,10 @@ void solve() {
     ints(k, l, r);
     if (l >= r) {
       ans += r;
-      lc.push_back({k, l - r});
+      lc.pb({k, l - r});
     } else {
       ans += l;
-      rc.push_back({k, r - l});
+      rc.pb({k, r - l});
     }
   }
   auto calc = [&ans](const vector<Camel>& cs) {

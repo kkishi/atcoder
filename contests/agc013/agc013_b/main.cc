@@ -8,8 +8,8 @@ void Main() {
   rep(m) {
     ints(a, b);
     --a, --b;
-    to[a].push_back(b);
-    to[b].push_back(a);
+    to[a].pb(b);
+    to[b].pb(a);
   }
   int a = to[0][0];
   V<bool> seen(n);
@@ -26,12 +26,12 @@ void Main() {
       if (seen[c]) continue;
       seen[c] = true;
       que.push(c);
-      (f.back() == n ? f : b).push_back(c);
+      (f.back() == n ? f : b).pb(c);
       break;
     }
   }
   reverse(all(b));
-  for (int n : f) b.push_back(n);
+  for (int n : f) b.pb(n);
   wt(sz(b));
   rep(i, sz(b)) {
     if (i) cout << ' ';

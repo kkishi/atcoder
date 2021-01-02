@@ -9,7 +9,7 @@ void Main() {
     ints(c);
     auto it = lower_bound(all(v), c);
     if (it == v.end()) {
-      v.push_back(c);
+      v.pb(c);
     } else {
       *it = c;
     }

@@ -28,7 +28,7 @@ void Main() {
   map<int, V<pair<int, int>>> s;
   rep(m) {
     ints(l, r, a);
-    s[r].emplace_back(l, a);
+    s[r].eb(l, a);
   }
 
   atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> tree(n + 1);

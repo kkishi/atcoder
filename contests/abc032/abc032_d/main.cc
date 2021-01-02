@@ -15,7 +15,7 @@ void Main() {
         vs += v[j];
         ws += w[j];
       }
-      cand.push_back({ws, vs});
+      cand.pb({ws, vs});
     }
     sort(all(cand));
     rep(i, 1, sz(cand)) chmax(cand[i].second, cand[i - 1].second);

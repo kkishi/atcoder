@@ -33,8 +33,8 @@ void Main() {
     } else {
       vector<int> vs, ws;
       while (v >= kMaxCache) {
-        vs.push_back(V_[v]);
-        ws.push_back(W[v]);
+        vs.pb(V_[v]);
+        ws.pb(W[v]);
         v = Parent(v);
       }
       int ans = 0;

@@ -10,7 +10,7 @@ void Main() {
   vector<int> h(n);
   cin >> h;
 
-  h.push_back(0);
+  h.pb(0);
   vector<int> hc = Compress(h);
 
   vector<vector<vector<int>>> dp(

@@ -19,7 +19,7 @@ void Main() {
       chmin(lowest, change);
     }
     if (change >= 0) {
-      left.push_back({lowest, change});
+      left.pb({lowest, change});
       continue;
     }
     lowest = 0, change = 0;
@@ -27,7 +27,7 @@ void Main() {
       change += si[i] == ')' ? 1 : -1;
       chmin(lowest, change);
     }
-    right.push_back({lowest, change});
+    right.pb({lowest, change});
   }
   sort(all(left));
   sort(all(right));

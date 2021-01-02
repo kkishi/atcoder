@@ -49,9 +49,9 @@ void Main() {
   for (auto [r, c2] : s2) {
     int c1 = s1[r];
     if (c1 != 0 && r.p() < 0) continue;
-    groups.push_back({c2, c1});
+    groups.pb({c2, c1});
   }
-  groups.push_back({A_zeros, B_zeros});
+  groups.pb({A_zeros, B_zeros});
 
   mint mul = 1;
   for (auto [a, b] : groups) {

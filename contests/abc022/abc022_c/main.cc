@@ -12,7 +12,7 @@ void Main() {
     --u, --v;
     if (u > v) swap(u, v);
     if (u == 0) {
-      e.emplace_back(v, l);
+      e.eb(v, l);
     } else {
       dist[u][v] = dist[v][u] = l;
     }

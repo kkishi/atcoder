@@ -6,8 +6,8 @@ void Main() {
   ints(w, h);
   V<int> p(w), q(h);
   cin >> p >> q;
-  p.push_back(big);
-  q.push_back(big);
+  p.pb(big);
+  q.pb(big);
   sort(all(p));
   sort(all(q));
   int x = w + 1;

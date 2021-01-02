@@ -47,7 +47,7 @@ void Main() {
       }
     } else {
       ++cnt[a[i]];
-      ans.push_back(a[i]);
+      ans.pb(a[i]);
     }
   }
   rep(i, sz(ans)) {

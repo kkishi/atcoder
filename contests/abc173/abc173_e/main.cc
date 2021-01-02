@@ -11,11 +11,11 @@ void Main() {
   rep(i, n) {
     ints(a);
     if (a == 0) {
-      z.push_back(0);
+      z.pb(0);
     } else if (a > 0) {
-      p.push_back(a);
+      p.pb(a);
     } else {
-      m.push_back(-a);
+      m.pb(-a);
     }
   }
   bool can_make_positive = false;

@@ -69,7 +69,7 @@ void Main() {
           rep(j, sz(v[i])) rep(factor)(hash_c *= 2) += (v[i][j] == 'o');
           rep(factor)(hash_r *= two[7 * factor]) += hash_c;
         }
-        ret[factor].push_back(hash_r);
+        ret[factor].pb(hash_r);
       }
       v = rot90(v);
     }
@@ -77,7 +77,7 @@ void Main() {
   };
 
   V<VV<mint>> hs;
-  for (const V<string>& v : abc) hs.push_back(compute_hashes(v));
+  for (const V<string>& v : abc) hs.pb(compute_hashes(v));
   // dbg(hs);
   V<int> ans(3);
   rep(factor, 1, max_factor + 1) {

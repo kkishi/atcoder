@@ -15,7 +15,7 @@ void Main() {
   }
 
   V<pair<int, int>> s;
-  rep(i, m) s.emplace_back(v[i], l[i]);
+  rep(i, m) s.eb(v[i], l[i]);
   sort(all(s));
   rep(i, sz(s) - 1) chmax(s[i + 1].second, s[i].second);
   auto lookup = [&s](int x) {

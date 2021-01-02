@@ -14,12 +14,12 @@ void Main() {
   V<pair<int, int>> bulbs;
   rep(n) {
     ints(a, b);
-    bulbs.emplace_back(a - 1, b - 1);
+    bulbs.eb(a - 1, b - 1);
   }
   V<pair<int, int>> blocks;
   rep(m) {
     ints(c, d);
-    blocks.emplace_back(c - 1, d - 1);
+    blocks.eb(c - 1, d - 1);
   }
   vector grid(h, vector(w, State{false, false}));
   for (auto [r, c] : bulbs) {

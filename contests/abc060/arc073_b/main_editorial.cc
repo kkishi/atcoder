@@ -9,7 +9,7 @@ void Main() {
 
   int w0 = w[0];
   VV<int> V(4);
-  rep(i, n) V[w[i] - w0].push_back(v[i]);
+  rep(i, n) V[w[i] - w0].pb(v[i]);
   rep(i, 4) sort(all(V[i]), greater());
 
   int ans = 0;

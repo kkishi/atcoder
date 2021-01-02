@@ -17,7 +17,7 @@ void Main() {
   rep(i, n) {
     V<optional<int>> od = Dijkstra(g, i);
     V<int> d;
-    rep(j, n) if (j != i) d.push_back(*od[j]);
+    rep(j, n) if (j != i) d.pb(*od[j]);
     sort(all(d));
     int k = -1;
     rep(j, sz(d)) {

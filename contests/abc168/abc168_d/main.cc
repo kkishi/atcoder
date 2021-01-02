@@ -12,8 +12,8 @@ void Main() {
   rep(i, M) {
     ints(A, B);
     --A, --B;
-    edges[A].push_back(B);
-    edges[B].push_back(A);
+    edges[A].pb(B);
+    edges[B].pb(A);
   }
 
   map<int, int> prev;

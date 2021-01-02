@@ -166,7 +166,7 @@ void Main() {
       }
     }
     last[chosen] = d;
-    t.push_back(chosen);
+    t.pb(chosen);
   }
 
   Solution sol(p, t);

@@ -12,14 +12,14 @@ void Main() {
   rep(s, 1 << n1) {
     int xi = 0;
     rep(i, n1) if (hasbit(s, i)) xi += a[i];
-    x.push_back(xi);
+    x.pb(xi);
   }
   sort(all(x));
   V<int> y;
   rep(s, 1 << n2) {
     int yi = 0;
     rep(i, n2) if (hasbit(s, i)) yi += a[i + n1];
-    y.push_back(yi);
+    y.pb(yi);
   }
   sort(all(y));
   int ans = 0;

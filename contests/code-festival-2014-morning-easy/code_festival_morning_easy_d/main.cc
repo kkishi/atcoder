@@ -8,7 +8,7 @@ void Main() {
   VV<int> v(100001);
   rep(n) {
     ints(x, y);
-    v[x].push_back(y);
+    v[x].pb(y);
   }
 
   V<int> a(100001);

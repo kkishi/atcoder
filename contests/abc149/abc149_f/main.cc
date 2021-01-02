@@ -11,8 +11,8 @@ void Main() {
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    to[a].push_back(b);
-    to[b].push_back(a);
+    to[a].pb(b);
+    to[b].pb(a);
   }
 
   // Sizes of the subtrees.
@@ -23,10 +23,10 @@ void Main() {
       if (c == p) continue;
       int cs = rec(c, i);
       size += cs;
-      sizes[i].push_back(cs);
+      sizes[i].pb(cs);
     }
     if (p != -1) {
-      sizes[i].push_back(n - size);
+      sizes[i].pb(n - size);
     }
     return size;
   })(0, -1);

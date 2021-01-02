@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> d;
   while (n) {
-    d.push_back(n % 10);
+    d.pb(n % 10);
     n /= 10;
   }
   reverse(all(d));

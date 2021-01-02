@@ -12,8 +12,8 @@ void Main() {
   rep(m) {
     ints(x, y);
     --x, --y;
-    to[x].push_back(y);
-    to[y].push_back(x);
+    to[x].pb(y);
+    to[y].pb(x);
   }
 
   V<int> dist(n, big);

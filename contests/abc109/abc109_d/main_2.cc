@@ -19,7 +19,7 @@ void Main() {
     if (a[r][c] & 1) {
       stringstream ss;
       ss << (r + 1) << " " << (c + 1) << " " << (nr + 1) << " " << (nc + 1);
-      moves.push_back(ss.str());
+      moves.pb(ss.str());
       --a[r][c];
       ++a[nr][nc];
     }

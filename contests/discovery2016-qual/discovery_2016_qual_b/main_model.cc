@@ -8,7 +8,7 @@ void Main() {
   cin >> a;
 
   VV<int> b(100001);
-  rep(i, n) b[a[i]].push_back(i);
+  rep(i, n) b[a[i]].pb(i);
 
   int ans = 1;
   int curr = 0;

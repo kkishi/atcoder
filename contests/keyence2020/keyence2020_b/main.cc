@@ -7,7 +7,7 @@ void Main() {
   V<pair<int, int>> r;
   rep(n) {
     ints(x, l);
-    r.push_back({x + l, x - l});
+    r.pb({x + l, x - l});
   }
   sort(all(r));
   int ans = 1;

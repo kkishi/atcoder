@@ -20,7 +20,7 @@ void Main() {
     rep(i, m) chmin(hy[x[i]], y[i] - 1);
 
     VV<int> xy(w);
-    rep(i, m) xy[x[i]].push_back(y[i]);
+    rep(i, m) xy[x[i]].pb(y[i]);
 
     BIT<int> ys(h);
     rep(i, hy[0] + 1) ys.Add(i, 1);

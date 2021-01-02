@@ -7,7 +7,7 @@ void Main() {
   V<pair<int, int>> v;
   rep(i, n) {
     ints(a);
-    v.emplace_back(a, i);
+    v.eb(a, i);
   }
   sort(all(v));
   set<int> s = {-1, n};

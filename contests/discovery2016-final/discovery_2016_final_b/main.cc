@@ -8,7 +8,7 @@ void Main() {
   V<int> t(n), a(n);
   cin >> t >> a;
   V<pair<int, int>> at;
-  rep(i, n) at.emplace_back(a[i], t[i]);
+  rep(i, n) at.eb(a[i], t[i]);
   sort(all(at), greater{});
 
   set<int, greater<>> s;

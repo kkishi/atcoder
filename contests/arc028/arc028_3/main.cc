@@ -7,8 +7,8 @@ void Main() {
   VV<int> to(N);
   rep(i, 1, N) {
     ints(p);
-    to[i].push_back(p);
-    to[p].push_back(i);
+    to[i].pb(p);
+    to[p].pb(i);
   }
   V<int> ans(N);
   Fix([&](auto rec, int n, int p) -> int {

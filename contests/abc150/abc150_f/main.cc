@@ -38,7 +38,7 @@ void Main() {
     if (!ok) continue;
     int x = 0;
     rep(j, 30) x |= (matches[j][1][i]) << j;
-    ans.push_back({(n - i) % n, x});
+    ans.pb({(n - i) % n, x});
   }
   sort(all(ans));
   for (auto [a, b] : ans) wt(a, b);
