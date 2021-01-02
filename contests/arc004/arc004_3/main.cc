@@ -32,7 +32,7 @@ void Main() {
   assert(hi - lo < 10);
 
   bool ok = false;
-  rep(n, lo, hi + 1) {
+  for (bigint n = lo; n <= hi; ++n) {
     bigint m = BinarySearch<bigint>(1, n + 1, [&](bigint m) {
       // x / y <= (n * (n + 1) / 2 - m) / n
       return x * 2 * n <= y * (n * (n + 1) - m * 2);
