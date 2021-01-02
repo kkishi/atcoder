@@ -12,7 +12,7 @@ void Main() {
   int damage = 0;
   rep(i, n + 1) {
     if (i) damage += b[i - 1];
-    chmin(ans, i + (max(0, h - damage) + maxa - 1) / maxa);
+    chmin(ans, i + div_ceil(max(0, h - damage), maxa));
   }
   wt(ans);
 }

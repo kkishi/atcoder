@@ -12,7 +12,7 @@ void Main() {
     int y = 0;
     rep(i, n) {
       v[i] -= b * x;
-      if (v[i] > 0) y += (v[i] + (a - b) - 1) / (a - b);
+      if (v[i] > 0) y += div_ceil(v[i], a - b);
     }
     return y <= x;
   }));

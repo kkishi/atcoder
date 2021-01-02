@@ -6,7 +6,6 @@ bool Solve() {
   ints(a, b, c, d);
   if (d < b) return false;
   a -= b;
-  auto div_ceil = [](int n, int d) { return (n + d - 1) / d; };
   if (a > c) {
     a -= div_ceil(a - c, b) * b;
   }

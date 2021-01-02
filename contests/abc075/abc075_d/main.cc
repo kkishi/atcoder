@@ -18,7 +18,7 @@ void Main() {
     dp[i + 1][j + 1] = dp[i][j + 1] + dp[i + 1][j] - dp[i][j] + p[i][j];
   }
 
-  int ans = big;
+  int ans = numeric_limits<int>::max();
   rep(i, N) rep(j, N) rep(k, i + 1, N + 1) rep(l, j + 1, N + 1) {
     if (dp[k][l] - dp[i][l] - dp[k][j] + dp[i][j] >= K) {
       chmin(ans, (cx[k - 1] - cx[i]) * (cy[l - 1] - cy[j]));

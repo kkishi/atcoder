@@ -17,7 +17,7 @@ void Main() {
   int ans = 0;
   rep(i, sz(a) - 1) {
     int d = a[i + 1] - a[i] - 1;
-    if (d > 0) ans += (d + mini - 1) / mini;
+    if (d > 0) ans += div_ceil(d, mini);
   }
   wt(ans);
 }

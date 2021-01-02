@@ -20,7 +20,7 @@ void Main() {
     }
     rep(i, 6) population[i] += change[i];
     if (last_change > 0 && change[5] == last_change) {
-      wt(ans + (n - population[5] + last_change - 1) / last_change);
+      wt(ans + div_ceil(n - population[5], last_change));
       return;
     }
     last_change = change[5];

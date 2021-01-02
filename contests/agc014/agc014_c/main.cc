@@ -22,7 +22,7 @@ void Main() {
         if (iter == 0) {
           wt(1);
         } else {
-          wt(1 + (dist[r][c] + k - 1) / k);
+          wt(1 + div_ceil(dist[r][c], k));
         }
         return;
       }

@@ -18,8 +18,7 @@ void Main() {
       if (score >= g) break;
       if (hasbit(s, i)) continue;
       int score_per_problem = 100 * (i + 1);
-      int problems_to_solve =
-          ((g - score) + score_per_problem - 1) / score_per_problem;
+      int problems_to_solve = div_ceil(g - score, score_per_problem);
       int solve = min(problems_to_solve, p[i]);
       solved += solve;
       score += score_per_problem * solve;
