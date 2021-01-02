@@ -10,7 +10,7 @@ void Main() {
   rep(i, n) {
     int d = abs(x[i + 1] - x[i]) + abs(y[i + 1] - y[i]);
     int dt = t[i + 1] - t[i];
-    if (d <= dt && (dt - d) % 2 == 0) continue;
+    if (d <= dt && even(dt - d)) continue;
     ok = false;
   }
   wt(ok);

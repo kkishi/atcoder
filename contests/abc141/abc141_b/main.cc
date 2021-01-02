@@ -5,8 +5,8 @@
 void Main() {
   strings(s);
   bool ok = true;
-  rep(i, s.size()) {
-    if (i % 2 == 1) {
+  rep(i, sz(s)) {
+    if (i & 1) {
       if (s[i] == 'R') {
         ok = false;
       }

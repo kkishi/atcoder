@@ -7,8 +7,8 @@ bool Check(int a, V<int> b) {
   VV<int> m;
   rep(i, bits) {
     V<int> v;
-    rep(j, sz(b)) v.push_back((b[j] >> i) & 1);
-    v.push_back((a >> i) & 1);
+    rep(j, sz(b)) v.push_back(hasbit(b[j], i));
+    v.push_back(hasbit(a, i));
     m.push_back(v);
   }
   int n = sz(b) + 1;

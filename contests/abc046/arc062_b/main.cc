@@ -11,7 +11,7 @@ void Main() {
         ++ans;
       }
     } else if (s[i] == 'p') {
-      if (!(i & 1)) {
+      if (even(i)) {
         --ans;
       }
     }

@@ -14,7 +14,7 @@ void Main() {
     sum += a;
     chmin(mini, a);
   }
-  if (minus % 2 == 1) {
+  if (minus & 1) {
     sum -= mini * 2;
   }
   wt(sum);

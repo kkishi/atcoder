@@ -10,6 +10,6 @@ void Main() {
       wt(i);
       return;
     }
-    s = (s & 1) ? (s * 3 + 1) : (s / 2);
+    s = even(s) ? (s / 2) : (s * 3 + 1);
   }
 }

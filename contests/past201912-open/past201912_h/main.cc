@@ -24,7 +24,7 @@ void Main() {
   cin >> c;
 
   int sep = (n + 1) / 2;
-  auto idx = [&sep](int i) { return (i % 2 == 0 ? 0 : sep) + i / 2; };
+  auto idx = [&sep](int i) { return (even(i) ? 0 : sep) + i / 2; };
 
   atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> seg(n);
   rep(i, n) seg.set(idx(i), c[i]);

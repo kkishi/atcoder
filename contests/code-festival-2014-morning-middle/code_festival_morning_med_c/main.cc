@@ -19,7 +19,7 @@ Matrix Pow(const Matrix& m, int p) {
   if (p == 0) {
     return {{1, 0}, {0, 1}};
   }
-  if (p % 2 == 0) {
+  if (even(p)) {
     Matrix n = Pow(m, p / 2);
     return Mult(n, n);
   }

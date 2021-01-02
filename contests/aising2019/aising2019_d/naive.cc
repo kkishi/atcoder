@@ -11,7 +11,7 @@ void Main() {
     set<int> s(all(a));
     int ans = 0;
     rep(i, n) {
-      if (i % 2 == 0) {
+      if (even(i)) {
         auto it = prev(s.end());
         ans += *it;
         s.erase(it);

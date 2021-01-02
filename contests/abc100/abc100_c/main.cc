@@ -8,7 +8,7 @@ void Main() {
   cin >> a;
   int ans = 0;
   rep(i, n) {
-    while (a[i] % 2 == 0) {
+    while (even(a[i])) {
       a[i] /= 2;
       ++ans;
     }

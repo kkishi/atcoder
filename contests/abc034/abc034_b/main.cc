@@ -4,5 +4,5 @@
 
 void Main() {
   ints(n);
-  wt((n & 1) ? n + 1 : n - 1);
+  wt(n + (even(n) ? -1 : 1));
 }

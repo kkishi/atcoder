@@ -17,7 +17,7 @@ void Main() {
   int maxskip = N % 2 + 1;
   for (int i = 1; i < N; ++i) {
     for (int skipped = 0; skipped <= maxskip; ++skipped) {
-      bool put = (i + skipped) % 2 == 0;
+      bool put = even(i + skipped);
       chmax(dp[i][skipped], dp[i - 1][skipped] + (put ? A[i] : 0));
       if (skipped < maxskip) {
         chmax(dp[i][skipped + 1], dp[i - 1][skipped]);

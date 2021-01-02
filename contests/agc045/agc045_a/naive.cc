@@ -5,7 +5,7 @@
 bool Check(int a, V<int> b) {
   rep(s, 1 << sz(b)) {
     int c = 0;
-    rep(i, sz(b)) if ((s >> i) & 1) c ^= b[i];
+    rep(i, sz(b)) if (hasbit(s, i)) c ^= b[i];
     if (a == c) return true;
   }
   return false;

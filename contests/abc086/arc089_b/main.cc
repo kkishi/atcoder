@@ -9,7 +9,7 @@ void Main() {
   rep(i, n) cin >> x[i] >> y[i] >> c[i];
 
   int K = k * 4;
-  VV<int> grid(K, V<int>(K));
+  vector grid(K, V<int>(K));
   rep(i, n) {
     int xi = x[i], yi = y[i];
     if (c[i] == 'W') {
@@ -23,12 +23,12 @@ void Main() {
         ++grid[a][b];
       }
     };
-    rep(i, 4) rep(j, 4) if ((i + j) % 2 == 0) {
+    rep(i, 4) rep(j, 4) if (even(i + j)) {
       add((xi + k * i) % K, (yi + k * j) % K);
     }
   }
 
-  VV<int> sum(K + 1, V<int>(K + 1));
+  vector sum(K + 1, V<int>(K + 1));
   rep(i, K) rep(j, K) {
     sum[i + 1][j + 1] = sum[i][j + 1] + sum[i + 1][j] - sum[i][j] + grid[i][j];
   }

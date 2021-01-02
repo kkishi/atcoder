@@ -19,8 +19,8 @@ void Main() {
   rep(s, 1 << n) rep(i, n) if (hasbit(s, i)) {
     int p = popcount(s);
     rep(j, n) if (!hasbit(s, j)) {
-      int x = (((p - 1) % 2 == i % 2) ? a : b)[i];
-      int y = ((p % 2 == j % 2) ? a : b)[j];
+      int x = (even(p - 1) == even(i) ? a : b)[i];
+      int y = (even(p) == even(j) ? a : b)[j];
       if (x <= y) {
         int ns = s | (1 << j);
         chmin(dp[ns][j], dp[s][i] + cost[ns][j]);

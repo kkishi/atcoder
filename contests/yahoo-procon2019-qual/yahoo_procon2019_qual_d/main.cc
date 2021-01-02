@@ -20,7 +20,7 @@ void Main() {
     int x;
     if (a[i] == 0) {
       x = 0;
-    } else if (a[i] % 2 == 0) {
+    } else if (even(a[i])) {
       x = 2;
     } else {
       x = 1;

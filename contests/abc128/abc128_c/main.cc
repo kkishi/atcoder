@@ -7,7 +7,7 @@ void Main() {
   vector connected(m, V<bool>(n));
   rep(i, m) {
     ints(k);
-    while (k--) {
+    rep(k) {
       ints(s);
       connected[i][s - 1] = true;
     }

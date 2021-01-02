@@ -11,7 +11,7 @@ void Main() {
   sort(all(c), greater());
   int T = 0, A = 0;
   rep(i, n) {
-    if (i % 2 == 0) {
+    if (even(i)) {
       T += a[c[i].second];
     } else {
       A += b[c[i].second];

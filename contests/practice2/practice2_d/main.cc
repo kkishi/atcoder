@@ -17,7 +17,7 @@ void Main() {
   int dc[] = {1, 0, -1, 0};
   rep(r, n) rep(c, m) {
     if (s[r][c] == '#') continue;
-    if ((r + c) % 2 == 0) {
+    if (even(r + c)) {
       add(src, idx(r, c));
       rep(i, 4) {
         int nr = r + dr[i];
@@ -32,8 +32,7 @@ void Main() {
   }
 
   wt(g.flow(src, dst));
-  auto edges = g.edges();
-  for (const auto& e : g.edges()) {
+  each(e, g.edges()) {
     if (e.from < src && e.to < src && e.flow == 1) {
       auto ridx = [&](int i) { return make_pair(i / m, i % m); };
       auto [r, c] = ridx(e.from);

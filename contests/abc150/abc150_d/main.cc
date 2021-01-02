@@ -16,7 +16,7 @@ void Main() {
       return;
     }
   }
-  rep(i, n) if (l / a[i] % 2 == 0) {
+  rep(i, n) if (even(l / a[i])) {
     wt(0);
     return;
   }

@@ -9,7 +9,7 @@ void Main() {
   int ans = 0;
   while (true) {
     rep(i, n) {
-      if (a[i] % 2 == 1) {
+      if (a[i] & 1) {
         wt(ans);
         return;
       }

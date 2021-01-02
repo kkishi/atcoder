@@ -20,7 +20,7 @@ void Main() {
   }
   bool can_make_positive = false;
   for (int mc = 0; mc <= min<int>(m.size(), k); ++mc) {
-    if (p.size() >= (k - mc) && mc % 2 == 0) {
+    if (p.size() >= (k - mc) && even(mc)) {
       can_make_positive = true;
     }
   }

@@ -23,7 +23,7 @@ void Main() {
     }
     auto& d = dp[g];
     if (!d) {
-      if (depth % 2 == 0) {
+      if (even(depth)) {
         d = {-big, 0};
         rep(i, 3) rep(j, 3) if (g[i][j] == ' ') {
           g[i][j] = 'o';
