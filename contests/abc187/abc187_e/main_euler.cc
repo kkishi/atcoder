@@ -18,8 +18,7 @@ void Main() {
   }
   auto [in, out] = EulerTour(g);
 
-  V<int> ans(n);
-  DualSegmentTree<int> st(n * 2, [](int a, int b) { return a + b; });
+  DualSegmentTree<int> st(n, [](int a, int b) { return a + b; });
   ints(q);
   rep(q) {
     ints(t, e, x);
@@ -27,7 +26,7 @@ void Main() {
     if (t == 2) swap(a, b);
     if (in[a] < in[b]) {
       st.Update(0, in[b], x);
-      st.Update(out[b], n * 2, x);
+      st.Update(out[b], n, x);
     } else {
       st.Update(in[a], out[a], x);
     }
