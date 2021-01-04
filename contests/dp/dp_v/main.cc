@@ -1,25 +1,20 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "bidirected_graph.h"
 #include "rerooting.h"
 
-int M;
-int Combine(int a, int b) { return a * b % M; }
-int Calc(int x) { return (x + 1) % M; }
-
 void Main() {
-  ints(n);
-  cin >> M;
-  vector<vector<int>> to(n);
+  ints(n, m);
+  BidirectedGraph<int> g(n);
   rep(n - 1) {
     ints(a, b);
-    --a, --b;
-    to[a].pb(b);
-    to[b].pb(a);
+    g.AddEdge(a - 1, b - 1);
   }
 
-  TreeDP<int> tdp(to, Combine, Calc, 1);
+  TreeDP<int, int> tdp(
+      g, [&](int a, int b) { return a * b % m; },
+      [&](const auto&, int x) { return (x + 1) % m; }, 1);
   tdp.DFS(0);
-  tdp.Rerooting(0);
-  rep(i, n) wt((tdp.Result()[i] + M - 1) % M);
+  each(r, tdp.Rerooting(0)) wt(r);
 }
