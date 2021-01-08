@@ -20,9 +20,8 @@ void Main() {
     f.weight = xa[i];
     r.weight = xb[i];
   }
-  TreeDP<int, int> tdp(
+  V<int> res = Rerooting<int, int>(
       g, [](int a, int b) { return a + b; },
       [](const auto& e, int x) { return e.weight + x; });
-  tdp.DFS(0);
-  each(r, tdp.Rerooting(0)) wt(r);
+  each(r, res) wt(r);
 }

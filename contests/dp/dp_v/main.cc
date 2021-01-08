@@ -12,9 +12,8 @@ void Main() {
     g.AddEdge(a - 1, b - 1);
   }
 
-  TreeDP<int, int> tdp(
+  V<int> res = Rerooting<int, int>(
       g, [&](int a, int b) { return a * b % m; },
       [&](const auto&, int x) { return (x + 1) % m; }, 1);
-  tdp.DFS(0);
-  each(r, tdp.Rerooting(0)) wt(r);
+  each(r, res) wt(r);
 }

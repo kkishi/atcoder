@@ -32,8 +32,7 @@ void Main() {
     graph.AddEdge(a, b);
   }
 
-  TreeDP<DP, int> tdp(graph, Combine, [](const auto&, DP x) { return Calc(x); },
-                      {0, 1, 1});
-  tdp.DFS(0);
-  each(r, tdp.Rerooting(0)) { wt(Calc(r).cnt); }
+  V<DP> res = Rerooting<DP, int>(
+      graph, Combine, [](const auto&, DP x) { return Calc(x); }, {0, 1, 1});
+  each(r, res) wt(Calc(r).cnt);
 }

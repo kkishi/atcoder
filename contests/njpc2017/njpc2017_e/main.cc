@@ -23,7 +23,7 @@ void Main() {
     f.weight = {true, c};
     r.weight = {false, c};
   }
-  TreeDP<DP, Data> tdp(
+  V<DP> res = Rerooting<DP, Data>(
       g,
       [](DP a, DP b) -> DP {
         return {max(a.depth, b.depth), a.change + b.change};
@@ -31,9 +31,8 @@ void Main() {
       [](const auto& e, DP x) -> DP {
         return {x.depth + e.weight.dist, x.change + !e.back->weight.good};
       });
-  tdp.DFS(0);
   int ans = big;
-  each(r, tdp.Rerooting(0)) if (r.depth <= d) chmin(ans, r.change);
+  each(r, res) if (r.depth <= d) chmin(ans, r.change);
   if (ans == big) ans = -1;
   wt(ans);
 }
