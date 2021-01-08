@@ -10,8 +10,8 @@ void Main() {
   rep(i, n - 1) {
     ints(a, b);
     --a, --b;
-    edges[a].push_back(b);
-    edges[b].push_back(a);
+    edges[a].pb(b);
+    edges[b].pb(a);
   }
 
   map<int, int> aoki;

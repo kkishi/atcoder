@@ -4,7 +4,7 @@
 
 void Main() {
   ints(a, b, c, x, y);
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   for (int i = 0; i <= max(x, y); ++i) {
     int sum = i * 2 * c;
     if (x > i) sum += (x - i) * a;

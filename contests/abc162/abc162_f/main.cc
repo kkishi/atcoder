@@ -13,7 +13,7 @@ void Main() {
   rep(i, N) rep(j, 2) rep(k, 3) dp[i][j][k] = -INF;
   dp[0][0][1] = 0;
   dp[0][1][0] = A[0];
-  int maxskip = N % 2 == 0 ? 1 : 2;
+  int maxskip = even(N) ? 1 : 2;
   rep(i, 1, N) {
     rep(skipped, maxskip + 1) {
       // Previous one is taken, do not take.

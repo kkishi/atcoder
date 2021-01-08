@@ -12,7 +12,7 @@ void Main() {
     b[i] -= a[i];
   }
   V<int> o, e;
-  rep(i, n)(i % 2 == 0 ? e : o).push_back(b[i]);
+  rep(i, n)(even(i) ? e : o).pb(b[i]);
   sort(all(o), greater());
   sort(all(e), greater());
   rep(i, n / 2) {

@@ -7,7 +7,7 @@ void Main() {
   vector<vector<int>> g(n + 1);
   rep(i, m) {
     ints(u, v);
-    g[u].push_back(v);
+    g[u].pb(v);
   }
   ints(s, t);
   vector<vector<bool>> visited(n + 1, vector<bool>(3));

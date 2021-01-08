@@ -6,15 +6,15 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(ti, n) {
     int x;
-    int maxi = numeric_limits<int>::min();
+    int maxi = -big;
     rep(ai, n) if (ai != ti) {
       int i = ti, j = ai;
       if (i > j) swap(i, j);
       int ts = 0, as = 0;
-      rep(k, i, j + 1)(((k - i) & 1) ? as : ts) += a[k];
+      rep(k, i, j + 1)(even(k - i) ? ts : as) += a[k];
       if (chmax(maxi, as)) {
         x = ts;
       }

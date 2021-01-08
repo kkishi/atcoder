@@ -9,12 +9,11 @@ struct Edge {
 
 int use[20];
 
-int DFS(int curr, int dst, int prev, int used,
-        const vector<vector<Edge>>& edges) {
+int DFS(int curr, int dst, int prev, int used, const VV<Edge>& edges) {
   if (curr == dst) {
     return used;
   }
-  for (const Edge& e : edges[curr]) {
+  each(e, edges[curr]) {
     if (e.dst == prev) continue;
     int res = DFS(e.dst, dst, curr, used | (1LL << e.index), edges);
     if (res > 0) {
@@ -30,8 +29,8 @@ void Main() {
   rep(i, N - 1) {
     ints(a, b);
     --a, --b;
-    edges[a].push_back({i, b});
-    edges[b].push_back({i, a});
+    edges[a].pb({i, b});
+    edges[b].pb({i, a});
   }
   ints(M);
   rep(i, M) {
@@ -41,16 +40,14 @@ void Main() {
     dbg(use[i]);
   }
   int ans = 1LL << (N - 1);
-  rep(s, 1, (1 << M)) {
+  rep(s, 1, 1 << M) {
     int cnt = 0;
     int u = 0;
-    rep(i, M) {
-      if (s & (1 << i)) {
-        ++cnt;
-        u |= use[i];
-      }
+    rep(i, M) if (hasbit(s, i)) {
+      ++cnt;
+      u |= use[i];
     }
-    ans -= (cnt % 2 ? 1 : -1) * (1LL << (N - 1 - bitset<64>(u).count()));
+    ans -= (even(cnt) ? -1 : 1) * (1LL << (N - 1 - popcount(u)));
   }
   wt(ans);
 }

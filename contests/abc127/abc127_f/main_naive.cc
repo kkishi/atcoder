@@ -10,7 +10,7 @@ void Main() {
     ints(t);
     if (t == 1) {
       ints(a, b);
-      as.push_back(a);
+      as.pb(a);
       bs += b;
     } else {
       sort(all(as));

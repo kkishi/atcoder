@@ -9,7 +9,7 @@ void Main() {
   V<pair<int, int>> bs;
   rep(i, n) {
     ints(b);
-    bs.emplace_back(b - 1, i);
+    bs.eb(b - 1, i);
   }
   sort(all(bs), greater());
 

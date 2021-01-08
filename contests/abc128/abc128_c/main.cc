@@ -4,10 +4,10 @@
 
 void Main() {
   ints(n, m);
-  vector<vector<bool>> connected(m, vector(n, false));
+  vector connected(m, V<bool>(n));
   rep(i, m) {
     ints(k);
-    while (k--) {
+    rep(k) {
       ints(s);
       connected[i][s - 1] = true;
     }
@@ -19,7 +19,7 @@ void Main() {
     rep(i, m) {
       int cnt = 0;
       rep(j, n) {
-        if (connected[i][j] && ((s >> j) & 1)) {
+        if (connected[i][j] && hasbit(s, j)) {
           ++cnt;
         }
       }

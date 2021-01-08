@@ -23,7 +23,7 @@ void Main() {
   cin >> a >> b;
   rep(2) {
     V<pair<int, int>> v;
-    rep(i, 3) if (a[i] < b[i]) v.push_back({a[i], b[i]});
+    rep(i, 3) if (a[i] < b[i]) v.pb({a[i], b[i]});
     n = Solve(n, v);
     swap(a, b);
   }

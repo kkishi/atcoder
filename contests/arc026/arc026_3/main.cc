@@ -8,12 +8,12 @@ void Main() {
   V<tuple<int, int, int>> v;
   rep(n) {
     ints(l, r, c);
-    v.emplace_back(l, r, c);
+    v.eb(l, r, c);
   }
   sort(all(v));
   DualSegmentTree<int> t(
       L + 1, [](int a, int b) { return min(a, b); },
-      numeric_limits<int>::max());
+      big);
   t.Update(0, 1, 0);
   for (auto [l, r, c] : v) {
     t.Update(l, r + 1, t.Get(l) + c);

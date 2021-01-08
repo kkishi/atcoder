@@ -13,7 +13,7 @@ void Main() {
     total += s;
     tree.Update(l - 1, r, s);
   }
-  int mini = numeric_limits<int>::max();
+  int mini = big;
   rep(i, m) chmin(mini, tree.Get(i));
   wt(total - mini);
 }

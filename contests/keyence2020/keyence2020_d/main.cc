@@ -7,23 +7,20 @@ void Main() {
   V<int> a(n), b(n);
   cin >> a >> b;
 
-  auto bit = [](int s, int i) { return (s >> i) & 1; };
-
   vector cost(1 << n, vector<int>(n));
-  rep(s, 1 << n) rep(i, n) if (bit(s, i)) {
-    rep(j, n) if (!bit(s, j)) {
+  rep(s, 1 << n) rep(i, n) if (hasbit(s, i)) {
+    rep(j, n) if (!hasbit(s, j)) {
       if (j < i) ++cost[s][i];
     }
   }
 
-  const int inf = numeric_limits<int>::max() / 10;
-  vector dp(1 << n, vector<int>(n, inf));
+  vector dp(1 << n, vector<int>(n, big));
   rep(i, n) dp[1 << i][i] = i;
-  rep(s, 1 << n) rep(i, n) if (bit(s, i)) {
+  rep(s, 1 << n) rep(i, n) if (hasbit(s, i)) {
     int p = popcount(s);
-    rep(j, n) if (!bit(s, j)) {
-      int x = (((p - 1) % 2 == i % 2) ? a : b)[i];
-      int y = ((p % 2 == j % 2) ? a : b)[j];
+    rep(j, n) if (!hasbit(s, j)) {
+      int x = (even(p - 1) == even(i) ? a : b)[i];
+      int y = (even(p) == even(j) ? a : b)[j];
       if (x <= y) {
         int ns = s | (1 << j);
         chmin(dp[ns][j], dp[s][i] + cost[ns][j]);
@@ -31,7 +28,7 @@ void Main() {
     }
   }
 
-  int ans = inf;
+  int ans = big;
   rep(i, n) chmin(ans, dp[(1 << n) - 1][i]);
-  wt(ans == inf ? -1 : ans);
+  wt(ans == big ? -1 : ans);
 }

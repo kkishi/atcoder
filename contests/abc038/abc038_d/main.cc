@@ -13,7 +13,7 @@ void Main() {
     h *= -1;
     auto it = lower_bound(all(v), h);
     if (it == v.end()) {
-      v.push_back(h);
+      v.pb(h);
     } else {
       *it = h;
     }

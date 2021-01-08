@@ -4,10 +4,10 @@
 
 bool check(int s, const VV<pair<int, int>>& v) {
   rep(i, v.size()) {
-    if (!((s >> i) & 1)) continue;
-    for (const auto& p : v[i]) {
+    if (!hasbit(s, i)) continue;
+    each(p, v[i]) {
       int j = p.first;
-      bool honest = (s >> j) & 1;
+      bool honest = hasbit(s, j);
       if (p.second == 1 != honest) {
         return false;
       }
@@ -23,7 +23,7 @@ void Main() {
     ints(a);
     rep(j, a) {
       ints(x, y);
-      v[i].push_back({x - 1, y});
+      v[i].pb({x - 1, y});
     }
   }
   int ans = 0;

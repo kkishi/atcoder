@@ -12,7 +12,7 @@ void Main() {
   V<D> ds;
   rep(i, n) {
     ints(l, r, s);
-    ds.push_back({l, r, s});
+    ds.pb({l, r, s});
   }
 
   sort(all(ds), [](const D& a, const D& b) { return a.r < b.r; });

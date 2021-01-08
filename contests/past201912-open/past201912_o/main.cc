@@ -9,11 +9,11 @@ void Main() {
   rep(i, n) rep(j, 6) cin >> a[i][j];
 
   V<int> v;
-  rep(i, n) rep(j, 6) v.push_back(a[i][j]);
+  rep(i, n) rep(j, 6) v.pb(a[i][j]);
   auto c = Compress(v);
 
   VV<int> idx(sz(c));
-  rep(i, n) rep(j, 6) idx[Uncompress(c, a[i][j])].push_back(i);
+  rep(i, n) rep(j, 6) idx[Uncompress(c, a[i][j])].pb(i);
 
   V<double> dice(n);
   set<pair<double, int>> s;

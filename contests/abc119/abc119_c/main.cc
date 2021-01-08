@@ -9,7 +9,7 @@ void Main() {
   vector<int> l(n);
   cin >> l;
   vector<int> current(3);
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   Fix([&](auto dfs, int depth, int used_mp) {
     if (depth == n) {
       rep(i, 3) {

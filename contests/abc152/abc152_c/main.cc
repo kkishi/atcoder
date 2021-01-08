@@ -4,7 +4,7 @@
 
 void Main() {
   ints(N);
-  int m = numeric_limits<int>::max();
+  int m = big;
   int ans = 0;
   rep(i, N) {
     ints(p);

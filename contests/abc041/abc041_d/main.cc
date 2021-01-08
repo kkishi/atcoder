@@ -13,9 +13,9 @@ void Main() {
   dp[0] = 1;
   rep(s, 1 << n) {
     rep(i, n) {
-      if ((s >> i) & 1) continue;
+      if (hasbit(s, i)) continue;
       bool ok = true;
-      rep(j, n) if (((s >> j) & 1) && xy[i][j]) ok = false;
+      rep(j, n) if (hasbit(s, j) && xy[i][j]) ok = false;
       if (!ok) continue;
       dp[s | (1 << i)] += dp[s];
     }

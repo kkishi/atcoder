@@ -20,12 +20,12 @@ void Main() {
   */
   V<int> v;
   while (n) {
-    v.push_back(n & 1);
+    v.pb(n & 1);
     n >>= 1;
   }
   reverse(all(v));
   string t = "Takahashi", a = "Aoki";
-  if ((sz(v) - 1) % 2 == 0) {
+  if (even(sz(v) - 1)) {
     rep(i, 1, sz(v)) {
       if (i & 1) {
         if (v[i] == 0) {

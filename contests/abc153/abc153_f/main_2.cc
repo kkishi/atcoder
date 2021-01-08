@@ -26,7 +26,7 @@ void Main() {
     }
     int remaining = monster[i].H - damage_sum;
     if (remaining > 0) {
-      int cnt = (remaining + A - 1) / A;
+      int cnt = div_ceil(remaining, A);
       ans += cnt;
       damage_sum += cnt * A;
       que.push({monster[i].X + 2 * D, cnt * A});

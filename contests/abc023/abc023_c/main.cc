@@ -14,7 +14,7 @@ void Main() {
   rep(i, N) {
     ++rs[r[i]];
     ++cs[c[i]];
-    rc[r[i]].push_back(c[i]);
+    rc[r[i]].pb(c[i]);
   }
   V<int> rcs(N + 1);
   rep(i, C)++ rcs[cs[i]];

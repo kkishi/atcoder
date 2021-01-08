@@ -14,6 +14,6 @@ int digits(int x) {
 void Main() {
   ints(n);
   int ans = 0;
-  rep(i, n) if (digits(i + 1) % 2 == 1)++ ans;
+  rep(i, n) if (digits(i + 1) & 1)++ ans;
   wt(ans);
 }

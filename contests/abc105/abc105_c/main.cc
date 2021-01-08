@@ -11,7 +11,7 @@ void Main() {
   string ans;
   int bit = 1;
   while (n) {
-    if (abs(n) % 2 == 1) {
+    if (abs(n) & 1) {
       n -= 1;
       ans = '1' + ans;
     } else {

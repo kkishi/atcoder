@@ -11,7 +11,7 @@ void Main() {
   V<pair<int, int>> qs;
   rep(i, q) {
     ints(x);
-    qs.push_back({x, i});
+    qs.pb({x, i});
   }
   sort(all(qs));
   reverse(all(qs));

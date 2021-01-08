@@ -16,8 +16,8 @@ void Main() {
     if (int& p = prev[a[i]]; p == -1) {
       p = i;
     } else {
-      dup.push_back(p);
-      dup.push_back(i);
+      dup.pb(p);
+      dup.pb(i);
     }
   }
   int x = dup[0];

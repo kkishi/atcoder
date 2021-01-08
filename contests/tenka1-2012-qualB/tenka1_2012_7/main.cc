@@ -12,16 +12,16 @@ void Main() {
     auto intervals = [](string s, string e) {
       V<pair<string, string>> v;
       if (e <= "24:00") {
-        v.emplace_back(s, e);
+        v.eb(s, e);
       } else {
-        v.emplace_back(s, "24:00");
+        v.eb(s, "24:00");
         e[0] -= 2;
         e[1] -= 4;
         if (e[1] < '0') {
           e[0] -= 1;
           e[1] += 10;
         }
-        v.emplace_back("00:00", e);
+        v.eb("00:00", e);
       }
       return v;
     };
@@ -33,12 +33,11 @@ void Main() {
     }
   }
 
-  V<int> dp(1 << n, numeric_limits<int>::max());
+  V<int> dp(1 << n, big);
   rep(s, 1 << n) {
     bool ok = true;
-    auto bit = [](int bits, int i) { return (bits >> i) & 1; };
-    rep(i, n - 1) if (bit(s, i)) {
-      rep(j, i + 1, n) if (bit(s, j) && overlap[i][j]) ok = false;
+    rep(i, n - 1) if (hasbit(s, i)) {
+      rep(j, i + 1, n) if (hasbit(s, j) && overlap[i][j]) ok = false;
     }
     if (ok) {
       dp[s] = 1;

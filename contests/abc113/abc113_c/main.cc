@@ -7,7 +7,7 @@ void Main() {
   vector<vector<pair<int, int>>> v(n);
   rep(i, m) {
     ints(p, y);
-    v[p - 1].push_back({y, i});
+    v[p - 1].pb({y, i});
   }
   for (auto& vi : v) sort(all(vi));
   vector<pair<int, int>> px(m);

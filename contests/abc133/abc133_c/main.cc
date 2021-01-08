@@ -3,7 +3,7 @@
 #include "atcoder.h"
 
 void Main() {
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   ints(l, r);
   rep(i, l, r) {
     rep(j, i + 1, r + 1) {

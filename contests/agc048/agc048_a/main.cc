@@ -8,8 +8,7 @@ int Solve() {
   if (t < s) {
     return 0;
   }
-  int inf = numeric_limits<int>::max();
-  int ans = inf;
+  int ans = big;
   rep(i, min(sz(t), sz(s))) {
     rep(j, i, sz(s)) {
       if (t[i] < s[j]) {
@@ -18,7 +17,7 @@ int Solve() {
     }
     if (s[i] != t[i]) break;
   }
-  return ans == inf ? -1 : ans;
+  return ans == big ? -1 : ans;
 }
 
 void Main() {

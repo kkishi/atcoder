@@ -23,7 +23,7 @@ void Main() {
   vector<string> grid(h);
   cin >> grid;
 
-  vector<vector<vector<bool>>> visited(h, vector(w, vector(4, false)));
+  vector visited(h, vector(w, vector(4, false)));
   deque<State> que;
   auto push = [&](const State& s, bool front) {
     const Position& p = s.position;
@@ -32,7 +32,7 @@ void Main() {
     if (front) {
       que.push_front(s);
     } else {
-      que.push_back(s);
+      que.pb(s);
     }
   };
   rep(dir, 4) push(State{{x1, y1, dir}, {1, 0}}, false);

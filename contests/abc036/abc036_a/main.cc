@@ -4,5 +4,5 @@
 
 void Main() {
   ints(a, b);
-  wt((b + a - 1) / a);
+  wt(div_ceil(b, a));
 }

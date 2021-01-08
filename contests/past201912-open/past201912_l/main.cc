@@ -15,13 +15,13 @@ void Main() {
 
   V<tuple<double, int, int>> v;
   rep(i, nm - 1) rep(j, i + 1, nm)
-      v.push_back({(xy[i] - xy[j]).Norm() * (c[i] == c[j] ? 1 : 10), i, j});
+      v.pb({(xy[i] - xy[j]).Norm() * (c[i] == c[j] ? 1 : 10), i, j});
   sort(all(v));
 
   double ans = numeric_limits<double>::max();
   rep(s, 1 << m) {
     V<bool> use(nm);
-    rep(i, nm) use[i] = (i < n) ? true : ((s >> (i - n)) & 1);
+    rep(i, nm) use[i] = (i < n) || hasbit(s, i - n);
     DisjointSet ds(nm);
     double sum = 0;
     for (auto [c, i, j] : v) {

@@ -6,7 +6,7 @@ void Main() {
   ints(n, t);
   V<int> a(n);
   cin >> a;
-  a.push_back(0);
+  a.pb(0);
 
   int mini = a[0];
   int maxi = 0;

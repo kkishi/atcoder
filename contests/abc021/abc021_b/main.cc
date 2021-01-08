@@ -6,7 +6,7 @@ void Main() {
   ints(n, a, b, k);
   V<int> p(k);
   cin >> p;
-  p.push_back(a);
-  p.push_back(b);
+  p.pb(a);
+  p.pb(b);
   wt(sz(set(all(p))) == sz(p) ? "YES" : "NO");
 }

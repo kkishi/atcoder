@@ -9,7 +9,7 @@ void Main() {
   vector<P> v;
   rep(i, m) {
     ints(a, b);
-    v.push_back({b, a});
+    v.pb({b, a});
   }
   sort(all(v));
   int ans = 0;

@@ -4,6 +4,6 @@
 
 void Main() {
   ints(a, b, n);
-  int l = a * b / gcd(a, b);
-  wt((n + l - 1) / l * l);
+  int l = lcm(a, b);
+  wt(div_ceil(n, l) * l);
 }

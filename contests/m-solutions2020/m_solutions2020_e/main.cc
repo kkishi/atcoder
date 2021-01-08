@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   vector<int> x(n), y(n), p(n);
   rep(i, n) cin >> x[i] >> y[i] >> p[i];
-  vector<int> ans(n + 1, numeric_limits<int>::max());
+  vector<int> ans(n + 1, big);
   vector<int> dist(n);
   rep(i, n) dist[i] = min(abs(x[i]), abs(y[i]));
   Fix([&](auto rec, int depth, int k, vector<int> dist) {

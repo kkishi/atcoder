@@ -7,6 +7,6 @@ void Main() {
   V<int> a(n);
   cin >> a;
   int ans = 0;
-  rep(i, n) if ((x >> i) & 1) ans += a[i];
+  rep(i, n) if (hasbit(x, i)) ans += a[i];
   wt(ans);
 }

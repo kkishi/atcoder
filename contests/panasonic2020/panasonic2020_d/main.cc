@@ -11,7 +11,7 @@ void Main() {
       char mc = 'a';
       for (char c : s) chmax(mc, c);
       for (char c = 'a'; c <= mc + 1; ++c) {
-        nv.push_back(s + c);
+        nv.pb(s + c);
       }
     }
     swap(v, nv);

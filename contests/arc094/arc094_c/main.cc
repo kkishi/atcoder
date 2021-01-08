@@ -4,14 +4,14 @@
 
 void Main() {
   ints(n);
-  int mini = numeric_limits<int>::max();
+  int mini = big;
   int tot = 0;
   rep(n) {
     ints(a, b);
     tot += a;
     if (a > b) chmin(mini, b);
   }
-  if (mini == numeric_limits<int>::max()) {
+  if (mini == big) {
     wt(0);
   } else {
     wt(tot - mini);

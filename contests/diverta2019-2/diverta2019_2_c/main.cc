@@ -18,30 +18,30 @@ void Main() {
   if (plus == 0) {
     sum = a.back();
     rep(i, n - 1) {
-      ans.emplace_back(sum, a[i]);
+      ans.eb(sum, a[i]);
       sum -= a[i];
     }
   } else if (minus == 0) {
     sum = a[0];
     rep(i, 1, n - 1) {
-      ans.emplace_back(sum, a[i]);
+      ans.eb(sum, a[i]);
       sum -= a[i];
     }
-    ans.emplace_back(a.back(), sum);
+    ans.eb(a.back(), sum);
     sum = a.back() - sum;
   } else {
     sum = a[0];
     rep(i, 1, plus) {
-      ans.emplace_back(sum, a[n - 1 - i]);
+      ans.eb(sum, a[n - 1 - i]);
       sum -= a[n - 1 - i];
     }
-    ans.emplace_back(a.back(), sum);
+    ans.eb(a.back(), sum);
     sum = a.back() - sum;
     rep(i, 1, minus) {
-      ans.emplace_back(sum, a[i]);
+      ans.eb(sum, a[i]);
       sum -= a[i];
     }
-    rep(i, n - (plus + minus)) ans.emplace_back(sum, 0);
+    rep(i, n - (plus + minus)) ans.eb(sum, 0);
   }
   wt(sum);
   for (auto [x, y] : ans) wt(x, y);

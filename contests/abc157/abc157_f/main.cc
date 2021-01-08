@@ -17,7 +17,7 @@ bool Ok(double t) {
   rep(i, N) rep(j, i) {
     Circ ci = {p[i], Rad(i)}, cj = {p[j], Rad(j)};
     for (auto& v : ci.Intersections(cj)) {
-      vs.push_back(v);
+      vs.pb(v);
     }
   }
   rep(i, vs.size()) {

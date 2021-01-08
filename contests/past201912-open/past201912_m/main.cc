@@ -11,10 +11,10 @@ void Main() {
   rep(i, m) cin >> c[i] >> d[i];
   wt(BinarySearch<double>(0, 1e20, [&](double x) {
     V<double> v;
-    rep(i, n) v.push_back(b[i] - a[i] * x);
+    rep(i, n) v.pb(b[i] - a[i] * x);
     double w = numeric_limits<double>::lowest();
     rep(i, m) chmax(w, d[i] - c[i] * x);
-    v.push_back(w);
+    v.pb(w);
     sort(all(v), greater());
     return accumulate(v.begin(), v.begin() + 5, double(0)) > 0;
   }));

@@ -14,7 +14,7 @@ void Main() {
     --a[i];
   };
   rep(i, h) {
-    if (i % 2 == 0) {
+    if (even(i)) {
       rep(j, w) assign(i, j);
     } else {
       rrep(j, w) assign(i, j);

@@ -18,7 +18,7 @@ void Main() {
   V<optional<int>> ds = Dijkstra(gs, s - 1);
   V<optional<int>> dt = Dijkstra(gt, t - 1);
   V<int> ans(n);
-  int mini = numeric_limits<int>::max();
+  int mini = big;
   rrep(i, n) {
     chmin(mini, *ds[i] + *dt[i]);
     ans[i] = mini;

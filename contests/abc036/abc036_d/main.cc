@@ -11,8 +11,8 @@ void Main() {
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    to[a].push_back(b);
-    to[b].push_back(a);
+    to[a].pb(b);
+    to[b].pb(a);
   }
   VV<optional<mint>> dp(n, V<optional<mint>>(2));
   wt(Fix([&](auto rec, int n, int p, bool black) -> mint {

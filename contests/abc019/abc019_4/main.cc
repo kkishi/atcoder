@@ -9,7 +9,7 @@ void Main() {
   rep(i, n - 1) {
     cout << "? 1 " << (i + 2) << endl;
     ints(d);
-    v.emplace_back(d, i + 1);
+    v.eb(d, i + 1);
   }
   sort(all(v), greater());
   auto [_, a] = v[0];
@@ -17,7 +17,7 @@ void Main() {
   rep(i, n) {
     cout << "? " << (a + 1) << " " << (i + 1) << endl;
     ints(d);
-    w.emplace_back(d, i);
+    w.eb(d, i);
   }
   sort(all(w), greater());
   auto [d, b] = w[0];

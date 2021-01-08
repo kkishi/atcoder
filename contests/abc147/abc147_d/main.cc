@@ -12,7 +12,7 @@ void Main() {
   mint ans = 0;
   rep(i, 60) {
     int ones = 0;
-    rep(j, n) if ((a[j] >> i) & 1)++ ones;
+    rep(j, n) if (hasbit(a[j], i))++ ones;
     ans += ones * (n - ones) * mint(2).Pow(i);
   }
   wt(ans);

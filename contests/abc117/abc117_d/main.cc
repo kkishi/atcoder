@@ -14,7 +14,7 @@ void Main() {
   }
 
   vector<int> cnt(shifts + 1);
-  rep(i, n) rep(j, shifts + 1) if ((a[i] >> j) & 1)++ cnt[j];
+  rep(i, n) rep(j, shifts + 1) if (hasbit(a[i], j))++ cnt[j];
 
   int x = 0;
   for (int i = shifts; i >= 0; --i) {

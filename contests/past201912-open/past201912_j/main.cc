@@ -15,8 +15,7 @@ void Main() {
   auto y = g.Distance(h - 1, 0);
   auto z = g.Distance(0, w - 1);
 
-  int inf = numeric_limits<int>::max() / 10;
-  int ans = inf;
+  int ans = big;
   rep(i, h) rep(j, w) chmin(ans, *x[i][j] + *y[i][j] + *z[i][j] - a[i][j] * 2);
   wt(ans);
 }

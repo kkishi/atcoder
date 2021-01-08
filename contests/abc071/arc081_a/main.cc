@@ -10,7 +10,7 @@ void Main() {
   V<int> x;
   rrep(i, n - 1) {
     if (a[i] == a[i + 1]) {
-      x.push_back(a[i]);
+      x.pb(a[i]);
       --i;
       if (x.size() == 2) {
         wt(x[0] * x[1]);

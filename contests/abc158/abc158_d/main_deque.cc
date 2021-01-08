@@ -22,7 +22,7 @@ void Main() {
     if ((F == 1) ^ flipped) {
       que.push_front(C);
     } else {
-      que.push_back(C);
+      que.pb(C);
     }
   }
   string s(all(que));

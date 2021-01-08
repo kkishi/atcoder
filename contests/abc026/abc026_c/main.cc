@@ -11,7 +11,7 @@ void Main() {
     auto& d = dp[i];
     if (!d) {
       V<int> v;
-      rep(j, n) if (j != i && b[j] - 1 == i) v.push_back(rec(j));
+      rep(j, n) if (j != i && b[j] - 1 == i) v.pb(rec(j));
       if (v.empty()) {
         d = 1;
       } else {

@@ -9,8 +9,7 @@ void Main() {
   int sr, sc;
   rep(i, h) rep(j, w) if (a[i][j] == 'S') sr = i, sc = j;
 
-  const int inf = numeric_limits<int>::max() / 10;
-  vector dist(h, vector(w, inf));
+  vector dist(h, vector(w, big));
   queue<pair<int, int>> que;
   que.push({sr, sc});
   dist[sr][sc] = 0;
@@ -23,7 +22,7 @@ void Main() {
         if (iter == 0) {
           wt(1);
         } else {
-          wt(1 + (dist[r][c] + k - 1) / k);
+          wt(1 + div_ceil(dist[r][c], k));
         }
         return;
       }
@@ -39,7 +38,7 @@ void Main() {
         }
       }
     }
-    if (iter == 0) rep(i, h) rep(j, w) if (dist[i][j] < inf) {
+    if (iter == 0) rep(i, h) rep(j, w) if (dist[i][j] < big) {
         dist[i][j] = 0;
         que.push({i, j});
       }

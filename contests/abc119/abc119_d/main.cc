@@ -17,17 +17,17 @@ void Main() {
       auto it = s.lower_bound(x);
       if (it == s.end()) {
         --it;
-        v.push_back(*it);
+        v.pb(*it);
       } else {
-        v.push_back(*it);
+        v.pb(*it);
         if (it != s.begin()) {
           --it;
-          v.push_back(*it);
+          v.pb(*it);
         }
       }
       return v;
     };
-    int ans = numeric_limits<int>::max();
+    int ans = big;
     for (int sx : lohi(ss, x)) {
       for (int tx : lohi(ts, x)) {
         chmin(ans, abs(x - sx) + abs(sx - tx));

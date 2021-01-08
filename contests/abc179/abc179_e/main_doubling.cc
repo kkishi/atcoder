@@ -14,7 +14,7 @@ void Main() {
     }
   }
   int ans = 0;
-  rrep(p, 40) if ((n >> p) & 1) {
+  rrep(p, 40) if (hasbit(n, p)) {
     ans += to[x][p].second;
     x = to[x][p].first;
     n -= 1LL << p;

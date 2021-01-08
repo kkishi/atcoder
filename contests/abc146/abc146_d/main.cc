@@ -12,8 +12,8 @@ void Main() {
   VV<Edge> edges(n + 1);
   rep(i, n) {
     ints(a, b);
-    edges[a].push_back({b, i});
-    edges[b].push_back({a, i});
+    edges[a].pb({b, i});
+    edges[b].pb({a, i});
   }
   set<int> seen;
   seen.insert(1);

@@ -17,8 +17,8 @@ void Main() {
     --u, --v;
     if (ds.Same(u, v)) continue;
     ds.Union(u, v);
-    to[u].push_back({v, c});
-    to[v].push_back({u, c});
+    to[u].pb({v, c});
+    to[v].pb({u, c});
   }
   V<int> ans(n);
   Fix([&](auto rec, int node, int parent, int edge_color,

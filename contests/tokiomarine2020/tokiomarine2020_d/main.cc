@@ -33,15 +33,15 @@ void Main() {
     } else {
       vector<int> vs, ws;
       while (v >= kMaxCache) {
-        vs.push_back(V_[v]);
-        ws.push_back(W[v]);
+        vs.pb(V_[v]);
+        ws.pb(W[v]);
         v = Parent(v);
       }
       int ans = 0;
       rep(i, 1 << vs.size()) {
         int v_sum = 0;
         int w_sum = 0;
-        rep(j, vs.size()) if ((i >> j) & 1) {
+        rep(j, vs.size()) if (hasbit(i, j)) {
           v_sum += vs[j];
           w_sum += ws[j];
         }

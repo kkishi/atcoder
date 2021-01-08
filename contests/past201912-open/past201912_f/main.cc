@@ -11,7 +11,7 @@ void Main() {
     while (!isupper(s[j])) ++j;
     string t = s.substr(i, j - i + 1);
     rep(k, sz(t)) t[k] = tolower(t[k]);
-    v.push_back(t);
+    v.pb(t);
     i = j + 1;
   }
   sort(all(v));

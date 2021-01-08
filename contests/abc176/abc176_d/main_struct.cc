@@ -25,7 +25,7 @@ void Main() {
     return 0 <= r && r < h && 0 <= c && c < w && s[r][c] == '.';
   };
 
-  rep(i, h) rep(j, w) dp[i][j] = numeric_limits<int>::max();
+  rep(i, h) rep(j, w) dp[i][j] = big;
 
   State init = {ch, cw, 0};
   init.ref() = 0;

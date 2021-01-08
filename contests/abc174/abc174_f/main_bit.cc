@@ -15,7 +15,7 @@ void Main() {
   rep(i, q) {
     ints(l, r);
     --l, --r;
-    qs.push_back({l, r, i, 0});
+    qs.pb({l, r, i, 0});
   }
   sort(all(qs), [](const Q& a, const Q& b) { return a.r < b.r; });
   V<int> seen(n, -1);

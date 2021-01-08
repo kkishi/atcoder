@@ -14,7 +14,7 @@ void Main() {
     inc[r] -= s;
   }
   int sum = 0;
-  int mini = numeric_limits<int>::max();
+  int mini = big;
   rep(i, m) {
     sum += inc[i];
     chmin(mini, sum);

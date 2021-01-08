@@ -9,13 +9,12 @@ void Main() {
   rep(i, n) cin >> x[i] >> y[i] >> u[i];
 
   const int M = 400001;
-  const int inf = numeric_limits<int>::max();
-  int t = inf;
+  int t = big;
   rep(rot, 4) {
     // R L
     {
       vector<vector<int>> r(M);
-      rep(i, n) if (u[i] == 'R') r[y[i]].push_back(x[i]);
+      rep(i, n) if (u[i] == 'R') r[y[i]].pb(x[i]);
       rep(i, M) sort(all(r[i]));
       rep(i, n) if (u[i] == 'L') {
         const auto& ri = r[y[i]];
@@ -31,7 +30,7 @@ void Main() {
     // R U
     {
       vector<vector<int>> r(M);
-      rep(i, n) if (u[i] == 'R') r[x[i] + y[i]].push_back(x[i]);
+      rep(i, n) if (u[i] == 'R') r[x[i] + y[i]].pb(x[i]);
       rep(i, M) sort(all(r[i]));
       rep(i, n) if (u[i] == 'U') {
         const auto& ri = r[x[i] + y[i]];
@@ -54,7 +53,7 @@ void Main() {
           map<char, char>{{'R', 'U'}, {'L', 'D'}, {'U', 'L'}, {'D', 'R'}}[u[i]];
     }
   }
-  if (t == inf) {
+  if (t == big) {
     wt("SAFE");
   } else {
     wt(t);

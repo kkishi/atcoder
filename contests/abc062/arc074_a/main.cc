@@ -3,7 +3,7 @@
 #include "atcoder.h"
 
 int f(int h, int w) {
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(x, 1, w) {
     int a = h * x;
     int b = (w - x) * (h / 2);

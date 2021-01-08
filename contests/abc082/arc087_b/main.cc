@@ -12,11 +12,11 @@ void Main() {
     if (c == 'F') {
       ++f;
     } else {
-      fs.push_back(f);
+      fs.pb(f);
       f = 0;
     }
   }
-  fs.push_back(f);
+  fs.pb(f);
 
   auto get = [&s](V<bool>& v, int i) { return v[sz(s) + i]; };
   auto set = [&s](V<bool>& v, int i) { v[sz(s) + i] = true; };

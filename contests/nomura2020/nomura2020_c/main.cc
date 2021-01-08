@@ -21,7 +21,7 @@ int solve() {
   int nodes = A[N];
   int ans = A[N];
   rrep(i, N) {
-    if (nodes / 2 + nodes % 2 + A[i] > maxi[i]) return -1;
+    if (div_ceil(nodes, 2) + A[i] > maxi[i]) return -1;
     nodes = min(nodes + A[i], maxi[i]);
     ans += nodes;
   }

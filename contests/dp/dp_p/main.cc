@@ -11,8 +11,8 @@ void Main() {
   rep(n - 1) {
     ints(x, y);
     --x, --y;
-    to[x].push_back(y);
-    to[y].push_back(x);
+    to[x].pb(y);
+    to[y].pb(x);
   }
   vector dp(n, vector(2, optional<mint>()));
   auto rec = Fix([&](auto rec, int n, int p, bool b) -> mint {

@@ -14,7 +14,7 @@ void Main() {
   V<tuple<int, int, int>> v;
   rep(n) {
     ints(m, s, e);
-    v.emplace_back(s, e, m);
+    v.eb(s, e, m);
   }
   sort(all(v));
 

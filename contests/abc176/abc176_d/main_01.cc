@@ -17,8 +17,7 @@ void Main() {
   cin >> s;
 
   deque<pair<int, int>> que;
-  const int inf = numeric_limits<int>::max();
-  VV<int> dist(h, V<int>(w, inf));
+  VV<int> dist(h, V<int>(w, big));
 
   que.push_front({ch, cw});
   dist[ch][cw] = 0;
@@ -42,10 +41,10 @@ void Main() {
       int nr = r + dr;
       int nc = c + dc;
       if (ok(nr, nc) && chmin(dist[nr][nc], dist[r][c] + 1)) {
-        que.push_back({nr, nc});
+        que.pb({nr, nc});
       }
     }
   }
   int ans = dist[dh][dw];
-  wt(ans == inf ? -1 : ans);
+  wt(ans == big ? -1 : ans);
 }

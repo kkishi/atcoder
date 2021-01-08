@@ -7,15 +7,14 @@ void Main() {
   strings(s);
   map<pair<string, string>, int> l, r;
   rep(bits, 1 << n) {
-    auto bit = [&](int i) { return (bits >> i) & 1; };
     {
       string x, y;
-      rep(i, n)(bit(i) ? x : y) += s[i];
+      rep(i, n)(hasbit(bits, i) ? x : y) += s[i];
       ++l[{x, y}];
     }
     {
       string x, y;
-      rrep(i, n)(bit(i) ? y : x) += s[n + i];
+      rrep(i, n)(hasbit(bits, i) ? y : x) += s[n + i];
       ++r[{x, y}];
     }
   }

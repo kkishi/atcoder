@@ -13,7 +13,7 @@ void Main() {
     if (end - begin == 1) return 0;
     auto& d = dp[begin][end];
     if (!d) {
-      d = numeric_limits<int>::max();
+      d = big;
       for (int mid = begin + 1; mid < end; ++mid) {
         chmin(d, rec(begin, mid) + rec(mid, end) + cum[end] - cum[begin]);
       }

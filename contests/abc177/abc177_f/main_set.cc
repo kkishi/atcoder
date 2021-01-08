@@ -43,7 +43,7 @@ void Main() {
     if (lt->begin < a[i]) {
       S s = *lt;
       s.end = a[i];
-      todo.push_back(s);
+      todo.pb(s);
     }
     if (b[i] < rt->end) {
       S s = *rt;
@@ -53,7 +53,7 @@ void Main() {
         }
       }
       s.begin = b[i];
-      todo.push_back(s);
+      todo.pb(s);
     }
     for (auto it = lt; it != next(rt); ++it) {
       if (it->value) {

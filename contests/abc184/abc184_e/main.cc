@@ -13,8 +13,7 @@ void Main() {
       sr = i, sc = j;
     }
   }
-  int inf = numeric_limits<int>::max() / 10;
-  vector dist(h, vector(w, inf));
+  vector dist(h, vector(w, big));
   dist[sr][sc] = 0;
   queue<pair<int, int>> que;
   que.push({sr, sc});

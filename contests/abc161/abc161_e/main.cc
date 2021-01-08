@@ -10,7 +10,7 @@ void Main() {
   int d = 0;
   rep(i, K) {
     while (S[d] == 'x') ++d;
-    earliest.push_back(d);
+    earliest.pb(d);
     d += C + 1;
   }
 
@@ -18,7 +18,7 @@ void Main() {
   d = N - 1;
   rep(i, K) {
     while (S[d] == 'x') --d;
-    latest.push_back(d);
+    latest.pb(d);
     d -= C + 1;
   }
 

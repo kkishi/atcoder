@@ -4,7 +4,7 @@
 
 void Main() {
   ints(n);
-  int minus = 0, mini = numeric_limits<int>::max(), sum = 0;
+  int minus = 0, mini = big, sum = 0;
   rep(i, n) {
     ints(a);
     if (a < 0) {
@@ -14,7 +14,7 @@ void Main() {
     sum += a;
     chmin(mini, a);
   }
-  if (minus % 2 == 1) {
+  if (minus & 1) {
     sum -= mini * 2;
   }
   wt(sum);

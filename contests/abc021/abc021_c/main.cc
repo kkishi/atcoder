@@ -12,12 +12,11 @@ void Main() {
   rep(m) {
     ints(x, y);
     --x, --y;
-    to[x].push_back(y);
-    to[y].push_back(x);
+    to[x].pb(y);
+    to[y].pb(x);
   }
 
-  const int inf = numeric_limits<int>::max() / 10;
-  V<int> dist(n, inf);
+  V<int> dist(n, big);
   V<mint> cnt(n);
   dist[a] = 0;
   cnt[a] = 1;

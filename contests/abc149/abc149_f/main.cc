@@ -11,22 +11,22 @@ void Main() {
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    to[a].push_back(b);
-    to[b].push_back(a);
+    to[a].pb(b);
+    to[b].pb(a);
   }
 
   // Sizes of the subtrees.
   VV<int> sizes(n);
   Fix([&](auto rec, int i, int p) -> int {
     int size = 1;
-    for (int c : to[i]) {
+    each(c, to[i]) {
       if (c == p) continue;
       int cs = rec(c, i);
       size += cs;
-      sizes[i].push_back(cs);
+      sizes[i].pb(cs);
     }
     if (p != -1) {
-      sizes[i].push_back(n - size);
+      sizes[i].pb(n - size);
     }
     return size;
   })(0, -1);
@@ -39,7 +39,7 @@ void Main() {
     // Count all combinations where node i is white and is part of a tree.
     mint all = 1;  // All combinations.
     mint one = 0;  // Only one subtree contains a black node.
-    for (int c : sizes[i]) {
+    each(c, sizes[i]) {
       all *= two[c];
       one += two[c] - 1;
     }

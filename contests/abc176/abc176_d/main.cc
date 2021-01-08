@@ -16,8 +16,7 @@ void Main() {
   V<string> s(h);
   cin >> s;
 
-  int inf = numeric_limits<int>::max();
-  VV<int> dist(h, V<int>(w, inf));
+  VV<int> dist(h, V<int>(w, big));
   low_priority_queue<tuple<int, int, int>> que;
 
   auto push = [&](int r, int c, int d) {
@@ -39,5 +38,5 @@ void Main() {
     rep(dr, -2, 3) rep(dc, -2, 3) push(r + dr, c + dc, d + 1);
   }
   int ans = dist[dh][dw];
-  wt(ans == inf ? -1 : ans);
+  wt(ans == big ? -1 : ans);
 }

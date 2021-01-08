@@ -13,16 +13,16 @@ void Main() {
   rep(i, 3) {
     V<int> cs;
     rep(j, N) rep(k, N) if (((j + 1) + (k + 1)) % 3 == i) {
-      cs.push_back(c[j][k]);
+      cs.pb(c[j][k]);
     }
     rep(j, C) {
       int sum = 0;
       for (int csi : cs) sum += D[csi - 1][j];
-      cost[i].push_back({sum, j});
+      cost[i].pb({sum, j});
     }
     sort(all(cost[i]));
   }
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   V<int> idx = {0, 1, 2};
   do {
     set<int> used;

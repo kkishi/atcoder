@@ -7,7 +7,7 @@ void Main() {
   V<tuple<int, int, int, int>> b;
   rep(n) {
     ints(w, s, v);
-    b.emplace_back(s + w, w, s, v);
+    b.eb(s + w, w, s, v);
   }
   sort(all(b));
   V<int> dp(20001, -1);

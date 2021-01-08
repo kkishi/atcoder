@@ -15,7 +15,7 @@ void Main() {
       wt(-1);
       return;
     }
-    v.push_back(i - ni);
+    v.pb(i - ni);
     i = ni;
     if (i == 0) {
       reverse(all(v));

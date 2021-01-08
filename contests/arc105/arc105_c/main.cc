@@ -15,7 +15,7 @@ void Main() {
   }
 
   V<pair<int, int>> s;
-  rep(i, m) s.emplace_back(v[i], l[i]);
+  rep(i, m) s.eb(v[i], l[i]);
   sort(all(s));
   rep(i, sz(s) - 1) chmax(s[i + 1].second, s[i].second);
   auto lookup = [&s](int x) {
@@ -24,7 +24,7 @@ void Main() {
   };
 
   sort(all(w));
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   do {
     V<int> sum(n + 1);
     rep(i, n) sum[i + 1] = sum[i] + w[i];

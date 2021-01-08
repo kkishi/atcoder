@@ -21,7 +21,7 @@ void Main() {
     if (used[i]) continue;
     used[i] = true;
     swap(p[i], p[i + 1]);
-    ans.push_back(i);
+    ans.pb(i);
     if (i > 0) check(i - 1);
     if (i + 2 < n) check(i + 1);
   }

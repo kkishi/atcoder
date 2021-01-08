@@ -28,7 +28,7 @@ void Main() {
           int pc = prev_c[r][c];
           stringstream ss;
           ss << (r + 1) << " " << (c + 1) << " " << (pr + 1) << " " << (pc + 1);
-          moves.push_back(ss.str());
+          moves.pb(ss.str());
           r = pr;
           c = pc;
         }

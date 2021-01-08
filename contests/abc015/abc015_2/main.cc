@@ -8,5 +8,5 @@ void Main() {
   cin >> a;
   int b = accumulate(all(a), 0);
   int c = n - count(all(a), 0);
-  wt((b + c - 1) / c);
+  wt(div_ceil(b, c));
 }

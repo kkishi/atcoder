@@ -8,13 +8,12 @@ void Main() {
   rep(i, m) {
     ints(a, b, c);
     --a, --b;
-    e[a].push_back({b, c, i});
-    e[b].push_back({a, c, i});
+    e[a].pb({b, c, i});
+    e[b].pb({a, c, i});
   }
   V<bool> used(m);
   rep(i, n) {
-    int inf = numeric_limits<int>::max() / 10;
-    V<int> dist(n, inf);
+    V<int> dist(n, big);
     dist[i] = 0;
     low_priority_queue<tuple<int, int, int>> que;
     que.push({0, i, -1});

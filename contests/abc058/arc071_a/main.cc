@@ -7,7 +7,7 @@ void Main() {
   V<string> s(n);
   cin >> s;
   rep(i, 26) {
-    int cnt = numeric_limits<int>::max();
+    int cnt = big;
     char c = (char)('a' + i);
     rep(j, n) chmin(cnt, count(all(s[j]), c));
     cout << string(cnt, c);

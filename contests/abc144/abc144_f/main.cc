@@ -8,7 +8,7 @@ void Main() {
   rep(i, m) {
     ints(s, t);
     --s, --t;
-    to[s].push_back(t);
+    to[s].pb(t);
   }
   V<double> e(600), p(600);
   rrep(i, n) {

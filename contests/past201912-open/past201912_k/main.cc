@@ -32,7 +32,7 @@ void Main() {
     auto check = [&] {
       int d = depth[a] - depth[b];
       if (d <= 0) return false;
-      rrep(i, 30) if ((d >> i) & 1) a = parent[i][a];
+      rrep(i, 30) if (hasbit(d, i)) a = parent[i][a];
       return a == b;
     };
     wt(check());

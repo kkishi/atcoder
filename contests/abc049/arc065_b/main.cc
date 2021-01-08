@@ -16,7 +16,7 @@ void Main() {
     dsl.Union(r - 1, s - 1);
   }
   V<pair<int, int>> v;
-  rep(i, n) v.emplace_back(dsk.Find(i), dsl.Find(i));
+  rep(i, n) v.eb(dsk.Find(i), dsl.Find(i));
   map<pair<int, int>, int> m;
   for (auto& p : v) ++m[p];
   rep(i, n) {

@@ -10,7 +10,7 @@ void Main() {
     ms.insert(s);
   }
   vector<int> v;
-  v.push_back(*ms.begin());
+  v.pb(*ms.begin());
   ms.erase(ms.begin());
   rep(i, n) {
     int J = v.size();
@@ -20,7 +20,7 @@ void Main() {
         wt("No");
         return;
       }
-      v.push_back(*it);
+      v.pb(*it);
       ms.erase(it);
     }
   }

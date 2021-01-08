@@ -8,12 +8,12 @@ void Main() {
   cin >> f;
   VV<int> p(n, V<int>(11));
   cin >> p;
-  int ans = numeric_limits<int>::min();
+  int ans = -big;
   rep(s, 1, 1 << 10) {
     V<int> c(n);
     rep(i, 5) rep(j, 2) {
       int k = i * 2 + j;
-      if ((s >> k) & 1) {
+      if (hasbit(s, k)) {
         rep(l, n) if (f[l][i][j] == 1)++ c[l];
       }
     }

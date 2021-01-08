@@ -15,7 +15,7 @@ void Main() {
   cin >> grid;
 
   State init = {x1, y1, 0};
-  vector<vector<int>> seen(h, vector(w, -1L));
+  vector seen(h, vector(w, -1L));
   seen[x1][y1] = 0;
   queue<State> que;
   que.push(init);

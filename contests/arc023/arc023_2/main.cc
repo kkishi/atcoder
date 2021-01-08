@@ -4,10 +4,10 @@
 
 void Main() {
   ints(r, c, d);
-  VV<int> a(r, V<int>(c));
+  vector a(r, V<int>(c));
   cin >> a;
-  int ans = numeric_limits<int>::min();
-  rep(i, r) rep(j, c) if (i + j <= d && (d - (i + j)) % 2 == 0) {
+  int ans = -big;
+  rep(i, r) rep(j, c) if (i + j <= d && even(d - (i + j))) {
     chmax(ans, a[i][j]);
   }
   wt(ans);

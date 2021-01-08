@@ -30,7 +30,7 @@ void Main() {
     }
     Monster max_m = {monster[mi].X + D * 2, 0};
     int ub = upper_bound(monster, monster + N, max_m) - monster;
-    int cnt = (h + A - 1) / A;
+    int cnt = div_ceil(h, A);
     tree.Update(mi, ub, -cnt * A);
     ans += cnt;
   }

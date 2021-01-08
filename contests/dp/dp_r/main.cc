@@ -14,10 +14,10 @@ void Main() {
   V<int> op;
   while (k) {
     if (k & 1) {
-      op.push_back(0);
+      op.pb(0);
       --k;
     } else {
-      op.push_back(1);
+      op.pb(1);
       k /= 2;
     }
   }

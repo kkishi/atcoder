@@ -35,7 +35,7 @@ void Main() {
   vector<string> grid(h);
   cin >> grid;
 
-  vector<vector<vector<Cost>>> cost(h, vector(w, vector(4, Cost{INF, INF})));
+  vector cost(h, vector(w, vector(4, Cost{INF, INF})));
   auto CostOf = [&](const Position& p) -> Cost& {
     return cost[p.r][p.c][p.dir];
   };

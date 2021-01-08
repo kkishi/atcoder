@@ -23,8 +23,8 @@ void Main() {
   int x = 0;
   rep(i, ns - 1) rep(j, i + 1, ns) {
     ++x;
-    s[i].push_back(x);
-    s[j].push_back(x);
+    s[i].pb(x);
+    s[j].pb(x);
   }
   rep(i, ns) {
     cout << sz(s[i]);

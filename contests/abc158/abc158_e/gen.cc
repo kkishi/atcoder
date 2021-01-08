@@ -19,7 +19,7 @@ std::vector<int> Primes(int n) {
   std::vector<int> v;
   for (int i = 2; i <= n; ++i) {
     if (sieve[i]) {
-      v.push_back(i);
+      v.pb(i);
     }
   }
   return v;

@@ -15,7 +15,7 @@ void Main() {
       wt(-1);
       return;
     } else {
-      chmax(ans, (v + u - 1) / u);
+      chmax(ans, div_ceil(v, u));
     }
   }
   wt(ans);

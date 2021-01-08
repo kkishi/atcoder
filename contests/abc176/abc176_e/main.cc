@@ -9,7 +9,7 @@ void Main() {
   rep(i, m) {
     ints(h, w);
     --h, --w;
-    hw[h].push_back(w);
+    hw[h].pb(w);
     hm[h]++;
     wm[w]++;
   }

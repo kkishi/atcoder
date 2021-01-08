@@ -9,7 +9,7 @@ using S = int;
 
 S op(S a, S b) { return max(a, b); }
 
-S e() { return numeric_limits<int>::min(); }
+S e() { return -big; }
 
 using F = int;
 
@@ -28,7 +28,7 @@ void Main() {
   map<int, V<pair<int, int>>> s;
   rep(m) {
     ints(l, r, a);
-    s[r].emplace_back(l, a);
+    s[r].eb(l, a);
   }
 
   atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> tree(n + 1);

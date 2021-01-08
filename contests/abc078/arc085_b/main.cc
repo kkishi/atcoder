@@ -12,10 +12,10 @@ void Main() {
     if (!d) {
       V<int> v;
       for (int j = i + 1; j < n; ++j) {
-        v.push_back(rec(j, !x));
+        v.pb(rec(j, !x));
       }
       int op = (i == 0 ? (x ? w : z) : a[i - 1]);
-      v.push_back(abs(op - a[n - 1]));
+      v.pb(abs(op - a[n - 1]));
       if (x) {
         d = *max_element(all(v));
       } else {

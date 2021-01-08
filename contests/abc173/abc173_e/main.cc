@@ -11,16 +11,16 @@ void Main() {
   rep(i, n) {
     ints(a);
     if (a == 0) {
-      z.push_back(0);
+      z.pb(0);
     } else if (a > 0) {
-      p.push_back(a);
+      p.pb(a);
     } else {
-      m.push_back(-a);
+      m.pb(-a);
     }
   }
   bool can_make_positive = false;
   for (int mc = 0; mc <= min<int>(m.size(), k); ++mc) {
-    if (p.size() >= (k - mc) && mc % 2 == 0) {
+    if (p.size() >= (k - mc) && even(mc)) {
       can_make_positive = true;
     }
   }

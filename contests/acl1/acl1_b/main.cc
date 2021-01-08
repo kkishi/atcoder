@@ -10,7 +10,7 @@ void Main() {
   n *= 2;
   map<int, int> fs = Factorize(n);
 
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   Fix([&](auto dfs, map<int, int>::iterator it, int x) {
     if (it == fs.end()) {
       int y = n / x;

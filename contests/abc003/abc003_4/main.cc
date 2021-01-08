@@ -14,7 +14,7 @@ void Main() {
   };
   mint ans = 0;
   rep(u, 2) rep(d, 2) rep(l, 2) rep(r, 2) {
-    mint sign = (u + d + l + r) % 2 == 0 ? 1 : -1;
+    mint sign = even(u + d + l + r) ? 1 : -1;
     ans += f(x - u - d, y - l - r) * sign;
   }
   wt(ans * (r - x + 1) * (c - y + 1));

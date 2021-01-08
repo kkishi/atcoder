@@ -10,7 +10,7 @@ void Main() {
   Random r;
   rep(n - 1) {
     int x = a.back() + r.Int(1, 10);
-    a.push_back(x);
+    a.pb(x);
   }
   rep(i, n) wt(a[i]);
   rep(q) wt(r.Int(1, n * 10));

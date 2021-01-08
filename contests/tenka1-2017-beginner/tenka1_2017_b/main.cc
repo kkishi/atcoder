@@ -4,7 +4,7 @@
 
 void Main() {
   ints(n);
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(n) {
     ints(a, b);
     chmin(ans, a + b);

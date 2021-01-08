@@ -15,7 +15,7 @@ void Main() {
   V<pair<int, int>> neg, same, pos;
   rep(i, n) {
     ((a[i] < b[i]) ? neg : (a[i] == b[i]) ? same : pos)
-        .emplace_back(a[i], b[i]);
+        .eb(a[i], b[i]);
   }
   V<pair<int, int>> ans;
   Sort(neg);

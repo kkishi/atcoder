@@ -5,12 +5,12 @@
 void Main() {
   ints(n, m, t);
   V<pair<int, int>> v;
-  v.emplace_back(0, 0);
+  v.eb(0, 0);
   rep(m) {
     ints(a, b);
-    v.emplace_back(a, b);
+    v.eb(a, b);
   }
-  v.emplace_back(t, t);
+  v.eb(t, t);
   int x = 0;
   rep(i, sz(v) - 1) {
     x += v[i + 1].first - v[i].second;

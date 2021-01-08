@@ -4,5 +4,5 @@
 
 void Main() {
   ints(n);
-  wt(n % 2 ? "Black" : "White");
+  wt(even(n) ? "White" : "Black");
 }

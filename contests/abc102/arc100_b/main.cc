@@ -13,7 +13,7 @@ void Main() {
   V<int> r(n);
   rrep(i, n) r[i] = a[i] + (i < n - 1 ? r[i + 1] : 0);
 
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   rep(i, 1, n - 2) {
     int ls = l[i];
     int li = BinarySearch<int>(0, i, [&](int i) { return l[i] <= ls / 2; });

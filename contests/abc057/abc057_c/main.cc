@@ -12,7 +12,7 @@ void Main() {
     }
     return ret;
   };
-  int ans = numeric_limits<int>::max();
+  int ans = big;
   for (int a = 1; a * a <= n; ++a) {
     if (n % a == 0) {
       chmin(ans, max(digits(a), digits(n / a)));

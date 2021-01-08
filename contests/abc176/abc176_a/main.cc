@@ -4,5 +4,5 @@
 
 void Main() {
   ints(n, x, t);
-  wt((n + x - 1) / x * t);
+  wt(div_ceil(n, x) * t);
 }

@@ -11,11 +11,11 @@ void Main() {
     int n = N / 2;
     rep(i, 1 << n) {
       int vs = 0, ws = 0;
-      rep(j, n) if ((i >> j) & 1) {
+      rep(j, n) if (hasbit(i, j)) {
         vs += v[j];
         ws += w[j];
       }
-      cand.push_back({ws, vs});
+      cand.pb({ws, vs});
     }
     sort(all(cand));
     rep(i, 1, sz(cand)) chmax(cand[i].second, cand[i - 1].second);
@@ -23,7 +23,7 @@ void Main() {
     int ans = 0;
     rep(i, 1 << (N - n)) {
       int vs = 0, ws = 0;
-      rep(j, (N - n)) if ((i >> j) & 1) {
+      rep(j, (N - n)) if (hasbit(i, j)) {
         vs += v[j + n];
         ws += w[j + n];
       }
@@ -42,11 +42,10 @@ void Main() {
   } else {
     int mv = *max_element(all(v));
     assert(mv <= 1000);
-    int inf = numeric_limits<int>::max() / 10;
     int size = N * mv;
-    V<int> dp(size + 1, inf);
+    V<int> dp(size + 1, big);
     dp[0] = 0;
-    rep(i, N) rrep(j, size + 1 - v[i]) if (dp[j] != inf) {
+    rep(i, N) rrep(j, size + 1 - v[i]) if (dp[j] != big) {
       chmin(dp[j + v[i]], dp[j] + w[i]);
     }
     int ans = 0;

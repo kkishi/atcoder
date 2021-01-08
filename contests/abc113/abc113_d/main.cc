@@ -10,7 +10,7 @@ void Main() {
   vector<vector<mint>> dp(h + 1, vector<mint>(w));
   dp[0][0] = 1;
   rep(i, h) rep(s, 1 << (w - 1)) {
-    auto connected = [&s](int x) { return (s >> x) & 1; };
+    auto connected = [&s](int x) { return hasbit(s, x); };
     bool ok = true;
     rep(j, w - 2) if (connected(j) && connected(j + 1)) ok = false;
     if (!ok) continue;
