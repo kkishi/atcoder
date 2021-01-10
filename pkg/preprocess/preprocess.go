@@ -84,6 +84,9 @@ func (p *preprocessor) line(l string) error {
 			return err
 		}
 	}
+	if l == "#pragma once" {
+		return nil
+	}
 	p.print(l)
 	return nil
 }
