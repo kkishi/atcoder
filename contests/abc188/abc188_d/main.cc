@@ -10,7 +10,6 @@ void Main() {
     v.eb(a, c);
     v.eb(b + 1, -c);
   }
-  v.eb(0, 0);
   sort(all(v));
   int ans = 0;
   int curr = 0;
