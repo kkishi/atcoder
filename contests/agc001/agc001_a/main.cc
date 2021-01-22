@@ -4,12 +4,10 @@
 
 void Main() {
   ints(n);
-  V<int> a(n);
-  cin >> a;
+  V<int> l(2 * n);
+  cin >> l;
+  sort(all(l));
   int ans = 0;
-  rep(i, n - 1) if (a[i] == a[i + 1]) {
-    ++ans;
-    a[i + 1] = 0;
-  }
+  rep(i, n) ans += l[i * 2];
   wt(ans);
 }
