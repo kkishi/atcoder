@@ -33,6 +33,7 @@ contests/agc006/agc006_b/main.cc\
 contests/agc007/agc007_b/main.cc\
 contests/agc013/agc013_b/main.cc\
 contests/agc022/agc022_b/main.cc\
+contests/agc050/agc050_a/main.cc\
 contests/arc022/arc022_3/main.cc\
 contests/arc051/arc051_b/main.cc\
 contests/arc091/arc091_c/main.cc\
@@ -42,6 +43,7 @@ contests/arc106/arc106_d/main.cc\
 contests/arc108/arc108_c/main.cc\
 contests/arc110/arc110_a/main.cc\
 contests/arc110/arc110_c/main.cc\
+contests/arc111/arc111_c/main.cc\
 contests/ddcc2020-qual/ddcc2020_qual_c/main.cc\
 contests/intro-heuristics/intro_heuristics_a/main.cc\
 contests/jsc2019-qual/jsc2019_qual_d/main.cc\
