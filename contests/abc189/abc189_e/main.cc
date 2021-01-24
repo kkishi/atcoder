@@ -1,31 +1,17 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "matrix.h"
 
-using mat = vector<vector<int>>;
-
-mat Mult(const mat& a, const mat& b) {
-  assert(sz(a[0]) == sz(b));
-  int n = sz(a), m = sz(b[0]);
-  mat c(n, V<int>(m));
-  rep(i, n) rep(j, m) rep(k, sz(a[i])) c[i][j] += a[i][k] * b[k][j];
-  return c;
-}
-
-mat Plus(const mat& a, const mat& b) {
-  int n = sz(a), m = sz(a[0]);
-  assert(sz(b) == n && sz(b[0]) == m);
-  mat c(n, V<int>(m));
-  rep(i, n) rep(j, m) c[i][j] = a[i][j] + b[i][j];
-  return c;
-}
+using mat = Matrix<int, 2, 2>;
+using vec = Matrix<int, 2, 1>;
 
 void Main() {
   ints(n);
-  V<mat> P;
+  V<vec> P;
   rep(n) {
     ints(x, y);
-    P.pb({{x}, {y}});
+    P.pb({{{x}, {y}}});
   }
   ints(m);
   V<int> k(m), p(m);
@@ -40,29 +26,29 @@ void Main() {
     ab[a].pb({i, b - 1});
   }
 
-  mat C = {{0}, {0}};
-  mat A = {{1, 0}, {0, 1}};
-  V<mat> ans(q);
+  vec C = {{{0}, {0}}};
+  mat A = {{{1, 0}, {0, 1}}};
+  V<vec> ans(q);
   rep(i, m + 1) {
     each(j, b, ab[i]) ans[j] = Plus(Mult(A, P[b]), C);
     if (i == m) break;
     if (k[i] == 1) {
-      mat x = {{0, 1}, {-1, 0}};
+      mat x = {{{0, 1}, {-1, 0}}};
       A = Mult(x, A);
       C = Mult(x, C);
     }
     if (k[i] == 2) {
-      mat x = {{0, -1}, {1, 0}};
+      mat x = {{{0, -1}, {1, 0}}};
       A = Mult(x, A);
       C = Mult(x, C);
     }
     if (k[i] == 3) {
       C[0][0] = 2 * p[i] - C[0][0];
-      A = Mult({{-1, 0}, {0, 1}}, A);
+      A = Mult(mat{{{-1, 0}, {0, 1}}}, A);
     }
     if (k[i] == 4) {
       C[1][0] = 2 * p[i] - C[1][0];
-      A = Mult({{1, 0}, {0, -1}}, A);
+      A = Mult(mat{{{1, 0}, {0, -1}}}, A);
     }
   }
   rep(i, q) wt(ans[i][0][0], ans[i][1][0]);
