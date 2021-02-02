@@ -13,9 +13,6 @@ void Main() {
   path[1] = path[2] = 1;
   rep(i, 3, n + 1) path[i] = path[i - 1] * i;
 
-  vector comb(n, vector(n, mint(0)));
-  rep(i, n) rep(j, n) comb[i][j] = mint::Comb(i, j);
-
   auto solve = [&](int l) {
     vector dp(n + 1, vector(m + 1, mint(0)));
     dp[0][0] = 1;
@@ -29,7 +26,7 @@ void Main() {
       }
       // Use un nodes.
       for (int un = 2; un <= rn && un <= l; ++un) {
-        mint c = comb[rn - 1][un - 1];
+        mint c = mint::Comb(rn - 1, un - 1);
         // Path.
         if (int ue = un - 1; ue <= re) {
           dp[i + un][j + ue] += dp[i][j] * c * path[un];

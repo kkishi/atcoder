@@ -15,8 +15,6 @@ void Main() {
   }
   vector dp(H, vector(W, mint(0)));
   dp[0][0] = mint(3).Pow(H * W - K);
-  mint f = 2;
-  f /= 3;
   rep(i, H) rep(j, W) {
     char c = g[i][j];
     if (i + 1 < H) {
@@ -24,7 +22,7 @@ void Main() {
       if (c == 'X' || c == 'D') {
         cnt = 1;
       } else if (c == ' ') {
-        cnt = f;
+        cnt = mint(2) / 3;
       }
       dp[i + 1][j] += dp[i][j] * cnt;
     }
@@ -33,7 +31,7 @@ void Main() {
       if (c == 'X' || c == 'R') {
         cnt = 1;
       } else if (c == ' ') {
-        cnt = f;
+        cnt = mint(2) / 3;
       }
       dp[i][j + 1] += dp[i][j] * cnt;
     }
