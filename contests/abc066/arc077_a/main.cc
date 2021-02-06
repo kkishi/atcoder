@@ -11,9 +11,5 @@ void Main() {
   reverse(all(head));
   for (int i : tail) head.pb(i);
   if (n & 1) reverse(all(head));
-  rep(i, sz(head)) {
-    if (i) cout << " ";
-    cout << head[i];
-  }
-  cout << endl;
+  wt(head);
 }

@@ -45,9 +45,5 @@ void Main() {
   check(n, ans);
 #endif
 
-  rep(i, n) {
-    if (i) cout << ' ';
-    cout << ans[i];
-  }
-  cout << endl;
+  wt(ans);
 }

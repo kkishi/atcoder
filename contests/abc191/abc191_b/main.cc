@@ -8,9 +8,5 @@ void Main() {
   cin >> a;
   V<int> b;
   each(ai, a) if (ai != x) b.pb(ai);
-  rep(i, sz(b)) {
-    if (i) cout << " ";
-    cout << b[i];
-  }
-  cout << endl;
+  wt(b);
 }

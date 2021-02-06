@@ -20,11 +20,5 @@ void Main() {
       rrep(j, w) assign(i, j);
     }
   }
-  rep(i, h) {
-    rep(j, w) {
-      if (j) cout << " ";
-      cout << grid[i][j];
-    }
-    cout << endl;
-  }
+  rep(i, h) wt(grid[i]);
 }

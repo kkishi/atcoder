@@ -138,8 +138,6 @@ bool solve(ull bit) {
   return true;
 }
 
-ull ans[kMax][kMax];
-
 void Main() {
   cin >> N;
   rep(i, N) cin >> S[i];
@@ -148,6 +146,7 @@ void Main() {
   rep(i, N) cin >> V_[i];
 
   ull bit = 1;
+  vector ans(N, vector(N, ull(0)));
   rep(b, 64) {
     if (!solve(bit)) {
       cout << -1 << endl;
@@ -156,11 +155,5 @@ void Main() {
     rep(r, N) rep(c, N) if (mat[r][c] == 1) ans[r][c] |= bit;
     bit <<= 1;
   }
-  rep(r, N) {
-    rep(c, N) {
-      if (c) cout << " ";
-      cout << ans[r][c];
-    }
-    cout << endl;
-  }
+  each(a, ans) wt(a);
 }

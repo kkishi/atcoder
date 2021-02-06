@@ -50,8 +50,6 @@ void Main() {
       ans.pb(a[i]);
     }
   }
-  rep(i, sz(ans)) {
-    if (i) cout << ' ';
-    cout << ans[i] + 1;
-  }
+  each(x, ans)++ x;
+  wt(ans);
 }

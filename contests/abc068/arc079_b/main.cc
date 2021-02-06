@@ -19,9 +19,5 @@ void Main() {
     }
     a[mi] += 50;
   }
-  rep(i, 50) {
-    if (i) cout << " ";
-    cout << a[i];
-  }
-  cout << endl;
+  wt(a);
 }

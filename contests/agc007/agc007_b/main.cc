@@ -17,14 +17,6 @@ void Main() {
   b[n - 1] = 1;
   rrep(i, n - 1) b[i] = b[i + 1] + 1 + max(0, p[i] - p[i + 1]);
 
-  rep(i, n) {
-    if (i) cout << " ";
-    cout << a[i];
-  }
-  cout << endl;
-  rep(i, n) {
-    if (i) cout << " ";
-    cout << b[i];
-  }
-  cout << endl;
+  wt(a);
+  wt(b);
 }

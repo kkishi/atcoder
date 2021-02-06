@@ -19,11 +19,7 @@ void Main() {
     i = ni;
     if (i == 0) {
       reverse(all(v));
-      rep(i, v.size()) {
-        if (i) cout << " ";
-        cout << v[i];
-      }
-      cout << endl;
+      wt(v);
       return;
     }
   }
