@@ -6,7 +6,6 @@ void Main() {
   ints(n, x);
   V<int> a(n);
   cin >> a;
-  V<int> b;
-  each(ai, a) if (ai != x) b.pb(ai);
-  wt(b);
+  a.erase(remove(all(a), x), a.end());
+  wt(a);
 }

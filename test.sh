@@ -50,6 +50,7 @@ contests/jsc2019-qual/jsc2019_qual_d/main.cc\
 contests/keyence2020/keyence2020_c/main.cc\
 contests/m-solutions2019/m_solutions2019_d/main.cc\
 contests/nomura2020/nomura2020_b/main.cc\
+contests/past202012-open/past202012_g/main.cc\
 contests/practice/practice_1/main.cc\
 contests/practice2/practice2_d/main.cc\
 contests/practice2/practice2_g/main.cc\

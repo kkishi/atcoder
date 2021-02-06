@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "binary_search.h"
 
 void Main() {
   rd(long double, X, Y, R);
   const int c = 10000;
-  auto sign = [](double x) { return x < 0 ? -1 : x > 0 ? 1 : 0; };
-  int x = X * c + sign(X) * 0.5;
-  int y = Y * c + sign(Y) * 0.5;
-  int r = R * c + sign(R) * 0.5;
+  int x = round(X * c);
+  int y = round(Y * c);
+  int r = round(R * c);
   auto roundup = [&c](int x) {
     if (x < 0) {
       x = -x;
@@ -47,9 +45,8 @@ void Main() {
   for (int xi = lx; xi <= hx; xi += c) {
     int d = abs(x - xi);
     int y2 = r * r - d * d;
-    double dy = sqrt((double)y2);
-    double eps = 1e-6;
-    int ly = roundup(y - dy - eps) / c;
+    double dy = sqrt(y2);
+    int ly = roundup(y - dy) / c;
     {
       while (true) {
         int z = y - (ly - 1) * c;
@@ -68,7 +65,7 @@ void Main() {
         }
       }
     }
-    int hy = rounddown(y + dy + eps) / c;
+    int hy = rounddown(y + dy) / c;
     {
       while (true) {
         int z = (hy + 1) * c - y;
