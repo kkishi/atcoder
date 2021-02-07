@@ -7,7 +7,7 @@ void Main() {
   ints(n);
   map<int, int> fs;
   for (int i = 2; i <= n; ++i) {
-    for (auto [k, v] : Factorize(i)) fs[k] += v;
+    for (auto [k, v] : Factors(i)) fs[k] += v;
   }
   // 3 * 5 * 5
   // 15 * 5

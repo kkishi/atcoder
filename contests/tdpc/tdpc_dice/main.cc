@@ -6,7 +6,7 @@
 void Main() {
   ints(n, d);
 
-  map<int, int> fs = Factorize(d);
+  map<int, int> fs = Factors(d);
   for (auto [k, _] : fs) {
     if (!set{2, 3, 5}.count(k)) {
       wt(0);

@@ -8,9 +8,8 @@ using mint = ModInt<>;
 
 void Main() {
   ints(n, m);
-  map<int, int> fs = Factorize(m);
   mint ans = 1;
-  for (auto [_, v] : fs) {
+  for (auto [_, v] : Factors(m)) {
     ans *= mint::Comb(n - 1 + v, n - 1);
   }
   wt(ans);

@@ -5,5 +5,5 @@
 
 void Main() {
   ints(a, b);
-  wt(Factorize(gcd(a, b)).size() + 1);
+  wt(Factors(gcd(a, b)).size() + 1);
 }
