@@ -7,10 +7,7 @@ void Main() {
   vector<int> a(n);
   cin >> a;
   int all = 0;
-  rep(i, n) all ^= a[i];
-  rep(i, n) {
-    if (i) cout << " ";
-    cout << (all ^ a[i]);
-  }
-  cout << endl;
+  each(ai, a) all ^= ai;
+  each(ai, a) ai ^= all;
+  wt(a);
 }

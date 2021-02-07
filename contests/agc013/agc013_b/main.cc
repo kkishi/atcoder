@@ -33,9 +33,6 @@ void Main() {
   reverse(all(b));
   for (int n : f) b.pb(n);
   wt(sz(b));
-  rep(i, sz(b)) {
-    if (i) cout << ' ';
-    cout << (b[i] + 1);
-  }
-  cout << endl;
+  each(x, b)++ x;
+  wt(b);
 }

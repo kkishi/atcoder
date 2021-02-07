@@ -27,9 +27,5 @@ void Main() {
   })(0, -1);
 
   wt(accumulate(c.begin(), c.end() - 1, 0));
-  rep(i, n) {
-    if (i) cout << " ";
-    cout << ans[i];
-  }
-  cout << endl;
+  wt(ans);
 }

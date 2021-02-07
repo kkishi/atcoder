@@ -1,15 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "factorize.h"
+#include "divisors.h"
 
 void Main() {
   ints(n, k);
   vector<int> a(n);
   cin >> a;
-  int sum = accumulate(all(a), 0LL);
-  map<int, int> fs = Factorize(sum);
-  vector<pair<int, int>> v(all(fs));
 
   auto check = [&](int g) {
     vector<int> mods(n);
@@ -27,15 +24,9 @@ void Main() {
     return false;
   };
 
-  wt(Fix([&](auto dfs, int depth, int g) -> int {
-    if (depth == v.size()) {
-      return check(g) ? g : 0;
-    }
-    int ret = 0;
-    rep(i, v[depth].second + 1) {
-      chmax(ret, dfs(depth + 1, g));
-      g *= v[depth].first;
-    }
-    return ret;
-  })(0, 1));
+  int ans = 0;
+  each(g, Divisors(accumulate(all(a), int(0)))) {
+    if (check(g)) chmax(ans, g);
+  }
+  wt(ans);
 }

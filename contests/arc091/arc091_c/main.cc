@@ -29,10 +29,6 @@ void Main() {
   if (!res) {
     wt(-1);
   } else {
-    rep(i, n) {
-      if (i) cout << ' ';
-      cout << res->at(i);
-    }
-    cout << endl;
+    wt(*res);
   }
 }

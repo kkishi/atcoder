@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "divisors.h"
 
 void Main() {
   ints(n);
@@ -13,10 +14,6 @@ void Main() {
     return ret;
   };
   int ans = big;
-  for (int a = 1; a * a <= n; ++a) {
-    if (n % a == 0) {
-      chmin(ans, max(digits(a), digits(n / a)));
-    }
-  }
+  each(d, Divisors(n)) chmin(ans, max(digits(d), digits(n / d)));
   wt(ans);
 }

@@ -31,9 +31,5 @@ void Main() {
       le = lo = 0;
     }
   }
-  rep(i, s.size()) {
-    if (i) cout << " ";
-    cout << ans[i];
-  }
-  cout << endl;
+  wt(ans);
 }

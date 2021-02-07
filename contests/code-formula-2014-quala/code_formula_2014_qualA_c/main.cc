@@ -20,11 +20,7 @@ void Main() {
       if (decided.count(idx)) continue;
       if (better + (n - 1 - i) * J < k) s.insert(idx);
     }
-    for (auto it = s.begin(); it != s.end(); ++it) {
-      if (it != s.begin()) cout << ' ';
-      cout << *it;
-      decided.insert(*it);
-    }
-    cout << endl;
+    wt(s);
+    decided.merge(s);
   }
 }
