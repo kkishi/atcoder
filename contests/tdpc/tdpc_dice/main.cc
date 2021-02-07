@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "factorize.h"
+#include "factors.h"
 
 void Main() {
   ints(n, d);

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "factorize.h"
+#include "divisors.h"
 
 bool Ok(int n, int k) {
   while (n != 1) {

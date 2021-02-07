@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "factorize.h"
+#include "divisors.h"
 
 // Using i64 TLEs probably because of the slower memory access.
 #undef int

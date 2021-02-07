@@ -3,7 +3,7 @@
 #include <atcoder/math>
 
 #include "atcoder.h"
-#include "factorize.h"
+#include "divisors.h"
 
 void Main() {
   ints(n);
