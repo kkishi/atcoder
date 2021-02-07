@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "disjointset.h"
+#include "disjoint_set.h"
 #include "geometry.h"
 
 using Vec = Vector<double>;

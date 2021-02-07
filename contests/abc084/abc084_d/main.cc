@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "prime.h"
+#include "primes.h"
 
 void Main() {
   V<bool> s = Sieve(100000);
