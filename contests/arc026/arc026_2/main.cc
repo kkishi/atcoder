@@ -1,17 +1,11 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "factorize.h"
 
 void Main() {
   ints(n);
-  set<int> s;
-  for (int i = 1; i * i <= n; ++i) {
-    if (n % i == 0) {
-      s.insert(i);
-      s.insert(n / i);
-    }
-  }
-  s.erase(n);
-  int sum = accumulate(all(s), int(0));
+  V<int> ds = Divisors(n);
+  int sum = accumulate(all(ds), -n);
   wt(sum == n ? "Perfect" : sum < n ? "Deficient" : "Abundant");
 }

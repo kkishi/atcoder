@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "factorize.h"
 
 // Using i64 TLEs probably because of the slower memory access.
 #undef int
@@ -13,14 +14,8 @@ void Main() {
   a.erase(unique(all(a)), a.end());
 
   set<int> fs;
-  each(x, a) {
-    for (int i = 1; i * i <= x; ++i) {
-      if (x % i == 0) {
-        fs.insert(i);
-        fs.insert(x / i);
-      }
-    }
-  }
+  each(x, a) each(d, Divisors(x)) fs.insert(d);
+
   int ans = 0;
   each(f, fs) {
     if (f > a[0]) break;
