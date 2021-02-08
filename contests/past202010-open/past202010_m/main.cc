@@ -1,8 +1,10 @@
+
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
 #include "disjoint_set.h"
 #include "graph.h"
+#include "lca.h"
 
 void Main() {
   ints(n, q);
@@ -14,23 +16,18 @@ void Main() {
     g.AddEdge(b, a, i);
   }
 
-  // Compute a table for LCA
-  const int M = 17;
-  vector parents(M, V<int>(n));
+  LCA lca(g);
+
   V<int> parent_edge(n);
-  V<int> depths(n);
-  Fix([&](auto rec, int node, int parent, int depth) -> void {
-    depths[node] = depth;
+  Fix([&](auto rec, int node, int parent) -> void {
     auto& edges = g.Edges(node);
     rep(i, sz(edges)) {
       int child = edges[i].to;
       if (child == parent) continue;
-      parents[0][child] = node;
       parent_edge[child] = i;
-      rec(child, node, depth + 1);
+      rec(child, node);
     }
-  })(0, -1, 0);
-  rep(i, 1, M) rep(j, n) parents[i][j] = parents[i - 1][parents[i - 1][j]];
+  })(0, -1);
 
   V<tuple<int, int, int>> queries;
   rep(q) {
@@ -42,16 +39,13 @@ void Main() {
   DisjointSet ds(n);
   V<int> roots(n);
   iota(all(roots), int(0));
+
   V<int> ans(n - 1);
   for (auto [u, v, c] : queries) {
     --u, --v;
-    if (depths[u] > depths[v]) swap(u, v);
-    int U = u, V = v;
-    rrep(i, M) if (depths[V] - (1 << i) >= depths[U]) V = parents[i][V];
-
     auto paint = [&](int ancestor, int child) {
-      while (depths[child] > depths[ancestor]) {
-        int parent = parents[0][child];
+      while (lca.Depth(child) > lca.Depth(ancestor)) {
+        int parent = lca.Parent(child);
         if (ds.Same(child, parent)) {
           child = roots[ds.Find(child)];
           continue;
@@ -63,18 +57,9 @@ void Main() {
         child = r;
       }
     };
-    if (U == V) {
-      paint(u, v);
-    } else {
-      rrep(i, M) if (int PU = parents[i][U], PV = parents[i][V]; PU != PV) {
-        U = PU;
-        V = PV;
-      }
-      int P = parents[0][U];
-      assert(P == parents[0][V]);
-      paint(P, u);
-      paint(P, v);
-    }
+    int p = lca.Of(u, v);
+    paint(p, u);
+    paint(p, v);
   }
   each(a, ans) wt(a);
 }
