@@ -2,7 +2,25 @@
 
 set -e
 
-for f in $(find contests -name main.cc | sort); do
+all=0
+
+while test $# -gt 0; do
+  case "$1" in
+    -all)
+      shift
+      all=1
+  esac
+done
+
+function programs() {
+  if [[ $all = 1 ]]; then
+    find contests -name main.cc
+  else
+    git diff --stat=1024 contests/ | grep main.cc | cut -d ' ' -f 2
+  fi
+}
+
+for f in $(programs | sort); do
   skip="\
 contests/abc006/abc006_3/main.cc\
 contests/abc007/abc007_2/main.cc\
