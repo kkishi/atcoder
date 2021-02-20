@@ -20,8 +20,7 @@ void Main() {
     int a = que.front();
     que.pop();
     for (auto [b, t, k] : to[a]) {
-      int nd = div_ceil(dist[a], k) * k + t;
-      if (chmin(dist[b], nd)) {
+      if (chmin(dist[b], div_ceil(dist[a], k) * k + t)) {
         que.push(b);
       }
     }

@@ -24,5 +24,5 @@ void Main() {
     wt(0);
     return;
   }
-  wt(BinarySearch<i128>(d + 1, 4000'000'000'000'000'000LL, f) - d);
+  wt(BinarySearch<i128>(d + 1, m + 1, f) - d);
 }

@@ -7,10 +7,10 @@ void Main() {
   int a = n;
   rep(k) {
     string s = to_string(a);
-    sort(all(s));
-    int g2 = stoll(s);
     sort(all(s), greater{});
     int g1 = stoll(s);
+    sort(all(s));
+    int g2 = stoll(s);
     a = g1 - g2;
   }
   wt(a);
