@@ -14,14 +14,14 @@ void Main() {
   }
   V<int> dist(n, big);
   dist[x] = 0;
-  queue<int> que;
-  que.push(x);
+  low_priority_queue<pair<int, int>> que;
+  que.emplace(0, x);
   while (!que.empty()) {
-    int a = que.front();
+    int a = que.top().second;
     que.pop();
     for (auto [b, t, k] : to[a]) {
       if (chmin(dist[b], div_ceil(dist[a], k) * k + t)) {
-        que.push(b);
+        que.emplace(dist[b], b);
       }
     }
   }
