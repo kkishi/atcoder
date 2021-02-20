@@ -12,15 +12,16 @@ while test $# -gt 0; do
   esac
 done
 
-function programs() {
+function problems() {
   if [[ $all = 1 ]]; then
-    find contests -name main.cc
+    find contests -name main.cc | sort
   else
-    git diff --stat=1024 contests/ | grep main.cc | cut -d ' ' -f 2
+    git diff --stat=1024 contests/ | grep main.cc | cut -d ' ' -f 2 | sort
   fi
 }
 
-for f in $(programs | sort); do
+function test_a_problem() {
+  problem=$1
   skip="\
 contests/abc006/abc006_3/main.cc\
 contests/abc007/abc007_2/main.cc\
@@ -76,28 +77,31 @@ contests/tenka1-2017-beginner/tenka1_2017_c/main.cc\
 contests/tenka1-2018-beginner/tenka1_2018_d/main.cc\
 "
 
-  skip_match=$(echo $skip | grep $f | wc -l)
+  skip_match=$(echo $skip | grep $problem | wc -l)
   if [[ $skip_match -eq 1 ]]; then
-    echo "SKIP $f"
-    continue
+    echo "SKIP $problem"
+    return
   fi
 
-  lines=$(cat $f | wc -l)
+  lines=$(cat $problem | wc -l)
   if [[ $lines -le 6 ]]; then
-    echo "EMPTY $f"
-    continue
+    echo "EMPTY $problem"
+    return
   fi
 
-  test_dir=$(dirname $f)/test
+  test_dir=$(dirname $problem)/test
   num_samples=$(ls $test_dir | wc -l)
   if [[ $num_samples -eq 0 ]]; then
-    c=$(echo $f | cut -d / -f 2)
+    c=$(echo $problem | cut -d / -f 2)
     compete --contest=$c
   fi
 
-  if ! atcoder -t $f >& /dev/null; then
-    echo "FAIL $f"
+  if ! atcoder -t $problem >& /dev/null; then
+    echo "FAIL $problem"
   else
-    echo "SUCCESS $f"
+    echo "SUCCESS $problem"
   fi
-done
+}
+
+export -f test_a_problem
+problems | xargs -n 1 -P 4 -I {} bash -c 'test_a_problem {}'
