@@ -17,8 +17,9 @@ void Main() {
   low_priority_queue<pair<int, int>> que;
   que.emplace(0, x);
   while (!que.empty()) {
-    int a = que.top().second;
+    auto [d, a] = que.top();
     que.pop();
+    if (d > dist[a]) continue;
     for (auto [b, t, k] : to[a]) {
       if (chmin(dist[b], div_ceil(dist[a], k) * k + t)) {
         que.emplace(dist[b], b);
