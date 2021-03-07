@@ -6,20 +6,21 @@
 
 void Main() {
   strings(x);
+  each(xi, x) xi -= '0';
   ints(m);
   if (sz(x) == 1) {
-    wt((x[0] - '0') <= m ? 1 : 0);
+    wt(x[0] <= m ? 1 : 0);
     return;
   }
   auto f = [&](i128 base) {
     i128 val = 0;
     rep(i, sz(x)) {
-      val = val * base + (x[i] - '0');
+      val = val * base + x[i];
       if (val > m) return false;
     }
     return true;
   };
-  i128 d = *max_element(all(x)) - '0';
+  i128 d = *max_element(all(x));
   if (!f(d + 1)) {
     wt(0);
     return;
