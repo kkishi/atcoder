@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "gcd.h"
+#include "extgcd.h"
 
 int Solve() {
   ints(X, Y, P, Q);
