@@ -20,17 +20,13 @@ void Main() {
   }
 
   rep(i, n - 1) rep(j, i + 1, n) {
-    int l = i;
     int r = n - 1 - j;
     int mid = j - i - 1;
     mint s = 0;
-    mint lall = mint(m).Pow(l);
     for (int k = 1; k <= m; ++k) {
       mint x = mint(m - k + 1).Pow(mid);
       dbg(i, j, k, x);
-      mint lng = dp[k][i][1];
-      dbg(lall, lng);
-      s += (lall - lng) * x;
+      s += dp[k][i][0] * x;
     }
     sum += mint(m).Pow(r) * s;
   }
