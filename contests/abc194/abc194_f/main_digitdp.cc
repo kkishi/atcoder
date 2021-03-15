@@ -28,23 +28,28 @@ void Main() {
       mint x = dp[i][isless][hasnonzero][used];
       if (x == 0) continue;
       auto cnt = [&st](int newuse) { return popcount(st | (1 << newuse)); };
-      if (isless == 0) {
-        rep(j, v[i]) {
-          int next_hasnonzero = hasnonzero | (j > 0);
-          int next_used = next_hasnonzero == 0 ? 0 : cnt(j);
-          dp[i + 1][1][next_hasnonzero][next_used] += x;
-        }
-        dp[i + 1][0][1][cnt(v[i])] += x;
-      } else {
-        if (hasnonzero == 0) {
-          assert(used == 0);
-          assert(x == 1);
-          dp[i + 1][1][0][0] += 1;
-          dp[i + 1][1][1][1] += 15;
-        } else {
+      if (isless) {
+        if (hasnonzero) {
           dp[i + 1][1][1][used] += x * used;
           dp[i + 1][1][1][used + 1] += x * (16 - used);
+        } else {
+          // Leading zeros
+          assert(used == 0);
+          assert(x == 1);
+          dp[i + 1][1][0][0] += 1;   // Zero
+          dp[i + 1][1][1][1] += 15;  // Non-zero
         }
+      } else {
+        // Less than v[i]
+        rep(j, v[i]) {
+          if (j == 0) {
+            dp[i + 1][1][hasnonzero][hasnonzero ? cnt(j) : 0] += x;
+          } else {
+            dp[i + 1][1][1][cnt(j)] += x;
+          }
+        }
+        // Equal to v[i]
+        dp[i + 1][0][1][cnt(v[i])] += x;
       }
     }
     st |= 1 << v[i];
