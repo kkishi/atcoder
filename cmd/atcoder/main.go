@@ -73,7 +73,7 @@ func test(dir string) error {
 }
 
 func submit(dir, base string) error {
-	return runCommand(dir, "oj", "submit", "-y", "--no-open", base)
+	return runCommand(dir, "oj", "submit", "-y", "--no-open", "--wait", "0", base)
 }
 
 func run(file string) error {
