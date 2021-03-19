@@ -5,13 +5,8 @@
 void Main() {
   ints(a, k);
 
-  V<int> v;
-  while (a) {
-    v.pb(a % 10);
-    a /= 10;
-  }
-  v.pb(0);
-  reverse(all(v));
+  string v = '0' + to_string(a);
+  each(e, v) e -= '0';
   const int n = sz(v);
 
   vector dp(n + 1, vector(3, vector(2, vector(1 << 10, big))));

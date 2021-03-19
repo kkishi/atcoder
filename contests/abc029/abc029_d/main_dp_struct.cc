@@ -12,12 +12,8 @@ struct DP {
 
 void Main() {
   ints(n);
-  V<int> v;
-  while (n) {
-    v.pb(n % 10);
-    n /= 10;
-  }
-  reverse(all(v));
+  string v = to_string(n);
+  each(e, v) e -= '0';
   int N = sz(v);
   vector dp(N + 1, vector(2, DP{0, 0}));
   dp[0][0] = {1, 0};

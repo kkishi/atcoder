@@ -4,16 +4,9 @@
 
 void Main() {
   ints(a, b);
-  auto f = [](int x) {
-    V<int> v;
-    while (x) {
-      v.pb(x % 10);
-      x /= 10;
-    }
-    reverse(all(v));
-    return v;
-  };
-  auto g = [](const V<int>& v) {
+  auto g = [](int x) {
+    string v = to_string(x);
+    each(e, v) e -= '0';
     int n = sz(v);
     vector dp(n + 1, vector(2, vector(2, int(0))));
     dp[0][0][0] = 1;
@@ -27,5 +20,5 @@ void Main() {
     rep(i, 2) ret += dp[n][i][1];
     return ret;
   };
-  wt(g(f(b)) - g(f(a - 1)));
+  wt(g(b) - g(a - 1));
 }
