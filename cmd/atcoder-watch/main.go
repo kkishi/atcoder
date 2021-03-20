@@ -122,8 +122,8 @@ type submission struct {
 }
 
 func (s *submission) WriteTo(w io.Writer) {
-	fmt.Fprintf(w, "%s\t %s\t %s\t %s\t %d\t %d Byte\t %s\t %s\t %d KB\n",
-		s.id, s.time.Format("2006-01-02 15:03:04"), aurora.Cyan(s.task), s.language, s.score, s.codeSizeBytes, s.status.withColor(), s.execTime, s.memoryKB)
+	fmt.Fprintf(w, "%s\t%s\t%d\t%d Byte\t%s\t%s\t%d KB\n",
+		s.time.Format("2006-01-02 15:03:04"), aurora.Cyan(s.task), s.score, s.codeSizeBytes, s.status.withColor(), s.execTime, s.memoryKB)
 }
 
 // <td class="no-break"><time class='fixtime fixtime-second'>2021-03-19 11:48:22+0900</time></td>
@@ -244,7 +244,7 @@ var reTR = regexp.MustCompile(`(?s)<tr>(.*?)</tr>`)
 var reTD = regexp.MustCompile(`(?s)(<td.*?</td>)`)
 
 // Returned submissions are sorted by submission time in the ascending order (opposite of the web page).
-func getRecentSubmissions(contestID string, client *http.Client) ([]*submission, error) {
+func getRecentSubmissions(client *http.Client, contestID string) ([]*submission, error) {
 	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me", contestID))
 	if err != nil {
 		return nil, err
@@ -314,9 +314,11 @@ func getRecentSubmissions(contestID string, client *http.Client) ([]*submission,
 type SubmissionStatus struct {
 	Html     string
 	Interval int
+	Score    string
 }
 
 func getSubmissionStatus(contestID, submissionID string) (*SubmissionStatus, error) {
+	// TODO: Check if this is OK during the contest.
 	resp, err := http.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
 	if err != nil {
 		return nil, err
@@ -330,20 +332,42 @@ func getSubmissionStatus(contestID, submissionID string) (*SubmissionStatus, err
 	return &s, nil
 }
 
+type SubmissionStatusMulti struct {
+	Result map[string]SubmissionStatus
+}
+
+func getDetailedSubmissionStatus(client *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
+	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me/status/json?sids[]=%s", contestID, submissionID))
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	decoder := json.NewDecoder(resp.Body)
+	s := SubmissionStatusMulti{}
+	if err := decoder.Decode(&s); err != nil {
+		return nil, err
+	}
+	st, ok := s.Result[submissionID]
+	if !ok {
+		return nil, errors.New("no status info found in the response")
+	}
+	return &st, nil
+}
+
 func run(contestID string) error {
 	client, err := newClient()
 	if err != nil {
 		return err
 	}
 	log.Printf("Getting recent submissions for %s", contestID)
-	ss, err := getRecentSubmissions(contestID, client)
+	ss, err := getRecentSubmissions(client, contestID)
 	if err != nil {
 		return err
 	}
 
 	if len(ss) > 0 {
-		w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', tabwriter.Debug)
-		fmt.Fprintf(w, "ID\t Submission Time\t %s\t Language\t Score\t Code Size\t %s\t Exec Time\t Memory\n",
+		w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
+		fmt.Fprintf(w, "Submission Time\t%s\tScore\tCode Size\t%s\tExec Time\tMemory\n",
 			aurora.White("Task"), aurora.White("Status"))
 		for _, s := range ss {
 			s.WriteTo(w)
@@ -357,18 +381,45 @@ func run(contestID string) error {
 				if err != nil {
 					return err
 				}
-				st, ok := parseStatus(status.Html)
-				if !ok {
-					log.Println("Failed to parse status", status.Html)
-				} else {
-					last.status = st
+				if status.Interval == 0 {
+					status, err = getDetailedSubmissionStatus(client, contestID, last.id)
+					if err != nil {
+						return err
+					}
+					if st, ok := parseStatus(status.Html); !ok {
+						log.Println("Failed to parse status", status.Html)
+					} else {
+						last.status = st
+					}
+					if t, ok := parseExecTime(status.Html); !ok {
+						log.Println("Failed to parse exec time", status.Html)
+					} else {
+						last.execTime = t
+					}
+					if m, ok := parseMemoryKB(status.Html); !ok {
+						log.Println("Failed to parse memory kb", status.Html)
+					} else {
+						last.memoryKB = m
+					}
+					if i, err := strconv.Atoi(status.Score); err != nil {
+						log.Println("Failed to parse score:", err)
+					} else {
+						last.score = i
+					}
 					last.WriteTo(w)
 					w.Flush()
-				}
-				if status.Interval == 0 {
 					break
+				} else {
+					st, ok := parseStatus(status.Html)
+					if !ok {
+						log.Println("Failed to parse status", status.Html)
+					} else {
+						last.status = st
+						last.WriteTo(w)
+						w.Flush()
+					}
+					<-time.NewTimer(time.Duration(status.Interval) * time.Millisecond).C
 				}
-				<-time.NewTimer(time.Duration(status.Interval) * time.Millisecond).C
 			}
 		}
 	}

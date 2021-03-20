@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"time"
 
@@ -76,6 +77,17 @@ func submit(dir, base string) error {
 	return runCommand(dir, "oj", "submit", "-y", "--no-open", "--wait", "0", base)
 }
 
+var re = regexp.MustCompile(`/contests/([^/]+)/`)
+
+func watch(file string) error {
+	m := re.FindStringSubmatch(file)
+	if len(m) != 2 {
+		return fmt.Errorf("failed to detect contest ID: %s", file)
+	}
+	contestID := m[1]
+	return runCommand("", "atcoder-watch", contestID)
+}
+
 func run(file string) error {
 	dir, base := filepath.Dir(file), filepath.Base(file)
 	if *runSubmit {
@@ -98,6 +110,7 @@ func run(file string) error {
 		if err := submit(dir, base); err != nil {
 			return fmt.Errorf("submission failed: %w", err)
 		}
+		return watch(file)
 	}
 	return nil
 }
