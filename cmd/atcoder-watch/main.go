@@ -202,7 +202,7 @@ func parseStatus(td string) (status, bool) {
 }
 
 // <td class="text-center"><a href="/contests/abc195/submissions/21027486">Detail</a></td>
-var reID = regexp.MustCompile(`"/contests/abc195/submissions/(.+)"`)
+var reID = regexp.MustCompile(`/submissions/([^"]+)"`)
 
 func parseID(td string) (string, bool) {
 	m := reID.FindStringSubmatch(td)
@@ -317,9 +317,8 @@ type SubmissionStatus struct {
 	Score    string
 }
 
-func getSubmissionStatus(contestID, submissionID string) (*SubmissionStatus, error) {
-	// TODO: Check if this is OK during the contest.
-	resp, err := http.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
+func getSubmissionStatus(client *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
+	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
 	if err != nil {
 		return nil, err
 	}
@@ -327,7 +326,7 @@ func getSubmissionStatus(contestID, submissionID string) (*SubmissionStatus, err
 	decoder := json.NewDecoder(resp.Body)
 	s := SubmissionStatus{}
 	if err := decoder.Decode(&s); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to parse submission status: %s", err)
 	}
 	return &s, nil
 }
@@ -345,7 +344,7 @@ func getDetailedSubmissionStatus(client *http.Client, contestID, submissionID st
 	decoder := json.NewDecoder(resp.Body)
 	s := SubmissionStatusMulti{}
 	if err := decoder.Decode(&s); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to parse submission status (multi): %s", err)
 	}
 	st, ok := s.Result[submissionID]
 	if !ok {
@@ -367,7 +366,7 @@ func run(contestID string) error {
 
 	if len(ss) > 0 {
 		w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
-		fmt.Fprintf(w, "Submission Time\t%s\tScore\tCode Size\t%s\tExec Time\tMemory\n",
+		fmt.Fprintf(w, "SubmissionTime\t%s\tScore\tCodeSize\t%s\tExecTime\tMemory\n",
 			aurora.White("Task"), aurora.White("Status"))
 		for _, s := range ss {
 			s.WriteTo(w)
@@ -377,7 +376,7 @@ func run(contestID string) error {
 		last := ss[len(ss)-1]
 		if !last.status.isCompleted() {
 			for {
-				status, err := getSubmissionStatus(contestID, last.id)
+				status, err := getSubmissionStatus(client, contestID, last.id)
 				if err != nil {
 					return err
 				}
