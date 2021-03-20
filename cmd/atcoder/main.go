@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -88,7 +89,29 @@ func watch(file string) error {
 	return runCommand("", "atcoder-watch", contestID)
 }
 
-func run(file string) error {
+func toAbs(file string) (string, error) {
+	if filepath.IsAbs(file) {
+		return file, nil
+	}
+	dir, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	abs, err := filepath.Abs(filepath.Join(dir, file))
+	if err != nil {
+		return "", err
+	}
+	return abs, nil
+}
+
+func run(args []string) error {
+	if len(args) != 1 {
+		return errors.New("solution file not specified")
+	}
+	file, err := toAbs(args[0])
+	if err != nil {
+		return err
+	}
 	dir, base := filepath.Dir(file), filepath.Base(file)
 	if *runSubmit {
 		tempFile, err := preprocessIncludes(dir, base)
@@ -115,29 +138,10 @@ func run(file string) error {
 	return nil
 }
 
-func toAbs(file string) string {
-	if filepath.IsAbs(file) {
-		return file
-	}
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
-	abs, err := filepath.Abs(filepath.Join(dir, file))
-	if err != nil {
-		log.Fatal(err)
-	}
-	return abs
-}
-
 func main() {
 	s := time.Now()
 	flag.Parse()
-	args := flag.Args()
-	if len(args) != 1 {
-		log.Fatal("solution file not specified")
-	}
-	err := run(toAbs(args[0]))
+	err := run(flag.Args())
 	d := time.Now().Sub(s)
 	if err != nil {
 		log.Fatalf("fail (%s): %s", d, err)
