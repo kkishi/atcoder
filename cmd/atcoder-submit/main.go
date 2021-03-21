@@ -1,0 +1,268 @@
+package main
+
+import (
+	"encoding/json"
+	"errors"
+	"flag"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/http/cookiejar"
+	"net/url"
+	"os"
+	"os/user"
+	"path/filepath"
+	"regexp"
+	"strings"
+	"time"
+
+	"golang.org/x/net/publicsuffix"
+)
+
+var (
+	languageID = flag.Int("language_id", 4003, "Default: 4003 (C++ (GCC 9.2.1))")
+	dryRun     = flag.Bool("dry_run", false, "Whether to actually submit")
+)
+
+func toAbs(file string) (string, error) {
+	if filepath.IsAbs(file) {
+		return file, nil
+	}
+	dir, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	abs, err := filepath.Abs(filepath.Join(dir, file))
+	if err != nil {
+		return "", err
+	}
+	return abs, nil
+}
+
+type solution struct {
+	contestID string
+	problemID string
+	content   string
+}
+
+func (s *solution) submissionURL() string {
+	return fmt.Sprintf("https://atcoder.jp/contests/%s/submit", s.contestID)
+}
+
+var reFile = regexp.MustCompile("contests/(.+?)/(.+?)/")
+
+func readSolution(file string) (*solution, error) {
+	var err error
+	file, err = toAbs(file)
+	if err != nil {
+		return nil, err
+	}
+	m := reFile.FindStringSubmatch(file)
+	if len(m) != 3 {
+		return nil, fmt.Errorf("failed to recognize the problem from the file path: %q", file)
+	}
+	content, err := ioutil.ReadFile(file)
+	if err != nil {
+		return nil, err
+	}
+	return &solution{
+		contestID: m[1],
+		problemID: m[2],
+		content:   string(content),
+	}, nil
+}
+
+// TODO: Extract this as a library.
+func newClient() (*http.Client, error) {
+	u, err := url.Parse("https://atcoder.jp/")
+	if err != nil {
+		return nil, err
+	}
+	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
+	if err != nil {
+		return nil, err
+	}
+	// HACK: Reuse the cookiejar for oj.
+	usr, err := user.Current()
+	if err != nil {
+		return nil, err
+	}
+	b, err := ioutil.ReadFile(filepath.Join(usr.HomeDir, ".local/share/online-judge-tools/cookie.jar"))
+	if err != nil {
+		return nil, err
+	}
+	m := regexp.MustCompile(`REVEL_SESSION="([^"]+)"`).FindStringSubmatch(string(b))
+	if len(m) != 2 {
+		return nil, errors.New("REVEL_SESSION not found")
+	}
+	jar.SetCookies(u, []*http.Cookie{
+		{
+			Name:   "REVEL_SESSION",
+			Value:  m[1],
+			Path:   "/",
+			Domain: "atcoder.jp",
+		},
+	})
+	return &http.Client{
+		Jar: jar,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			if strings.HasPrefix(req.URL.String(), "https://atcoder.jp/login") {
+				return fmt.Errorf("request got redirected to %s, check if you are logged in", req.URL)
+			}
+			return nil
+		},
+	}, nil
+}
+
+func csrfTokenCachePath() (string, error) {
+	usr, err := user.Current()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(usr.HomeDir, ".local/share/atcoder/csrf_token"), nil
+}
+
+type CSRFToken struct {
+	Value      string
+	CachedTime string
+}
+
+func (t *CSRFToken) cachedTime() (time.Time, error) {
+	return time.Parse(time.RFC3339, t.CachedTime)
+}
+
+func getCSRFTokenFromCache() (*CSRFToken, error) {
+	path, err := csrfTokenCachePath()
+	if err != nil {
+		return nil, err
+	}
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	decoder := json.NewDecoder(file)
+	token := CSRFToken{}
+	if err := decoder.Decode(&token); err != nil {
+		return nil, err
+	}
+	return &token, nil
+}
+
+func cacheCSRFToken(token string) error {
+	path, err := csrfTokenCachePath()
+	if err != nil {
+		return err
+	}
+	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+		return err
+	}
+	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	encoder := json.NewEncoder(file)
+	if err := encoder.Encode(CSRFToken{
+		Value:      token,
+		CachedTime: time.Now().Format(time.RFC3339),
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+var re = regexp.MustCompile(`<input type="hidden" name="csrf_token" value="(.+)" />`)
+
+func getCSRFTokenFromWebsite(client *http.Client, sol *solution) (string, error) {
+	resp, err := client.Get(sol.submissionURL())
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	buf, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	m := re.FindSubmatch(buf)
+	if len(m) != 2 {
+		return "", errors.New("csrf_token not found in response")
+	}
+	token := string(m[1])
+	if err := cacheCSRFToken(token); err != nil {
+		// Not fatal.
+		log.Println("Failed to save csrf_token to cache:", err)
+	}
+	return token, nil
+}
+
+func getCSRFToken(client *http.Client, sol *solution) (string, error) {
+	token, err := getCSRFTokenFromCache()
+	if err != nil && !os.IsNotExist(err) {
+		return "", err
+	}
+	if err == nil {
+		t, err := token.cachedTime()
+		if err == nil {
+			d := time.Now().Sub(t)
+			if d < time.Hour {
+				log.Printf("Cached csrf_token found (age: %s)\n", d)
+				return token.Value, nil
+			} else {
+				log.Printf("Cached csrf_token found, but it's too old (age: %s)\n", d)
+			}
+		}
+	}
+	log.Println("Getting a csrf_token from the submission page")
+	return getCSRFTokenFromWebsite(client, sol)
+}
+
+func submit(client *http.Client, sol *solution) error {
+	token, err := getCSRFToken(client, sol)
+	if err != nil {
+		return err
+	}
+	log.Printf("Submitting the solution (csrf_token: %s...)\n", token[0:10])
+	if *dryRun {
+		return nil
+	}
+	resp, err := client.PostForm(sol.submissionURL(), url.Values{
+		"data.TaskScreenName": {sol.problemID},
+		"data.LanguageId":     {fmt.Sprintf("%d", *languageID)},
+		"sourceCode":          {sol.content},
+		"csrf_token":          {token},
+	})
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode != 200 {
+		fmt.Errorf("submission failed (code %d)", resp.StatusCode)
+	}
+	log.Println("Submission succeeded")
+	return nil
+}
+
+func run(file string) error {
+	sol, err := readSolution(file)
+	if err != nil {
+		return err
+	}
+	client, err := newClient()
+	if err != nil {
+		return err
+	}
+	if err := submit(client, sol); err != nil {
+		return err
+	}
+	return nil
+}
+
+func main() {
+	flag.Parse()
+	log.SetFlags(log.Flags() | log.Lmicroseconds)
+	if err := run(os.Args[1]); err != nil {
+		log.Println("Error:", err)
+		os.Exit(1)
+	}
+}

@@ -25,6 +25,7 @@ import (
 	aurora "github.com/logrusorgru/aurora/v3"
 )
 
+// TODO: Extract this as a library.
 func newClient() (*http.Client, error) {
 	u, err := url.Parse("https://atcoder.jp/")
 	if err != nil {
@@ -430,6 +431,7 @@ func run(contestID string) error {
 }
 
 func main() {
+	log.SetFlags(log.Flags() | log.Lmicroseconds)
 	if err := run(os.Args[1]); err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
