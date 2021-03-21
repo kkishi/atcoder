@@ -4,7 +4,6 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "binary_search.h"
 
 uint64_t S[20000], T[20000];
 int B = 64;
@@ -30,11 +29,13 @@ void Main() {
       T[i / B] |= 1ULL << (i % B);
     }
   }
+  int LT = div_ceil(szt, B);
+  int szt_rem = szt % B;
   int ans = big;
   rep(i, szs - szt + 1) {
     int sum = 0;
-    int d = i / B;
-    int r = i % B;
+    int d = i >> 6;              // i / B
+    int r = i & ((1 << 6) - 1);  // i % B
     rep(j, LT) {
       uint64_t x = S[j + d] >> r;
       if (r != 0) {

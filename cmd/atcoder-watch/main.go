@@ -374,6 +374,7 @@ func run(contestID string) error {
 		w.Flush()
 
 		last := ss[len(ss)-1]
+		var lastStatus status
 		if !last.status.isCompleted() {
 			for {
 				status, err := getSubmissionStatus(client, contestID, last.id)
@@ -413,9 +414,12 @@ func run(contestID string) error {
 					if !ok {
 						log.Println("Failed to parse status", status.Html)
 					} else {
-						last.status = st
-						last.WriteTo(w)
-						w.Flush()
+						if st != lastStatus {
+							lastStatus = st
+							last.status = st
+							last.WriteTo(w)
+							w.Flush()
+						}
 					}
 					<-time.NewTimer(time.Duration(status.Interval) * time.Millisecond).C
 				}
