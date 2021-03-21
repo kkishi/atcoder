@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"time"
@@ -131,6 +132,18 @@ func downloadSamples(c *Contest) {
 	}
 }
 
+func refreshCSRFToken(c *Contest) {
+	mainCC := filepath.Join(rootDir, c.Name, c.Problems[0], "main.cc")
+	cmd := exec.Command("atcoder-submit", "--refresh_csrf_token_only", mainCC)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	log.Println("Refreshing csrf_token")
+	if err := cmd.Run(); err != nil {
+		exit(err)
+	}
+}
+
 func main() {
 	flag.Parse()
 
@@ -161,4 +174,5 @@ func main() {
 	createDirs(c)
 	waitUntil(t)
 	downloadSamples(c)
+	refreshCSRFToken(c)
 }

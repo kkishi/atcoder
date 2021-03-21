@@ -21,8 +21,8 @@ import (
 )
 
 var (
-	languageID = flag.Int("language_id", 4003, "Default: 4003 (C++ (GCC 9.2.1))")
-	dryRun     = flag.Bool("dry_run", false, "Whether to actually submit")
+	languageID           = flag.Int("language_id", 4003, "Default: 4003 (C++ (GCC 9.2.1))")
+	refreshCSRFTokenOnly = flag.Bool("refresh_csrf_token_only", false, "If true, just refreshes csrf_token and exit.")
 )
 
 func toAbs(file string) (string, error) {
@@ -197,6 +197,14 @@ func getCSRFTokenFromWebsite(client *http.Client, sol *solution) (string, error)
 	return token, nil
 }
 
+func refreshCSRFToken(client *http.Client, sol *solution) error {
+	token, err := getCSRFTokenFromWebsite(client, sol)
+	if err != nil {
+		return err
+	}
+	return cacheCSRFToken(token)
+}
+
 func getCSRFToken(client *http.Client, sol *solution) (string, error) {
 	token, err := getCSRFTokenFromCache()
 	if err != nil && !os.IsNotExist(err) {
@@ -224,9 +232,6 @@ func submit(client *http.Client, sol *solution) error {
 		return err
 	}
 	log.Printf("Submitting the solution (csrf_token: %s...)\n", token[0:10])
-	if *dryRun {
-		return nil
-	}
 	resp, err := client.PostForm(sol.submissionURL(), url.Values{
 		"data.TaskScreenName": {sol.problemID},
 		"data.LanguageId":     {fmt.Sprintf("%d", *languageID)},
@@ -243,8 +248,8 @@ func submit(client *http.Client, sol *solution) error {
 	return nil
 }
 
-func run(file string) error {
-	sol, err := readSolution(file)
+func run() error {
+	sol, err := readSolution(flag.Args()[0])
 	if err != nil {
 		return err
 	}
@@ -252,16 +257,16 @@ func run(file string) error {
 	if err != nil {
 		return err
 	}
-	if err := submit(client, sol); err != nil {
-		return err
+	if *refreshCSRFTokenOnly {
+		return refreshCSRFToken(client, sol)
 	}
-	return nil
+	return submit(client, sol)
 }
 
 func main() {
 	flag.Parse()
 	log.SetFlags(log.Flags() | log.Lmicroseconds)
-	if err := run(os.Args[1]); err != nil {
+	if err := run(); err != nil {
 		log.Println("Error:", err)
 		os.Exit(1)
 	}
