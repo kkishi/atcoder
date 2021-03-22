@@ -86,10 +86,10 @@ func (s *submission) WriteTo(w io.Writer) {
 // <td class="no-break"><time class='fixtime fixtime-second'>2021-03-19 11:48:22+0900</time></td>
 var reTime = regexp.MustCompile(`<time class='fixtime fixtime-second'>(.*)</time>`)
 
-func parseTime(td string) (time.Time, bool) {
-	m := reTime.FindStringSubmatch(td)
+func parseTime(td []byte) (time.Time, bool) {
+	m := reTime.FindSubmatch(td)
 	if len(m) == 2 {
-		t, err := time.Parse("2006-01-02 15:04:05-0700", m[1])
+		t, err := time.Parse("2006-01-02 15:04:05-0700", string(m[1]))
 		if err == nil {
 			return t, true
 		}
@@ -100,10 +100,10 @@ func parseTime(td string) (time.Time, bool) {
 // <td><a href="/contests/abc195/tasks/abc195_b">B - Many Oranges</a></td>
 var reTask = regexp.MustCompile(`>([^>]+?)</a></td>`)
 
-func parseTask(td string) (string, bool) {
-	m := reTask.FindStringSubmatch(td)
+func parseTask(td []byte) (string, bool) {
+	m := reTask.FindSubmatch(td)
 	if len(m) == 2 {
-		return m[1], true
+		return string(m[1]), true
 	}
 	return "", false
 }
@@ -111,10 +111,10 @@ func parseTask(td string) (string, bool) {
 // <td><a href="/contests/abc195/submissions/me?f.Language=4026">Go (1.14.1)</a></td>
 var reLanguage = regexp.MustCompile(`>([^>]+?)</a></td>`)
 
-func parseLanguage(td string) (string, bool) {
-	m := reLanguage.FindStringSubmatch(td)
+func parseLanguage(td []byte) (string, bool) {
+	m := reLanguage.FindSubmatch(td)
 	if len(m) == 2 {
-		return html.UnescapeString(m[1]), true
+		return html.UnescapeString(string(m[1])), true
 	}
 	return "", false
 }
@@ -122,10 +122,10 @@ func parseLanguage(td string) (string, bool) {
 // <td class="text-right submission-score" data-id="20882710">200</td>
 var reScore = regexp.MustCompile(`>([0-9]+)</td>`)
 
-func parseScore(td string) (int, bool) {
-	m := reScore.FindStringSubmatch(td)
+func parseScore(td []byte) (int, bool) {
+	m := reScore.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return i, true
 		}
@@ -136,10 +136,10 @@ func parseScore(td string) (int, bool) {
 // <td class="text-right">6655 Byte</td>
 var reCodeSizeBytes = regexp.MustCompile(`>([0-9]+) Byte</td>`)
 
-func parseCodeSizeBytes(td string) (int, bool) {
-	m := reCodeSizeBytes.FindStringSubmatch(td)
+func parseCodeSizeBytes(td []byte) (int, bool) {
+	m := reCodeSizeBytes.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return i, true
 		}
@@ -150,8 +150,8 @@ func parseCodeSizeBytes(td string) (int, bool) {
 // <td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="Accepted">AC</span></td>
 var reStatus = regexp.MustCompile(`>([^>]+?)</span>`)
 
-func parseStatus(td string) (status, bool) {
-	m := reStatus.FindStringSubmatch(td)
+func parseStatus(td []byte) (status, bool) {
+	m := reStatus.FindSubmatch(td)
 	if len(m) == 2 {
 		return status(m[1]), true
 	}
@@ -161,10 +161,10 @@ func parseStatus(td string) (status, bool) {
 // <td class="text-center"><a href="/contests/abc195/submissions/21027486">Detail</a></td>
 var reID = regexp.MustCompile(`/submissions/([^"]+)"`)
 
-func parseID(td string) (string, bool) {
-	m := reID.FindStringSubmatch(td)
+func parseID(td []byte) (string, bool) {
+	m := reID.FindSubmatch(td)
 	if len(m) == 2 {
-		return m[1], true
+		return string(m[1]), true
 	}
 	return "", false
 }
@@ -172,10 +172,10 @@ func parseID(td string) (string, bool) {
 // <td class='text-right'>19 ms</td>
 var reExecTime = regexp.MustCompile(`>([0-9]+) ms</td>`)
 
-func parseExecTime(td string) (time.Duration, bool) {
-	m := reExecTime.FindStringSubmatch(td)
+func parseExecTime(td []byte) (time.Duration, bool) {
+	m := reExecTime.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return time.Duration(i) * time.Millisecond, true
 		}
@@ -186,10 +186,10 @@ func parseExecTime(td string) (time.Duration, bool) {
 // <td class='text-right'>11540 KB</td>
 var reMemoryKB = regexp.MustCompile(`>([0-9]+) KB</td>`)
 
-func parseMemoryKB(td string) (int, bool) {
-	m := reMemoryKB.FindStringSubmatch(td)
+func parseMemoryKB(td []byte) (int, bool) {
+	m := reMemoryKB.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return i, true
 		}
@@ -214,8 +214,8 @@ func getRecentSubmissions(c *http.Client, contestID string) ([]*submission, erro
 	}
 
 	var ss []*submission
-	for _, tr := range reTR.FindAllStringSubmatch(string(buf), -1) {
-		tds := reTD.FindAllStringSubmatch(tr[0], -1)
+	for _, tr := range reTR.FindAllSubmatch(buf, -1) {
+		tds := reTD.FindAllSubmatch(tr[0], -1)
 		if len(tds) == 0 {
 			continue
 		}
@@ -269,7 +269,7 @@ func getRecentSubmissions(c *http.Client, contestID string) ([]*submission, erro
 }
 
 type SubmissionStatus struct {
-	Html     string
+	Html     []byte
 	Interval int
 	Score    string
 }
