@@ -9,61 +9,17 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/http/cookiejar"
-	"net/url"
 	"os"
-	"os/user"
-	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
 	"text/tabwriter"
 	"time"
 
-	"golang.org/x/net/publicsuffix"
+	"github.com/kkishi/atcoder/pkg/client"
 
 	aurora "github.com/logrusorgru/aurora/v3"
 )
-
-// TODO: Extract this as a library.
-func newClient() (*http.Client, error) {
-	u, err := url.Parse("https://atcoder.jp/")
-	if err != nil {
-		return nil, err
-	}
-	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
-	if err != nil {
-		return nil, err
-	}
-	// HACK: Reuse the cookiejar for oj.
-	usr, err := user.Current()
-	if err != nil {
-		return nil, err
-	}
-	b, err := ioutil.ReadFile(filepath.Join(usr.HomeDir, ".local/share/online-judge-tools/cookie.jar"))
-	if err != nil {
-		return nil, err
-	}
-	m := regexp.MustCompile(`REVEL_SESSION="([^"]+)"`).FindStringSubmatch(string(b))
-	if len(m) != 2 {
-		return nil, errors.New("REVEL_SESSION not found")
-	}
-	jar.SetCookies(u, []*http.Cookie{
-		{
-			Name:   "REVEL_SESSION",
-			Value:  m[1],
-			Path:   "/",
-			Domain: "atcoder.jp",
-		},
-	})
-	return &http.Client{
-		Jar: jar,
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			return fmt.Errorf("request for %s got redirected to %s, check if you are logged in",
-				via[len(via)-1].URL, req.URL)
-		},
-	}, nil
-}
 
 type status string
 
@@ -245,8 +201,8 @@ var reTR = regexp.MustCompile(`(?s)<tr>(.*?)</tr>`)
 var reTD = regexp.MustCompile(`(?s)(<td.*?</td>)`)
 
 // Returned submissions are sorted by submission time in the ascending order (opposite of the web page).
-func getRecentSubmissions(client *http.Client, contestID string) ([]*submission, error) {
-	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me", contestID))
+func getRecentSubmissions(c *http.Client, contestID string) ([]*submission, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me", contestID))
 	if err != nil {
 		return nil, err
 	}
@@ -318,8 +274,8 @@ type SubmissionStatus struct {
 	Score    string
 }
 
-func getSubmissionStatus(client *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
-	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
+func getSubmissionStatus(c *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
 	if err != nil {
 		return nil, err
 	}
@@ -336,8 +292,8 @@ type SubmissionStatusMulti struct {
 	Result map[string]SubmissionStatus
 }
 
-func getDetailedSubmissionStatus(client *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
-	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me/status/json?sids[]=%s", contestID, submissionID))
+func getDetailedSubmissionStatus(c *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me/status/json?sids[]=%s", contestID, submissionID))
 	if err != nil {
 		return nil, err
 	}
@@ -355,12 +311,12 @@ func getDetailedSubmissionStatus(client *http.Client, contestID, submissionID st
 }
 
 func run(contestID string) error {
-	client, err := newClient()
+	c, err := client.New()
 	if err != nil {
 		return err
 	}
 	log.Printf("Getting recent submissions for %s", contestID)
-	ss, err := getRecentSubmissions(client, contestID)
+	ss, err := getRecentSubmissions(c, contestID)
 	if err != nil {
 		return err
 	}
@@ -378,12 +334,12 @@ func run(contestID string) error {
 		var lastStatus status
 		if !last.status.isCompleted() {
 			for {
-				status, err := getSubmissionStatus(client, contestID, last.id)
+				status, err := getSubmissionStatus(c, contestID, last.id)
 				if err != nil {
 					return err
 				}
 				if status.Interval == 0 {
-					status, err = getDetailedSubmissionStatus(client, contestID, last.id)
+					status, err = getDetailedSubmissionStatus(c, contestID, last.id)
 					if err != nil {
 						return err
 					}

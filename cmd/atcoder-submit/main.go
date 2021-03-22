@@ -8,16 +8,14 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/http/cookiejar"
 	"net/url"
 	"os"
 	"os/user"
 	"path/filepath"
 	"regexp"
-	"strings"
 	"time"
 
-	"golang.org/x/net/publicsuffix"
+	"github.com/kkishi/atcoder/pkg/client"
 )
 
 var (
@@ -70,48 +68,6 @@ func readSolution(file string) (*solution, error) {
 		contestID: m[1],
 		problemID: m[2],
 		content:   string(content),
-	}, nil
-}
-
-// TODO: Extract this as a library.
-func newClient() (*http.Client, error) {
-	u, err := url.Parse("https://atcoder.jp/")
-	if err != nil {
-		return nil, err
-	}
-	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
-	if err != nil {
-		return nil, err
-	}
-	// HACK: Reuse the cookiejar for oj.
-	usr, err := user.Current()
-	if err != nil {
-		return nil, err
-	}
-	b, err := ioutil.ReadFile(filepath.Join(usr.HomeDir, ".local/share/online-judge-tools/cookie.jar"))
-	if err != nil {
-		return nil, err
-	}
-	m := regexp.MustCompile(`REVEL_SESSION="([^"]+)"`).FindStringSubmatch(string(b))
-	if len(m) != 2 {
-		return nil, errors.New("REVEL_SESSION not found")
-	}
-	jar.SetCookies(u, []*http.Cookie{
-		{
-			Name:   "REVEL_SESSION",
-			Value:  m[1],
-			Path:   "/",
-			Domain: "atcoder.jp",
-		},
-	})
-	return &http.Client{
-		Jar: jar,
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			if strings.HasPrefix(req.URL.String(), "https://atcoder.jp/login") {
-				return fmt.Errorf("request got redirected to %s, check if you are logged in", req.URL)
-			}
-			return nil
-		},
 	}, nil
 }
 
@@ -175,8 +131,8 @@ func cacheCSRFToken(token string) error {
 
 var re = regexp.MustCompile(`<input type="hidden" name="csrf_token" value="(.+)" />`)
 
-func getCSRFTokenFromWebsite(client *http.Client, sol *solution) (string, error) {
-	resp, err := client.Get(sol.submissionURL())
+func getCSRFTokenFromWebsite(c *http.Client, sol *solution) (string, error) {
+	resp, err := c.Get(sol.submissionURL())
 	if err != nil {
 		return "", err
 	}
@@ -197,15 +153,15 @@ func getCSRFTokenFromWebsite(client *http.Client, sol *solution) (string, error)
 	return token, nil
 }
 
-func refreshCSRFToken(client *http.Client, sol *solution) error {
-	token, err := getCSRFTokenFromWebsite(client, sol)
+func refreshCSRFToken(c *http.Client, sol *solution) error {
+	token, err := getCSRFTokenFromWebsite(c, sol)
 	if err != nil {
 		return err
 	}
 	return cacheCSRFToken(token)
 }
 
-func getCSRFToken(client *http.Client, sol *solution) (string, error) {
+func getCSRFToken(c *http.Client, sol *solution) (string, error) {
 	token, err := getCSRFTokenFromCache()
 	if err != nil && !os.IsNotExist(err) {
 		return "", err
@@ -223,16 +179,16 @@ func getCSRFToken(client *http.Client, sol *solution) (string, error) {
 		}
 	}
 	log.Println("Getting a csrf_token from the submission page")
-	return getCSRFTokenFromWebsite(client, sol)
+	return getCSRFTokenFromWebsite(c, sol)
 }
 
-func submit(client *http.Client, sol *solution) error {
-	token, err := getCSRFToken(client, sol)
+func submit(c *http.Client, sol *solution) error {
+	token, err := getCSRFToken(c, sol)
 	if err != nil {
 		return err
 	}
 	log.Printf("Submitting the solution (csrf_token: %s...)\n", token[0:10])
-	resp, err := client.PostForm(sol.submissionURL(), url.Values{
+	resp, err := c.PostForm(sol.submissionURL(), url.Values{
 		"data.TaskScreenName": {sol.problemID},
 		"data.LanguageId":     {fmt.Sprintf("%d", *languageID)},
 		"sourceCode":          {sol.content},
@@ -256,14 +212,14 @@ func run() error {
 	if err != nil {
 		return err
 	}
-	client, err := newClient()
+	c, err := client.New()
 	if err != nil {
 		return err
 	}
 	if *refreshCSRFTokenOnly {
-		return refreshCSRFToken(client, sol)
+		return refreshCSRFToken(c, sol)
 	}
-	return submit(client, sol)
+	return submit(c, sol)
 }
 
 func main() {
