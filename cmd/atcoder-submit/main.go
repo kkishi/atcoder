@@ -249,7 +249,10 @@ func submit(client *http.Client, sol *solution) error {
 }
 
 func run() error {
-	sol, err := readSolution(flag.Args()[0])
+	if len(flag.Args()) != 1 {
+		return errors.New("solution file not specified")
+	}
+	sol, err := readSolution(flag.Arg(0))
 	if err != nil {
 		return err
 	}

@@ -1,4 +1,4 @@
-// compete --start="2020/06/21 14:00:00" --contest=abc171
+// atcoder-compete --start="2020/06/21 14:00:00" abc171
 package main
 
 import (
@@ -19,7 +19,6 @@ import (
 
 var (
 	start       = flag.String("start", "0000/01/01 00:00:00", "")
-	contest     = flag.String("contest", "", "")
 	numProblems = flag.Int("num_problems", 0, "")
 )
 
@@ -30,21 +29,15 @@ type Contest struct {
 	Problems []string
 }
 
-func exit(err error) {
-	log.Print(err)
-	os.Exit(1)
-}
-
-func exists(path string) bool {
+func exists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
-		return true
+		return true, nil
 	}
 	if os.IsNotExist(err) {
-		return false
+		return false, nil
 	}
-	exit(err)
-	return false
+	return false, err
 }
 
 var tmpl = `#include <bits/stdc++.h>
@@ -54,22 +47,29 @@ var tmpl = `#include <bits/stdc++.h>
 void Main() {
 }`
 
-func createDirs(c *Contest) {
+func createDirs(c *Contest) error {
 	for _, p := range c.Problems {
 		dir := path.Join(rootDir, c.Name, p)
 		if err := os.MkdirAll(dir, 0750); err != nil && !os.IsExist(err) {
-			exit(err)
+			return err
 		}
 		mainCC := path.Join(dir, "main.cc")
-		if !exists(mainCC) {
+		if e, err := exists(mainCC); err != nil {
+			return err
+		} else if !e {
 			if err := ioutil.WriteFile(mainCC, []byte(tmpl), 0644); err != nil {
-				exit(err)
+				return err
 			}
 		}
 	}
+	return nil
 }
 
-func waitUntil(t time.Time) {
+func waitUntilStart() error {
+	t, err := time.ParseInLocation("2006/01/02 15:04:05", *start, time.Local)
+	if err != nil {
+		return err
+	}
 	now := time.Now()
 	if t.After(now) {
 		d := t.Sub(now)
@@ -77,46 +77,48 @@ func waitUntil(t time.Time) {
 		timer := time.NewTimer(d)
 		<-timer.C
 	}
+	return nil
 }
 
-func getProblems(contest string) ([]string, bool) {
-	resp, err := http.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/tasks", contest))
+func getProblems(contestID string) ([]string, error) {
+	resp, err := http.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/tasks", contestID))
 	if err != nil {
-		exit(err)
+		return nil, err
 	}
 	if resp.StatusCode == 404 {
-		log.Print("task page not ready")
-		return nil, false
+		return nil, errors.New("task page not ready")
 	}
 	if resp.StatusCode != 200 {
-		exit(fmt.Errorf("status: %d", resp.StatusCode))
+		return nil, fmt.Errorf("status: %d", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 	buf, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		exit(err)
+		return nil, err
 	}
-	body := string(buf)
-	re := regexp.MustCompile(fmt.Sprintf("\"/contests/%s/tasks/(.+)\"", contest))
-	ms := re.FindAllStringSubmatch(body, -1)
+	re := regexp.MustCompile(fmt.Sprintf(`"/contests/%s/tasks/(.+)"`, contestID))
+	ms := re.FindAllSubmatch(buf, -1)
 	seen := map[string]bool{}
 	var problems []string
 	for _, m := range ms {
 		if len(m) != 2 {
 			continue
 		}
-		if p := m[1]; !seen[p] {
+		if p := string(m[1]); !seen[p] {
 			seen[p] = true
 			problems = append(problems, p)
 		}
 	}
-	return problems, true
+	return problems, nil
 }
 
-func downloadSamples(c *Contest) {
+func downloadSamples(c *Contest) error {
 	for _, p := range c.Problems {
 		dir := path.Join(rootDir, c.Name, p)
-		if testDir := path.Join(dir, "test"); exists(testDir) {
+		testDir := path.Join(dir, "test")
+		if e, err := exists(testDir); err != nil {
+			return err
+		} else if e {
 			log.Printf("%s already exists; skip", testDir)
 			continue
 		}
@@ -127,52 +129,61 @@ func downloadSamples(c *Contest) {
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
-			exit(err)
+			return err
 		}
 	}
+	return nil
 }
 
-func refreshCSRFToken(c *Contest) {
+func refreshCSRFToken(c *Contest) error {
 	mainCC := filepath.Join(rootDir, c.Name, c.Problems[0], "main.cc")
 	cmd := exec.Command("atcoder-submit", "--refresh_csrf_token_only", mainCC)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	log.Println("Refreshing csrf_token")
-	if err := cmd.Run(); err != nil {
-		exit(err)
-	}
+	return cmd.Run()
 }
 
-func main() {
-	flag.Parse()
-
-	t, err := time.ParseInLocation("2006/01/02 15:04:05", *start, time.Local)
-	if err != nil {
-		exit(err)
+func run() error {
+	if len(flag.Args()) != 1 {
+		return errors.New("contest not specified")
 	}
-	if *contest == "" {
-		exit(errors.New("--contest not specified"))
-	}
+	contest := flag.Arg(0)
 
 	var problems []string
 	if *numProblems == 0 {
-		ps, ok := getProblems(*contest)
-		if !ok {
-			exit(errors.New("failed to get problems"))
+		ps, err := getProblems(contest)
+		if err != nil {
+			return fmt.Errorf("failed to get problems: %s", err)
 		}
 		problems = ps
 	} else {
 		for i := 0; i < *numProblems; i++ {
-			problems = append(problems, strings.Replace(*contest, "-", "_", -1)+"_"+(string)([]byte{byte('a' + i)}))
+			problems = append(problems, strings.Replace(contest, "-", "_", -1)+"_"+(string)([]byte{byte('a' + i)}))
 		}
 	}
 	c := &Contest{
-		Name:     *contest,
+		Name:     contest,
 		Problems: problems,
 	}
-	createDirs(c)
-	waitUntil(t)
-	downloadSamples(c)
-	refreshCSRFToken(c)
+	if err := createDirs(c); err != nil {
+		return err
+	}
+	if err := waitUntilStart(); err != nil {
+		return err
+	}
+	if err := downloadSamples(c); err != nil {
+		return err
+	}
+	return refreshCSRFToken(c)
+}
+
+func main() {
+	flag.Parse()
+	log.SetFlags(log.Flags() | log.Lmicroseconds)
+	if err := run(); err != nil {
+		log.Println("Error:", err)
+		os.Exit(1)
+	}
 }
