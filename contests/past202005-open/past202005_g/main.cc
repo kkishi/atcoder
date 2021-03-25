@@ -23,7 +23,7 @@ void Main() {
     rep(i, 6) {
       int nx = x + dx[i];
       int ny = y + dy[i];
-      if (0 <= nx && nx <= 600 && 0 <= ny && ny <= 600 && !o[nx][ny] &&
+      if (inside(nx, ny, 601, 601) && !o[nx][ny] &&
           chmin(d[nx][ny], d[x][y] + 1)) {
         q.emplace(nx, ny);
       }

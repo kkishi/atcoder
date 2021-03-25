@@ -2,9 +2,6 @@
 
 #include "atcoder.h"
 
-int dr[] = {1, -1, 0, 0};
-int dc[] = {0, 0, 1, -1};
-
 void Main() {
   ints(h, w);
   V<string> s(h);
@@ -13,7 +10,7 @@ void Main() {
   rep(r, h) rep(c, w) b[r + 1][c + 1] = s[r][c] == '#';
   rep(r, h) rep(c, w) if (b[r + 1][c + 1]) {
     bool ok = false;
-    rep(i, 4) if (b[r + 1 + dr[i]][c + 1 + dc[i]]) ok = true;
+    each(nr, nc, adjacent(r + 1, c + 1)) if (b[nr][nc]) ok = true;
     if (!ok) {
       wt("No");
       return;

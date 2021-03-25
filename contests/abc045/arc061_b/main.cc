@@ -16,7 +16,7 @@ void Main() {
   }
   V<int> ans(10);
   for (auto [a, b] : check) {
-    if (a < 0 || h <= a + 2 || b < 0 || w <= b + 2) continue;
+    if (!inside(a, b, h - 2, w - 2)) continue;
     int cnt = 0;
     rep(i, 3) rep(j, 3) cnt += s.count({a + i, b + j});
     assert(cnt != 0);

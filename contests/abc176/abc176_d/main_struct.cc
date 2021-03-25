@@ -3,8 +3,6 @@
 #include "atcoder.h"
 
 int dp[1000][1000];
-int dr[] = {0, 1, 0, -1};
-int dc[] = {1, 0, -1, 0};
 
 struct State {
   int r, c, warp;
@@ -22,7 +20,7 @@ void Main() {
   cin >> s;
 
   auto valid = [&](int r, int c) {
-    return 0 <= r && r < h && 0 <= c && c < w && s[r][c] == '.';
+    return inside(r, c, h, w) && s[r][c] == '.';
   };
 
   rep(i, h) rep(j, w) dp[i][j] = big;
@@ -40,10 +38,10 @@ void Main() {
       wt(here.warp);
       return;
     }
-    rep(i, 4) {
+    each(nr, nc, adjacent(here.r, here.c)) {
       State there = here;
-      there.r += dr[i];
-      there.c += dc[i];
+      there.r = nr;
+      there.c = nc;
       if (!valid(there.r, there.c)) continue;
       if (there.ref() <= there.warp) continue;
       there.ref() = there.warp;

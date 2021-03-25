@@ -30,13 +30,11 @@ void Main() {
   }
   int ans = 0;
   for (auto [r, c] : bulbs) {
-    int dr[] = {0, 1, 0, -1};
-    int dc[] = {1, 0, -1, 0};
-    rep(d, 4) {
+    each(dr, dc, adjacent(0, 0)) {
       for (int i = 1;; ++i) {
-        int nr = r + dr[d] * i;
-        int nc = c + dc[d] * i;
-        if (nr < 0 || h <= nr || nc < 0 || w <= nc) break;
+        int nr = r + dr * i;
+        int nc = c + dc * i;
+        if (!inside(nr, nc, h, w)) break;
         if (grid[nr][nc].object) break;
         if (!grid[nr][nc].lit) {
           grid[nr][nc].lit = true;

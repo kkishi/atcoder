@@ -36,13 +36,8 @@ void Main() {
         found = true;
         break;
       }
-      int dr[] = {1, -1, 0, 0};
-      int dc[] = {0, 0, 1, -1};
-      rep(i, 4) {
-        int nr = r + dr[i];
-        int nc = c + dc[i];
-        dbg(nr, nc);
-        if (nr < 0 || h <= nr || nc < 0 || w <= nc || seen[nr][nc]) {
+      each(nr, nc, adjacent(r, c)) {
+        if (!inside(nr, nc, h, w) || seen[nr][nc]) {
           continue;
         }
         prev_r[nr][nc] = r;

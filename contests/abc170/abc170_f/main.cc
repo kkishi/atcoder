@@ -28,15 +28,13 @@ void Main() {
       wt(here.cost);
       return;
     }
-    int dr[] = {1, -1, 0, 0};
-    int dc[] = {0, 0, 1, -1};
-    rep(i, 4) {
-      for (int j = 1; j <= k; ++j) {
+    each(dr, dc, adjacent(0, 0)) {
+      rep(j, k) {
         State there(here);
-        there.r = here.r + dr[i] * j;
-        there.c = here.c + dc[i] * j;
+        there.r = here.r + dr * (j + 1);
+        there.c = here.c + dc * (j + 1);
         there.cost++;
-        if (there.r < 0 || h <= there.r || there.c < 0 || w <= there.c) {
+        if (!inside(there.r, there.c, h, w)) {
           break;
         }
         if (grid[there.r][there.c] == '@') {

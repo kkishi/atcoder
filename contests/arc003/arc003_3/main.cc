@@ -17,12 +17,8 @@ void Main() {
     while (!que.empty()) {
       auto [r, c] = que.front();
       que.pop();
-      rep(i, 4) {
-        int dr[] = {1, 0, -1, 0};
-        int dc[] = {0, 1, 0, -1};
-        int nr = r + dr[i];
-        int nc = c + dc[i];
-        if (0 <= nr && nr < N && 0 <= nc && nc < M) {
+      each(nr, nc, adjacent(r, c)) {
+        if (inside(nr, nc, N, M)) {
           char g = grid[nr][nc];
           if (g == '#') continue;
           if (g == 's') continue;

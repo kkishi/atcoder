@@ -23,7 +23,7 @@ void Main() {
       rep(d, 5) {
         int nr = r + dr[d];
         int nc = c + dc[d];
-        if (0 <= nr && nr < 4 && 0 <= nc && nc < 4) {
+        if (inside(nr, nc, 4, 4)) {
           int nstate = state | bit(nr, nc);
           if (nstate == state) {
             ++same;

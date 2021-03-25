@@ -57,7 +57,7 @@ void Main() {
       rep(dr, -1, 2) rep(dc, -1, 2) {
         int nr = r + dr;
         int nc = c + dc;
-        if (nr < 0 || h <= nr || nc < 0 || w <= nc) continue;
+        if (!inside(nr, nc, h, w)) continue;
         if (seen[nr][nc] || grid[nr][nc] != 'o') continue;
         rec(nr, nc);
       }

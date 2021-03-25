@@ -25,12 +25,8 @@ void Main() {
       wt(dist[r][c]);
       return;
     }
-    rep(i, 4) {
-      int dr[] = {1, 0, -1, 0};
-      int dc[] = {0, 1, 0, -1};
-      int nr = r + dr[i];
-      int nc = c + dc[i];
-      if (0 <= nr && nr < h && 0 <= nc && nc < w) {
+    each(nr, nc, adjacent(r, c)) {
+      if (inside(nr, nc, h, w)) {
         if (a[nr][nc] != '#') {
           if (chmin(dist[nr][nc], dist[r][c] + 1)) {
             que.push({nr, nc});

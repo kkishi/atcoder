@@ -19,12 +19,8 @@ void Main() {
       wt("YES");
       return;
     }
-    rep(k, 4) {
-      int di[] = {0, 1, 0, -1};
-      int dj[] = {1, 0, -1, 0};
-      int ni = i + di[k];
-      int nj = j + dj[k];
-      if (0 <= ni && ni < h && 0 <= nj && nj < w) {
+    each(ni, nj, adjacent(i, j)) {
+      if (inside(ni, nj, h, w)) {
         int x = c[ni][nj];
         if (x == '#') {
           if (d < 2 && chmin(dist[ni][nj], d + 1)) {

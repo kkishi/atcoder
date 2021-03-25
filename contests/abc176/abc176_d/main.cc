@@ -30,11 +30,7 @@ void Main() {
   while (!que.empty()) {
     auto [d, r, c] = que.top();
     que.pop();
-    rep(i, 4) {
-      int dr[] = {0, 1, 0, -1};
-      int dc[] = {1, 0, -1, 0};
-      push(r + dr[i], c + dc[i], d);
-    }
+    each(nr, nc, adjacent(r, c)) push(nr, nc, d);
     rep(dr, -2, 3) rep(dc, -2, 3) push(r + dr, c + dc, d + 1);
   }
   int ans = dist[dh][dw];

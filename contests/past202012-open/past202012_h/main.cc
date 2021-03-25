@@ -13,18 +13,14 @@ void Main() {
   while (!que.empty()) {
     auto [r, c] = que.front();
     que.pop();
-    rep(i, 4) {
-      int dr[] = {0, 1, 0, -1};
-      int dc[] = {1, 0, -1, 0};
-      int pr = r + dr[i];
-      int pc = c + dc[i];
-      if (0 <= pr && pr < h && 0 <= pc && pc < w & !visited[pr][pc]) {
+    each(pr, pc, adjacent(r, c)) {
+      if (inside(pr, pc, h, w) && !visited[pr][pc]) {
         char x = s[pr][pc];
         if (x == '#') continue;
-        if (x == '<' && i != 0) continue;
-        if (x == '^' && i != 1) continue;
-        if (x == '>' && i != 2) continue;
-        if (x == 'v' && i != 3) continue;
+        if (x == '<' && pc <= c) continue;
+        if (x == '^' && pr <= r) continue;
+        if (x == '>' && pc >= c) continue;
+        if (x == 'v' && pr >= r) continue;
         visited[pr][pc] = true;
         que.emplace(pr, pc);
       }
