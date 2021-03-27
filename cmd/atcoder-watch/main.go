@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"html"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -13,7 +12,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"text/tabwriter"
 	"time"
 
 	"github.com/kkishi/atcoder/pkg/client"
@@ -78,9 +76,42 @@ type submission struct {
 	id            string
 }
 
-func (s *submission) WriteTo(w io.Writer) {
-	fmt.Fprintf(w, "%s\t%s\t%d\t%d Byte\t%s\t%s\t%d KB\n",
-		s.time.Format("2006-01-02 15:03:04"), aurora.Cyan(s.task), s.score, s.codeSizeBytes, s.status.withColor(), s.execTime, s.memoryKB)
+func (s *submission) formatTask() aurora.Value {
+	t := s.task
+	const w = 25
+	if len(t) > w {
+		t = t[0:w-3] + "..."
+	}
+	return aurora.Cyan(t + strings.Repeat(" ", w-len(t)))
+}
+
+func (s *submission) formatExecTime() string {
+	ms := s.execTime / time.Millisecond
+	if ms >= 1000 {
+		return fmt.Sprintf("%.3gs", float64(ms)/1000)
+	}
+	return fmt.Sprintf("%dms", ms)
+}
+
+func (s *submission) formatMemory() string {
+	if s.memoryKB >= 1000 {
+		return fmt.Sprintf("%.3gMB", float64(s.memoryKB)/1000)
+	}
+	return fmt.Sprintf("%dKB", s.memoryKB)
+}
+
+func (s *submission) Print() {
+	fmt.Printf("%s %s %5d %7dB %s%s",
+		s.time.Format("2006-01-02 15:03:04"),
+		s.formatTask(),
+		s.score,
+		s.codeSizeBytes,
+		s.status.withColor(),
+		strings.Repeat(" ", 7-len(s.status)))
+	if s.execTime != 0 || s.memoryKB != 0 {
+		fmt.Printf("%5s %6s", s.formatExecTime(), s.formatMemory())
+	}
+	fmt.Printf("\n")
 }
 
 // <td class="no-break"><time class='fixtime fixtime-second'>2021-03-19 11:48:22+0900</time></td>
@@ -269,7 +300,7 @@ func getRecentSubmissions(c *http.Client, contestID string) ([]*submission, erro
 }
 
 type SubmissionStatus struct {
-	Html     []byte
+	Html     string
 	Interval int
 	Score    string
 }
@@ -322,13 +353,10 @@ func run(contestID string) error {
 	}
 
 	if len(ss) > 0 {
-		w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
-		fmt.Fprintf(w, "SubmissionTime\t%s\tScore\tCodeSize\t%s\tExecTime\tMemory\n",
-			aurora.White("Task"), aurora.White("Status"))
+		fmt.Println("Submission          Task                      Score Code     Status Time  Memory")
 		for _, s := range ss {
-			s.WriteTo(w)
+			s.Print()
 		}
-		w.Flush()
 
 		last := ss[len(ss)-1]
 		var lastStatus status
@@ -343,17 +371,17 @@ func run(contestID string) error {
 					if err != nil {
 						return err
 					}
-					if st, ok := parseStatus(status.Html); !ok {
+					if st, ok := parseStatus([]byte(status.Html)); !ok {
 						log.Println("Failed to parse status", status.Html)
 					} else {
 						last.status = st
 					}
-					if t, ok := parseExecTime(status.Html); !ok {
+					if t, ok := parseExecTime([]byte(status.Html)); !ok {
 						log.Println("Failed to parse exec time", status.Html)
 					} else {
 						last.execTime = t
 					}
-					if m, ok := parseMemoryKB(status.Html); !ok {
+					if m, ok := parseMemoryKB([]byte(status.Html)); !ok {
 						log.Println("Failed to parse memory kb", status.Html)
 					} else {
 						last.memoryKB = m
@@ -363,19 +391,17 @@ func run(contestID string) error {
 					} else {
 						last.score = i
 					}
-					last.WriteTo(w)
-					w.Flush()
+					last.Print()
 					break
 				} else {
-					st, ok := parseStatus(status.Html)
+					st, ok := parseStatus([]byte(status.Html))
 					if !ok {
 						log.Println("Failed to parse status", status.Html)
 					} else {
 						if st != lastStatus {
 							lastStatus = st
 							last.status = st
-							last.WriteTo(w)
-							w.Flush()
+							last.Print()
 						}
 					}
 					<-time.NewTimer(time.Duration(status.Interval) * time.Millisecond).C
