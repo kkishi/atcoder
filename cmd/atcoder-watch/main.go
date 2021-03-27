@@ -76,13 +76,20 @@ type submission struct {
 	id            string
 }
 
+func spaces(x int) string {
+	if x <= 0 {
+		return ""
+	}
+	return strings.Repeat(" ", x)
+}
+
 func (s *submission) formatTask() aurora.Value {
 	t := s.task
 	const w = 25
 	if len(t) > w {
 		t = t[0:w-3] + "..."
 	}
-	return aurora.Cyan(t + strings.Repeat(" ", w-len(t)))
+	return aurora.Cyan(t + spaces(w-len(t)))
 }
 
 func (s *submission) formatExecTime() string {
@@ -107,7 +114,7 @@ func (s *submission) Print() {
 		s.score,
 		s.codeSizeBytes,
 		s.status.withColor(),
-		strings.Repeat(" ", 7-len(s.status)))
+		spaces(7-len(s.status)))
 	if s.execTime != 0 || s.memoryKB != 0 {
 		fmt.Printf("%5s %6s", s.formatExecTime(), s.formatMemory())
 	}
