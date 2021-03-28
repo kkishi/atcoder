@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+// TODO: Use geometry.h.
 
 using P = complex<double>;
 
