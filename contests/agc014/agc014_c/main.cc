@@ -26,12 +26,8 @@ void Main() {
         }
         return;
       }
-      int dr[] = {0, 1, 0, -1};
-      int dc[] = {1, 0, -1, 0};
-      rep(d, 4) {
-        int nr = r + dr[d];
-        int nc = c + dc[d];
-        if (nr < 0 || h <= nr || nc < 0 || w <= nc) continue;
+      each(nr, nc, adjacent(r, c)) {
+        if (!inside(nr, nc, h, w)) continue;
         if (iter == 0 && a[nr][nc] == '#') continue;
         if (chmin(dist[nr][nc], dist[r][c] + 1)) {
           que.push({nr, nc});

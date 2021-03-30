@@ -22,6 +22,7 @@ var (
 	runSubmit       = flag.Bool("s", false, "If true, submit the solution file.")
 	dryRun          = flag.Bool("dry_run", false, "If true, do not actually submit. Useful for excersizing the end to end workflow, especially the include preprocessing.")
 	compilationMode = flag.String("c", "opt", "Supported values: opt dbg prof")
+	useOJSubmit     = flag.Bool("use_oj_submit", false, "Whether to use oj for submission")
 )
 
 func preprocessIncludes(dir, base string) (string, error) {
@@ -75,7 +76,11 @@ func test(dir string) error {
 }
 
 func submit(dir, base string) error {
-	return runCommand(dir, "oj", "submit", "-y", "--no-open", "--wait", "0", base)
+	if *useOJSubmit {
+		return runCommand(dir, "oj", "submit", "-y", "--no-open", "--wait", "0", base)
+	} else {
+		return runCommand(dir, "atcoder-submit", base)
+	}
 }
 
 var re = regexp.MustCompile(`/contests/([^/]+)/`)
@@ -141,6 +146,7 @@ func run(args []string) error {
 func main() {
 	s := time.Now()
 	flag.Parse()
+	log.SetFlags(log.Flags() | log.Lmicroseconds)
 	err := run(flag.Args())
 	d := time.Now().Sub(s)
 	if err != nil {

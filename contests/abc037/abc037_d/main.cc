@@ -14,12 +14,8 @@ void Main() {
     optional<mint>& d = dp[r][c];
     if (!d) {
       mint sum = 1;
-      int dr[] = {0, 1, 0, -1};
-      int dc[] = {1, 0, -1, 0};
-      rep(i, 4) {
-        int nr = r + dr[i];
-        int nc = c + dc[i];
-        if (nr < 0 || h <= nr || nc < 0 || w <= nc) continue;
+      each(nr, nc, adjacent(r, c)) {
+        if (!inside(nr, nc, h, w)) continue;
         if (a[nr][nc] <= a[r][c]) continue;
         sum += rec(nr, nc);
       }

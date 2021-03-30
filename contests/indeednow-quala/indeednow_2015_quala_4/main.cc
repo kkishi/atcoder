@@ -18,12 +18,8 @@ void Main() {
       int d = dist[here];
       if (d == 12) continue;
       rep(i, h) rep(j, w) if (here[i][j] == 0) {
-        int dr[] = {0, 1, 0, -1};
-        int dc[] = {1, 0, -1, 0};
-        rep(k, 4) {
-          int ni = i + dr[k];
-          int nj = j + dc[k];
-          if (0 <= ni && ni < h && 0 <= nj && nj < w) {
+        each(ni, nj, adjacent(i, j)) {
+          if (inside(ni, nj, h, w)) {
             swap(here[i][j], here[ni][nj]);
             if (auto [_, ok] = dist.insert({here, d + 1}); ok) {
               que.push(here);

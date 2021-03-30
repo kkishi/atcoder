@@ -33,7 +33,7 @@ bool Solve() {
       rep(r, 19) rep(c, 19) {
         auto check = [&](int dr, int dc) {
           auto at = [&](int r, int c) {
-            if (r < 0 || 19 <= r || c < 0 || 19 <= c) return '.';
+            if (!inside(r, c, 19, 19)) return '.';
             return b[r][c];
           };
           int cnt = 0;

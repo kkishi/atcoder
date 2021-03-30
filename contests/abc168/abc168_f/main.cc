@@ -76,13 +76,11 @@ void Main() {
     long long x = cx[here.x + 1] - cx[here.x];
     long long y = cy[here.y + 1] - cy[here.y];
     ans += x * y;
-    rep(i, 4) {
-      int dx[] = {0, 1, 0, -1};
-      int dy[] = {1, 0, -1, 0};
-      if (grid.Boundary(here, dx[i], dy[i]).online) {
+    each(dx, dy, adjacent(0, 0)) {
+      if (grid.Boundary(here, dx, dy).online) {
         continue;
       }
-      Coord there = {here.x + dx[i], here.y + dy[i]};
+      Coord there = {here.x + dx, here.y + dy};
       if (!grid.InBounds(there)) {
         wt("INF");
         return;

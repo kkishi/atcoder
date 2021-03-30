@@ -28,11 +28,7 @@ void Main() {
     auto ok = [&](int r, int c) {
       return between(r, 0L, h - 1) && between(c, 0L, w - 1) && s[r][c] == '.';
     };
-    rep(i, 4) {
-      int dr[] = {0, 1, 0, -1};
-      int dc[] = {1, 0, -1, 0};
-      int nr = r + dr[i];
-      int nc = c + dc[i];
+    each(nr, nc, adjacent(r, c)) {
       if (ok(nr, nc) && chmin(dist[nr][nc], dist[r][c])) {
         que.push_front({nr, nc});
       }

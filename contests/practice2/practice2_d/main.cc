@@ -13,16 +13,12 @@ void Main() {
   int src = idx(n - 1, m - 1) + 1, dst = src + 1;
   atcoder::mf_graph<i32> g(dst + 1);
   auto add = [&](int u, int v) { g.add_edge(u, v, 1); };
-  int dr[] = {0, 1, 0, -1};
-  int dc[] = {1, 0, -1, 0};
   rep(r, n) rep(c, m) {
     if (s[r][c] == '#') continue;
     if (even(r + c)) {
       add(src, idx(r, c));
-      rep(i, 4) {
-        int nr = r + dr[i];
-        int nc = c + dc[i];
-        if (0 <= nr && nr < n && 0 <= nc && nc < m && s[r][c] == '.') {
+      each(nr, nc, adjacent(r, c)) {
+        if (inside(nr, nc, n, m)) {
           add(idx(r, c), idx(nr, nc));
         }
       }

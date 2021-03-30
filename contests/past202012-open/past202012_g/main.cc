@@ -19,12 +19,8 @@ void Main() {
             wt(r + 1, c + 1);
             return true;
           }
-          rep(d, 4) {
-            int dr[] = {1, 0, -1, 0};
-            int dc[] = {0, 1, 0, -1};
-            int nr = r + dr[d];
-            int nc = c + dc[d];
-            if (0 <= nr && nr < h && 0 <= nc && nc < w && rec(nr, nc, x)) {
+          each(nr, nc, adjacent(r, c)) {
+            if (inside(nr, nc, h, w) && rec(nr, nc, x)) {
               wt(r + 1, c + 1);
               return true;
             }

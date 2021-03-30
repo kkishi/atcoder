@@ -5,64 +5,19 @@ import (
 	"errors"
 	"fmt"
 	"html"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/http/cookiejar"
-	"net/url"
 	"os"
-	"os/user"
-	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
-	"text/tabwriter"
 	"time"
 
-	"golang.org/x/net/publicsuffix"
+	"github.com/kkishi/atcoder/pkg/client"
 
 	aurora "github.com/logrusorgru/aurora/v3"
 )
-
-func newClient() (*http.Client, error) {
-	u, err := url.Parse("https://atcoder.jp/")
-	if err != nil {
-		return nil, err
-	}
-	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
-	if err != nil {
-		return nil, err
-	}
-	// HACK: Reuse the cookiejar for oj.
-	usr, err := user.Current()
-	if err != nil {
-		return nil, err
-	}
-	b, err := ioutil.ReadFile(filepath.Join(usr.HomeDir, ".local/share/online-judge-tools/cookie.jar"))
-	if err != nil {
-		return nil, err
-	}
-	m := regexp.MustCompile(`REVEL_SESSION="([^"]+)"`).FindStringSubmatch(string(b))
-	if len(m) != 2 {
-		return nil, errors.New("REVEL_SESSION not found")
-	}
-	jar.SetCookies(u, []*http.Cookie{
-		{
-			Name:   "REVEL_SESSION",
-			Value:  m[1],
-			Path:   "/",
-			Domain: "atcoder.jp",
-		},
-	})
-	return &http.Client{
-		Jar: jar,
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			return fmt.Errorf("request for %s got redirected to %s, check if you are logged in",
-				via[len(via)-1].URL, req.URL)
-		},
-	}, nil
-}
 
 type status string
 
@@ -121,18 +76,58 @@ type submission struct {
 	id            string
 }
 
-func (s *submission) WriteTo(w io.Writer) {
-	fmt.Fprintf(w, "%s\t%s\t%d\t%d Byte\t%s\t%s\t%d KB\n",
-		s.time.Format("2006-01-02 15:03:04"), aurora.Cyan(s.task), s.score, s.codeSizeBytes, s.status.withColor(), s.execTime, s.memoryKB)
+func spaces(x int) string {
+	if x <= 0 {
+		return ""
+	}
+	return strings.Repeat(" ", x)
+}
+
+func (s *submission) formatTask() aurora.Value {
+	t := s.task
+	const w = 25
+	if len(t) > w {
+		t = t[0:w-3] + "..."
+	}
+	return aurora.Cyan(t + spaces(w-len(t)))
+}
+
+func (s *submission) formatExecTime() string {
+	ms := s.execTime / time.Millisecond
+	if ms >= 1000 {
+		return fmt.Sprintf("%.3gs", float64(ms)/1000)
+	}
+	return fmt.Sprintf("%dms", ms)
+}
+
+func (s *submission) formatMemory() string {
+	if s.memoryKB >= 1000 {
+		return fmt.Sprintf("%.3gMB", float64(s.memoryKB)/1000)
+	}
+	return fmt.Sprintf("%dKB", s.memoryKB)
+}
+
+func (s *submission) Print() {
+	fmt.Printf("%s %s %5d %7dB %s%s",
+		s.time.Format("2006-01-02 15:03:04"),
+		s.formatTask(),
+		s.score,
+		s.codeSizeBytes,
+		s.status.withColor(),
+		spaces(7-len(s.status)))
+	if s.execTime != 0 || s.memoryKB != 0 {
+		fmt.Printf("%5s %6s", s.formatExecTime(), s.formatMemory())
+	}
+	fmt.Printf("\n")
 }
 
 // <td class="no-break"><time class='fixtime fixtime-second'>2021-03-19 11:48:22+0900</time></td>
 var reTime = regexp.MustCompile(`<time class='fixtime fixtime-second'>(.*)</time>`)
 
-func parseTime(td string) (time.Time, bool) {
-	m := reTime.FindStringSubmatch(td)
+func parseTime(td []byte) (time.Time, bool) {
+	m := reTime.FindSubmatch(td)
 	if len(m) == 2 {
-		t, err := time.Parse("2006-01-02 15:04:05-0700", m[1])
+		t, err := time.Parse("2006-01-02 15:04:05-0700", string(m[1]))
 		if err == nil {
 			return t, true
 		}
@@ -143,10 +138,10 @@ func parseTime(td string) (time.Time, bool) {
 // <td><a href="/contests/abc195/tasks/abc195_b">B - Many Oranges</a></td>
 var reTask = regexp.MustCompile(`>([^>]+?)</a></td>`)
 
-func parseTask(td string) (string, bool) {
-	m := reTask.FindStringSubmatch(td)
+func parseTask(td []byte) (string, bool) {
+	m := reTask.FindSubmatch(td)
 	if len(m) == 2 {
-		return m[1], true
+		return string(m[1]), true
 	}
 	return "", false
 }
@@ -154,10 +149,10 @@ func parseTask(td string) (string, bool) {
 // <td><a href="/contests/abc195/submissions/me?f.Language=4026">Go (1.14.1)</a></td>
 var reLanguage = regexp.MustCompile(`>([^>]+?)</a></td>`)
 
-func parseLanguage(td string) (string, bool) {
-	m := reLanguage.FindStringSubmatch(td)
+func parseLanguage(td []byte) (string, bool) {
+	m := reLanguage.FindSubmatch(td)
 	if len(m) == 2 {
-		return html.UnescapeString(m[1]), true
+		return html.UnescapeString(string(m[1])), true
 	}
 	return "", false
 }
@@ -165,10 +160,10 @@ func parseLanguage(td string) (string, bool) {
 // <td class="text-right submission-score" data-id="20882710">200</td>
 var reScore = regexp.MustCompile(`>([0-9]+)</td>`)
 
-func parseScore(td string) (int, bool) {
-	m := reScore.FindStringSubmatch(td)
+func parseScore(td []byte) (int, bool) {
+	m := reScore.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return i, true
 		}
@@ -179,10 +174,10 @@ func parseScore(td string) (int, bool) {
 // <td class="text-right">6655 Byte</td>
 var reCodeSizeBytes = regexp.MustCompile(`>([0-9]+) Byte</td>`)
 
-func parseCodeSizeBytes(td string) (int, bool) {
-	m := reCodeSizeBytes.FindStringSubmatch(td)
+func parseCodeSizeBytes(td []byte) (int, bool) {
+	m := reCodeSizeBytes.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return i, true
 		}
@@ -193,8 +188,8 @@ func parseCodeSizeBytes(td string) (int, bool) {
 // <td class='text-center'><span class='label label-success' data-toggle='tooltip' data-placement='top' title="Accepted">AC</span></td>
 var reStatus = regexp.MustCompile(`>([^>]+?)</span>`)
 
-func parseStatus(td string) (status, bool) {
-	m := reStatus.FindStringSubmatch(td)
+func parseStatus(td []byte) (status, bool) {
+	m := reStatus.FindSubmatch(td)
 	if len(m) == 2 {
 		return status(m[1]), true
 	}
@@ -204,10 +199,10 @@ func parseStatus(td string) (status, bool) {
 // <td class="text-center"><a href="/contests/abc195/submissions/21027486">Detail</a></td>
 var reID = regexp.MustCompile(`/submissions/([^"]+)"`)
 
-func parseID(td string) (string, bool) {
-	m := reID.FindStringSubmatch(td)
+func parseID(td []byte) (string, bool) {
+	m := reID.FindSubmatch(td)
 	if len(m) == 2 {
-		return m[1], true
+		return string(m[1]), true
 	}
 	return "", false
 }
@@ -215,10 +210,10 @@ func parseID(td string) (string, bool) {
 // <td class='text-right'>19 ms</td>
 var reExecTime = regexp.MustCompile(`>([0-9]+) ms</td>`)
 
-func parseExecTime(td string) (time.Duration, bool) {
-	m := reExecTime.FindStringSubmatch(td)
+func parseExecTime(td []byte) (time.Duration, bool) {
+	m := reExecTime.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return time.Duration(i) * time.Millisecond, true
 		}
@@ -229,10 +224,10 @@ func parseExecTime(td string) (time.Duration, bool) {
 // <td class='text-right'>11540 KB</td>
 var reMemoryKB = regexp.MustCompile(`>([0-9]+) KB</td>`)
 
-func parseMemoryKB(td string) (int, bool) {
-	m := reMemoryKB.FindStringSubmatch(td)
+func parseMemoryKB(td []byte) (int, bool) {
+	m := reMemoryKB.FindSubmatch(td)
 	if len(m) == 2 {
-		i, err := strconv.Atoi(m[1])
+		i, err := strconv.Atoi(string(m[1]))
 		if err == nil {
 			return i, true
 		}
@@ -244,8 +239,8 @@ var reTR = regexp.MustCompile(`(?s)<tr>(.*?)</tr>`)
 var reTD = regexp.MustCompile(`(?s)(<td.*?</td>)`)
 
 // Returned submissions are sorted by submission time in the ascending order (opposite of the web page).
-func getRecentSubmissions(client *http.Client, contestID string) ([]*submission, error) {
-	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me", contestID))
+func getRecentSubmissions(c *http.Client, contestID string) ([]*submission, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me", contestID))
 	if err != nil {
 		return nil, err
 	}
@@ -257,8 +252,8 @@ func getRecentSubmissions(client *http.Client, contestID string) ([]*submission,
 	}
 
 	var ss []*submission
-	for _, tr := range reTR.FindAllStringSubmatch(string(buf), -1) {
-		tds := reTD.FindAllStringSubmatch(tr[0], -1)
+	for _, tr := range reTR.FindAllSubmatch(buf, -1) {
+		tds := reTD.FindAllSubmatch(tr[0], -1)
 		if len(tds) == 0 {
 			continue
 		}
@@ -317,8 +312,8 @@ type SubmissionStatus struct {
 	Score    string
 }
 
-func getSubmissionStatus(client *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
-	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
+func getSubmissionStatus(c *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/%s/status/json", contestID, submissionID))
 	if err != nil {
 		return nil, err
 	}
@@ -335,8 +330,8 @@ type SubmissionStatusMulti struct {
 	Result map[string]SubmissionStatus
 }
 
-func getDetailedSubmissionStatus(client *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
-	resp, err := client.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me/status/json?sids[]=%s", contestID, submissionID))
+func getDetailedSubmissionStatus(c *http.Client, contestID, submissionID string) (*SubmissionStatus, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/submissions/me/status/json?sids[]=%s", contestID, submissionID))
 	if err != nil {
 		return nil, err
 	}
@@ -354,49 +349,46 @@ func getDetailedSubmissionStatus(client *http.Client, contestID, submissionID st
 }
 
 func run(contestID string) error {
-	client, err := newClient()
+	c, err := client.New()
 	if err != nil {
 		return err
 	}
 	log.Printf("Getting recent submissions for %s", contestID)
-	ss, err := getRecentSubmissions(client, contestID)
+	ss, err := getRecentSubmissions(c, contestID)
 	if err != nil {
 		return err
 	}
 
 	if len(ss) > 0 {
-		w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
-		fmt.Fprintf(w, "SubmissionTime\t%s\tScore\tCodeSize\t%s\tExecTime\tMemory\n",
-			aurora.White("Task"), aurora.White("Status"))
+		fmt.Println("Submission          Task                      Score Code     Status Time  Memory")
 		for _, s := range ss {
-			s.WriteTo(w)
+			s.Print()
 		}
-		w.Flush()
 
 		last := ss[len(ss)-1]
 		var lastStatus status
 		if !last.status.isCompleted() {
 			for {
-				status, err := getSubmissionStatus(client, contestID, last.id)
+				status, err := getSubmissionStatus(c, contestID, last.id)
 				if err != nil {
 					return err
 				}
 				if status.Interval == 0 {
-					status, err = getDetailedSubmissionStatus(client, contestID, last.id)
+					status, err = getDetailedSubmissionStatus(c, contestID, last.id)
 					if err != nil {
 						return err
 					}
-					if st, ok := parseStatus(status.Html); !ok {
+					if st, ok := parseStatus([]byte(status.Html)); !ok {
 						log.Println("Failed to parse status", status.Html)
 					} else {
 						last.status = st
 					}
-					if t, ok := parseExecTime(status.Html); !ok {
+					if t, ok := parseExecTime([]byte(status.Html)); !ok {
 						log.Println("Failed to parse exec time", status.Html)
 					} else {
 						last.execTime = t
 					}
-					if m, ok := parseMemoryKB(status.Html); !ok {
+					if m, ok := parseMemoryKB([]byte(status.Html)); !ok {
 						log.Println("Failed to parse memory kb", status.Html)
 					} else {
 						last.memoryKB = m
@@ -406,19 +398,17 @@ func run(contestID string) error {
 					} else {
 						last.score = i
 					}
-					last.WriteTo(w)
-					w.Flush()
+					last.Print()
 					break
 				} else {
-					st, ok := parseStatus(status.Html)
+					st, ok := parseStatus([]byte(status.Html))
 					if !ok {
 						log.Println("Failed to parse status", status.Html)
 					} else {
 						if st != lastStatus {
 							lastStatus = st
 							last.status = st
-							last.WriteTo(w)
-							w.Flush()
+							last.Print()
 						}
 					}
 					<-time.NewTimer(time.Duration(status.Interval) * time.Millisecond).C
@@ -430,6 +420,7 @@ func run(contestID string) error {
 }
 
 func main() {
+	log.SetFlags(log.Flags() | log.Lmicroseconds)
 	if err := run(os.Args[1]); err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)

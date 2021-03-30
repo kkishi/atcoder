@@ -60,7 +60,7 @@ void Main() {
         front = false;
       }
       if (int r = there.position.r, c = there.position.c;
-          0 <= r && r < h && 0 <= c && c < w && grid[r][c] == '.') {
+          inside(r, c, h, w) && grid[r][c] == '.') {
         push(there, front);
       }
     }
