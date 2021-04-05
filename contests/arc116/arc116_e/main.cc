@@ -1,4 +1,3 @@
-// NOTE: This solution is not correct.
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
@@ -13,51 +12,40 @@ void Main() {
     g[u].pb(v);
     g[v].pb(u);
   }
-  V<int> height(n);
-  V<int> weight(n);
-  Fix([&](auto rec, int node, int parent) -> pair<int, int> {
-    int h = 0;
-    int w = 1;
-    each(child, g[node]) {
-      if (child != parent) {
-        auto [ch, cw] = rec(child, node);
-        chmax(h, ch + 1);
-        w += cw;
-      }
-    }
-    height[node] = h;
-    weight[node] = w;
-    return {h, w};
-  })(0, -1);
-  V<int> cnt(n);
-  VV<int> nodes(n);
-  rep(i, n) {
-    ++cnt[height[i]];
-    nodes[height[i]].pb(i);
-  }
   wt(BinarySearch<int>(n, 0, [&](int t) {
-    int sum = 0;
-    V<int> marked;
-    for (int i = t; i < n; i += t * 2 + 1) {
-      sum += cnt[i];
-      each(e, nodes[i]) marked.pb(e);
-    }
-    V<int> dist(n, big);
-    queue<int> que;
-    each(e, marked) {
-      dist[e] = 0;
-      que.push(e);
-    }
-    while (!que.empty()) {
-      int node = que.front();
-      que.pop();
-      each(child, g[node]) if (chmin(dist[child], dist[node] + 1)) {
-        que.push(child);
-      }
-    }
-    bool has_unreachable = false;
-    rep(i, n) if (dist[i] > t) { has_unreachable = true; }
-    if (has_unreachable) ++sum;
-    return sum <= k;
+    auto [closest_marked, farthest_uncovered, sum_child_marked] =
+        Fix([&](auto rec, int node, int parent) -> tuple<int, int, int> {
+          int closest_marked = big;
+          int farthest_uncovered = 0;
+          int sum_child_marked = 0;
+          each(child, g[node]) {
+            if (child == parent) continue;
+            auto [child_closest_marked, child_farthest_uncovered,
+                  child_marked] = rec(child, node);
+            chmin(closest_marked, child_closest_marked + 1);
+            chmax(farthest_uncovered, child_farthest_uncovered + 1);
+            sum_child_marked += child_marked;
+          }
+          if (farthest_uncovered == t) {
+            // This node needs to be marked.
+            closest_marked = 0;
+            farthest_uncovered = -1;
+            ++sum_child_marked;
+            dbg(node + 1, "marked");
+          } else {
+            if (farthest_uncovered >= 0 &&
+                farthest_uncovered + closest_marked <= t) {
+              // The farthest uncovered node can be covered by the closest
+              // marked node.
+              farthest_uncovered = -1;
+            }
+          }
+          dbg(node + 1, closest_marked, farthest_uncovered, sum_child_marked);
+          return {closest_marked, farthest_uncovered, sum_child_marked};
+        })(0, -1);
+    dbg(t, closest_marked, farthest_uncovered, sum_child_marked);
+    // There are still some uncovered nodes. It suffices to mark the root node.
+    if (farthest_uncovered >= 0) ++sum_child_marked;
+    return sum_child_marked <= k;
   }));
 }
