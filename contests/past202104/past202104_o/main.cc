@@ -44,7 +44,7 @@ void Main() {
               if (!hasbit(mask, K)) {
                 rep(i, 2) rep(j, 2) rep(k, 2) {
                   chmin(dp[I][i][mask | (1 << K)][K][k],
-                        dp[I][i][mask][J][j] + *d[e[J][1 - j]][e[K][k]]);
+                        dp[I][i][mask][J][j] + *d[e[J][1 - j]][e[K][k]] + 1);
                 }
               }
             }
