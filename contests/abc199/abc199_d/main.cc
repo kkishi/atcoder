@@ -1,47 +1,37 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "disjoint_set.h"
+#include "dfs_order.h"
 
 void Main() {
   ints(n, m);
-  VV<int> g(n);
-  DisjointSet ds(n);
+  Graph<int> g(n);
   rep(m) {
     ints(a, b);
     --a, --b;
-    g[a].pb(b);
-    g[b].pb(a);
-    ds.Union(a, b);
+    g.AddEdge(a, b);
+    g.AddEdge(b, a);
   }
-  set<int> ids;
-  rep(i, n) ids.insert(ds.Find(i));
   int ans = 1;
-
-  V<int> idx(n);
-  iota(all(idx), int(0));
-  rep(i, n - 1) swap(idx[i], idx[i + rand() % (n - i)]);
-
-  each(id, ids) {
+  V<bool> seen(n);
+  rep(i, n) if (!seen[i]) {
+    V<int> o = DFSOrder(g, i);
+    each(e, o) seen[e] = true;
     int cnt = 0;
     V<int> color(n, -1);
     Fix([&](auto rec, int depth) {
-      if (depth == n) {
+      if (depth == sz(o)) {
         ++cnt;
         return;
       }
-      int I = idx[depth];
-      if (ds.Find(I) != id) {
-        rec(depth + 1);
-        return;
-      }
       V<bool> used(3);
-      each(j, g[I]) if (color[j] != -1) { used[color[j]] = true; }
+      each(e, g.Edges(o[depth])) if (color[e.to] != -1) used[color[e.to]] =
+          true;
       rep(c, 3) if (!used[c]) {
-        color[I] = c;
+        color[o[depth]] = c;
         rec(depth + 1);
       }
-      color[I] = -1;
+      color[o[depth]] = -1;
     })(0);
     ans *= cnt;
   }
