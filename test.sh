@@ -90,10 +90,10 @@ contests/tenka1-2018-beginner/tenka1_2018_d/main.cc\
   fi
 
   test_dir=$(dirname $problem)/test
-  num_samples=$(ls $test_dir | wc -l)
+  num_samples=$(ls $test_dir 2> /dev/null | wc -l)
   if [[ $num_samples -eq 0 ]]; then
     c=$(echo $problem | cut -d / -f 2)
-    compete --contest=$c
+    atcoder-compete $c
   fi
 
   if ! atcoder -t $problem >& /dev/null; then
