@@ -13,17 +13,11 @@ void Main() {
     ints(a, b);
     v.pb({a, b});
   }
-  sort(all(v), [](auto& x, auto& y) {
-    int l = x.b * y.a, r = y.b * x.a;
-    if (l != r) return l < r;
-    return x.b > y.b;
-  });
-  int ans = 0;
-  each(s, v) {
-    dbg(s.a, s.b);
-    ans += h * s.a;
-    h -= s.b;
-    if (h <= 0) break;
+  sort(all(v), [](auto& x, auto& y) { return x.b * y.a < y.b * x.a; });
+  V<int> dp(h + 1, int(-1));
+  dp[h] = 0;
+  each(e, v) rep(j, h + 1) if (dp[j] != -1) {
+    chmax(dp[max(0, j - e.b)], dp[j] + j * e.a);
   }
-  wt(ans);
+  wt(*max_element(all(dp)));
 }
