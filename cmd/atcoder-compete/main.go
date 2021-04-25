@@ -15,6 +15,8 @@ import (
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/kkishi/atcoder/pkg/client"
 )
 
 var (
@@ -80,8 +82,8 @@ func waitUntilStart() error {
 	return nil
 }
 
-func getProblems(contestID string) ([]string, error) {
-	resp, err := http.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/tasks", contestID))
+func getProblems(c *http.Client, contestID string) ([]string, error) {
+	resp, err := c.Get(fmt.Sprintf("https://atcoder.jp/contests/%s/tasks", contestID))
 	if err != nil {
 		return nil, err
 	}
@@ -150,10 +152,14 @@ func run() error {
 		return errors.New("contest not specified")
 	}
 	contest := flag.Arg(0)
+	cl, err := client.New()
+	if err != nil {
+		return err
+	}
 
 	var problems []string
 	if *numProblems == 0 {
-		ps, err := getProblems(contest)
+		ps, err := getProblems(cl, contest)
 		if err != nil {
 			return fmt.Errorf("failed to get problems: %s", err)
 		}

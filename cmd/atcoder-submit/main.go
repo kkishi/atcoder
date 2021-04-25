@@ -1,6 +1,7 @@
 package main
 
 import (
+	"html"
 	"encoding/json"
 	"errors"
 	"flag"
@@ -145,7 +146,7 @@ func getCSRFTokenFromWebsite(c *http.Client, sol *solution) (string, error) {
 	if len(m) != 2 {
 		return "", errors.New("csrf_token not found in response")
 	}
-	token := string(m[1])
+	token := html.UnescapeString(string(m[1]))
 	if err := cacheCSRFToken(token); err != nil {
 		// Not fatal.
 		log.Println("Failed to save csrf_token to cache:", err)
@@ -198,7 +199,7 @@ func submit(c *http.Client, sol *solution) error {
 		return err
 	}
 	if resp.StatusCode != 200 {
-		fmt.Errorf("submission failed (code %d)", resp.StatusCode)
+		return fmt.Errorf("submission failed (code %d)", resp.StatusCode)
 	}
 	log.Println("Submission succeeded")
 	return nil
