@@ -15,18 +15,16 @@ void Main() {
   vector dist(m + 1, vector(n, big));
   low_priority_queue<tuple<int, int, int>> que;
   auto push = [&](int dis, int used, int node) {
-    rep(i, used) if (dist[i][node] <= dis) return;
-    if (chmin(dist[used][node], dis)) que.emplace(dis, used, node);
+    if (used <= m && chmin(dist[used][node], dis)) que.emplace(dis, used, node);
   };
   push(0, 0, 0);
   while (!que.empty()) {
     auto [dis, used, node] = que.top();
     que.pop();
-    if (dis > dist[used][node]) continue;
+    if (dis != dist[used][node]) continue;
     each(e, g.Edges(node)) {
       auto [cos, flipped] = e.weight;
-      int nused = used;
-      if (flipped) ++nused;
+      int nused = used + flipped;
       push(dis + cos, nused, e.to);
     }
   }
