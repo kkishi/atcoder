@@ -4,17 +4,16 @@
 
 void Main() {
   ints(a, b, c);
-  int s = a + b + c;
   if (a == b) {
-    wt(s - a * 2);
+    wt(c);
     return;
   }
   if (b == c) {
-    wt(s - b * 2);
+    wt(a);
     return;
   }
   if (c == a) {
-    wt(s - a * 2);
+    wt(b);
     return;
   }
   wt(0);
