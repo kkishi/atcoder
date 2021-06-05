@@ -131,7 +131,14 @@ func downloadSamples(c *Contest) error {
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
-			return err
+			// oj d fails in the following cases:
+			//
+			// 1) There's no problem corresponding to the URL
+			// 2) The problem doesn't have samples (e.g., it's an interactive problem)
+			//
+			// To handle both cases reasonably, on errors we just report and continue.
+			log.Printf("oj d failed: %s", err)
+			continue
 		}
 	}
 	return nil
