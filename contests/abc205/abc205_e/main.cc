@@ -31,10 +31,6 @@ void Main() {
     dbg(n, v);
   }
   auto f = [](int n, int k, int l) -> mint {
-    auto C = [](int a, int b) -> mint {
-      if (b < 0) return 0;
-      return mint::Comb(a, b);
-    };
     {
       // It appears like it breaks when y is larger than x (z becomes negative).
       // Return 0 in such cases.
@@ -43,8 +39,8 @@ void Main() {
       chmin(b, n - b);
       if (a < b) return 0;
     }
-    mint x = C(n, k);
-    mint y = C(n, k - 1 - l);
+    mint x = mint::Comb(n, k);
+    mint y = mint::Comb(n, k - 1 - l);
     mint z = x - y;
     return z;
   };
