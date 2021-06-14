@@ -5,7 +5,7 @@
 
 int n, k;
 int a[2 * 100000];
-const int tens = 1e9;
+const int tens = int_pow(10, 9);
 
 // Returns the number of pairs whose values are equal to or less than x.
 int count(int x) {

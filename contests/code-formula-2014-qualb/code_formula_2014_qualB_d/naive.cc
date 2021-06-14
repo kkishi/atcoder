@@ -16,8 +16,7 @@ void Main() {
       s.insert(x);
       return;
     }
-    int ten = 1;
-    rep(depth) ten *= 10;
+    int ten = int_pow(10, depth);
     rep(i, a[depth] + 1) {
       rec(depth + 1, x);
       x += ten;
