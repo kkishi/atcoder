@@ -4,6 +4,7 @@
 #include "binary_search.h"
 
 void Main() {
+  cout << setprecision(8);
   while (true) {
     ints(n);
     if (n == 0) break;

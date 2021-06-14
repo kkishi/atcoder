@@ -32,11 +32,7 @@ void Main() {
       r[i] = sz(v);
     }
   }
-  int ans = max(l[0], r[n - 1]);
-  rep(i, n - 1) {
-    int x = l[i] + r[i + 1];
-    if (a[i] == a[i + 1]) --x;
-    chmax(ans, x);
-  }
+  int ans = -big;
+  rep(i, n) chmax(ans, l[i] + r[i] - 1);
   wt(ans);
 }

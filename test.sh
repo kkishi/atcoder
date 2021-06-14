@@ -48,12 +48,14 @@ contests/abc131/abc131_e/main.cc\
 contests/abc157/abc157_f/main.cc\
 contests/abc168/abc168_d/main.cc\
 contests/abc182/abc182_b/main.cc\
+contests/abc198/abc198_d/main.cc\
 contests/agc006/agc006_b/main.cc\
 contests/agc007/agc007_b/main.cc\
 contests/agc013/agc013_b/main.cc\
 contests/agc022/agc022_b/main.cc\
 contests/agc050/agc050_a/main.cc\
 contests/arc022/arc022_3/main.cc\
+contests/arc043/arc043_a/main.cc\
 contests/arc051/arc051_b/main.cc\
 contests/arc091/arc091_c/main.cc\
 contests/arc103/arc103_c/main.cc\
@@ -63,18 +65,23 @@ contests/arc108/arc108_c/main.cc\
 contests/arc110/arc110_a/main.cc\
 contests/arc110/arc110_c/main.cc\
 contests/arc111/arc111_c/main.cc\
+contests/arc117/arc117_a/main.cc\
+contests/arc117/arc117_d/main.cc\
 contests/ddcc2020-qual/ddcc2020_qual_c/main.cc\
 contests/intro-heuristics/intro_heuristics_a/main.cc\
 contests/jsc2019-qual/jsc2019_qual_d/main.cc\
 contests/keyence2020/keyence2020_c/main.cc\
 contests/m-solutions2019/m_solutions2019_d/main.cc\
 contests/nomura2020/nomura2020_b/main.cc\
+contests/past202010-open/past202010_d/main.cc\
 contests/past202012-open/past202012_g/main.cc\
 contests/practice/practice_1/main.cc\
 contests/practice2/practice2_d/main.cc\
 contests/practice2/practice2_g/main.cc\
 contests/tenka1-2017-beginner/tenka1_2017_c/main.cc\
 contests/tenka1-2018-beginner/tenka1_2018_d/main.cc\
+contests/typical90/typical90_bd/main.cc\
+contests/typical90/typical90_z/main.cc\
 "
 
   skip_match=$(echo $skip | grep $problem | wc -l)
