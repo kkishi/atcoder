@@ -15,10 +15,8 @@ void Main() {
   }
   int ans = 0;
   rep(i, n - 1) rep(j, i + 1, n) {
-    dbg(v[i], v[j]);
     if (v[i].second <= v[j].first || v[j].second <= v[i].first) continue;
     ++ans;
-    dbg(ans);
   }
   wt(ans);
 }
