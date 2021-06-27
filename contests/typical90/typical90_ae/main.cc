@@ -6,20 +6,21 @@ void Main() {
   ints(n);
   V<int> w(n), b(n);
   cin >> w >> b;
-  map<pair<int, int>, int> dp;
+  vector dp(51, vector(1300, int(-1)));
   auto rec = Fix([&](auto rec, int i, int j) -> int {
-    auto [it, ok] = dp.insert({pair<int, int>{i, j}, 0});
-    if (ok) {
-      set<int> seen;
-      if (i >= 1) seen.insert(rec(i - 1, j + i));
-      for (int k = 1; k <= j / 2; ++k) seen.insert(rec(i, j - k));
+    int& d = dp[i][j];
+    if (d == -1) {
+      // Using set<int> makes this substantially slower (1.2s v.s. 400ms).
+      V<bool> seen(100000);
+      if (i >= 1) seen[rec(i - 1, j + i)] = true;
+      for (int k = 1; k <= j / 2; ++k) seen[rec(i, j - k)] = true;
       for (int k = 0;; ++k)
-        if (!seen.count(k)) {
-          it->second = k;
+        if (!seen[k]) {
+          d = k;
           break;
         }
     }
-    return it->second;
+    return d;
   });
   int x = 0;
   rep(i, n) x ^= rec(w[i], b[i]);
