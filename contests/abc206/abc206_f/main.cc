@@ -2,34 +2,20 @@
 
 #include "atcoder.h"
 
-using P = pair<int, int>;
-
 void Solve() {
   ints(n);
-  V<int> l(n), r(n);
-  rep(i, n) cin >> l[i] >> r[i];
-  V<P> seg;
-  rep(i, n) seg.eb(l[i], r[i]);
-  vector dp(200, vector(200, int(-1)));
-  auto rec = Fix([&](auto rec, int l, int r, const V<P>& seg) {
+  V<int> L(n), R(n);
+  rep(i, n) cin >> L[i] >> R[i];
+  vector dp(101, vector(101, int(-1)));
+  auto rec = Fix([&](auto rec, int l, int r) -> int {
     int& d = dp[l][r];
-    if (d != -1) return d;
-    if (seg.empty()) {
-      d = 0;
-    } else {
-      set<int> st;
-      rep(i, sz(seg)) {
-        V<P> L, R;
-        rep(j, sz(seg)) {
-          if (seg[j].second <= seg[i].first) L.eb(seg[j]);
-          if (seg[j].first >= seg[i].second) R.eb(seg[j]);
-        }
-        int ld = rec(l, seg[i].first, L);
-        int rd = rec(seg[i].second, r, R);
-        st.insert(ld ^ rd);
+    if (d == -1) {
+      V<bool> seen(101);
+      rep(i, n) if (l <= L[i] && R[i] <= r) {
+        seen[rec(l, L[i]) ^ rec(R[i], r)] = true;
       }
       for (int i = 0;; ++i) {
-        if (st.count(i) == 0) {
+        if (!seen[i]) {
           d = i;
           break;
         }
@@ -37,7 +23,7 @@ void Solve() {
     }
     return d;
   });
-  wt(rec(0, 101, seg) ? "Alice" : "Bob");
+  wt(rec(1, 100) ? "Alice" : "Bob");
 }
 
 void Main() {
