@@ -49,8 +49,5 @@ void Main() {
     return v;
   };
   vector R = f(k - y, r), G = f(k - z, g), B = f(k - x, b);
-  vector d = atcoder::convolution(R, G);
-  mint ans = 0;
-  rep(i, k + 1) ans += d[i] * B[k - i];
-  wt(ans.val());
+  wt(atcoder::convolution(atcoder::convolution(R, G), B)[k].val());
 }
