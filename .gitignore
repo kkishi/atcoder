@@ -10,4 +10,6 @@ out/
 
 # Ignore auxiliary binaries.
 gen
+judge
+main
 naive

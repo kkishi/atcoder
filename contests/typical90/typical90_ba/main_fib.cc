@@ -22,27 +22,36 @@ using namespace std;
   } while (0)
 
 void Solve() {
-  auto ask = [](int i) {
+  ints(n);
+  map<int, int> cache;
+  auto ask = [&](int i) -> int {
+    if (i > n) return n - i;
+    if (cache.count(i)) return cache[i];
     wt_flush("?", i);
     ints(x);
+    cache[i] = x;
     return x;
   };
-  ints(n);
   if (n == 1) {
     wt_flush("!", ask(1));
     return;
   }
+
+  V<int> fib(17);
+  rep(i, sz(fib)) fib[i] = i < 2 ? 1 : fib[i - 1] + fib[i - 2];
+
   int ans = -big;
-  int lo = 1, hi = n;
-  rep(11) {
-    int mid = (lo + hi) / 2;
-    int l = ask(mid);
-    int r = ask(mid + 1);
-    chmax(ans, max(l, r));
-    if (l < r) {
-      lo = mid;
+  int lo = 0, hi = fib[16];
+  rrep(i, 15) {
+    int l = lo + fib[i];
+    int L = ask(l);
+    int r = hi - fib[i];
+    int R = ask(r);
+    chmax(ans, max(L, R));
+    if (L < R) {
+      lo = l;
     } else {
-      hi = mid;
+      hi = r;
     }
   }
   wt_flush("!", ans);
