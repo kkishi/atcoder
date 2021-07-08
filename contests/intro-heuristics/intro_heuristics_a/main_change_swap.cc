@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "rand.h"
 
 struct Problem {
   int D;
@@ -77,6 +78,8 @@ inline int Now() {
       .count();
 }
 
+Rand r;
+
 void Improve(const Problem& p, Solution& sol, int start) {
   while (true) {
     while (true) {
@@ -92,7 +95,7 @@ void Improve(const Problem& p, Solution& sol, int start) {
           int s = sol.Sat();
           sol.Swap(i, j);
           if (sol.Sat() > s) {
-            // dbg("swap1", sol.Sat() - s);
+            dbg("swap1", sol.Sat());
             improved = true;
           } else {
             sol.Swap(i, j);
@@ -115,7 +118,7 @@ void Improve(const Problem& p, Solution& sol, int start) {
         int s = sol.Sat();
         sol.Change(d, q);
         if (sol.Sat() > s) {
-          // dbg("change1", sol.Sat() - s);
+          dbg("change1", sol.Sat());
           improved = true;
         } else {
           sol.Change(d, p);
@@ -141,7 +144,6 @@ void Main() {
     p.s[i].resize(26);
     rep(j, 26) cin >> p.s[i][j];
   }
-
   vector<int> t;
 
   vector<int> last(26);
@@ -166,6 +168,8 @@ void Main() {
   }
 
   Solution sol(p, t);
+  dbg(sol.Sat());
   Improve(p, sol, start);
+  dbg(sol.Sat());
   rep(i, p.D) wt(sol.Types()[i] + 1);
 }

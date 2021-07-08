@@ -3,7 +3,7 @@
 # $ ./eval.sh main_change_swap.cc
 
 set -e
-g++ -O2 -DDEBUG $1
+atcoder $1
 
 tmpdir=`mktemp -d -p $PWD`
 echo $tmpdir
