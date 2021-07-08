@@ -5,20 +5,14 @@
 
 void Main() {
   ints(k);
-  auto fs = Factors(k);
-  using A = array<int, 3>;
-  set<A> st;
-  Fix([&](auto rec, auto it, A v) {
-    if (it == fs.end()) {
-      sort(all(v));
-      st.insert(v);
-      return;
+  int ans = 0;
+  for (int i = 1; i * i <= k; ++i) {
+    if (k % i != 0) continue;
+    int k_i = k / i;
+    for (int j = i; j * j <= k_i; ++j) {
+      if (k_i % j != 0) continue;
+      ++ans;
     }
-    auto [x, y] = *it;
-    rep(i, y + 1) rep(j, i, y + 1) {
-      rec(next(it), A{v[0] * int_pow(x, i), v[1] * int_pow(x, j - i),
-                      v[2] * int_pow(x, y - j)});
-    }
-  })(fs.begin(), A{1, 1, 1});
-  wt(sz(st));
+  }
+  wt(ans);
 }
