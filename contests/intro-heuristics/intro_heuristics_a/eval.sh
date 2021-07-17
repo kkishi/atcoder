@@ -3,7 +3,7 @@
 # $ ./eval.sh main_change_swap.cc
 
 set -e
-atcoder $1
+atcoder -c=prof $1
 
 tmpdir=`mktemp -d -p $PWD`
 echo $tmpdir

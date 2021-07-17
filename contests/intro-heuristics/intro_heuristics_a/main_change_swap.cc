@@ -81,52 +81,49 @@ inline int Now() {
 Rand r;
 
 void Improve(const Problem& p, Solution& sol, int start) {
-  while (true) {
-    while (true) {
-      bool improved = false;
-      rep(i, p.D) {
-        for (int j = i + 1; j < p.D; ++j) {
-          if (Now() - start > 1900) return;
-
-          int ti = sol.Types()[i];
-          int tj = sol.Types()[j];
-          if (ti == tj) continue;
-
-          int s = sol.Sat();
-          sol.Swap(i, j);
-          if (sol.Sat() > s) {
-            dbg("swap1", sol.Sat());
-            improved = true;
-          } else {
-            sol.Swap(i, j);
-          }
-        }
+  const double t0 = 2e3;
+  const double t1 = 6e2;
+  double x;
+  double t;
+  for (int iter = 0;; ++iter) {
+    if (iter % 100 == 0) {
+      x = (Now() - start) / 1900.0;
+      if (x >= 1) {
+        dbg(iter);
+        return;
       }
-      if (!improved) {
-        dbg("swap1 not improved");
-        break;
-      }
+      t = pow(t0, 1.0 - x) * pow(t1, x);
     }
-    {
-      bool improved = false;
-      rep(d, p.D) for (int j = 1; j < 26; ++j) {
-        if (Now() - start > 1900) return;
+    if (r.Int(0, 1) == 0) {
+      int i = r.Int(0, p.D - 2);
+      int j = r.Int(i + 1, p.D - 1);
+      int ti = sol.Types()[i];
+      int tj = sol.Types()[j];
 
-        int p = sol.Types()[d];
-        int q = (p + j) % 26;
+      if (ti == tj) continue;
 
-        int s = sol.Sat();
-        sol.Change(d, q);
-        if (sol.Sat() > s) {
-          dbg("change1", sol.Sat());
-          improved = true;
-        } else {
-          sol.Change(d, p);
-        }
+      int s = sol.Sat();
+      sol.Swap(i, j);
+      if (sol.Sat() > s) {
+        dbg("swap1", sol.Sat());
+      } else if (exp(double(sol.Sat() - s) / t) > r.Double(0, 1)) {
+        dbg("swap1 (sa)", sol.Sat());
+      } else {
+        sol.Swap(i, j);
       }
-      if (!improved) {
-        dbg("change1 not improved");
-        break;
+    } else {
+      int d = r.Int(0, p.D - 1);
+      int p = sol.Types()[d];
+      int q = (p + r.Int(1, 25)) % 26;
+
+      int s = sol.Sat();
+      sol.Change(d, q);
+      if (sol.Sat() > s) {
+        dbg("change1", sol.Sat());
+      } else if (exp(double(sol.Sat() - s) / t) > r.Double(0, 1)) {
+        dbg("change1 (sa)", sol.Sat());
+      } else {
+        sol.Change(d, p);
       }
     }
   }
