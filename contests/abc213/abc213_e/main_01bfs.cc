@@ -6,24 +6,28 @@ void Main() {
   ints(h, w);
   V<string> s(h);
   cin >> s;
-  low_priority_queue<tuple<int, int, int>> que;
-  que.emplace(0, 0, 0);
+  deque<tuple<int, int, int>> que;
+  que.eb(0, 0, 0);
   vector dist(h, vector(w, big));
   dist[0][0] = 0;
   while (!que.empty()) {
-    auto [d, r, c] = que.top();
-    que.pop();
-    if (d > dist[r][c]) continue;
+    auto [d, r, c] = que.front();
+    que.pop_front();
     rep(dr, -2, 3) rep(dc, -2, 3) {
       int md = abs(dr) + abs(dc);
       if (md == 4) continue;
       int nr = r + dr;
       int nc = c + dc;
       if (!inside(nr, nc, h, w)) continue;
-      int nd = d;
-      if (md > 1 || s[nr][nc] == '#') ++nd;
+      int dd = 0;
+      if (md > 1 || s[nr][nc] == '#') dd = 1;
+      int nd = d + dd;
       if (chmin(dist[nr][nc], nd)) {
-        que.emplace(nd, nr, nc);
+        if (dd == 1) {
+          que.eb(nd, nr, nc);
+        } else {
+          que.emplace_front(nd, nr, nc);
+        }
       }
     }
   }

@@ -4,8 +4,5 @@
 
 void Main() {
   ints(a, b);
-  rep(c, 1000) if ((a ^ c) == b) {
-    wt(c);
-    return;
-  }
+  wt(a ^ b);
 }

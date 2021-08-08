@@ -12,17 +12,12 @@ void Main() {
     g[b].pb(a);
   }
   each(e, g) sort(all(e));
-  V<bool> visited(n);
-  visited[0] = true;
   V<int> ans;
   Fix([&](auto rec, int node, int parent) -> void {
     ans.pb(node + 1);
-    visited[node] = true;
     each(c, g[node]) {
       if (c != parent) {
-        if (!visited[c]) {
-          rec(c, node);
-        }
+        rec(c, node);
       }
     }
     if (parent != -1) ans.pb(parent + 1);
