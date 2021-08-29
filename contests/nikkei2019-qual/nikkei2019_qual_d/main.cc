@@ -11,7 +11,8 @@ void Main() {
     ints(a, b);
     g.AddEdge(a - 1, b - 1);
   }
-  V<int> ts = TopologicalSort(g);
+  auto [ts, ok] = TopologicalSort(g);
+  assert(ok);
   V<int> p(n, -1);
   rrep(i, n) {
     for (const auto& e : g.Edges(ts[i])) {

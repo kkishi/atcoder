@@ -4,15 +4,10 @@
 
 void Main() {
   ints(n);
-  V<int> b;
-  while (n) {
-    b.pb(n & 1);
-    n /= 2;
-  }
   string ans;
-  rrep(i, sz(b)) {
-    if (i < sz(b) - 1) ans += 'B';
-    if (b[i]) ans += 'A';
+  rrep(i, 60) {
+    ans += 'B';
+    if (hasbit(n, i)) ans += 'A';
   }
   wt(ans);
 }
