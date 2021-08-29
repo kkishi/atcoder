@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "pow.h"
 
 void Main() {
   strings(s);
@@ -8,7 +9,7 @@ void Main() {
   each(c, s) cnt[c - '0']++;
   bool ok = false;
   int len = min(sz(s), 3);
-  int ten = int_pow(10, len);
+  int ten = Pow(10, len);
   rep(i, ten) if (i % 8 == 0) {
     int x = i;
     map<int, int> m;

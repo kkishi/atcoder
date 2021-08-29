@@ -2,10 +2,11 @@
 
 #include "atcoder.h"
 #include "binary_search.h"
+#include "pow.h"
 
 int n, k;
 int a[2 * 100000];
-const int tens = int_pow(10, 9);
+const int tens = Pow(10, 9);
 
 // Returns the number of pairs whose values are equal to or less than x.
 int count(int x) {

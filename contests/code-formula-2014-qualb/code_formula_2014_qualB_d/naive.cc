@@ -2,6 +2,7 @@
 
 #include "atcoder.h"
 #include "modint.h"
+#include "pow.h"
 
 using mint = ModInt<>;
 
@@ -16,7 +17,7 @@ void Main() {
       s.insert(x);
       return;
     }
-    int ten = int_pow(10, depth);
+    int ten = Pow(10, depth);
     rep(i, a[depth] + 1) {
       rec(depth + 1, x);
       x += ten;
