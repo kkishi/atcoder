@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "numeric_sequence.h"
 
 void Main() {
   ints(n, k);
@@ -11,27 +12,23 @@ void Main() {
   }
   int ans = 0;
   while (k && !m.empty()) {
-    auto maxi = prev(m.end());
-    auto [x, y] = *maxi;
-    int nx = 0;
-    auto nmaxi = m.end();
-    if (maxi != m.begin()) {
-      nmaxi = prev(maxi);
-      nx = nmaxi->first;
+    auto ma = prev(m.end());
+    auto [x, y] = *ma;
+    int sx = 0;
+    auto sma = m.end();
+    if (ma != m.begin()) {
+      sma = prev(ma);
+      sx = sma->first;
     }
-    int K = (x - nx) * y;
-    auto f = [](int x) { return x * (x + 1) / 2; };
-    if (K <= k) {
-      int z = (f(x) - f(nx)) * y;
-      ans += z;
-      m.erase(maxi);
-      nmaxi->second += y;
-      k -= K;
+    int dk = (x - sx) * y;
+    if (dk <= k) {
+      ans += ArithmeticProgressionSum<int>(x, -1, x - sx) * y;
+      m.erase(ma);
+      sma->second += y;
+      k -= dk;
     } else {
       int dx = k / y;
-      int z = (f(x) - f(x - dx)) * y;
-      z += (k % y) * (x - dx);
-      ans += z;
+      ans += ArithmeticProgressionSum<int>(x, -1, dx) * y + (k % y) * (x - dx);
       k = 0;
     }
   }
