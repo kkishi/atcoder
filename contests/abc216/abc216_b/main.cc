@@ -4,13 +4,7 @@
 
 void Main() {
   ints(n);
-  set<string> st;
-  bool ans = false;
-  rep(n) {
-    strings(s, t);
-    if (!st.insert(s + '.' + t).second) {
-      ans = true;
-    }
-  }
-  wt(ans);
+  V<pair<string, string>> v(n);
+  cin >> v;
+  wt(sz(set(all(v))) < n);
 }
