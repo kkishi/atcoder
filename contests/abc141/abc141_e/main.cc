@@ -1,29 +1,9 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "rolling_hash.h"
 
-const int kMods[] = {
-    1000000007,
-    1000992299,
-    999119999,
-};
-
-struct Hash {
-  int hash[3];
-  void Add(char c) {
-    rep(i, 3) { hash[i] = (hash[i] * 26 + c - 'a') % kMods[i]; }
-  }
-  bool operator<(const Hash& h) const {
-    rep(i, 3) if (hash[i] != h.hash[i]) return hash[i] < h.hash[i];
-    return false;
-  }
-  bool operator==(const Hash& h) const {
-    rep(i, 3) if (hash[i] != h.hash[i]) return false;
-    return true;
-  }
-};
-
-Hash hashes[5000];
+RollingHash hashes[5000];
 
 void Main() {
   ints(n);
@@ -31,7 +11,7 @@ void Main() {
   rep(i, n) hashes[i].Add(s[i]);
   int ans = 0;
   for (int length = 2; length <= n / 2; ++length) {
-    set<Hash> seen;
+    unordered_set<RollingHash> seen;
     for (int i = 0; i + length - 1 < n; ++i) {
       hashes[i].Add(s[i + length - 1]);
       if (ans == length) continue;
