@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "rotate90.h"
 
 VV<string> abc = {
     {
@@ -36,12 +37,6 @@ void Main() {
   ints(h, w);
   V<string> grid(h);
   cin >> grid;
-  auto rot90 = [](const V<string>& v) {
-    int r = sz(v), c = sz(v[0]);
-    V<string> u(c, string(r, '.'));
-    rep(i, r) rep(j, c) u[j][r - 1 - i] = v[i][j];
-    return u;
-  };
   VV<bool> seen(h, V<bool>(w));
   V<int> ans(3);
   rep(i, h) rep(j, w) {
@@ -69,7 +64,7 @@ void Main() {
     rep(i, 3) {
       rep(rot, 4) {
         V<string> u = abc[i];
-        rep(rot) u = rot90(u);
+        rep(rot) u = Rotate90(u);
         bool ok = true;
         rep(r, 7) rep(c, 7) rep(fr, factor)
             rep(fc, factor) if (u[r][c] != grid[offset_r + r * factor + fr]

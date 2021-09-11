@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "rotate90.h"
 
 void Main() {
   ints(h, w);
@@ -18,9 +19,7 @@ void Main() {
   swap(t, nt);
   bool ok = false;
   rep(4) {
-    vector nt(sz(t[0]), string(sz(t), '.'));
-    rep(i, sz(t)) rep(j, sz(t[i])) nt[j][sz(t) - 1 - i] = t[i][j];
-    swap(t, nt);
+    t = Rotate90(t);
     rep(i, sz(s) - sz(t) + 1) rep(j, sz(s[0]) - sz(t[0]) + 1) {
       bool ng = false;
       rep(k, sz(t)) rep(l, sz(t[0])) {

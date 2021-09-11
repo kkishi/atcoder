@@ -5,8 +5,7 @@
 
 void Main() {
   ints(n, m);
-  using T = tuple<int, int, int>;
-  V<T> v;
+  V<tuple<int, int, int>> v;
   DisjointSet ds(n);
   rep(m) {
     ints(a, b, c);
@@ -20,10 +19,10 @@ void Main() {
   sort(all(v));
   int ans = 0;
   for (auto [c, a, b] : v) {
-    ans += c;
     if (!ds.Same(a, b)) {
       ds.Union(a, b);
-      ans -= c;
+    } else {
+      ans += c;
     }
   }
   wt(ans);
