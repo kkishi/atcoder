@@ -2,7 +2,6 @@
 
 #include "atcoder.h"
 #include "bit.h"
-#include "compress.h"
 
 void Main() {
   ints(n, m, q);

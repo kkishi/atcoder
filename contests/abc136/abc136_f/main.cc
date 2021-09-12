@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "compress.h"
+#include "compressor.h"
 #include "modint.h"
 #include "segment_tree.h"
 
@@ -21,12 +21,12 @@ void Main() {
   rep(i, n) p[i] = {x[i], y[i], i};
   sort(all(p));
 
-  vector<int> cx = Compress(x), cy = Compress(y);
+  Compressor cy(y);
   vector<int> upper_left(n), lower_left(n), upper_right(n), lower_right(n);
   {
     SegmentTree<int> tree(n, [](int a, int b) { return a + b; });
     for (auto [x, y, i] : p) {
-      int yi = Uncompress(cy, y);
+      int yi = cy(y);
       upper_left[i] = tree.Aggregate(yi + 1, n);
       lower_left[i] = tree.Aggregate(0, yi);
       tree.Set(yi, 1);
@@ -36,7 +36,7 @@ void Main() {
   {
     SegmentTree<int> tree(n, [](int a, int b) { return a + b; });
     for (auto [x, y, i] : p) {
-      int yi = Uncompress(cy, y);
+      int yi = cy(y);
       upper_right[i] = tree.Aggregate(yi + 1, n);
       lower_right[i] = tree.Aggregate(0, yi);
       tree.Set(yi, 1);

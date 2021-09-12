@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "compress.h"
+#include "compressor.h"
 
 void Main() {
   ints(n, d, k);
@@ -10,26 +10,26 @@ void Main() {
   V<int> s(k), t(k);
   rep(i, k) cin >> s[i] >> t[i];
 
-  V<int> c;
+  V<int> v;
   rep(i, d) {
-    c.pb(l[i]);
-    c.pb(r[i]);
+    v.pb(l[i]);
+    v.pb(r[i]);
   }
   rep(i, k) {
-    c.pb(s[i]);
-    c.pb(t[i]);
+    v.pb(s[i]);
+    v.pb(t[i]);
   }
-  c = Compress(c);
+  Compressor c(v);
 
   V<int> ans;
   rep(i, k) {
-    int si = Uncompress(c, s[i]);
-    int ti = Uncompress(c, t[i]);
-    V<bool> v(sz(c));
+    int si = c(s[i]);
+    int ti = c(t[i]);
+    V<bool> v(sz(c.coord));
     v[si] = true;
     rep(i, d) {
-      int li = Uncompress(c, l[i]);
-      int ri = Uncompress(c, r[i]);
+      int li = c(l[i]);
+      int ri = c(r[i]);
       bool found = false;
       for (int j = li; j <= ri; ++j) {
         if (v[j]) found = true;

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "compress.h"
+#include "compressor.h"
 #include "dual_segment_tree.h"
 
 void Main() {
@@ -21,17 +21,16 @@ void Main() {
     v.pb(r + 1);
   }
   each(qi, qs) each(a, _, qi) v.pb(a);
-  V<int> c = Compress(v);
+  Compressor c(v);
 
   V<int> ans(q);
   rep(2) {
-    DualSegmentTree<int> t(sz(c), [](int a, int b) { return max(a, b); });
+    DualSegmentTree<int> t(sz(c.coord), [](int a, int b) { return max(a, b); });
     rep(i, n - 1) {
       auto [l, r] = lr[i];
-      auto idx = [&](int x) { return Uncompress(c, x); };
-      t.Update(idx(0), idx(l), i + 1);
-      t.Update(idx(r + 1), sz(c), i + 1);
-      each(a, j, qs[i + 1]) ans[j] += i + 1 - t.Get(idx(a));
+      t.Update(c(0), c(l), i + 1);
+      t.Update(c(r + 1), sz(c.coord), i + 1);
+      each(a, j, qs[i + 1]) ans[j] += i + 1 - t.Get(c(a));
     }
     reverse(all(lr));
     reverse(all(qs));

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "compress.h"
+#include "compressor.h"
 #include "dual_segment_tree.h"
 
 struct Event {
@@ -30,8 +30,8 @@ void Main() {
     ys.pb(ym[i] + d[i]);
   }
   rep(i, q) ys.pb(b[i]);
-  V<int> cys = Compress(ys);
-  DualSegmentTree<int> tree(sz(cys), [](int a, int b) { return a + b; });
+  Compressor cys(ys);
+  DualSegmentTree<int> tree(sz(cys.coord), [](int a, int b) { return a + b; });
 
   V<Event> es;
   rep(i, n) {
@@ -61,11 +61,11 @@ void Main() {
   V<int> ans(q);
   each(e, es) {
     if (e.k == 1) {
-      int y = Uncompress(cys, e.y);
+      int y = cys(e.y);
       ans[e.q] = tree.Get(y);
     } else {
-      int l = Uncompress(cys, e.y);
-      int h = Uncompress(cys, e.y + e.d);
+      int l = cys(e.y);
+      int h = cys(e.y + e.d);
       if (e.k == 0) {
         tree.Update(l, h + 1, e.c);
       } else {

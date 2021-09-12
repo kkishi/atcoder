@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "compress.h"
+#include "compressor.h"
 
 void Main() {
   ints(N, K);
   V<int> x(N), y(N);
   rep(i, N) cin >> x[i] >> y[i];
 
-  V<int> cx = Compress(x), cy = Compress(y);
+  Compressor cx(x), cy(y);
 
   VV<bool> p(N, V<bool>(N));
-  rep(i, N) p[Uncompress(cx, x[i])][Uncompress(cy, y[i])] = true;
+  rep(i, N) p[cx(x[i])][cy(y[i])] = true;
 
   VV<int> dp(N + 1, V<int>(N + 1));
   rep(i, N) rep(j, N) {
@@ -21,7 +21,8 @@ void Main() {
   int ans = numeric_limits<int>::max();
   rep(i, N) rep(j, N) rep(k, i + 1, N + 1) rep(l, j + 1, N + 1) {
     if (dp[k][l] - dp[i][l] - dp[k][j] + dp[i][j] >= K) {
-      chmin(ans, (cx[k - 1] - cx[i]) * (cy[l - 1] - cy[j]));
+      chmin(ans,
+            (cx.coord[k - 1] - cx.coord[i]) * (cy.coord[l - 1] - cy.coord[j]));
     }
   }
   wt(ans);

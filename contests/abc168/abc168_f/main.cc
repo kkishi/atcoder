@@ -2,7 +2,7 @@
 
 #include "atcoder.h"
 #include "bound_grid.h"
-#include "compress.h"
+#include "compressor.h"
 
 const int kMax = 1000;
 int A[kMax];
@@ -52,17 +52,15 @@ void Main() {
   ys.insert(*ys.begin() - 1);
   ys.insert(*ys.rbegin() + 1);
 
-  vector cx = Compress(vector(all(xs)));
-  vector cy = Compress(vector(all(ys)));
-  auto xi = Uncompressor(cx);
-  auto yi = Uncompressor(cy);
+  Compressor cx(vector(all(xs)));
+  Compressor cy(vector(all(ys)));
 
-  Grid grid(cx.size() - 1, cy.size() - 1);
+  Grid grid(cx.coord.size() - 1, cy.coord.size() - 1);
 
-  rep(i, N) DrawLineX(grid, xi(A[i]), xi(B[i]), yi(C[i]));
-  rep(i, M) DrawLineY(grid, xi(D[i]), yi(E[i]), yi(F[i]));
+  rep(i, N) DrawLineX(grid, cx(A[i]), cx(B[i]), cy(C[i]));
+  rep(i, M) DrawLineY(grid, cx(D[i]), cy(E[i]), cy(F[i]));
 
-  Coord init = {xi(0), yi(0)};
+  Coord init = {cx(0), cy(0)};
 
   queue<Coord> que;
   que.push(init);
@@ -73,8 +71,8 @@ void Main() {
   while (!que.empty()) {
     Coord here = que.front();
     que.pop();
-    long long x = cx[here.x + 1] - cx[here.x];
-    long long y = cy[here.y + 1] - cy[here.y];
+    long long x = cx.coord[here.x + 1] - cx.coord[here.x];
+    long long y = cy.coord[here.y + 1] - cy.coord[here.y];
     ans += x * y;
     each(dx, dy, adjacent(0, 0)) {
       if (grid.Boundary(here, dx, dy).online) {

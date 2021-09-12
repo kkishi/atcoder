@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "compress.h"
+#include "compressor.h"
 
 void Main() {
   ints(n);
@@ -10,16 +10,16 @@ void Main() {
 
   V<int> v;
   rep(i, n) rep(j, 6) v.pb(a[i][j]);
-  auto c = Compress(v);
+  Compressor c(v);
 
-  VV<int> idx(sz(c));
-  rep(i, n) rep(j, 6) idx[Uncompress(c, a[i][j])].pb(i);
+  VV<int> idx(sz(c.coord));
+  rep(i, n) rep(j, 6) idx[c(a[i][j])].pb(i);
 
   V<double> dice(n);
   set<pair<double, int>> s;
 
-  V<double> dp(sz(c));
-  rrep(i, sz(c)) {
+  V<double> dp(sz(c.coord));
+  rrep(i, sz(c.coord)) {
     dp[i] = 1 + (s.empty() ? 0 : prev(s.end())->first);
     for (int j : idx[i]) {
       auto it = s.find({dice[j], j});
@@ -32,7 +32,7 @@ void Main() {
   double ans = 0;
   rep(i, n) {
     double x = 0;
-    rep(j, 6) x += dp[Uncompress(c, a[i][j])];
+    rep(j, 6) x += dp[c(a[i][j])];
     chmax(ans, 1 + x / 6);
   }
   wt(ans);

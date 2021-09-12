@@ -2,7 +2,7 @@
 
 #include "atcoder.h"
 #include "bit.h"
-#include "compress.h"
+#include "compressor.h"
 
 void Main() {
   ints(n, m, q);
@@ -11,8 +11,8 @@ void Main() {
   rep(i, q) cin >> t[i] >> x[i] >> y[i];
   V<int> y_and_zero = y;
   y_and_zero.pb(0);
-  V<int> cy = Compress(y_and_zero);
-  const int N = sz(cy);
+  Compressor cy(y_and_zero);
+  const int N = sz(cy.coord);
   vector cnt(2, BIT<int>(N + 1));
   rep(i, 2) cnt[i].Set(0, len[i]);
   vector sum(2, BIT<int>(N + 1));
@@ -25,10 +25,10 @@ void Main() {
     int Ya = val[A][I];
     int Yb = y[i];
     val[A][I] = Yb;
-    int Ia = Uncompress(cy, Ya);
+    int Ia = cy(Ya);
     cnt[A].Add(Ia, -1);
     sum[A].Add(Ia, -Ya);
-    int Ib = Uncompress(cy, Yb);
+    int Ib = cy(Yb);
     cnt[A].Add(Ib, 1);
     sum[A].Add(Ib, Yb);
     s -= cnt[B].Sum(Ia) * Ya;

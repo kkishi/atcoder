@@ -2,7 +2,7 @@
 
 #include "atcoder.h"
 #include "bit.h"
-#include "compress.h"
+#include "compressor.h"
 #include "modint.h"
 
 void Main() {
@@ -11,9 +11,9 @@ void Main() {
   rep(i, n) cin >> x[i] >> y[i];
 
   auto f = [](const V<int>& v) {
-    V<int> c = Compress(v);
+    Compressor c(v);
     V<int> ret;
-    each(vi, v) ret.pb(Uncompress(c, vi));
+    each(vi, v) ret.pb(c(vi));
     return ret;
   };
   x = f(x), y = f(y);
