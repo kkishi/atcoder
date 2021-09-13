@@ -35,7 +35,7 @@ void Main() {
     }
   }
   RootedTree rt(tree, 0);
-  V<optional<int>> rd = Dijkstra(tree, 0);
+  V<optional<int>> rd = Dijkstra(tree, 0).dist;
   ints(q);
   rep(q) {
     ints(u, v);

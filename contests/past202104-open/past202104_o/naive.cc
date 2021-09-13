@@ -19,6 +19,6 @@ void Main() {
   rep(q) {
     ints(u, v);
     --u, --v;
-    wt(*Dijkstra(g, u)[v]);
+    wt(*Dijkstra(g, u).dist[v]);
   }
 }

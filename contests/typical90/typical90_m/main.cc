@@ -12,7 +12,7 @@ void Main() {
     g.AddEdge(a, b, c);
     g.AddEdge(b, a, c);
   }
-  auto d1 = Dijkstra(g, 0);
-  auto dn = Dijkstra(g, n - 1);
+  auto d1 = Dijkstra(g, 0).dist;
+  auto dn = Dijkstra(g, n - 1).dist;
   rep(i, n) wt(*d1[i] + *dn[i]);
 }

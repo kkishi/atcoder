@@ -40,5 +40,5 @@ void Main() {
     g.AddEdge(a - 1, b - 1, c);
     g.AddEdge(b - 1, a - 1, c);
   }
-  wt(*Dijkstra(g, 0)[n - 1]);
+  wt(*Dijkstra(g, 0).dist[n - 1]);
 }

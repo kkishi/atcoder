@@ -13,6 +13,6 @@ void Main() {
     g.AddEdge(n, i, t[i]);
     g.AddEdge(i, (i + 1) % n, s[i]);
   }
-  auto d = Dijkstra(g, n);
+  auto d = Dijkstra(g, n).dist;
   rep(i, n) wt(*d[i]);
 }

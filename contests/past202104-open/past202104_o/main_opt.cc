@@ -33,17 +33,17 @@ void Main() {
   each(a, b, e) {
     if (!d.count(a)) {
       V<int> v;
-      each(e, Dijkstra(g, a)) v.pb(*e);
+      each(e, Dijkstra(g, a).dist) v.pb(*e);
       d[a] = v;
     }
     if (!d.count(b)) {
       V<int> v;
-      each(e, Dijkstra(g, b)) v.pb(*e);
+      each(e, Dijkstra(g, b).dist) v.pb(*e);
       d[b] = v;
     }
   }
   RootedTree rt(t, 0);
-  V<optional<int>> rd = Dijkstra(t, 0);
+  V<optional<int>> rd = Dijkstra(t, 0).dist;
 
   rep(i, M) rep(j, 2) rep(k, 1 << M) rep(l, M) rep(m, 2) dp[i][j][k][l][m] =
       big;

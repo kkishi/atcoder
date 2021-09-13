@@ -22,7 +22,7 @@ void Main() {
   V<int> init(k);
   vector dist(k, vector(k, int(0)));
   rep(i, k) {
-    V<optional<int>> d = Dijkstra(g, t[i]);
+    V<optional<int>> d = Dijkstra(g, t[i]).dist;
     init[i] = *d[s];
     rep(j, k) dist[i][j] = *d[t[j]];
   }

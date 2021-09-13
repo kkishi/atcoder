@@ -11,6 +11,6 @@ void Main() {
     g.AddEdge(a, b, 1);
     g.AddEdge(b, a, 1);
   }
-  optional<int> d = Dijkstra(g, 1)[n];
+  optional<int> d = Dijkstra(g, 1).dist[n];
   wt((d && d == 2) ? "POSSIBLE" : "IMPOSSIBLE");
 }

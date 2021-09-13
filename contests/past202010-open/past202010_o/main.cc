@@ -18,5 +18,5 @@ void Main() {
     ints(l, r, c);
     g.AddEdge(l - 1, r, c);
   }
-  wt(y - *Dijkstra(g, 0)[n]);
+  wt(y - *Dijkstra(g, 0).dist[n]);
 }

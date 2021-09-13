@@ -15,8 +15,8 @@ void Main() {
     gt.AddEdge(u, v, b);
     gt.AddEdge(v, u, b);
   }
-  V<optional<int>> ds = Dijkstra(gs, s - 1);
-  V<optional<int>> dt = Dijkstra(gt, t - 1);
+  V<optional<int>> ds = Dijkstra(gs, s - 1).dist;
+  V<optional<int>> dt = Dijkstra(gt, t - 1).dist;
   V<int> ans(n);
   int mini = big;
   rrep(i, n) {

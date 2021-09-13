@@ -19,7 +19,7 @@ void Main() {
     // b[i] - b[i+1] <= 0
     g.AddEdge(i + 1, i, 0);
   }
-  auto d = Dijkstra(g, 0);
+  auto d = Dijkstra(g, 0).dist;
   V<int> ans(n);
   rep(i, n) ans[i] = 1 - (*d[i + 1] - *d[i]);
   wt(ans);

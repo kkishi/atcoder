@@ -19,7 +19,7 @@ void Main() {
 
   vector dist(k, vector(k, big));
   rep(i, k) {
-    V<optional<int>> d = Dijkstra(g, c[i] - 1);
+    V<optional<int>> d = Dijkstra(g, c[i] - 1).dist;
     rep(j, k) if (d[c[j] - 1]) dist[i][j] = *d[c[j] - 1];
   }
 

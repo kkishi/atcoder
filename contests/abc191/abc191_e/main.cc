@@ -16,7 +16,7 @@ void Main() {
   }
 
   rep(i, n) {
-    optional<int> d = Dijkstra(g, out(i))[in(i)];
+    optional<int> d = Dijkstra(g, out(i)).dist[in(i)];
     if (d) {
       wt(*d);
     } else {

@@ -28,7 +28,7 @@ void Main() {
   int M = sz(e);
   map<int, V<optional<int>>> d;
   each(v, e) each(x, v) {
-    if (!d.count(x)) d[x] = Dijkstra(g, x);
+    if (!d.count(x)) d[x] = Dijkstra(g, x).dist;
   }
   vector dp(M, vector(2, vector(1 << M, vector(M, vector(2, big)))));
   rep(i, M) {
@@ -61,7 +61,7 @@ void Main() {
   }
 
   RootedTree rt(t, 0);
-  V<optional<int>> rd = Dijkstra(t, 0);
+  V<optional<int>> rd = Dijkstra(t, 0).dist;
 
   ints(q);
   rep(q) {

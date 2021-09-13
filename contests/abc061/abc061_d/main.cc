@@ -15,7 +15,7 @@ void Main() {
 
   Graph<int> rg(n);
   rep(i, m) rg.AddEdge(b[i], a[i], 0);
-  V<optional<int>> rd = Dijkstra(rg, n - 1);
+  V<optional<int>> rd = Dijkstra(rg, n - 1).dist;
 
   Graph<int> g(n);
   rep(i, m) if (rd[b[i]]) g.AddEdge(a[i], b[i], -c[i]);

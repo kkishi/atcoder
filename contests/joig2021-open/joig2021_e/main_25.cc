@@ -37,7 +37,7 @@ void Main2(int n, int m, int l) {
     --a, --b;
     g.AddEdge(a, b, c);
   }
-  if (*Dijkstra(g, 0)[n - 1] <= l) {
+  if (*Dijkstra(g, 0).dist[n - 1] <= l) {
     wt(0);
   } else {
     wt(-1);

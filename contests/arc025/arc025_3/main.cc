@@ -15,7 +15,7 @@ void Main() {
   }
   int ans = 0;
   rep(i, n) {
-    V<optional<int>> od = Dijkstra(g, i);
+    V<optional<int>> od = Dijkstra(g, i).dist;
     V<int> d;
     rep(j, n) if (j != i) d.pb(*od[j]);
     sort(all(d));

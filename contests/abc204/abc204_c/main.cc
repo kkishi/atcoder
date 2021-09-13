@@ -11,9 +11,6 @@ void Main() {
     g.AddEdge(a - 1, b - 1);
   }
   int ans = 0;
-  rep(i, n) {
-    auto d = Dijkstra(g, i);
-    each(e, d) if (e)++ ans;
-  }
+  rep(i, n) each(e, Dijkstra(g, i).dist) if (e)++ ans;
   wt(ans);
 }
