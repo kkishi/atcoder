@@ -6,6 +6,7 @@ multisetの中央値を求めるには例えば以下の方法がある。
 
 * multisetを二つ持ち、それぞれのサイズが均等になるように調整しながら、片方には小さい値・もう片方には大きい値が入るようにする。
 * `__gnu_pbds::tree::find_by_order`を使う。
+* Binary Trie (Bitwise Trie)を使う。
 
 # 備考
 
