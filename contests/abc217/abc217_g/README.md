@@ -24,9 +24,11 @@ main_editorial.cc
 
 ## 包除原理
 
-main_comb.cc
+`main_inclusion_exclusion.cc`
 
 ## 除原理
+
+`main_exclusion.cc`
 
 # 備考
 
