@@ -6,20 +6,17 @@ void Main() {
   ints(n, l);
   V<string> v;
   rep(i, n) {
+    string s = "2" + string(l - 1, '0');
     int I = i;
-    string s;
-    while (I) {
-      s += '0' + I % 3;
+    rrep(j, l) {
+      if (I == 0) break;
+      s[j] += I % 3;
       I /= 3;
     }
-    reverse(all(s));
-    v.eb(string(l - 1 - sz(s), '0') + s);
+    v.eb(s);
   }
   rrep(i, 3) {
-    each(e, v) {
-      cout << i;
-      wt(e);
-    }
+    each(e, v) wt(e);
     each(e, v) each(f, e) {
       ++f;
       if (f == '3') f = '0';
