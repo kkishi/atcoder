@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bufio"
+	"bytes"
 	"errors"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -25,21 +25,43 @@ var (
 	useOJSubmit     = flag.Bool("use_oj_submit", false, "Whether to use oj for submission")
 )
 
-func preprocessIncludes(dir, base string) (string, error) {
+func amalgamate(dir, base string) (string, error) {
 	r, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
 	if err != nil {
 		return "", err
 	}
 	defer r.Close()
 
-	tmpFile, err := ioutil.TempFile(dir, "*.cc")
+	var fun func(io.Reader, io.Writer) error
+	ext := filepath.Ext(base)
+	switch ext {
+	case ".cc":
+		fun = preprocess.Includes
+	case ".go":
+		fun = func(r io.Reader, w io.Writer) error {
+			name := "gottani"
+			log.Printf("$ %s %s", name, ".")
+			cmd := exec.Command(name, ".")
+			cmd.Dir = dir
+			cmd.Stdin = os.Stdin
+			cmd.Stdout = w
+			cmd.Stderr = os.Stderr
+			return cmd.Run()
+		}
+	default:
+		return "", fmt.Errorf("failed to amalgamate %s: unsupported file extension", filepath.Join(dir, base))
+	}
+	var buf bytes.Buffer
+	if err := fun(r, &buf); err != nil {
+		return "", fmt.Errorf("failed to amalgamate %s: %w", filepath.Join(dir, base), err)
+	}
+
+	f, err := os.CreateTemp(dir, "*"+ext)
 	if err != nil {
 		return "", err
 	}
-	w := bufio.NewWriter(tmpFile)
-	defer w.Flush()
-
-	return tmpFile.Name(), preprocess.Includes(r, w)
+	_, err = buf.WriteTo(f)
+	return f.Name(), err
 }
 
 func runCommand(dir, name string, arg ...string) error {
@@ -52,7 +74,7 @@ func runCommand(dir, name string, arg ...string) error {
 	return cmd.Run()
 }
 
-func build(dir, base string) error {
+func buildCC(dir, base string) error {
 	args := []string{"-std=c++17"}
 	switch *compilationMode {
 	case "opt":
@@ -63,6 +85,21 @@ func build(dir, base string) error {
 		args = append(args, "-O2", "-pg")
 	}
 	return runCommand(dir, "g++", append(args, base)...)
+}
+
+func buildGo(dir, base string) error {
+	return runCommand(dir, "go", "build", "-o", "a.out", base)
+}
+
+func build(dir, base string) error {
+	switch filepath.Ext(base) {
+	case ".cc":
+		return buildCC(dir, base)
+	case ".go":
+		return buildGo(dir, base)
+	default:
+		return fmt.Errorf("failed to build %s: unsupported file extension", filepath.Join(dir, base))
+	}
 }
 
 func test(dir string) error {
@@ -79,7 +116,16 @@ func submit(dir, base string) error {
 	if *useOJSubmit {
 		return runCommand(dir, "oj", "submit", "-y", "--no-open", "--wait", "0", base)
 	} else {
-		return runCommand(dir, "atcoder-submit", base)
+		var languageID string
+		switch filepath.Ext(base) {
+		case ".cc":
+			languageID = "4003"
+		case ".go":
+			languageID = "4026"
+		default:
+			return fmt.Errorf("unsupported extension %q", filepath.Ext(base))
+		}
+		return runCommand(dir, "atcoder-submit", "-language_id", languageID, base)
 	}
 }
 
@@ -119,9 +165,9 @@ func run(args []string) error {
 	}
 	dir, base := filepath.Dir(file), filepath.Base(file)
 	if *runSubmit {
-		tempFile, err := preprocessIncludes(dir, base)
+		tempFile, err := amalgamate(dir, base)
 		if err != nil {
-			fmt.Errorf("failed to preprocess includes: %w", err)
+			return fmt.Errorf("failed to preprocess includes: %w", err)
 		}
 		defer os.Remove(tempFile)
 		base = filepath.Base(tempFile)
