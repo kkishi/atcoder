@@ -1,25 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"sort"
+
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
 )
 
 func main() {
-	var x string
-	fmt.Scan(&x)
+	x := rd.String()
 	var ord [26]int
 	for i := range ord {
 		ord[x[i]-'a'] = i
 	}
-	// fmt.Fprint(os.Stderr, ord)
-	var n int
-	fmt.Scan(&n)
-	s := make([]string, n)
-	for i := range s {
-		fmt.Scan(&s[i])
-	}
-	// fmt.Fprint(os.Stderr, s)
+	n := rd.Int()
+	s := rd.Strings(n)
 	type P struct {
 		s, t string
 	}
@@ -27,7 +22,6 @@ func main() {
 	for i := range s {
 		var t []byte
 		for _, e := range s[i] {
-			// fmt.Println(e, e-'a')
 			t = append(t, byte('a'+ord[e-'a']))
 		}
 		ans = append(ans, P{
@@ -39,6 +33,6 @@ func main() {
 		return ans[i].t < ans[j].t
 	})
 	for _, e := range ans {
-		fmt.Println(e.s)
+		wt.W(e.s)
 	}
 }

@@ -1,15 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
+
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
 )
 
 func main() {
-	var k int
-	var a, b string
-	fmt.Scan(&k, &a, &b)
+	k := rd.Int()
+	a, b := rd.String2()
 	A, _ := strconv.ParseInt(a, k, 64)
 	B, _ := strconv.ParseInt(b, k, 64)
-	fmt.Println(A * B)
+	wt.W(A * B)
 }

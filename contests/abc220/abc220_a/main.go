@@ -1,14 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
+)
 
 func main() {
-	var a, b, c int
-	fmt.Scan(&a, &b, &c)
+	a, b, c := rd.Int3()
 	d := (a + c - 1) / c * c
 	if d <= b {
-		fmt.Println(d)
+		wt.W(d)
 	} else {
-		fmt.Println(-1)
+		wt.W(-1)
 	}
 }

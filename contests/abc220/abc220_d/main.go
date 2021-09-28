@@ -1,16 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
+)
 
 const mod = 998244353
 
 func main() {
-	var n int
-	fmt.Scan(&n)
-	a := make([]int, n)
-	for i := range a {
-		fmt.Scan(&a[i])
-	}
+	n := rd.Int()
+	a := rd.Ints(n)
 	dp := [10]int{}
 	dp[a[0]] = 1
 	for i := 1; i < n; i++ {
@@ -24,6 +23,6 @@ func main() {
 		dp = ndp
 	}
 	for _, e := range dp {
-		fmt.Println(e)
+		wt.W(e)
 	}
 }

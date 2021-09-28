@@ -1,4 +1,5 @@
-github.com/logrusorgru/aurora v2.0.3+incompatible h1:tOpm7WcpBTn4fjmVfgpQq0EfczGlG91VSDkswnjF5A8=
+github.com/kkishi/hytk v0.0.1 h1:PoCSYnJEp1nAvoLBgpMTKDli0sbmvZbFLCiLDuZ2xIo=
+github.com/kkishi/hytk v0.0.1/go.mod h1:jvB7t7N/h/2m34N7nlB9nzV1ZfTlTV5zAnyxDBOBuZ0=
 github.com/logrusorgru/aurora/v3 v3.0.0 h1:R6zcoZZbvVcGMvDCKo45A9U/lzYyzl5NfYIvznmDfE4=
 github.com/logrusorgru/aurora/v3 v3.0.0/go.mod h1:vsR12bk5grlLvLXAYrBsb5Oc/N+LxAlxggSjiwMnCUc=
 golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4 h1:b0LrWgu8+q7z4J+0Y3Umo5q1dL7NXBkKBWkaVkAq17E=

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
+)
 
 func chmin(a *int, b int) {
 	if *a > b {
@@ -16,12 +19,11 @@ func min(a, b int) int {
 }
 
 func main() {
-	var n, x, y int
-	fmt.Scan(&n, &x, &y)
+	n, x, y := rd.Int3()
 	a := make([]int, n)
 	b := make([]int, n)
 	for i := 0; i < n; i++ {
-		fmt.Scan(&a[i], &b[i])
+		a[i], b[i] = rd.Int2()
 	}
 	const big = 1000
 	dp := make([][]int, x+1)
@@ -43,5 +45,5 @@ func main() {
 	if ans == big {
 		ans = -1
 	}
-	fmt.Println(ans)
+	wt.W(ans)
 }

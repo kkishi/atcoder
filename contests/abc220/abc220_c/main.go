@@ -1,16 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
+)
 
 func main() {
-	var n int
-	fmt.Scan(&n)
-	a := make([]int, n)
-	for i := range a {
-		fmt.Scan(&a[i])
-	}
-	var x int
-	fmt.Scan(&x)
+	n := rd.Int()
+	a := rd.Ints(n)
+	x := rd.Int()
 
 	var sum int
 	for _, e := range a {
@@ -21,7 +19,7 @@ func main() {
 	for i := 0; i < n; i++ {
 		x -= a[i]
 		if x < 0 {
-			fmt.Println(ans + i + 1)
+			wt.W(ans + i + 1)
 			return
 		}
 	}

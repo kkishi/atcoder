@@ -1,17 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
+)
 
 func main() {
-	var s [3]string
-	for i := range s {
-		fmt.Scan(&s[i])
-	}
-	var t string
-	fmt.Scan(&t)
+	s := rd.Strings(3)
+	t := rd.String()
 	var ans string
 	for _, e := range t {
 		ans += s[e-'1']
 	}
-	fmt.Println(ans)
+	wt.W(ans)
 }

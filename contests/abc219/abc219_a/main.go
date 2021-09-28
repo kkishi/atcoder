@@ -1,17 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"github.com/kkishi/hytk/rd"
+	"github.com/kkishi/hytk/wt"
+)
 
 func main() {
-	wt := fmt.Println
-	var x int
-	fmt.Scan(&x)
+	x := rd.Int()
 	var ts = []int{40, 70, 90}
 	for _, t := range ts {
 		if x < t {
-			wt(t - x)
+			wt.W(t - x)
 			return
 		}
 	}
-	wt("expert")
+	wt.W("expert")
 }
