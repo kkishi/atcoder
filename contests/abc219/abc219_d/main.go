@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/kkishi/hytk/md"
 	"github.com/kkishi/hytk/rd"
 	"github.com/kkishi/hytk/wt"
 )
@@ -26,13 +27,7 @@ func main() {
 		a[i], b[i] = rd.Int2()
 	}
 	const big = 1000
-	dp := make([][]int, x+1)
-	for i := range dp {
-		dp[i] = make([]int, y+1)
-		for j := range dp[i] {
-			dp[i][j] = big
-		}
-	}
+	dp := md.Ints2(x+1, y+1, big)
 	dp[0][0] = 0
 	for i := 0; i < n; i++ {
 		for j := x; j >= 0; j-- {

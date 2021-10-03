@@ -75,3 +75,11 @@ compete --contest=abc172 --start="2020/06/27 14:00:00"
 # Testing with the judge inputs
 
 Use `judge.sh` after downloading the inputs (in/ and out/ directories).
+
+# Working with the local copy of Go modules
+
+Add the following line to go.mod:
+
+```
+replace github.com/kkishi/hytk => /home/keisuke/projects/hytk
+```
