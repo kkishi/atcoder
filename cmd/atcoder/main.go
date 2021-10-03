@@ -5,7 +5,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -15,6 +14,7 @@ import (
 	"time"
 
 	"github.com/kkishi/atcoder/pkg/preprocess"
+	"github.com/ktateish/gottani"
 )
 
 var (
@@ -25,42 +25,43 @@ var (
 	useOJSubmit     = flag.Bool("use_oj_submit", false, "Whether to use oj for submission")
 )
 
-func amalgamate(dir, base string) (string, error) {
+func amalgamateCC(dir, base string) ([]byte, error) {
 	r, err := os.OpenFile(filepath.Join(dir, base), os.O_RDONLY, 0)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	defer r.Close()
+	var buf bytes.Buffer
+	if err := preprocess.Includes(r, &buf); err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
+}
 
-	var fun func(io.Reader, io.Writer) error
+func amalgamateGo(dir string) ([]byte, error) {
+	return gottani.Combine(dir, "main")
+}
+
+func amalgamate(dir, base string) (string, error) {
 	ext := filepath.Ext(base)
+	var buf []byte
+	var err error
 	switch ext {
 	case ".cc":
-		fun = preprocess.Includes
+		buf, err = amalgamateCC(dir, base)
 	case ".go":
-		fun = func(r io.Reader, w io.Writer) error {
-			name := "gottani"
-			log.Printf("$ %s %s", name, ".")
-			cmd := exec.Command(name, ".")
-			cmd.Dir = dir
-			cmd.Stdin = os.Stdin
-			cmd.Stdout = w
-			cmd.Stderr = os.Stderr
-			return cmd.Run()
-		}
+		buf, err = amalgamateGo(dir)
 	default:
-		return "", fmt.Errorf("failed to amalgamate %s: unsupported file extension", filepath.Join(dir, base))
+		err = fmt.Errorf("unsupported file extension %q", ext)
 	}
-	var buf bytes.Buffer
-	if err := fun(r, &buf); err != nil {
-		return "", fmt.Errorf("failed to amalgamate %s: %w", filepath.Join(dir, base), err)
+	if err != nil {
+		return "", fmt.Errorf("failed to amalgamate %q: %w", filepath.Join(dir, base), err)
 	}
-
 	f, err := os.CreateTemp(dir, "*"+ext)
 	if err != nil {
 		return "", err
 	}
-	_, err = buf.WriteTo(f)
+	_, err = bytes.NewBuffer(buf).WriteTo(f)
 	return f.Name(), err
 }
 
