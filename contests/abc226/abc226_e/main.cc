@@ -23,7 +23,6 @@ mint Solve(const VV<int>& g) {
         rec(child, node);
       }
     })(i, -1);
-    dbg(nodes, edges);
     if (sz(nodes) != sz(edges)) return 0;
     ans *= 2;
   }
