@@ -4,7 +4,6 @@
 #include "compressor.h"
 #include "dijkstra.h"
 #include "graph.h"
-#include "i128.h"
 
 void Main() {
   ints(n, m);
@@ -18,7 +17,7 @@ void Main() {
   }
   Compressor cr(v);
   int N = sz(cr.coord);
-  Graph<i128> g(N);
+  Graph<int> g(N);
   rep(i, N - 1) {
     int d = cr.coord[i + 1] - cr.coord[i];
     g.AddEdge(i, i + 1, d);

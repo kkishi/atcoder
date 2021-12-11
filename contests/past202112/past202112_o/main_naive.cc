@@ -21,7 +21,6 @@ void Main() {
   mint ans = 0;
   rep(k, 1, n) {
     int v = m[k];
-    dbg(k, v);
     ans += (n - k) * v * s[k - 1];
   }
   wt(ans * mint::Fact(n - 2));

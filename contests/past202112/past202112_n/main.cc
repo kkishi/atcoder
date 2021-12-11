@@ -2,6 +2,8 @@
 
 #include "atcoder.h"
 
+// Borrowed from:
+// https://ei1333.github.io/luzhiled/snippets/geometry/template.html
 using Real = double;
 using Point = complex<Real>;
 const Real EPS = 1e-8, PI = acos(-1);
@@ -528,6 +530,7 @@ void Main() {
     rd(double, c, d);
     t.eb(c, d);
   }
-  rep(i, m) { s = convex_cut(s, Line{t[i], t[(i + 1) % m]}); }
+  // https://codeforces.com/blog/entry/78766
+  rep(i, m) s = convex_cut(s, Line{t[i], t[(i + 1) % m]});
   wt(area(s));
 }

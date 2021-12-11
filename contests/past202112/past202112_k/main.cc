@@ -16,7 +16,7 @@ void Main() {
     g.AddEdge(v, u, 1);
   }
   V<Result<int>> res;
-  each(e, a) { res.eb(Dijkstra(g, e - 1)); }
+  each(e, a) res.eb(Dijkstra(g, e - 1));
   rep(q) {
     int ans = big;
     ints(s, t);

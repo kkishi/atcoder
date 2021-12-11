@@ -7,7 +7,7 @@ void Main() {
   V<int> a(n), b(n);
   cin >> a >> b;
   V<tuple<int, int, int>> v;
-  rep(i, n) { v.eb(a[i], b[i], i); }
+  rep(i, n) v.eb(a[i], b[i], i);
   sort(all(v), [](const auto& a, const auto& b) {
     auto [A, B, C] = a;
     auto [D, E, F] = b;
