@@ -4,11 +4,11 @@
 
 void Main() {
   ints(n, q);
-  vector v(n, vector(n, false));
+  vector v(n, vector(n, '0'));
   using P = pair<int, int>;
   V<P> coord = {{0, 0}, {0, n - 1}, {n - 1, 0}, {n - 1, n - 1}};
   auto rot90 = [&](P& p) { p = {p.second, n - 1 - p.first}; };
-  auto conv = [&](int x, int y) {
+  auto get = [&](int x, int y) -> char& {
     V<P> c = coord;
     P p = {x, y};
     while (c[0] != P{0, 0}) {
@@ -18,14 +18,14 @@ void Main() {
     if (c[1] != P{0, n - 1}) {
       swap(p.first, p.second);
     }
-    return p;
+    return v[p.first][p.second];
   };
   rep(q) {
     ints(k);
     if (k == 1) {
       ints(x, y);
-      auto [i, j] = conv(x - 1, y - 1);
-      v[i][j] = !v[i][j];
+      --x, --y;
+      get(x, y) = ('0' + '1') - get(x, y);
     } else {
       rd(char, c);
       if (k == 2) {
@@ -44,9 +44,6 @@ void Main() {
     }
   }
   V<string> ans(n, string(n, '0'));
-  rep(i, n) rep(j, n) {
-    auto [I, J] = conv(i, j);
-    if (v[I][J]) ans[i][j] = '1';
-  }
+  rep(i, n) rep(j, n) ans[i][j] = get(i, j);
   each(e, ans) wt(e);
 }
