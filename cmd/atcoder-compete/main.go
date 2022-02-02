@@ -20,7 +20,8 @@ import (
 )
 
 var (
-	start       = flag.String("start", "0000/01/01 00:00:00", "")
+	start       = flag.String("start", "0000/01/01 00:00", "")
+	wait        = flag.Duration("wait", 500*time.Millisecond, "")
 	numProblems = flag.Int("num_problems", 0, "")
 )
 
@@ -68,10 +69,12 @@ func createDirs(c *Contest) error {
 }
 
 func waitUntilStart() error {
-	t, err := time.ParseInLocation("2006/01/02 15:04:05", *start, time.Local)
+	t, err := time.ParseInLocation("2006/01/02 15:04", *start, time.Local)
 	if err != nil {
 		return err
 	}
+	// Add some buffer to make sure that the problems are available.
+	t = t.Add(*wait)
 	now := time.Now()
 	if t.After(now) {
 		d := t.Sub(now)
@@ -80,6 +83,13 @@ func waitUntilStart() error {
 		<-timer.C
 	}
 	return nil
+}
+
+func openProblems(contestID string) error {
+	cmd := exec.Command("google-chrome", fmt.Sprintf("https://atcoder.jp/contests/%s/tasks_print", contestID))
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
 }
 
 func getProblems(c *http.Client, contestID string) ([]string, error) {
@@ -185,6 +195,10 @@ func run() error {
 	}
 	if err := waitUntilStart(); err != nil {
 		return err
+	}
+	if err := openProblems(contest); err != nil {
+		// This is not a fatal error.
+		log.Printf("Error while opening the problems: %s", err.Error())
 	}
 	if err := downloadSamples(c); err != nil {
 		return err
