@@ -20,9 +20,10 @@ import (
 )
 
 var (
-	start       = flag.String("start", "0000/01/01 00:00", "")
-	wait        = flag.Duration("wait", 500*time.Millisecond, "")
-	numProblems = flag.Int("num_problems", 0, "")
+	start        = flag.String("start", "0000/01/01 00:00", "")
+	wait         = flag.Duration("wait", 500*time.Millisecond, "")
+	numProblems  = flag.Int("num_problems", 0, "")
+	openProblems = flag.Bool("open_problems", false, "")
 )
 
 const rootDir = "contests"
@@ -85,7 +86,7 @@ func waitUntilStart() error {
 	return nil
 }
 
-func openProblems(contestID string) error {
+func openProblemsInBrowser(contestID string) error {
 	cmd := exec.Command("google-chrome", fmt.Sprintf("https://atcoder.jp/contests/%s/tasks_print", contestID))
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -196,9 +197,11 @@ func run() error {
 	if err := waitUntilStart(); err != nil {
 		return err
 	}
-	if err := openProblems(contest); err != nil {
-		// This is not a fatal error.
-		log.Printf("Error while opening the problems: %s", err.Error())
+	if *openProblems {
+		if err := openProblemsInBrowser(contest); err != nil {
+			// This is not a fatal error.
+			log.Printf("Error while opening the problems: %s", err.Error())
+		}
 	}
 	if err := downloadSamples(c); err != nil {
 		return err
