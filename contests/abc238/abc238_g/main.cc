@@ -4,10 +4,10 @@
 #include "mo.h"
 #include "sieve.h"
 
-int N = 1000000;
+const int N = 1000000;
 Sieve s(N);
 VV<pair<int, int>> fs(200000);
-V<int> v(N);
+int8_t v[N];
 
 struct DS {
   int nonzero = 0;
