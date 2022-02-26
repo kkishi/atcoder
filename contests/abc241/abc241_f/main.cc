@@ -6,12 +6,11 @@ void Main() {
   ints(h, w, n);
   ints(sx, sy);
   ints(gx, gy);
-  V<int> x(n), y(n);
-  rep(i, n) cin >> x[i] >> y[i];
   map<int, V<int>> xs, ys;
-  rep(i, n) {
-    xs[y[i]].pb(x[i]);
-    ys[x[i]].pb(y[i]);
+  rep(n) {
+    ints(x, y);
+    xs[y].pb(x);
+    ys[x].pb(y);
   }
   each(_, v, xs) sort(all(v));
   each(_, v, ys) sort(all(v));
@@ -31,13 +30,8 @@ void Main() {
       if (it != xs.end()) {
         const auto& v = it->second;
         auto it = lower_bound(all(v), x);
-        if (it != v.begin()) {
-          auto jt = prev(it);
-          ret.eb(*jt + 1, y);
-        }
-        if (it != v.end()) {
-          ret.eb(*it - 1, y);
-        }
+        if (it != v.begin()) ret.eb(*prev(it) + 1, y);
+        if (it != v.end()) ret.eb(*it - 1, y);
       }
       return ret;
     };
