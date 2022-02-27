@@ -3,29 +3,25 @@
 #include "atcoder.h"
 
 template <typename S, typename C>
-class Dijkstra {
- public:
-  using Push = function<void(S, int)>;
-  static map<S, C> Run(S s, function<void(S, C, Push)> f) {
-    low_priority_queue<pair<C, S>> que;
-    map<S, C> dist;
-    auto push = [&](S s, C c) {
-      auto [it, ok] = dist.emplace(s, c);
-      if (ok || it->second > c) {
-        it->second = c;
-        que.emplace(c, s);
-      }
-    };
-    push(s, 0);
-    while (!que.empty()) {
-      auto [c, s] = que.top();
-      que.pop();
-      if (dist[s] < c) continue;
-      f(s, c, push);
+map<S, C> Dijkstra(S s, function<void(S, C, function<void(S, C)>)> f) {
+  low_priority_queue<pair<C, S>> que;
+  map<S, C> dist;
+  auto push = [&](S s, C c) {
+    auto [it, ok] = dist.emplace(s, c);
+    if (ok || it->second > c) {
+      it->second = c;
+      que.emplace(c, s);
     }
-    return dist;
+  };
+  push(s, 0);
+  while (!que.empty()) {
+    auto [c, s] = que.top();
+    que.pop();
+    if (dist[s] < c) continue;
+    f(s, c, push);
   }
-};
+  return dist;
+}
 
 void Main() {
   ints(h, w, n);
@@ -40,8 +36,7 @@ void Main() {
   each(_, v, xs) sort(all(v));
   each(_, v, ys) sort(all(v));
   using S = pair<int, int>;
-  using d = Dijkstra<S, int>;
-  auto dist = d::Run({sx, sy}, [&](S s, int c, d::Push push) {
+  auto dist = Dijkstra<S, int>({sx, sy}, [&](S s, int c, auto push) {
     auto [x, y] = s;
     auto f = [](int x, int y, const map<int, V<int>>& xs) -> V<S> {
       V<S> ret;
