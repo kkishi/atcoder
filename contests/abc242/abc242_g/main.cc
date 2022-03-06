@@ -4,25 +4,26 @@
 #include "mo.h"
 
 void Main() {
-  ints(n, q);
-  V<int> c(n);
-  cin >> c;
+  ints(n);
+  V<int> a(n);
+  cin >> a;
+
   V<pair<int, int>> qs;
-  rep(i, q) {
+  ints(q);
+  rep(q) {
     ints(l, r);
     qs.eb(l - 1, r);
   }
 
-  V<int> kinds(n);
-  int unique_kinds = 0;
-
+  V<int> cnt(n);
+  int x = 0;
   auto add = [&](int i) {
-    if (kinds[c[i] - 1]++ == 0) ++unique_kinds;
+    if (even(++cnt[a[i] - 1])) ++x;
   };
   auto del = [&](int i) {
-    if (--kinds[c[i] - 1] == 0) --unique_kinds;
+    if (even(cnt[a[i] - 1]--)) --x;
   };
-  auto get = [&] { return unique_kinds; };
+  auto get = [&]() { return x; };
 
   each(e, Mo(add, del, get, qs)) wt(e);
 }
