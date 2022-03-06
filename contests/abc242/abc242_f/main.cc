@@ -8,15 +8,14 @@ using mint = ModInt<998244353>;
 map<tuple<int, int, int>, mint> memo;
 
 mint Count(int r, int c, int x) {
+  if (r * c < x) return 0;
   if (r > c) swap(r, c);
   auto [it, ok] = memo.insert({{r, c, x}, mint(0)});
   if (ok) {
-    mint ret = 0;
+    mint ret = mint::Comb(r * c, x);
     rep(i, r + 1) rep(j, c + 1) {
-      int ij = i * j;
-      if (ij < x) continue;
-      mint sign = (even(r - i) ? 1 : -1) * (even(c - j) ? 1 : -1);
-      ret += sign * mint::Comb(ij, x) * mint::Comb(r, i) * mint::Comb(c, j);
+      if (i == r && j == c) continue;
+      ret -= Count(i, j, x) * mint::Comb(r, i) * mint::Comb(c, j);
     }
     it->second = ret;
   }
