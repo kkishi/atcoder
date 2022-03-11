@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "cumulative_sum.h"
 
 void Main() {
   ints(n, m);
@@ -26,10 +27,9 @@ void Main() {
   sort(all(w));
   int ans = big;
   do {
-    V<int> sum(n + 1);
-    rep(i, n) sum[i + 1] = sum[i] + w[i];
+    CumulativeSum1D sum(w);
     vector dist(n, vector(n, 0));
-    rep(i, n - 1) rep(j, i + 1, n) dist[i][j] = lookup(sum[j + 1] - sum[i]);
+    rep(i, n - 1) rep(j, i + 1, n) dist[i][j] = lookup(sum.Get(i, j));
     V<int> dp(n);
     rep(i, 1, n) rep(j, i) chmax(dp[i], dp[j] + dist[j][i]);
     chmin(ans, dp[n - 1]);

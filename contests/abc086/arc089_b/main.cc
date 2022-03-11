@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "cumulative_sum.h"
 
 void Main() {
   ints(n, k);
@@ -28,13 +29,11 @@ void Main() {
     }
   }
 
-  vector sum(K + 1, V<int>(K + 1));
-  rep(i, K) rep(j, K) {
-    sum[i + 1][j + 1] = sum[i][j + 1] + sum[i + 1][j] - sum[i][j] + grid[i][j];
-  }
+  CumulativeSum2D sum(grid);
 
   int ans = 0;
-  rep(i, k, K + 1) rep(j, k, K + 1)
-      chmax(ans, sum[i][j] - sum[i - k][j] - sum[i][j - k] + sum[i - k][j - k]);
+  rep(i, K - k + 1) rep(j, K - k + 1) {
+    chmax(ans, sum.Get(i, j, i + k - 1, j + k - 1));
+  }
   wt(ans);
 }

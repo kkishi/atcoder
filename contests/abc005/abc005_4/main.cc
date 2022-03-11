@@ -1,19 +1,18 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "cumulative_sum.h"
 
 void Main() {
   ints(n);
-  VV<int> d(n, V<int>(n));
+  vector d(n, vector(n, int(0)));
   cin >> d;
 
-  VV<int> s(n + 1, V<int>(n + 1));
-  rep(i, n) rep(j, n) s[i + 1][j + 1] =
-      s[i][j + 1] + s[i + 1][j] - s[i][j] + d[i][j];
+  CumulativeSum2D s(d);
 
   V<int> maxi(n * n + 1);
-  rep(i, 1, n + 1) rep(j, 1, n + 1) rep(k, i) rep(l, j) {
-    chmax(maxi[(i - k) * (j - l)], s[i][j] - s[k][j] - s[i][l] + s[k][l]);
+  rep(i, n) rep(j, n) rep(k, i + 1) rep(l, j + 1) {
+    chmax(maxi[(i - k + 1) * (j - l + 1)], s.Get(k, l, i, j));
   }
   rep(i, n * n) chmax(maxi[i + 1], maxi[i]);
 

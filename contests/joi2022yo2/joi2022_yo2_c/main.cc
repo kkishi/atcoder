@@ -1,30 +1,29 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "cumulative_sum.h"
 
 void Main() {
   ints(h, w);
   vector a(h, vector(w, int(0)));
   cin >> a;
-  vector s(h + 1, vector(w + 1, int(0)));
-  rep(i, h) rep(j, w) {
-    s[i + 1][j + 1] = a[i][j] + s[i][j + 1] + s[i + 1][j] - s[i][j];
-  }
-  int tot = s[h][w];
+  CumulativeSum2D s(a);
+
+  int tot = s.Get(h - 1, w - 1);
   VV<int> HS;
-  rep(i0, 1, h + 1) {
-    int x = s[i0][w];
+  rep(i0, h) {
+    int x = s.Get(i0, w - 1);
     if (tot % x != 0) continue;
     V<int> v;
-    rep(i, h + 1) if (s[i][w] % x == 0) v.eb(i);
+    rep(i, h + 1) if (s.Get(i - 1, w - 1) % x == 0) v.eb(i);
     if (sz(v) == tot / x + 1) HS.pb(v);
   }
   VV<int> WS;
-  rep(i0, 1, w + 1) {
-    int x = s[h][i0];
+  rep(i0, w) {
+    int x = s.Get(h - 1, i0);
     if (tot % x != 0) continue;
     V<int> v;
-    rep(i, w + 1) if (s[h][i] % x == 0) v.eb(i);
+    rep(i, w + 1) if (s.Get(h - 1, i - 1) % x == 0) v.eb(i);
     if (sz(v) == tot / x + 1) WS.pb(v);
   }
   int ans = 0;
@@ -35,8 +34,7 @@ void Main() {
       int hr = H[i + 1];
       int lc = W[j];
       int hc = W[j + 1];
-      int x = s[hr][hc] - s[lr][hc] - s[hr][lc] + s[lr][lc];
-      sum.insert(x);
+      sum.insert(s.Get(lr, lc, hr - 1, hc - 1));
     }
     if (sz(sum) == 1) ++ans;
   }

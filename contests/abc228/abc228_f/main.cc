@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "cumulative_sum.h"
 
 void Main() {
   ints(h, w, h1, w1, h2, w2);
@@ -8,20 +9,10 @@ void Main() {
   chmin(w2, w1);
   vector a(h, vector(w, int(0)));
   cin >> a;
-  vector s(h, vector(w, int(0)));
-  rep(i, h) rep(j, w) {
-    s[i][j] += a[i][j];
-    if (i > 0) s[i][j] += s[i - 1][j];
-    if (j > 0) s[i][j] += s[i][j - 1];
-    if (i > 0 && j > 0) s[i][j] -= s[i - 1][j - 1];
-  }
+  CumulativeSum2D s(a);
   vector v(h, vector(w, int(0)));
   rep(i, h2 - 1, h) rep(j, w2 - 1, w) {
-    v[i][j] = s[i][j];
-    int I = i - h2, J = j - w2;
-    if (I >= 0) v[i][j] -= s[I][j];
-    if (J >= 0) v[i][j] -= s[i][J];
-    if (I >= 0 && J >= 0) v[i][j] += s[I][J];
+    v[i][j] = s.Get(i - h2 + 1, j - w2 + 1, i, j);
   }
   vector v2(h, vector(w, int(0)));
   rep(j, w2 - 1, w) {
@@ -48,15 +39,8 @@ void Main() {
     }
   }
   int ans = -big;
-  rep(i, h1 - 1, h) {
-    rep(j, w1 - 1, w) {
-      int x = s[i][j];
-      int I = i - h1, J = j - w1;
-      if (I >= 0) x -= s[I][j];
-      if (J >= 0) x -= s[i][J];
-      if (I >= 0 && J >= 0) x += s[I][J];
-      chmax(ans, x - v3[i][j]);
-    }
+  rep(i, h1 - 1, h) rep(j, w1 - 1, w) {
+    chmax(ans, s.Get(i - h1 + 1, j - w1 + 1, i, j) - v3[i][j]);
   }
   wt(ans);
 }

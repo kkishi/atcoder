@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "cumulative_sum.h"
 #include "modint.h"
 
 using mint = ModInt<998244353>;
@@ -16,21 +17,18 @@ void Main() {
     v.eb(p[i], q[i]);
     g[p[i]][q[i]] = 1;
   }
-  vector s(n + 1, vector(n + 1, int(0)));
-  rep(i, n) rep(j, n) {
-    s[i + 1][j + 1] = s[i][j + 1] + s[i + 1][j] - s[i][j] + g[i][j];
-  }
+  CumulativeSum2D s(g);
   sort(all(v));
   vector dp(n, vector(n + 1, mint(0)));
   rep(i, n) {
     auto [p1, q1] = v[i];
-    int cnt = s[p1 + 1][q1 + 1];
+    int cnt = s.Get(p1, q1);
     dp[i][cnt] += 1;
     rep(j, i) {
       auto [p0, q0] = v[j];
       if (p0 < p1 && q0 > q1) {
         rep(k, n + 1) {
-          int y = k + cnt - s[p0 + 1][q1 + 1];
+          int y = k + cnt - s.Get(p0, q1);
           dp[i][y] += dp[j][k];
         }
       }
