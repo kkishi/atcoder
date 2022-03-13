@@ -16,7 +16,7 @@ void Main() {
 
   V<pair<int, int>> len(n);
   rep(i, n) len[i] = {s[i].size(), i};
-  sort(all(len), greater());
+  sort(len, greater{});
 
   int ans = 0;
   for (char alpha = 'a'; alpha <= 'z'; ++alpha) {

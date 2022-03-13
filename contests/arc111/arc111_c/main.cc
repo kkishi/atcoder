@@ -10,7 +10,7 @@ void Main() {
 
   V<int> idx(n);
   iota(all(idx), 0);
-  sort(all(idx), [&](int i, int j) { return a[i] < a[j]; });
+  sort(idx, [&](int i, int j) { return a[i] < a[j]; });
 
   map<int, int> m;
   rep(i, n) m[p[i]] = i;

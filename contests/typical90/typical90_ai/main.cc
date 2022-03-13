@@ -59,7 +59,7 @@ void Main() {
     each(e, qs) {
       int n = sz(e);
       int s = 0;
-      sort(all(e), [&](int i, int j) { return ro[i] < ro[j]; });
+      sort(e, [&](int i, int j) { return ro[i] < ro[j]; });
       rep(i, n) s += t.Distance(e[i], e[(i + 1) % n]);
       wt(s / 2);
     }

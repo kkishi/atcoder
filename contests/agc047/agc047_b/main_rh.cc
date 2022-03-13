@@ -11,7 +11,7 @@ void Main() {
     cin >> s[i];
     reverse(all(s[i]));
   }
-  sort(all(s), [](auto &a, auto &b) { return a.size() > b.size(); });
+  sort(s, [](auto &a, auto &b) { return a.size() > b.size(); });
 
   int ans = 0;
   unordered_map<RollingHash, array<int, 26>> m;

@@ -25,7 +25,7 @@ bool Solve() {
     V<P> w;
     // Having centroid breaks the points comparison after the argsort, so skip.
     each(e, v) if (abs(e - c) > eps) w.eb(e - c);
-    sort(all(w), [&](const P& a, const P& b) {
+    sort(w, [&](const P& a, const P& b) {
       double A = arg(a), B = arg(b);
       if (abs(A - B) > eps) return A < B;
       return abs(a) < abs(b);

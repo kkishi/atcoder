@@ -9,7 +9,7 @@ void Main() {
   ints(n, x);
   V<int> s(n);
   cin >> s;
-  sort(all(s), greater());
+  sort(s, greater{});
   vector dp(n + 1, vector(x + 1, optional<mint>()));
   wt(Fix([&](auto rec, int i, int y) -> mint {
        auto& d = dp[i][y];

@@ -6,9 +6,9 @@ void Main() {
   ints(x, y, z, k);
   vector<int> a(x), b(y), c(z);
   cin >> a >> b >> c;
-  sort(all(a), greater());
-  sort(all(b), greater());
-  sort(all(c), greater());
+  sort(a, greater{});
+  sort(b, greater{});
+  sort(c, greater{});
   set<tuple<int, int, int>> seen;
   priority_queue<pair<int, tuple<int, int, int>>> que;
   auto push = [&](int ai, int bi, int ci) {

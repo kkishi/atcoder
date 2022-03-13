@@ -11,7 +11,7 @@ void Main() {
     sum -= a;
     v.push_back(a * 2 + b);
   }
-  sort(all(v), greater{});
+  sort(v, greater{});
   rep(i, n) {
     sum += v[i];
     if (sum > 0) {

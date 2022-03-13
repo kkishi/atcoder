@@ -9,7 +9,7 @@ void Main() {
     cin >> ai[i].first;
     ai[i].second = i;
   }
-  sort(all(ai), greater());
+  sort(ai, greater{});
   VV<int> dp(n + 1, V<int>(n + 1));
   rep(i, n) rep(j, i + 1) {
     auto [a, index] = ai[i];

@@ -63,7 +63,7 @@ void Main() {
   }
   int ans = 0;
   each(_, v, g) {
-    sort(all(v), greater{});
+    sort(v, greater{});
     ans += k;
     rep(i, 1, sz(v)) {
       int dx = v[i - 1].first - v[i].first;

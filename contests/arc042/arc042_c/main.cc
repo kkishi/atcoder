@@ -9,7 +9,7 @@ void Main() {
 
   V<pair<int, int>> ab;
   rep(i, n) ab.eb(a[i], b[i]);
-  sort(all(ab), greater{});
+  sort(ab, greater{});
 
   V<int> dp(p + 101);
   int ans = 0;

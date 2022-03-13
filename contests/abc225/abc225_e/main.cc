@@ -22,7 +22,7 @@ void Main() {
     };
     v.eb(normalize(P{x, y - 1}), normalize(P{x - 1, y}));
   }
-  sort(all(v), [&](const PP& a, const PP& b) { return a.second < b.second; });
+  sort(v, [&](const PP& a, const PP& b) { return a.second < b.second; });
   P curr = {1, 0};
   int ans = 0;
   each(e, v) {

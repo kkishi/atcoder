@@ -15,7 +15,7 @@ void Main() {
   }
   V<int> idx(n);
   iota(all(idx), 0);
-  sort(all(idx), [&](int i, int j) {
+  sort(idx, [&](int i, int j) {
     const auto& a = v[i];
     const auto& b = v[j];
     if (sz(a.t) != sz(b.t)) return sz(a.t) < sz(b.t);

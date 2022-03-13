@@ -20,7 +20,7 @@ void Main() {
     each(child, g[node]) if (child != parent) {
       each(e, rec(child, node)) t.pb(e);
     }
-    sort(all(t), greater{});
+    sort(t, greater{});
     while (sz(t) > 20) t.pop_back();
     return t;
   })(0, -1);

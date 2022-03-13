@@ -9,7 +9,7 @@ void Main() {
     ints(a, b);
     v.eb(a, b);
   }
-  sort(all(v), greater{});
+  sort(v, greater{});
   int ans = 0;
   each(a, b, v) {
     int c = min(b, w);

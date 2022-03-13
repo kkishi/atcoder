@@ -7,7 +7,7 @@ void Main() {
   V<int> v(n);
   cin >> v;
 
-  sort(all(v), greater());
+  sort(v, greater{});
   int sum = accumulate(v.begin(), v.begin() + a, 0LL);
 
   wt(sum / double(a));

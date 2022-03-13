@@ -24,7 +24,7 @@ bool Solve() {
   auto canon = [&](const V<P>& v, int i, int j) -> V<P> {
     V<P> w;
     rep(k, n) if (k != i && k != j) w.eb((v[k] - v[i]) / (v[j] - v[i]));
-    sort(all(w), [&](const P& a, const P& b) {
+    sort(w, [&](const P& a, const P& b) {
       auto arg_canon = [&](const P& p) {
         const double pi = acos(-1);
         double a = arg(p);

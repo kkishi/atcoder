@@ -9,7 +9,7 @@ void Main() {
     ints(r, c, a);
     v.eb(a, i, r - 1, c - 1);
   }
-  sort(all(v), greater{});
+  sort(v, greater{});
   V<int> R(h, -1), C(w, -1);
   int i = 0;
   V<int> ans(n);

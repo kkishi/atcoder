@@ -9,6 +9,6 @@ void Main() {
     cin >> a[i].first;
     a[i].second = i;
   }
-  sort(all(a), greater());
+  sort(a, greater{});
   for (auto& ai : a) wt(ai.second + 1);
 }

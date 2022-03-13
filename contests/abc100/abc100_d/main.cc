@@ -17,7 +17,7 @@ void Main() {
       rep(j, 3) { ret += x[i][j] * (hasbit(s, j) ? 1 : -1); }
       return ret;
     };
-    sort(all(idx), [&](int a, int b) { return f(a) > f(b); });
+    sort(idx, [&](int a, int b) { return f(a) > f(b); });
     int sum = 0;
     rep(j, 3) {
       int tmp = 0;

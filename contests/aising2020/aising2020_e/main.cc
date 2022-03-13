@@ -40,13 +40,13 @@ void solve() {
   };
 
   auto less = [](const Camel& a, const Camel& b) { return a.k < b.k; };
-  sort(all(lc), less);
+  sort(lc, less);
   calc(lc);
 
   for (auto& c : rc) {
     c.k = n - c.k;
   }
-  sort(all(rc), less);
+  sort(rc, less);
   calc(rc);
 
   wt(ans);

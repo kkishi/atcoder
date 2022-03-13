@@ -9,7 +9,7 @@ void Main() {
 
   V<pair<int, int>> v;
   rep(i, n) v.eb(p[i], i);
-  sort(all(v), greater());
+  sort(v, greater{});
 
   set<int> s;
   s.insert(-1);

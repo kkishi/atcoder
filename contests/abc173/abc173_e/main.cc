@@ -48,8 +48,8 @@ void Main() {
       mint ans = 1;
       int pi = 0;
       int mi = 0;
-      sort(all(p), greater());
-      sort(all(m), greater());
+      sort(p, greater{});
+      sort(m, greater{});
       while (pi + mi < k) {
         int rk = k - (pi + mi);
         if (rk == 1) {

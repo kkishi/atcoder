@@ -19,7 +19,7 @@ void Main() {
     }
     int ret = 0;
     each(x, e) ret += (x >= 0 || even(sz(o))) ? x : -x;
-    sort(all(o), greater());
+    sort(o, greater{});
     rep(i, sz(o)) ret += even(i) ? o[i] : -o[i];
     return {1 - ret, size};
   })(0);

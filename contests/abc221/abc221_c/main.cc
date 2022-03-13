@@ -5,7 +5,7 @@
 void Main() {
   strings(n);
   each(e, n) e -= '0';
-  sort(all(n), greater{});
+  sort(n, greater{});
   int a = n[0], b = n[1];
   rep(i, 2, sz(n)) {
     if (a < b) {

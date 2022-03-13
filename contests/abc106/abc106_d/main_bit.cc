@@ -17,14 +17,14 @@ void Main() {
     ints(L, R);
     trains.pb({L - 1, R - 1});
   }
-  sort(all(trains), [](const P& a, const P& b) { return a.second < b.second; });
+  sort(trains, [](const P& a, const P& b) { return a.second < b.second; });
 
   V<Query> queries;
   rep(i, Q) {
     ints(p, q);
     queries.pb({i, p - 1, q - 1});
   }
-  sort(all(queries), [](const Query& a, const Query& b) { return a.r < b.r; });
+  sort(queries, [](const Query& a, const Query& b) { return a.r < b.r; });
 
   V<int> ans(Q);
   BIT<int> bit(N);

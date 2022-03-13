@@ -8,6 +8,6 @@ void Main() {
   each(c, s)++ m[c];
   V<pair<int, char>> v;
   each(x, y, m) v.eb(y, x);
-  sort(all(v), greater{});
+  sort(v, greater{});
   wt(v[0].second);
 }

@@ -8,7 +8,7 @@ void Main() {
   cin >> a >> b;
   V<int> c(n);
   rep(i, n) c[i] = a[i] - b[i];
-  sort(all(c), greater());
+  sort(c, greater{});
   if (accumulate(c) < 0) {
     wt(-1);
     return;

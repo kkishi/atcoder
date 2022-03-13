@@ -12,7 +12,7 @@ void Main() {
 
   vector<int> d(m - 1);
   rep(i, m - 1) d[i] = x[i + 1] - x[i];
-  sort(all(d), greater());
+  sort(d, greater{});
 
   rep(i, min(n - 1, d.size())) ans -= d[i];
   wt(ans);

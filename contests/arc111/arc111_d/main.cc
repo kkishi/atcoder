@@ -17,7 +17,7 @@ void Main() {
 
   V<int> idx(n);
   iota(all(idx), 0);
-  sort(all(idx), [&](int i, int j) { return c[i] < c[j]; });
+  sort(idx, [&](int i, int j) { return c[i] < c[j]; });
 
   set<pair<int, int>> dir;
   each(i, idx) {

@@ -10,6 +10,6 @@ void Main() {
     ints(t);
     v.eb(t, s);
   }
-  sort(all(v), greater{});
+  sort(v, greater{});
   wt(v[1].second);
 }

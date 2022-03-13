@@ -25,7 +25,7 @@ void Main() {
       q.eb(arg(p[j] - p[i]) + 2 * pi, p[j]);
     }
     auto less = [](auto& a, auto& b) { return a.first < b.first; };
-    sort(all(q), less);
+    sort(q, less);
     rep(j, sz(q) / 2) {
       auto [theta, qj] = q[j];
       const double eps = 1e-10;

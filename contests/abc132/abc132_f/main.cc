@@ -9,7 +9,7 @@ using mint = ModInt<>;
 void Main() {
   ints(n, k);
   V<pair<int, int>> qs = Quotients(n);
-  sort(all(qs), greater{});
+  sort(qs, greater{});
   int N = sz(qs);
   vector dp(k + 1, vector(N, mint(0)));
   dp[0][0] = 1;

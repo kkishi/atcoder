@@ -7,6 +7,6 @@ void Main() {
   cin >> v;
   V<int> ans;
   rep(i, 3) rep(j, i + 1, 4) rep(k, j + 1, 5) ans.pb(v[i] + v[j] + v[k]);
-  sort(all(ans), greater());
+  sort(ans, greater{});
   wt(ans[2]);
 }

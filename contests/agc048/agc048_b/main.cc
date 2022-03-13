@@ -13,8 +13,8 @@ void Main() {
   }
   V<int> o, e;
   rep(i, n)(even(i) ? e : o).pb(b[i]);
-  sort(all(o), greater());
-  sort(all(e), greater());
+  sort(o, greater{});
+  sort(e, greater{});
   rep(i, n / 2) {
     int x = o[i] + e[i];
     if (x <= 0) break;

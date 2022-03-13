@@ -15,7 +15,7 @@ void Main() {
     v.eb(cnt, s);
     ++cnts[cnt];
   }
-  sort(all(v), greater());
+  sort(v, greater{});
   auto [cnt, s] = v[k - 1];
   if (cnts[cnt] != 1) {
     wt("AMBIGUOUS");

@@ -7,7 +7,7 @@ void Main() {
   int a = n;
   rep(k) {
     string s = to_string(a);
-    sort(all(s), greater{});
+    sort(s, greater{});
     int g1 = stoll(s);
     sort(s);
     int g2 = stoll(s);

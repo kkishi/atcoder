@@ -13,7 +13,7 @@ void Main() {
     cin >> s[i].t >> s[i].d;
     s[i].i = i;
   }
-  sort(all(s), [](const S& a, const S& b) { return a.d > b.d; });
+  sort(s, [](const S& a, const S& b) { return a.d > b.d; });
   set<int> tset;
   int dsum = 0;
   multiset<int> dup;

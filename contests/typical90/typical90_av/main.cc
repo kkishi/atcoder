@@ -11,7 +11,7 @@ void Main() {
     c.pb(b[i]);
     c.pb(a[i] - b[i]);
   }
-  sort(all(c), greater{});
+  sort(c, greater{});
   int ans = 0;
   rep(i, k) ans += c[i];
   wt(ans);

@@ -12,7 +12,7 @@ void Main() {
   ints(n);
   vector<int> a(n);
   cin >> a;
-  sort(all(a), greater());
+  sort(a, greater{});
 
   int ans = a[0];
   priority_queue<Pair> que;

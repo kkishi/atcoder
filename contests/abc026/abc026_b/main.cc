@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> r(n);
   cin >> r;
-  sort(all(r), greater());
+  sort(r, greater{});
   int ans = 0;
   rep(i, n) {
     int r2 = r[i] * r[i];

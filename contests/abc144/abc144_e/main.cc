@@ -8,7 +8,7 @@ void Main() {
   vector<int> a(n), f(n);
   cin >> a >> f;
   sort(a);
-  sort(all(f), greater());
+  sort(f, greater{});
   auto check = [&](int x) {
     int training = 0;
     rep(i, n) {

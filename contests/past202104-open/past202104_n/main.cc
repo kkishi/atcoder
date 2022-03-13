@@ -13,7 +13,7 @@ void Main() {
     ints(a, b);
     v.pb({a, b});
   }
-  sort(all(v), [](auto& x, auto& y) { return x.b * y.a < y.b * x.a; });
+  sort(v, [](auto& x, auto& y) { return x.b * y.a < y.b * x.a; });
   V<int> dp(h + 1, int(-1));
   dp[h] = 0;
   each(e, v) rep(j, h + 1) if (dp[j] != -1) {

@@ -11,7 +11,7 @@ void Main() {
     ints(d);
     v.eb(d, i + 1);
   }
-  sort(all(v), greater());
+  sort(v, greater{});
   auto [_, a] = v[0];
   V<pair<int, int>> w;
   rep(i, n) {
@@ -19,7 +19,7 @@ void Main() {
     ints(d);
     w.eb(d, i);
   }
-  sort(all(w), greater());
+  sort(w, greater{});
   auto [d, b] = w[0];
   cout << "! " << d << endl;
 }

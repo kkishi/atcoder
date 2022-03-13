@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<pair<int, int>> v(n);
   cin >> v;
-  sort(all(v), [](auto& a, auto& b) {
+  sort(v, [](auto& a, auto& b) {
     if (a.second != b.second) return a.second < b.second;
     return a.first > b.first;
   });

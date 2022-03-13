@@ -9,7 +9,7 @@ void Main() {
   cin >> t >> a;
   V<pair<int, int>> at;
   rep(i, n) at.eb(a[i], t[i]);
-  sort(all(at), greater{});
+  sort(at, greater{});
 
   set<int, greater<>> s;
   rep(i, 100000) s.insert(i + 1);

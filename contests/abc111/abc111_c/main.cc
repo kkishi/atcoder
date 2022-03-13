@@ -13,7 +13,7 @@ void Main() {
     for (auto [k, v] : m) {
       counts[i].pb({v, k});
     }
-    sort(all(counts[i]), greater());
+    sort(counts[i], greater{});
   }
   rep(i, 2) for (auto [k, v] : counts[i]) dbg(i, k, v);
   rep(i, 2) dbg(counts[i].size());

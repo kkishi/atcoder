@@ -15,7 +15,7 @@ void Main() {
     double w = numeric_limits<double>::lowest();
     rep(i, m) chmax(w, d[i] - c[i] * x);
     v.pb(w);
-    sort(all(v), greater());
+    sort(v, greater{});
     return accumulate(v.begin(), v.begin() + 5, double(0)) > 0;
   }));
 }

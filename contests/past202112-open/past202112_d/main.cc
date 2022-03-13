@@ -8,7 +8,7 @@ void Main() {
   cin >> a >> b;
   V<tuple<int, int, int>> v;
   rep(i, n) v.eb(a[i], b[i], i);
-  sort(all(v), [](const auto& a, const auto& b) {
+  sort(v, [](const auto& a, const auto& b) {
     auto [A, B, C] = a;
     auto [D, E, F] = b;
     if (A + B != D + E) return A + B > D + E;

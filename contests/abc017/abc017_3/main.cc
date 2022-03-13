@@ -15,7 +15,7 @@ void Main() {
     ds.pb({l, r, s});
   }
 
-  sort(all(ds), [](const D& a, const D& b) { return a.r < b.r; });
+  sort(ds, [](const D& a, const D& b) { return a.r < b.r; });
   V<int> l(m + 2);
   {
     auto it = ds.begin();
@@ -29,7 +29,7 @@ void Main() {
     }
   }
 
-  sort(all(ds), [](const D& a, const D& b) { return a.l < b.l; });
+  sort(ds, [](const D& a, const D& b) { return a.l < b.l; });
   V<int> r(m + 2);
   {
     auto it = ds.rbegin();

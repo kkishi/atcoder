@@ -56,7 +56,7 @@ void Main() {
     }
     V<pair<int, char>> w;
     each(k, v, m) w.eb(v, k);
-    sort(all(w), greater{});
+    sort(w, greater{});
     int best = sz(v) - w[0].first;
     t += w[0].second;
     ans += best;

@@ -9,7 +9,7 @@ void Main() {
     ints(a, b);
     v.eb(a, b);
   }
-  sort(all(v), greater{});
+  sort(v, greater{});
   int ans = k;
   while (!v.empty() && v.back().first <= ans) {
     ans += v.back().second;

@@ -11,7 +11,7 @@ void Main() {
     ints(b);
     bs.eb(b - 1, i);
   }
-  sort(all(bs), greater());
+  sort(bs, greater{});
 
   int ans = 0;
   BIT<int> bit(n);

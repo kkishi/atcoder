@@ -9,7 +9,7 @@ void Main() {
 
   V<int> idx(n);
   iota(all(idx), 0);
-  sort(all(idx), [&l](int a, int b) { return l[a] < l[b]; });
+  sort(idx, [&l](int a, int b) { return l[a] < l[b]; });
 
   set<int> s(all(r));
   s.insert(0);

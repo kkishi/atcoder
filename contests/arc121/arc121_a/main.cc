@@ -22,7 +22,7 @@ void Main() {
   };
   rep(i, 2) rep(j, n - 2, n) push(xs[i], xs[j]);
   rep(i, 2) rep(j, n - 2, n) push(ys[i], ys[j]);
-  sort(all(v), greater{});
+  sort(v, greater{});
   set<pair<int, int>> st;
   rep(i, sz(v)) {
     auto [I, J] = v[i].second;

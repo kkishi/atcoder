@@ -8,7 +8,7 @@ void Main() {
   ints(n, m);
   vector<pair<int, int>> job(n);
   rep(i, n) cin >> job[i].second >> job[i].first;
-  sort(all(job), greater());
+  sort(job, greater{});
 
   int ans = 0;
   SegmentTree<bool> tree(

@@ -9,6 +9,6 @@ void Main() {
     ints(x);
     a.eb(x, i);
   }
-  sort(all(a), greater{});
+  sort(a, greater{});
   wt(a[1].second + 1);
 }

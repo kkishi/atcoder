@@ -17,7 +17,7 @@ void Main() {
     --l, --r;
     qs.pb({l, r, i, 0});
   }
-  sort(all(qs), [](const Q& a, const Q& b) { return a.r < b.r; });
+  sort(qs, [](const Q& a, const Q& b) { return a.r < b.r; });
   V<int> seen(n, -1);
   SegmentTree<int> tree(n, [](int a, int b) { return a + b; });
   auto qit = qs.begin();
