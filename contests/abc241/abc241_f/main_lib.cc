@@ -33,8 +33,8 @@ void Main() {
     xs[y].pb(x);
     ys[x].pb(y);
   }
-  each(_, v, xs) sort(all(v));
-  each(_, v, ys) sort(all(v));
+  each(_, v, xs) sort(v);
+  each(_, v, ys) sort(v);
   using S = pair<int, int>;
   auto dist = Dijkstra<S, int>({sx, sy}, [&](S s, int c, auto push) {
     auto [x, y] = s;

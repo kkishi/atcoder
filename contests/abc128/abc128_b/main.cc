@@ -18,6 +18,6 @@ void Main() {
     cin >> v[i].city >> v[i].point;
     v[i].index = i;
   }
-  sort(all(v));
+  sort(v);
   rep(i, n) wt(v[i].index + 1);
 }

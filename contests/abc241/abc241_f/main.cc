@@ -12,8 +12,8 @@ void Main() {
     xs[y].pb(x);
     ys[x].pb(y);
   }
-  each(_, v, xs) sort(all(v));
-  each(_, v, ys) sort(all(v));
+  each(_, v, xs) sort(v);
+  each(_, v, ys) sort(v);
   using P = pair<int, int>;
   map<P, int> dist;
   P s = {sx, sy};

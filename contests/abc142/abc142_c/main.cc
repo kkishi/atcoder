@@ -9,7 +9,7 @@ void Main() {
     cin >> v[i].first;
     v[i].second = i;
   }
-  sort(all(v));
+  sort(v);
   rep(i, n) {
     if (i) cout << " ";
     cout << v[i].second + 1;

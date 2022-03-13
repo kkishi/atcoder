@@ -11,7 +11,7 @@ void Main() {
     v[0].pb(x[i] + y[i]);
     v[1].pb(x[i] - y[i]);
   }
-  rep(i, 2) sort(all(v[i]));
+  rep(i, 2) sort(v[i]);
   rep(q) {
     ints(i);
     --i;

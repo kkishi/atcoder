@@ -14,7 +14,7 @@ void Main() {
     dist[a][b] = dist[b][a] = c;
   }
   WarshallFloyd(dist);
-  sort(all(r));
+  sort(r);
   int ans = big;
   do {
     int sum = 0;

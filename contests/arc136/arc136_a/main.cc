@@ -19,7 +19,7 @@ void Main() {
   each(e, v) {
     if (e != "C" && sz(e) > 1) {
       while (true) {
-        sort(all(e));
+        sort(e);
         string E;
         rep(i, sz(e)) {
           if (e[i] == 'B' && e[i + 1] == 'B') {

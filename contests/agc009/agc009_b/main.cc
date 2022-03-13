@@ -15,7 +15,7 @@ void Main() {
     for (int c : g[n]) {
       res.pb(rec(c));
     }
-    sort(all(res));
+    sort(res);
     rep(i, sz(res)) chmax(ret, sz(res) - i + res[i]);
     return ret;
   })(0));

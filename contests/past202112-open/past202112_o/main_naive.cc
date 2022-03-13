@@ -9,7 +9,7 @@ void Main() {
   ints(n);
   V<int> b(n);
   cin >> b;
-  sort(all(b));
+  sort(b);
   V<int> m(n);
   rep(i, n) rep(j, i + 1, n) {
     int d = b[j] - b[i];

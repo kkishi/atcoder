@@ -16,7 +16,7 @@ void Main() {
     dbg(r, sb);
     V<pair<int, int>> d;
     rep(i, k) d.eb(b[i] * n - a[i] * m, i);
-    sort(all(d));
+    sort(d);
     dbg(d);
     if (sb < m) {
       int D = (m - sb) / k;

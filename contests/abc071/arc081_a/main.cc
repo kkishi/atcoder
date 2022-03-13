@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   V<int> x;
   rrep(i, n - 1) {
     if (a[i] == a[i + 1]) {

@@ -11,7 +11,7 @@ void Main() {
   auto check = [&](int g) {
     vector<int> mods(n);
     rep(i, n) mods[i] = a[i] % g;
-    sort(all(mods));
+    sort(mods);
     vector<int> upper(n + 1);
     rrep(i, n) upper[i] = upper[i + 1] + g - mods[i];
     vector<int> lower(n + 1);

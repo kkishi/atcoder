@@ -10,8 +10,8 @@ void Main() {
 
   V<int> ox(n), oy(m);
   cin >> ox >> oy;
-  sort(all(ox));
-  sort(all(oy));
+  sort(ox);
+  sort(oy);
 
   V<mint> x, y;
   rep(i, n - 1) x.pb(ox[i + 1] - ox[i]);

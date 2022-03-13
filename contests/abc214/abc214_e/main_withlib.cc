@@ -12,7 +12,7 @@ void Main() {
       ints(l, r);
       v.eb(r, l);
     }
-    sort(all(v));
+    sort(v);
     Intervals is;
     bool ok = true;
     each(r, l, v) {

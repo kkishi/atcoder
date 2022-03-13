@@ -6,7 +6,7 @@ void Reverse(V<pair<int, int>>& v) {
   reverse(all(v));
   rep(i, sz(v)) swap(v[i].first, v[i].second);
 }
-void Sort(V<pair<int, int>>& v) { sort(all(v)); }
+void Sort(V<pair<int, int>>& v) { sort(v); }
 
 void Main() {
   ints(n);

@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   int plus = 0;
   int minus = 0;
   for (int ai : a) {

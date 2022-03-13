@@ -9,7 +9,7 @@ void Main() {
     ints(x);
     c.eb(x, i);
   }
-  sort(all(c));
+  sort(c);
   V<int> base;
   int ans = 0;
   each(x, y, c) {

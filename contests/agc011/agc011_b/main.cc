@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   set<int> s;
   int sum = 0;
   rep(i, n) {

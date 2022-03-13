@@ -17,7 +17,7 @@ void Main() {
     return max(dp[n - 2], dp[n - 1]) > 0;
   }));
   V<int> sa = a;
-  sort(all(sa));
+  sort(sa);
   wt(sa[BinarySearch<int>(0, n, [&](int idx) {
     int x = sa[idx];
     V<int> b(n);

@@ -9,7 +9,7 @@ void Main() {
   ints(n, k);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
 
   mint ans = 0;
   rep(i, n - (k - 1)) ans -= a[i] * mint::Comb(n - 1 - i, k - 1);

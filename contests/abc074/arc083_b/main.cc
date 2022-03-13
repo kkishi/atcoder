@@ -15,7 +15,7 @@ void Main() {
   }
   V<tuple<int, int, int>> e;
   rep(i, n - 1) rep(j, i + 1, n) e.pb({a[i][j], i, j});
-  sort(all(e));
+  sort(e);
   int ans = 0;
   VV<int> dist(n, V<int>(n, 10000000000LL));
   for (auto [w, u, v] : e) {

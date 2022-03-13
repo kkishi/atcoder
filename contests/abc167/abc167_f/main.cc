@@ -29,8 +29,8 @@ void Main() {
     }
     right.pb({lowest, change});
   }
-  sort(all(left));
-  sort(all(right));
+  sort(left);
+  sort(right);
   auto height = [&](const vector<S>& v) -> optional<int> {
     int curr = 0;
     for (const auto& s : v) {

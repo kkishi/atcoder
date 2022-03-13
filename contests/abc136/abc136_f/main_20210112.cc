@@ -19,7 +19,7 @@ void Main() {
   x = f(x), y = f(y);
   V<tuple<int, int, int>> v;
   rep(i, n) v.eb(x[i], y[i], i);
-  sort(all(v));
+  sort(v);
 
   // 1|0
   // -.-

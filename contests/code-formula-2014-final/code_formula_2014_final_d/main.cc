@@ -16,7 +16,7 @@ void Main() {
     ints(m, s, e);
     v.eb(s, e, m);
   }
-  sort(all(v));
+  sort(v);
 
   SegmentTree<int> t(100001, [](int a, int b) { return max(a, b); });
   rep(i, n) {

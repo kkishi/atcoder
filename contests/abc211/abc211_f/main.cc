@@ -37,7 +37,7 @@ void Main() {
       }
     }
   }
-  sort(all(ts));
+  sort(ts);
 
   ints(q);
   V<tuple<int, int, int>> Q;
@@ -45,7 +45,7 @@ void Main() {
     ints(x, y);
     Q.eb(x, y, i);
   }
-  sort(all(Q));
+  sort(Q);
 
   DualSegmentTree<int> t(100001, [](int a, int b) { return a + b; });
   auto it = ts.begin();

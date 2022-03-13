@@ -6,7 +6,7 @@ void Main() {
   ints(n, d);
   V<int> r(n);
   cin >> r;
-  sort(all(r));
+  sort(r);
   int ans = 0;
   rep(i, n) {
     auto it = prev(lower_bound(all(r), r[i] + d + 1));

@@ -24,7 +24,7 @@ void Main() {
       ++ans;
       dbg(M);
       V<pair<int, int>> SM = M;
-      sort(all(SM));
+      sort(SM);
       MU[SM]++;
       return;
     }

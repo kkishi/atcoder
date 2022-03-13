@@ -24,7 +24,7 @@ void Main() {
   for (auto [k, v] : cnt) {
     V<int> ve;
     rep(i, N) if (c[i] == k) ve.pb(a[i]);
-    sort(all(ve));
+    sort(ve);
     if (even(v)) {
       evens = ve;
     } else {

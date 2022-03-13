@@ -11,7 +11,7 @@ void Main() {
     --a, --b;
     v[a].eb(s, t, b);
   }
-  each(e, v) sort(all(e));
+  each(e, v) sort(e);
   using P = pair<int, int>;
   vector dbl(30, map<P, P>());
   P na = {-1, -1};

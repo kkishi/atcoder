@@ -18,7 +18,7 @@ void Main() {
   if (cand.empty()) {
     wt("UNRESTORABLE");
   } else {
-    sort(all(cand));
+    sort(cand);
     wt(cand[0]);
   }
 }

@@ -9,7 +9,7 @@ void Main() {
     ints(a);
     v.eb(a, i);
   }
-  sort(all(v));
+  sort(v);
   set<int> s = {-1, n};
   int ans = 0;
   for (auto [ai, i] : v) {

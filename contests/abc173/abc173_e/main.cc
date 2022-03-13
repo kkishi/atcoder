@@ -35,7 +35,7 @@ void Main() {
       dbg("has to be minus");
       mint ans = 1;
       rep(i, p.size()) ans *= p[i];
-      sort(all(m));
+      sort(m);
       rep(i, k - p.size()) ans *= m[i];
       wt(-ans);
     }

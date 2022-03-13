@@ -6,8 +6,8 @@ void Main() {
   ints(n);
   V<int> x(n), y(n);
   rep(i, n) cin >> x[i] >> y[i];
-  sort(all(x));
-  sort(all(y));
+  sort(x);
+  sort(y);
   int X = x[sz(x) / 2];
   int Y = y[sz(y) / 2];
   int ans = 0;

@@ -11,7 +11,7 @@ void Main() {
     v.eb(a, 1);
     v.eb(a + b, -1);
   }
-  sort(all(v));
+  sort(v);
   V<int> ans(n);
   int cnt = 0;
   rep(i, sz(v)) {

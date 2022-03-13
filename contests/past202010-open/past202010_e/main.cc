@@ -8,7 +8,7 @@ void Main() {
   string t = s;
   reverse(all(t));
   string u = s;
-  sort(all(u));
+  sort(u);
   do {
     if (u != s && u != t) {
       wt(u);

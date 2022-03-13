@@ -9,6 +9,6 @@ void Main() {
     ++c[a - 1];
     ++c[b - 1];
   }
-  sort(all(c));
+  sort(c);
   wt((c[0] == 1 && c[1] == 1 && c[2] == 2 && c[3] == 2) ? "YES" : "NO");
 }

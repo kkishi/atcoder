@@ -4,7 +4,7 @@
 
 void Main() {
   strings(s);
-  sort(all(s));
+  sort(s);
   int ans = 0;
   do {
     ++ans;

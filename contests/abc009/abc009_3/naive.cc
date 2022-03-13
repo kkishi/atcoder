@@ -7,7 +7,7 @@ void Main() {
   strings(s);
   string ans = s;
   string t = s;
-  sort(all(t));
+  sort(t);
   do {
     int ch = 0;
     rep(i, n) if (s[i] != t[i])++ ch;

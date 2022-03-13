@@ -9,7 +9,7 @@ void Main() {
     ints(s, t, c);
     v1.pb({c, s, t});
   }
-  sort(all(v1));
+  sort(v1);
   V<tuple<int, int, int>> v2;
   rep(i, v1.size()) {
     if (i + 1 < v1.size() && get<0>(v1[i]) == get<0>(v1[i + 1]) &&
@@ -24,7 +24,7 @@ void Main() {
     v.pb({s, 0, c});
     v.pb({t, 1, c});
   }
-  sort(all(v));
+  sort(v);
   int ans = 0;
   set<int> on;
   for (auto [t, pop, c] : v) {

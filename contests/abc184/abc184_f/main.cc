@@ -14,14 +14,14 @@ void Main() {
     rep(i, n1) if (hasbit(s, i)) xi += a[i];
     x.pb(xi);
   }
-  sort(all(x));
+  sort(x);
   V<int> y;
   rep(s, 1 << n2) {
     int yi = 0;
     rep(i, n2) if (hasbit(s, i)) yi += a[i + n1];
     y.pb(yi);
   }
-  sort(all(y));
+  sort(y);
   int ans = 0;
   rep(i, sz(x)) {
     auto it = lower_bound(all(y), t - x[i] + 1);

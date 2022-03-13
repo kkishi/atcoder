@@ -5,7 +5,7 @@
 void Main() {
   strings(s);
   ints(k);
-  sort(all(s));
+  sort(s);
   do {
     --k;
     if (k == 0) {

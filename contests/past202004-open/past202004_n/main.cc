@@ -57,7 +57,7 @@ void Main() {
     es.pb(e);
   }
 
-  sort(all(es));
+  sort(es);
   V<int> ans(q);
   each(e, es) {
     if (e.k == 1) {

@@ -11,7 +11,7 @@ void Main() {
     g[a].pb(b);
     g[b].pb(a);
   }
-  each(e, g) sort(all(e));
+  each(e, g) sort(e);
   V<int> ans;
   Fix([&](auto rec, int node, int parent) -> void {
     ans.pb(node + 1);

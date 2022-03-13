@@ -9,7 +9,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   mint ans = 0;
   rep(i, n) ans += a[i] * a[i];
   mint sum = 0;

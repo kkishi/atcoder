@@ -25,7 +25,7 @@ void Main() {
       v.eb(*a, i, e.to);
     }
   }
-  sort(all(v));
+  sort(v);
   vector dp(n, mint(0));
   dp[0] = 1;
   for (auto [_, i, j] : v) dp[j] += dp[i];

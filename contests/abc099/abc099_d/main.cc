@@ -20,7 +20,7 @@ void Main() {
       for (int csi : cs) sum += D[csi - 1][j];
       cost[i].pb({sum, j});
     }
-    sort(all(cost[i]));
+    sort(cost[i]);
   }
   int ans = big;
   V<int> idx = {0, 1, 2};

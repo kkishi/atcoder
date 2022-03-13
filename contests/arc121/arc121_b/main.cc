@@ -25,7 +25,7 @@ void Main() {
   for (auto [k, v] : cnt) {
     V<int> ve;
     rep(i, N) if (c[i] == k) ve.pb(a[i]);
-    sort(all(ve));
+    sort(ve);
     if (even(v)) {
       evens = ve;
     } else {
@@ -59,7 +59,7 @@ void Main() {
           }
         }
       }
-      sort(all(best[i]));
+      sort(best[i]);
     }
     dbg(best);
     if (best[0][0].second != best[1][0].second) {

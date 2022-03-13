@@ -6,7 +6,7 @@ void Main() {
   ints(n, m);
   V<int> h(n), w(m);
   cin >> h >> w;
-  sort(all(h));
+  sort(h);
   dbg(h);
 
   set<int> ws(all(w));

@@ -9,7 +9,7 @@ void Main() {
     cin >> a[i].first;
     a[i].second = i;
   }
-  sort(all(a));
+  sort(a);
   V<int> ans(n, k / n);
   k %= n;
   rep(i, k) ans[a[i].second]++;

@@ -4,8 +4,8 @@
 
 void Main() {
   strings(s, t);
-  sort(all(s));
-  sort(all(t));
+  sort(s);
+  sort(t);
   reverse(all(t));
   wt(s < t);
 }

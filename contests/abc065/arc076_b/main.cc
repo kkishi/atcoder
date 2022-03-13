@@ -11,14 +11,14 @@ void Main() {
     x[i] = {xi, i};
     y[i] = {yi, i};
   }
-  sort(all(x));
-  sort(all(y));
+  sort(x);
+  sort(y);
   V<tuple<int, int, int>> v;
   rep(i, n - 1) {
     v.pb({x[i + 1].first - x[i].first, x[i].second, x[i + 1].second});
     v.pb({y[i + 1].first - y[i].first, y[i].second, y[i + 1].second});
   }
-  sort(all(v));
+  sort(v);
   DisjointSet ds(n);
   int ans = 0;
   for (auto [d, i, j] : v)

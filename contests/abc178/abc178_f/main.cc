@@ -87,7 +87,7 @@ out:
   rep(i, n) assert(ans[i].first != ans[i].second);
 
   wt("Yes");
-  sort(all(ans));
+  sort(ans);
   rep(i, n) {
     if (i) cout << " ";
     cout << ans[i].second;

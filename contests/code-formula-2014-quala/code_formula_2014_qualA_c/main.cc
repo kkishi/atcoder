@@ -11,7 +11,7 @@ void Main() {
       ints(a);
       v.emplace_back(j, i, a);
     }
-    sort(all(v));
+    sort(v);
     set<int> seen;
     set<int> s;
     for (auto [J, I, idx] : v) {

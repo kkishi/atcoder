@@ -11,8 +11,8 @@ void Main() {
     xs[i] = {x[i], i};
     ys[i] = {y[i], i};
   }
-  sort(all(xs));
-  sort(all(ys));
+  sort(xs);
+  sort(ys);
   V<pair<int, pair<int, int>>> v;
   auto push = [&](const auto& a, const auto& b) {
     int d = abs(a.first - b.first);

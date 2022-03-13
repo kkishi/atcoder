@@ -6,6 +6,6 @@ void Main() {
   ints(n, k);
   V<int> l(n);
   cin >> l;
-  sort(all(l));
+  sort(l);
   wt(accumulate(l.rbegin(), l.rbegin() + k, 0));
 }

@@ -13,7 +13,7 @@ void Main() {
     ++rc[r];
   }
   rep(i, n) rc[i + 1] += rc[i];
-  sort(all(rl));
+  sort(rl);
   int ans = 0;
   BIT<int> bit(n + 1);
   each(r, l, rl) {

@@ -17,14 +17,14 @@ void Main() {
 
   V<pair<int, int>> s;
   rep(i, m) s.eb(v[i], l[i]);
-  sort(all(s));
+  sort(s);
   rep(i, sz(s) - 1) chmax(s[i + 1].second, s[i].second);
   auto lookup = [&s](int x) {
     auto it = lower_bound(all(s), pair<int, int>{x, 0});
     return it == s.begin() ? 0 : prev(it)->second;
   };
 
-  sort(all(w));
+  sort(w);
   int ans = big;
   do {
     CumulativeSum1D sum(w);

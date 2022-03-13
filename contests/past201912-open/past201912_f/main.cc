@@ -14,7 +14,7 @@ void Main() {
     v.pb(t);
     i = j + 1;
   }
-  sort(all(v));
+  sort(v);
   for (string& s : v) {
     s[0] = toupper(s[0]);
     s[sz(s) - 1] = toupper(s[sz(s) - 1]);

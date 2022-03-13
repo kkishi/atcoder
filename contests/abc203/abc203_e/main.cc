@@ -9,7 +9,7 @@ void Main() {
     ints(x, y);
     vs[y].eb(x, i);
   }
-  each(y, v, vs) sort(all(v));
+  each(y, v, vs) sort(v);
   VV<int> g(m + 1);
   each(y, v, vs) each(e, v) {
     auto [x, i] = e;

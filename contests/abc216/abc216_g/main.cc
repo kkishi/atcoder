@@ -12,7 +12,7 @@ void Main() {
     ints(l, r, x);
     v.eb(r, l - 1, x);
   }
-  sort(all(v));
+  sort(v);
   SegmentTree<int> t(n, [](int a, int b) { return a + b; });
   Intervals is;
   V<int> ans(n);

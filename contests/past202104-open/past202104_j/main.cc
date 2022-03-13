@@ -8,7 +8,7 @@ void Main() {
   ints(n, c);
   V<pair<int, int>> v(n);
   cin >> v;
-  sort(all(v));
+  sort(v);
   double lo = v[0].first, hi = v[n - 1].first;
   rep(200) {
     double x = (hi - lo) / 3;

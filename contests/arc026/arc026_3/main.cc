@@ -10,7 +10,7 @@ void Main() {
     ints(l, r, c);
     v.eb(l, r, c);
   }
-  sort(all(v));
+  sort(v);
   DualSegmentTree<int> t(
       L + 1, [](int a, int b) { return min(a, b); },
       big);

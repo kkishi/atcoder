@@ -12,7 +12,7 @@ void Main() {
     cin >> s[i];
     reverse(all(s[i]));
   }
-  sort(all(s));
+  sort(s);
 
   V<pair<int, int>> len(n);
   rep(i, n) len[i] = {s[i].size(), i};

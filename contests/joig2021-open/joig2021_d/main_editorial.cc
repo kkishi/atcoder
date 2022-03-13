@@ -7,7 +7,7 @@ void Main() {
   ints(n, m, d);
   V<pair<int, int>> xv(n);
   cin >> xv;
-  sort(all(xv));
+  sort(xv);
   V<int> x(n), v(n);
   rep(i, n) tie(x[i], v[i]) = xv[i];
   wt(BinarySearch<int>(-1, big, [&](int mini) {

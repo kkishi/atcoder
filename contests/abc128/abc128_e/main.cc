@@ -16,14 +16,14 @@ void Main() {
     c[i].s -= c[i].x;
     c[i].t -= c[i].x;
   }
-  sort(all(c));
+  sort(c);
 
   vector<pair<int, int>> p(q);
   rep(i, q) {
     cin >> p[i].first;
     p[i].second = i;
   }
-  sort(all(p));
+  sort(p);
 
   multiset<int> active;
   low_priority_queue<pair<int, int>> que;

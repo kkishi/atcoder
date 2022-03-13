@@ -6,7 +6,7 @@ void Main() {
   ints(n, l, w);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   int x = 0;
   int ans = 0;
   each(e, a) {

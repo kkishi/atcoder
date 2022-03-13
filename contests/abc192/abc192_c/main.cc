@@ -9,7 +9,7 @@ void Main() {
     string s = to_string(a);
     sort(all(s), greater{});
     int g1 = stoll(s);
-    sort(all(s));
+    sort(s);
     int g2 = stoll(s);
     a = g1 - g2;
   }

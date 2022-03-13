@@ -18,7 +18,7 @@ void Main() {
     g[p[i]][q[i]] = 1;
   }
   CumulativeSum2D s(g);
-  sort(all(v));
+  sort(v);
   vector dp(n, vector(n + 1, mint(0)));
   rep(i, n) {
     auto [p1, q1] = v[i];

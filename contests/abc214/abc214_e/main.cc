@@ -11,7 +11,7 @@ void Main() {
       ints(l, r);
       v.eb(l, r);
     }
-    sort(all(v));
+    sort(v);
     int box = 1;
     multiset<int> st;
     bool ok = true;

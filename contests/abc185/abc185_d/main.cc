@@ -8,7 +8,7 @@ void Main() {
   cin >> a;
   a.pb(0);
   a.pb(n + 1);
-  sort(all(a));
+  sort(a);
   int mini = n;
   rep(i, sz(a) - 1) {
     int d = a[i + 1] - a[i] - 1;

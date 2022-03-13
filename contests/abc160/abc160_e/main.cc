@@ -7,9 +7,9 @@ void Main() {
   V<int> p(A), q(B), r(C);
   cin >> p >> q >> r;
 
-  sort(all(p));
-  sort(all(q));
-  sort(all(r));
+  sort(p);
+  sort(q);
+  sort(r);
 
   int ai = A - X;
   int bi = B - Y;

@@ -10,7 +10,7 @@ void Main() {
     ints(l, r, c);
     v.eb(l, r, c);
   }
-  sort(all(v));
+  sort(v);
   DualSegmentTree<int> tree(
       n, [](int a, int b) { return min(a, b); }, big);
   tree.Update(0, 1, 0);

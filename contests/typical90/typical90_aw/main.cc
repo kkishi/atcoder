@@ -10,7 +10,7 @@ void Main() {
     ints(c, l, r);
     v.eb(c, l - 1, r);
   }
-  sort(all(v));
+  sort(v);
   DisjointSet ds(n + 1);
   int ans = 0;
   for (auto [c, i, j] : v) {

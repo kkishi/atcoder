@@ -9,7 +9,7 @@ void Main() {
     ints(w, s, v);
     b.eb(s + w, w, s, v);
   }
-  sort(all(b));
+  sort(b);
   V<int> dp(20001, -1);
   dp[0] = 0;
   for (auto [_, w, s, v] : b) {

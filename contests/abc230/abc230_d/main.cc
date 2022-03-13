@@ -6,7 +6,7 @@ void Main() {
   ints(n, d);
   V<pair<int, int>> v(n);
   cin >> v;
-  sort(all(v));
+  sort(v);
   int ans = 0;
   low_priority_queue<int> que;
   each(l, r, v) {

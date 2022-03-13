@@ -25,7 +25,7 @@ void Main() {
       int j = sz(state[i]);
       state[i].eb(mask, j);
     }
-    sort(all(state[i]));
+    sort(state[i]);
     chmax(max_size, sz(state[i]));
   }
   auto state_idx = [&](int i, int32_t mask) {

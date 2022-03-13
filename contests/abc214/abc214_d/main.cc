@@ -11,7 +11,7 @@ void Main() {
     ints(u, v, w);
     vec.eb(w, u - 1, v - 1);
   }
-  sort(all(vec));
+  sort(vec);
   int ans = 0;
   for (auto [w, u, v] : vec) {
     ans += ds.Size(u) * ds.Size(v) * w;

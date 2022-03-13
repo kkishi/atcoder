@@ -14,13 +14,13 @@ void Main() {
     rep(i, l) if (hasbit(mask, i)) sum += a[i];
     L[popcount(mask)].pb(sum);
   }
-  rep(i, l + 1) sort(all(L[i]));
+  rep(i, l + 1) sort(L[i]);
   rep(mask, 1 << r) {
     int sum = 0;
     rep(i, r) if (hasbit(mask, i)) sum += a[l + i];
     R[popcount(mask)].pb(sum);
   }
-  rep(i, r + 1) sort(all(R[i]));
+  rep(i, r + 1) sort(R[i]);
   int ans = 0;
   rep(i, k + 1) {
     int j = k - i;

@@ -13,7 +13,7 @@ void Main() {
   }
   V<int> c(n);
   cin >> c;
-  sort(all(c));
+  sort(c);
 
   int ci = 0;
   V<int> ans(n);

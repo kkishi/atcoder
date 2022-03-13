@@ -19,7 +19,7 @@ void Main() {
   vector win(n + 1, vector(n + 1, vector(n + 1, int(0))));
   rep(r, n + 1) rep(p, n + 1 - r) rep(s, n + 1 - r - p) {
     V<pair<int, int>> v{{r, 0}, {p, 1}, {s, 2}};
-    sort(all(v));
+    sort(v);
     V<int> cnt(3), kind(3);
     rep(i, 3) tie(cnt[i], kind[i]) = v[i];
     int& w = win[r][p][s];

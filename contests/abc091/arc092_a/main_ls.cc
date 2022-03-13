@@ -9,8 +9,8 @@ void Main() {
 #define y second
   rep(i, n) cin >> r[i].x >> r[i].y;
   rep(i, n) cin >> b[i].x >> b[i].y;
-  sort(all(r));
-  sort(all(b));
+  sort(r);
+  sort(b);
   int ans = 0;
   set<int> ry;
   auto ri = r.begin(), bi = b.begin();

@@ -7,7 +7,7 @@ void Main() {
   V<pair<int, int>> wh(n);
   cin >> wh;
   rep(i, n) wh[i].second *= -1;
-  sort(all(wh));
+  sort(wh);
   V<int> v;
   for (auto [_, h] : wh) {
     h *= -1;

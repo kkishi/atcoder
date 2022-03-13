@@ -10,7 +10,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   a.erase(unique(all(a)), a.end());
 
   set<int> fs;

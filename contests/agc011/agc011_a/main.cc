@@ -6,7 +6,7 @@ void Main() {
   ints(n, c, k);
   V<int> t(n);
   cin >> t;
-  sort(all(t));
+  sort(t);
   int ans = 0;
   int start = -big;
   int cnt = 0;

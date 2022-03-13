@@ -9,7 +9,7 @@ void Main() {
 
   V<int> as;
   rep(i, h) rep(j, w) as.pb(a[i][j]);
-  sort(all(as));
+  sort(as);
   as.erase(unique(all(as)), as.end());
   rep(i, h) rep(j, w) {
     auto it = lower_bound(all(as), a[i][j]);
@@ -42,7 +42,7 @@ void Main() {
         }
       }
     }
-    sort(all(v));
+    sort(v);
     int cnt = 0;
     for (auto [_, pop] : v) {
       if (pop) {

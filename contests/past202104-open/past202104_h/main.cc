@@ -9,7 +9,7 @@ void Main() {
     ints(pi, t);
     p[t].pb(pi);
   }
-  each(e, p) sort(all(e));
+  each(e, p) sort(e);
   VV<int> sp(2);
   rep(i, 2) {
     sp[i].resize(sz(p[i]) + 1);

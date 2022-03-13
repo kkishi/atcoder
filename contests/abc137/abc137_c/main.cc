@@ -7,7 +7,7 @@ void Main() {
   map<string, int> m;
   rep(i, n) {
     strings(s);
-    sort(all(s));
+    sort(s);
     ++m[s];
   }
   int ans = 0;

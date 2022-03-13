@@ -6,7 +6,7 @@ void Main() {
   ints(n, t);
   vector<pair<int, int>> f(n);
   rep(i, n) cin >> f[i].first >> f[i].second;
-  sort(all(f));
+  sort(f);
   vector<int> dp(t + 3001);
   int ans = 0;
   rep(i, n) {

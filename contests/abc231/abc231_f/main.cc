@@ -16,7 +16,7 @@ void Main() {
   }
   Compressor cmp(val);
   int N = sz(cmp.coord);
-  sort(all(v));
+  sort(v);
   BIT<int> bit(N);
   int ans = 0;
   int i = 0;

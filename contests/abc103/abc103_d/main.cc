@@ -11,7 +11,7 @@ void Main() {
     ints(a, b);
     v.pb({b, a});
   }
-  sort(all(v));
+  sort(v);
   int ans = 0;
   int last = 0;
   for (auto [b, a] : v) {

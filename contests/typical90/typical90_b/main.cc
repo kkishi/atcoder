@@ -22,6 +22,6 @@ void Main() {
     if (x) ok = false;
     if (ok) ans.pb(s);
   }
-  sort(all(ans));
+  sort(ans);
   each(e, ans) wt(e);
 }

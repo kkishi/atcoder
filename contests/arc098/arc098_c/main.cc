@@ -8,7 +8,7 @@ void Main() {
   cin >> a;
 
   V<int> b = a;
-  sort(all(b));
+  sort(b);
 
   int ans = big;
   rep(i, n) {  // OK to use x in a if x >= b[i].

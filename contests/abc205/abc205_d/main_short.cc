@@ -7,7 +7,7 @@ void Main() {
   ints(n, q);
   V<int> a(n);
   cin >> a;
-  sort(all(a));
+  sort(a);
   a.erase(unique(all(a)), a.end());
   a.pb(big);
   rep(q) {

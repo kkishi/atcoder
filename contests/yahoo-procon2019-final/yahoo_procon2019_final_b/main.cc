@@ -18,8 +18,8 @@ void Main() {
   };
   V<int> a = f(), b = f();
   int d = max(*max_element(all(a)), *max_element(all(b)));
-  sort(all(a));
-  sort(all(b));
+  sort(a);
+  sort(b);
   V<int> s(sz(b) + 1);
   rep(i, sz(b)) s[i + 1] = s[i] + b[i];
   int ans = 0;

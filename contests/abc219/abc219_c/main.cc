@@ -15,6 +15,6 @@ void Main() {
     each(e, t) e = 'a' + ord[e - 'a'];
     ans.eb(t, s[i]);
   }
-  sort(all(ans));
+  sort(ans);
   each(_, e, ans) wt(e);
 }

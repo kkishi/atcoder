@@ -8,7 +8,7 @@ void Main() {
   cin >> l;
   V<int> L;
   rep(i, n - 1) L.pb(l[i + 1] - l[i] - 1);
-  sort(all(L));
+  sort(L);
   V<int> s(n);
   rep(i, n - 1) s[i + 1] = s[i] + L[i];
   rep(m) {

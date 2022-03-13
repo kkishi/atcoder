@@ -10,7 +10,7 @@ void Main() {
     v.eb(a, c);
     v.eb(b + 1, -c);
   }
-  sort(all(v));
+  sort(v);
   int ans = 0;
   int curr = 0;
   rep(i, sz(v)) {

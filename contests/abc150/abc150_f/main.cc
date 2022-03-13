@@ -40,6 +40,6 @@ void Main() {
     rep(j, 30) x |= (matches[j][1][i]) << j;
     ans.pb({(n - i) % n, x});
   }
-  sort(all(ans));
+  sort(ans);
   for (auto [a, b] : ans) wt(a, b);
 }

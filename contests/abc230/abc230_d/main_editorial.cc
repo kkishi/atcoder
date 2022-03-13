@@ -9,7 +9,7 @@ void Main() {
     ints(l, r);
     v.eb(r, l);
   }
-  sort(all(v));
+  sort(v);
   int ans = 0;
   int last = 0;
   each(r, l, v) {

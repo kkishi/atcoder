@@ -11,7 +11,7 @@ void Main() {
   cin >> a;
 
   if (A == 1) {
-    sort(all(a));
+    sort(a);
     rep(i, N) wt(a[i]);
     return;
   }

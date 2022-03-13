@@ -6,7 +6,7 @@ void Main() {
   ints(n, m);
   vector<pair<int, int>> job(n);
   rep(i, n) cin >> job[i].first >> job[i].second;
-  sort(all(job));
+  sort(job);
 
   int i = 0;
   priority_queue<int> que;

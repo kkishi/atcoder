@@ -19,7 +19,7 @@ void Main() {
 
   V<Robot> robot(N);
   rep(i, N) cin >> robot[i].X >> robot[i].D;
-  sort(all(robot));
+  sort(robot);
 
   SegmentTree<int> tree(N, [](int a, int b) { return max(a, b); });
   rep(i, N) tree.Set(i, i);

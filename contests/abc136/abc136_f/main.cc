@@ -19,7 +19,7 @@ void Main() {
 
   vector<Point> p(n);
   rep(i, n) p[i] = {x[i], y[i], i};
-  sort(all(p));
+  sort(p);
 
   Compressor cy(y);
   vector<int> upper_left(n), lower_left(n), upper_right(n), lower_right(n);

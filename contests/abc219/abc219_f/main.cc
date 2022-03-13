@@ -16,7 +16,7 @@ void Main() {
     if (e == 'D') ++p.second;
     v.eb(p);
   }
-  sort(all(v));
+  sort(v);
   v.erase(unique(all(v)), v.end());
 
   if (p == P{0, 0}) {

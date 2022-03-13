@@ -5,6 +5,6 @@
 void Main() {
   V<int> v(3);
   cin >> v;
-  sort(all(v));
+  sort(v);
   wt(v[0] * v[1] * (v[2] % 2));
 }

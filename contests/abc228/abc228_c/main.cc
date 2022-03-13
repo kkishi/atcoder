@@ -10,6 +10,6 @@ void Main() {
     sum[i] += p;
   }
   V<int> v(all(sum));
-  sort(all(v));
+  sort(v);
   rep(i, n) wt((v.end() - lower_bound(all(v), sum[i] + 301)) < k);
 }

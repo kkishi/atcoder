@@ -9,7 +9,7 @@ void Main() {
   ints(n);
   V<int> c(n);
   cin >> c;
-  sort(all(c));
+  sort(c);
   mint ans = 1;
   rep(i, n) {
     int x = c[i] - i;

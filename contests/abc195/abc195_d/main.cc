@@ -16,7 +16,7 @@ void Main() {
       if (l <= i && i <= r) continue;
       box.pb(x[i]);
     }
-    sort(all(box));
+    sort(box);
     int ans = 0;
     V<int> used(n);
     each(e, box) {

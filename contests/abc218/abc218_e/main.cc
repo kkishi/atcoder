@@ -16,7 +16,7 @@ void Main() {
       v.eb(c, a, b);
     }
   }
-  sort(all(v));
+  sort(v);
   int ans = 0;
   for (auto [c, a, b] : v) {
     if (!ds.Same(a, b)) {

@@ -21,7 +21,7 @@ void Main() {
       v.eb(a);
       v.eb(a + 2 * pi);
     }
-    sort(all(v));
+    sort(v);
     rep(j, sz(v)) {
       double x = v[j] + pi;
       auto it = lower_bound(all(v), x);

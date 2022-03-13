@@ -7,7 +7,7 @@ void Main() {
   ints(n);
   V<pair<int, int>> v(n);
   cin >> v;
-  sort(all(v));
+  sort(v);
   wt(BinarySearch<int>(0, big, [&](int X) {
     deque<pair<int, int>> que;
     set<int> st;

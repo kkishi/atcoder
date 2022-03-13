@@ -14,7 +14,7 @@ void Main() {
   }
   V<char> v(all(st));
   while (sz(v) < 10) v.pb('A');
-  sort(all(v));
+  sort(v);
   do {
     map<char, int> m;
     rep(i, sz(v)) m[v[i]] = i;

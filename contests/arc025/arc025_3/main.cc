@@ -18,7 +18,7 @@ void Main() {
     V<optional<int>> od = Dijkstra(g, i).dist;
     V<int> d;
     rep(j, n) if (j != i) d.pb(*od[j]);
-    sort(all(d));
+    sort(d);
     int k = -1;
     rep(j, sz(d)) {
       while (k + 1 < sz(d) && d[k + 1] * r < d[j] * t) ++k;

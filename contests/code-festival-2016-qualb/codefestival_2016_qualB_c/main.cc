@@ -8,8 +8,8 @@ void Main() {
   cin >> p >> q;
   p.pb(big);
   q.pb(big);
-  sort(all(p));
-  sort(all(q));
+  sort(p);
+  sort(q);
   int x = w + 1;
   int y = h + 1;
   auto pit = p.begin();

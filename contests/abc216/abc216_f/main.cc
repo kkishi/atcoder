@@ -11,7 +11,7 @@ void Main() {
   cin >> a >> b;
   V<pair<int, int>> v;
   rep(i, n) v.eb(a[i], b[i]);
-  sort(all(v));
+  sort(v);
   int N = 5000;
   vector dp(N + 1, mint(0));
   dp[0] = 1;

@@ -13,7 +13,7 @@ void Main() {
     ints(x);
     qs.pb({x, i});
   }
-  sort(all(qs));
+  sort(qs);
   reverse(all(qs));
 
   V<int> rsum(n + 1);

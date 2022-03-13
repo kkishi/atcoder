@@ -6,10 +6,10 @@ void Main() {
   ints(x, y, a, b, c);
   wt(([&] {
     V<int> xy = {x, y};
-    sort(all(xy));
+    sort(xy);
     do {
       V<int> abc = {a, b, c};
-      sort(all(abc));
+      sort(abc);
       do {
         int x = xy[0];
         int y = xy[1];

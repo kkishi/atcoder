@@ -13,7 +13,7 @@ void Main() {
       as.pb(a);
       bs += b;
     } else {
-      sort(all(as));
+      sort(as);
       int mid = as[(as.size() - 1) / 2];
       int sum = bs;
       for (int a : as) sum += abs(mid - a);

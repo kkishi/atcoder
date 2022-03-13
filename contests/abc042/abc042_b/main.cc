@@ -6,6 +6,6 @@ void Main() {
   ints(n, l);
   V<string> s(n);
   cin >> s;
-  sort(all(s));
+  sort(s);
   wt(accumulate(s));
 }

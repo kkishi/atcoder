@@ -39,7 +39,7 @@ void Main() {
     }
     e.eb(dist, n + i, n + j);
   }
-  sort(all(e));
+  sort(e);
 
   double ans = big;
   rep(mask, 1 << m) {

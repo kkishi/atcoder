@@ -9,7 +9,7 @@ void Main() {
     ints(x, l);
     r.pb({x + l, x - l});
   }
-  sort(all(r));
+  sort(r);
   int ans = 1;
   int last = r[0].first;
   rep(i, 1, n) if (r[i].second >= last) {

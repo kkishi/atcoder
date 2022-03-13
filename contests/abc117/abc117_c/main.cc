@@ -7,7 +7,7 @@ void Main() {
   vector<int> x(m);
   cin >> x;
 
-  sort(all(x));
+  sort(x);
   int ans = x[m - 1] - x[0];
 
   vector<int> d(m - 1);

@@ -15,7 +15,7 @@ void Main() {
     --a, --b;
     e.eb(r, a, b);
   }
-  sort(all(e));
+  sort(e);
   DisjointSet ds(n + 1);
   int ans = 0;
   for (auto [c, a, b] : e) {

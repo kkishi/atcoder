@@ -7,7 +7,7 @@ void Main() {
   ints(n, k);
   vector<int> a(n), f(n);
   cin >> a >> f;
-  sort(all(a));
+  sort(a);
   sort(all(f), greater());
   auto check = [&](int x) {
     int training = 0;

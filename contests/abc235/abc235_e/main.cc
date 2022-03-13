@@ -14,7 +14,7 @@ void Main() {
     ints(u, v, w);
     e.eb(w, u, v, i);
   }
-  sort(all(e));
+  sort(e);
   DisjointSet ds(n);
   V<bool> ans(q);
   for (auto [w, a, b, i] : e) {

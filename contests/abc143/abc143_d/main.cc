@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> l(n);
   cin >> l;
-  sort(all(l));
+  sort(l);
 
   int ans = 0;
   rep(a, n - 2) {

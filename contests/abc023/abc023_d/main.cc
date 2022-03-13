@@ -14,7 +14,7 @@ void Main() {
       int t = (x - h[i]) / s[i];
       v.pb(t);
     }
-    sort(all(v));
+    sort(v);
     rep(i, n) if (v[i] < i) return false;
     return true;
   }));

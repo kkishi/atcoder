@@ -10,7 +10,7 @@ void Main() {
   rep(round, m) {
     V<pair<int, int>> v;
     rep(i, 2 * n) v.eb(-win[i], i);
-    sort(all(v));
+    sort(v);
     rep(i, n) {
       auto f = [](char c) -> int {
         string h = "GCP";
@@ -26,6 +26,6 @@ void Main() {
   }
   V<pair<int, int>> v;
   rep(i, 2 * n) v.eb(-win[i], i);
-  sort(all(v));
+  sort(v);
   each(e, v) wt(e.second + 1);
 }

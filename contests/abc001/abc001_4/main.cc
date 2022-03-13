@@ -10,7 +10,7 @@ void Main() {
 
   V<pair<int, int>> se(n);
   rep(i, n) se[i] = {s[i], e[i]};
-  sort(all(se));
+  sort(se);
   rep(i, n) tie(s[i], e[i]) = se[i];
 
   V<int> sh(n), sm(n), eh(n), em(n);

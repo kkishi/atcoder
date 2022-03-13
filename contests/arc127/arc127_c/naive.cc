@@ -16,7 +16,7 @@ void Main() {
     reverse(all(s));
     v.eb(s);
   }
-  sort(all(v));
+  sort(v);
   rep(i, sz(v)) {
     string s;
     int I = i;

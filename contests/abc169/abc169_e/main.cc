@@ -6,8 +6,8 @@ void Main() {
   ints(n);
   V<int> a(n), b(n);
   rep(i, n) cin >> a[i] >> b[i];
-  sort(all(a));
-  sort(all(b));
+  sort(a);
+  sort(b);
   if (n % 2) {
     wt(b[n / 2] - a[n / 2] + 1);
   } else {
