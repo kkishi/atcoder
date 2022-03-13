@@ -6,7 +6,7 @@ void Main() {
   ints(n, m, X, Y);
   vector<int> x(n), y(m);
   cin >> x >> y;
-  if (max(X, *max_element(all(x))) < min(Y, *min_element(all(y)))) {
+  if (max(X, max(x)) < min(Y, min(y))) {
     wt("No War");
   } else {
     wt("War");

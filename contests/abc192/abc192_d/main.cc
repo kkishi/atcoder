@@ -20,7 +20,7 @@ void Main() {
     }
     return true;
   };
-  i128 d = *max_element(all(x));
+  i128 d = max(x);
   if (!f(d + 1)) {
     wt(0);
     return;

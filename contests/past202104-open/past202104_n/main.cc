@@ -19,5 +19,5 @@ void Main() {
   each(e, v) rep(j, h + 1) if (dp[j] != -1) {
     chmax(dp[max(0, j - e.b)], dp[j] + j * e.a);
   }
-  wt(*max_element(all(dp)));
+  wt(max(dp));
 }

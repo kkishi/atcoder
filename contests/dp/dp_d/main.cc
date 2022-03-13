@@ -11,5 +11,5 @@ void Main() {
   rep(i, n) rrep(j, W + 1 - w[i]) if (dp[j] != -1) {
     chmax(dp[j + w[i]], dp[j] + v[i]);
   }
-  wt(*max_element(all(dp)));
+  wt(max(dp));
 }

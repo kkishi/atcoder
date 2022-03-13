@@ -8,7 +8,7 @@ void Main() {
   cin >> h;
   int ans = 0;
   while (true) {
-    int maxi = *max_element(all(h));
+    int maxi = max(h);
     if (maxi == 0) break;
     rep(i, n) if (h[i] == maxi) {
       for (int j = i; j < n && h[j] == maxi; ++j) {

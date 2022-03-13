@@ -37,5 +37,5 @@ void Main() {
       }
     }
   }
-  wt(*max_element(all(dist)));
+  wt(max(dist));
 }

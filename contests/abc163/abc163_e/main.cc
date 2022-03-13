@@ -16,5 +16,5 @@ void Main() {
     chmax(dp[i + 1][j + 1], dp[i][j] + a * abs(index - j));
     chmax(dp[i + 1][j], dp[i][j] + a * abs(index - (n - 1 - (i - j))));
   }
-  wt(*max_element(all(dp[n])));
+  wt(max(dp[n]));
 }

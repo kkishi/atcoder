@@ -15,5 +15,5 @@ void Main() {
     }
     swap(ndp, dp);
   }
-  wt(*max_element(all(dp)));
+  wt(max(dp));
 }

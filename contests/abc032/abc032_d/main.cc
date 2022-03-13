@@ -31,16 +31,16 @@ void Main() {
       if (it != cand.end()) chmax(ans, vs + it->second);
     }
     wt(ans);
-  } else if (int mw = *max_element(all(w)); mw <= 1000) {
+  } else if (int mw = max(w); mw <= 1000) {
     int size = min(W, N * mw);
     V<int> dp(size + 1, -1);
     dp[0] = 0;
     rep(i, N) rrep(j, size + 1 - w[i]) if (dp[j] != -1) {
       chmax(dp[j + w[i]], dp[j] + v[i]);
     }
-    wt(*max_element(all(dp)));
+    wt(max(dp));
   } else {
-    int mv = *max_element(all(v));
+    int mv = max(v);
     assert(mv <= 1000);
     int size = N * mv;
     V<int> dp(size + 1, big);

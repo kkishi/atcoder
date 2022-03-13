@@ -17,10 +17,10 @@ void Main() {
     swap(c, nc);
 
     V<int> a(n);
-    int lo = *min_element(all(c[0]));
+    int lo = min(c[0]);
     rep(i, n) a[i] = c[0][i] - lo;
     rep(i, 1, n) {
-      int lo = *min_element(all(c[i]));
+      int lo = min(c[i]);
       rep(j, n) if (c[i][j] - lo != a[j]) ok = false;
     }
     v.eb(a);

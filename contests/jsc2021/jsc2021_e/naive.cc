@@ -6,7 +6,7 @@
 void Main() {
   ints(k);
   strings(s);
-  int maxc = *max_element(all(s)) - 'a';
+  int maxc = max(s) - 'a';
   int ans = big;
   Fix([&](auto rec, string t) {
     if ((sz(t) << k) > sz(s)) return;

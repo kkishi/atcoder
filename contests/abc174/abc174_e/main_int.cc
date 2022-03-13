@@ -7,7 +7,7 @@ void Main() {
   ints(n, k);
   V<int> a(n);
   cin >> a;
-  wt(BinarySearch<int>(*max_element(all(a)), 0, [&](int mid) {
+  wt(BinarySearch<int>(max(a), 0, [&](int mid) {
     int cuts = 0;
     rep(i, n) cuts += (a[i] - 1) / mid;
     return cuts <= k;

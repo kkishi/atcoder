@@ -8,7 +8,7 @@ void Main() {
   ints(n, k);
   V<int> a(n);
   cin >> a;
-  int x = BinarySearch<int>(*max_element(all(a)), -1, [&](int x) {
+  int x = BinarySearch<int>(max(a), -1, [&](int x) {
     int sum = 0;
     each(e, a) sum += max(0, e - x);
     return sum <= k;

@@ -15,5 +15,5 @@ void Main() {
       ++ans[2];
     }
   }
-  wt(*min_element(all(ans)));
+  wt(min(ans));
 }

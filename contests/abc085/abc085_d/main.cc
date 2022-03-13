@@ -6,7 +6,7 @@ void Main() {
   ints(n, h);
   V<int> a(n), b(n);
   rep(i, n) cin >> a[i] >> b[i];
-  int maxa = *max_element(all(a));
+  int maxa = max(a);
   sort(b, greater{});
   int ans = big;
   int damage = 0;

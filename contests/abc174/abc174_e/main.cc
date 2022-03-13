@@ -10,7 +10,7 @@ void Main() {
   ints(n, k);
   V<ld> a(n);
   cin >> a;
-  ld ans = BinarySearch<ld>(*max_element(all(a)), 0, [&](ld mid) {
+  ld ans = BinarySearch<ld>(max(a), 0, [&](ld mid) {
     int cuts = 0;
     rep(i, n) cuts += (a[i] / mid) - eps;
     return cuts <= k;

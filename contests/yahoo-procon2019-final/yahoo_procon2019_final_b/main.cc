@@ -17,7 +17,7 @@ void Main() {
         [](auto&, int x) { return x + 1; });
   };
   V<int> a = f(), b = f();
-  int d = max(*max_element(all(a)), *max_element(all(b)));
+  int d = max(max(a), max(b));
   sort(a);
   sort(b);
   V<int> s(sz(b) + 1);

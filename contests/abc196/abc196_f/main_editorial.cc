@@ -16,5 +16,5 @@ void Main() {
     V<int> c = atcoder::convolution(b, a);
     rep(i, sz(t) - 1, sz(c) - sz(t) + 1) d[i - (sz(t) - 1)] += c[i];
   }
-  wt(sz(t) - *max_element(all(d)));
+  wt(sz(t) - max(d));
 }

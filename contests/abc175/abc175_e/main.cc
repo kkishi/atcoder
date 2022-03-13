@@ -20,5 +20,5 @@ void Main() {
       chmax(dp[i + 1][j + 1][t + 1], dp[i + 1][j + 1][t] + item[i + 1][j + 1]);
     }
   }
-  wt(*max_element(all(dp[R][C])));
+  wt(max(dp[R][C]));
 }

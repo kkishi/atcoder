@@ -16,5 +16,5 @@ void Main() {
   V<int> dp(n);
   rrep(i, n) for (const auto& e : g.Edges(ts[i]))
       chmax(dp[e.from], dp[e.to] + 1);
-  wt(*max_element(all(dp)));
+  wt(max(dp));
 }

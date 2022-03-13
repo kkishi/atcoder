@@ -18,5 +18,5 @@ void Main() {
       chmax(dp[i + w], dp[i] + v);
     }
   }
-  wt(*max_element(all(dp)));
+  wt(max(dp));
 }

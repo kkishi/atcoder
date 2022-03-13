@@ -7,7 +7,7 @@ void Main() {
   V<int> a(n);
   cin >> a;
 
-  const int N = *max_element(all(a)) + 1;
+  const int N = max(a) + 1;
   V<int> b(N + 1);
   rep(i, m)++ b[a[i]];
   int ans;

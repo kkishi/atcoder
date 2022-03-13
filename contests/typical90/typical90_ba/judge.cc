@@ -32,7 +32,7 @@ void Main() {
     if (x == '?') {
       wt_flush(v[i - 1]);
     } else {
-      assert(i == *max_element(all(v)));
+      assert(i == max(v));
       break;
     }
   }

@@ -17,9 +17,9 @@ void Main() {
       int op = (i == 0 ? (x ? w : z) : a[i - 1]);
       v.pb(abs(op - a[n - 1]));
       if (x) {
-        d = *max_element(all(v));
+        d = max(v);
       } else {
-        d = *min_element(all(v));
+        d = min(v);
       }
     }
     return *d;
