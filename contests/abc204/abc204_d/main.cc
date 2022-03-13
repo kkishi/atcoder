@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> t(n);
   cin >> t;
-  int s = accumulate(all(t), int(0));
+  int s = accumulate(t);
   V<bool> dp(s + 1);
   dp[0] = true;
   each(e, t) rrep(i, e, s + 1) if (dp[i - e]) dp[i] = true;

@@ -12,7 +12,7 @@ void Main() {
   vector b(k + 1, vector(n, mint(1)));
   rep(i, k) rep(j, n) b[i + 1][j] = b[i][j] * a[j];
   V<mint> s(k + 1);
-  rep(i, k + 1) s[i] = accumulate(all(b[i]), mint(0));
+  rep(i, k + 1) s[i] = accumulate(b[i]);
   rep(i, 1, k + 1) {
     mint sum = 0;
     rep(j, i + 1) sum += mint::Comb(i, j) * (s[i - j] * s[j] - s[i]);

@@ -10,6 +10,6 @@ void Main() {
   vector v(n, vector(6, int(0)));
   cin >> v;
   mint ans = 1;
-  rep(i, n) ans *= accumulate(all(v[i]), mint(0));
+  rep(i, n) ans *= accumulate(v[i]);
   wt(ans);
 }

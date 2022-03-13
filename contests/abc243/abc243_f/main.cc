@@ -9,7 +9,7 @@ void Main() {
   ints(n, m, k);
   V<int> w(n);
   cin >> w;
-  mint s = accumulate(all(w), mint(0));
+  mint s = accumulate(w);
   // Partition w into 3 subsets.
   int n3 = n / 3;
   V<int> cs = {0, n3, n3 * 2, n};
@@ -17,12 +17,12 @@ void Main() {
   V<mint> S(3);
   rep(i, 3) {
     rep(j, cs[i], cs[i + 1]) W[i].eb(w[j]);
-    S[i] = accumulate(all(W[i]), mint(0));
+    S[i] = accumulate(W[i]);
   }
   auto f = [&](const V<mint>& w) {
     const int N = 50;
     int n = sz(w);
-    mint s = accumulate(all(w), mint(0));
+    mint s = accumulate(w);
     // Optimze by not calling ModInt.Inv() in the heavy loop. Note that when
     // s=0, inv_s won't be used, so its value doesn't matter.
     mint inv_s = s == 0 ? 0 : 1 / s;

@@ -12,7 +12,7 @@ void Main() {
     set<int> st;
     each(x, v) {
       int cnt = 0;
-      int sum = accumulate(all(x), int(0));
+      int sum = accumulate(x);
       each(y, x) if (hasbit(s, y - 1)) {
         ++cnt;
         sum -= y;

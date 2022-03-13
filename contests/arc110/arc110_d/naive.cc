@@ -49,7 +49,7 @@ void Main() {
   // 3, 3, 3 -> C(n, 11)
   // 1, 2, 1 -> C(n, 6)
   V<int> a{1, 2, 1};
-  int sum = accumulate(all(a), 0LL);
+  int sum = accumulate(a);
   int n = sz(a);
   int acc = 0;
   rep(i, 10) {

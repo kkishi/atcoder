@@ -9,7 +9,7 @@ void Main() {
   ints(n, k);
   V<int> a(n);
   cin >> a;
-  int s = accumulate(all(a), int(0)) - a[0];
+  int s = accumulate(a) - a[0];
   mint x = 1;
   rep(i, 1, n) x *= mint::CombSlow(a[i] + k - 1, k - 1);
   wt(x * mint::CombSlow(a[0] - s - k + (k - 1), k - 1));

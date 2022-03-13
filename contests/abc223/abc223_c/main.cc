@@ -7,7 +7,7 @@ void Main() {
   ints(n);
   V<double> a(n), b(n);
   rep(i, n) cin >> a[i] >> b[i];
-  double s = accumulate(all(a), double(0));
+  double s = accumulate(a);
   double x = BinarySearch<double>(0, big, [&](double x) {
     double l = 0;
     {

@@ -9,7 +9,7 @@ void Main() {
   map<int, int> m;
   rep(i, n) m[a[i]]++;
   ints(q);
-  int sum = accumulate(all(a), 0LL);
+  int sum = accumulate(a);
   while (q--) {
     ints(b, c);
     auto it = m.find(b);

@@ -17,5 +17,5 @@ void Main() {
     rep(i, n + 1 - e) rep(j, e + 1) ndp[i + j] += dp[i] * mint::Comb(i + j, i);
     swap(dp, ndp);
   }
-  wt(accumulate(all(dp), mint(0)) - 1);
+  wt(accumulate(dp) - 1);
 }

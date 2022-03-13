@@ -20,6 +20,6 @@ void Main() {
   } else {
     p = b / d;
   }
-  double q = a - (p * accumulate(all(s), double(0))) / n;
+  double q = a - (p * accumulate(s)) / n;
   wt(p, q);
 }

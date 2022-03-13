@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   vector<int> l(n);
   cin >> l;
-  int s = accumulate(all(l), 0);
+  int s = accumulate(l);
   bool ok = true;
   rep(i, n) if (s - l[i] <= l[i]) ok = false;
   wt(ok);

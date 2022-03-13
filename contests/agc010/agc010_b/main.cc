@@ -6,7 +6,7 @@ bool Solve() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int sum = accumulate(all(a), 0LL);
+  int sum = accumulate(a);
   int N = n * (n + 1) / 2;
   if (sum % N != 0) return false;
   int k = sum / N;

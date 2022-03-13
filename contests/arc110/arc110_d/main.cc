@@ -9,6 +9,6 @@ void Main() {
   ints(n, m);
   V<int> a(n);
   cin >> a;
-  int sum = accumulate(all(a), 0LL);
+  int sum = accumulate(a);
   wt(mint::CombSlow(m + n, sum + n));
 }

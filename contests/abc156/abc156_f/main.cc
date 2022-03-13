@@ -19,7 +19,7 @@ void Main() {
         }
       }
     }
-    int es = accumulate(all(e), int(0));
+    int es = accumulate(e);
     int er = accumulate(e.begin(), e.begin() + n % k, int(0));
     int an = x + n / k * es + er;
     neg += an / m - x / m;

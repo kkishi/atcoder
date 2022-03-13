@@ -85,5 +85,5 @@ void Main() {
       cdp[next_state[pj][si].second] += d;
     }
   }
-  wt(accumulate(all(dp[1 - idx]), mint(0)));
+  wt(accumulate(dp[1 - idx]));
 }

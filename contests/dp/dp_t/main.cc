@@ -27,5 +27,5 @@ void Main() {
       }
     }
   }
-  wt(accumulate(all(dp[n - 1]), mint(0)));
+  wt(accumulate(dp[n - 1]));
 }

@@ -7,5 +7,5 @@ void Main() {
   V<int> a(n);
   cin >> a;
   sort(all(a));
-  wt(a[n - m] * 4 * m >= accumulate(all(a), 0));
+  wt(a[n - m] * 4 * m >= accumulate(a));
 }

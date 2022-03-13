@@ -33,7 +33,7 @@ void Main() {
 #ifdef DEBUG
   auto check = [](int n, const V<int>& ans) {
     assert(sz(ans) == n);
-    int sum = accumulate(all(ans), int(0));
+    int sum = accumulate(ans);
     rep(i, n) assert(gcd(ans[i], sum - ans[i]) != 1);
     int g = ans[0];
     rep(i, 1, n) g = gcd(g, ans[i]);

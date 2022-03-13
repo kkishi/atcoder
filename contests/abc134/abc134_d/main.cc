@@ -16,6 +16,6 @@ void Main() {
       b[i] = 1;
     }
   }
-  wt(accumulate(all(b), 0));
+  wt(accumulate(b));
   rep(i, n) if (b[i + 1] == 1) wt(i + 1);
 }

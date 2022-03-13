@@ -25,7 +25,7 @@ void Main() {
   };
 
   int ans = 0;
-  each(g, Divisors(accumulate(all(a), int(0)))) {
+  each(g, Divisors(accumulate(a))) {
     if (check(g)) chmax(ans, g);
   }
   wt(ans);

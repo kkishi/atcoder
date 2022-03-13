@@ -43,5 +43,5 @@ void Main() {
     }
     if (dp[i] > 0) dbg(i, dp[i]);
   }
-  wt(accumulate(all(dp), int(0)) + 1);
+  wt(accumulate(dp) + 1);
 }

@@ -6,6 +6,6 @@
 void Main() {
   ints(n);
   V<int> ds = Divisors(n);
-  int sum = accumulate(all(ds), -n);
+  int sum = accumulate(ds) - n;
   wt(sum == n ? "Perfect" : sum < n ? "Deficient" : "Abundant");
 }

@@ -7,5 +7,5 @@ void Main() {
   V<string> s(n);
   cin >> s;
   sort(all(s));
-  wt(accumulate(all(s), ""s));
+  wt(accumulate(s));
 }

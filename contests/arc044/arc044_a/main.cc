@@ -17,7 +17,7 @@ bool Solve() {
     v.pb(n % 10);
     n /= 10;
   }
-  return !even(v[0]) && (v[0] != 5) && (accumulate(all(v), 0) % 3 != 0);
+  return !even(v[0]) && (v[0] != 5) && (accumulate(v) % 3 != 0);
 }
 
 void Main() { wt(Solve() ? "Prime" : "Not Prime"); }

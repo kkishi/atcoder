@@ -15,6 +15,6 @@ void Main() {
     swap(dp, ndp);
     dbg(dp);
   }
-  mint ans = accumulate(all(dp), mint(0)) - dp[0];
+  mint ans = accumulate(dp) - dp[0];
   wt(ans);
 }

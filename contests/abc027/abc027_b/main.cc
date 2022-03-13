@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int tot = accumulate(all(a), 0LL);
+  int tot = accumulate(a);
   if (tot % n != 0) {
     wt(-1);
     return;

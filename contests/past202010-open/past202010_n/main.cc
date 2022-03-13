@@ -37,5 +37,5 @@ void Main() {
     }
     swap(dp, ndp);
   }
-  wt(accumulate(all(dp), int(0)));
+  wt(accumulate(dp));
 }

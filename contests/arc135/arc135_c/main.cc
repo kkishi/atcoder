@@ -14,5 +14,5 @@ void Main() {
     rep(j, 30) if (hasbit(a[i], j)) d += (1 << j) * (n - b[j] * 2);
     chmax(D, d);
   }
-  wt(accumulate(all(a), int(0)) + D);
+  wt(accumulate(a) + D);
 }

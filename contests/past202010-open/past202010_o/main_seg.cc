@@ -22,5 +22,5 @@ void Main() {
     }
     t.Update(i + 1, i + 2, x + a[i]);
   }
-  wt(accumulate(all(a), int(0)) - t.Get(n));
+  wt(accumulate(a) - t.Get(n));
 }

@@ -7,7 +7,7 @@ void Main() {
   V<int> a(n);
   cin >> a;
   int s = 0;
-  int tot = accumulate(all(a), int(0));
+  int tot = accumulate(a);
   int ans = tot;
   rep(i, n) {
     s += a[i];

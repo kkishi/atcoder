@@ -15,5 +15,5 @@ void Main() {
       if ((mask & m) == 0) dp[mask | m] += dp[mask];
     }
   }
-  wt(accumulate(all(dp), int(0)));
+  wt(accumulate(dp));
 }

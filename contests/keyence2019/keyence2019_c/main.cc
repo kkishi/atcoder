@@ -9,7 +9,7 @@ void Main() {
   V<int> c(n);
   rep(i, n) c[i] = a[i] - b[i];
   sort(all(c), greater());
-  if (accumulate(all(c), 0LL) < 0) {
+  if (accumulate(c) < 0) {
     wt(-1);
     return;
   }

@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int tot = accumulate(all(a), 0LL);
+  int tot = accumulate(a);
   int sum = 0;
   int ans = big;
   rep(i, n) {

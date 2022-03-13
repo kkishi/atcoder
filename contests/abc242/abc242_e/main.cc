@@ -22,13 +22,13 @@ void Solve() {
       dp[i][nless][k] += x;
     }
   }
-  mint ans = accumulate(all(dp[N - 1][1]), mint(0));
+  mint ans = accumulate(dp[N - 1][1]);
   {
     string head = s.substr(0, N);
     string tail = s.substr(0, n / 2);
     reverse(all(tail));
     if (head + tail <= s) {
-      ans += accumulate(all(dp[N - 1][0]), mint(0));
+      ans += accumulate(dp[N - 1][0]);
     }
   }
   wt(ans);

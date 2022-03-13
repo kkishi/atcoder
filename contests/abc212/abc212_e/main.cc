@@ -19,7 +19,7 @@ void Main() {
   dp[0] = 1;
   rep(k) {
     V<mint> ndp(n);
-    mint sum = accumulate(all(dp), mint(0));
+    mint sum = accumulate(dp);
     rep(i, n) {
       mint sub = 0;
       each(e, g[i]) sub += dp[e];

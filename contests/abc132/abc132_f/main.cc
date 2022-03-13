@@ -24,5 +24,5 @@ void Main() {
       d[j + 1] += d[j];
     }
   }
-  wt(accumulate(all(dp[k]), mint(0)));
+  wt(accumulate(dp[k]));
 }

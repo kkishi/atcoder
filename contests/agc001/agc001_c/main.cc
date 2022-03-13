@@ -23,7 +23,7 @@ void Main() {
       a.pb(rec(c, i, 0, k / 2));
       b.pb(rec(c, i, 0, (k + 1) / 2));
     }
-    int s = accumulate(all(a), int(0));
+    int s = accumulate(a);
     rep(i, sz(a)) chmin(ans, s - (a[i] - b[i]));
   }
   wt(ans);

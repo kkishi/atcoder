@@ -6,7 +6,7 @@ bool Solve() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  int s = accumulate(all(a), int());
+  int s = accumulate(a);
   if (s % 10) return false;
   s /= 10;
   rep(i, n) a.pb(a[i]);

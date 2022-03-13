@@ -7,7 +7,7 @@ void Main() {
   V<int> a(n);
   cin >> a;
   ints(x);
-  int sum = accumulate(all(a), int(0));
+  int sum = accumulate(a);
   int ans = (x / sum) * n;
   x %= sum;
   rep(i, n) {
