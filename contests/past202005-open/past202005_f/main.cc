@@ -27,6 +27,6 @@ void Main() {
       return;
     }
   }
-  reverse(all(t));
+  reverse(t);
   wt(h + t);
 }

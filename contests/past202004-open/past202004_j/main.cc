@@ -16,7 +16,7 @@ void Main() {
          assert(s[i] == '(');
          auto [res, pos] = rec(i + 1, end);
          string ser = res;
-         reverse(all(ser));
+         reverse(ser);
          ret += f(b, i) + res + ser;
          b = pos;
        }

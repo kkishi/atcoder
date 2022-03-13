@@ -9,7 +9,7 @@ void Main() {
     d.pb(n % 10);
     n /= 10;
   }
-  reverse(all(d));
+  reverse(d);
   int l = sz(d);
   int ans = l;
   rep(s, 1 << l) {

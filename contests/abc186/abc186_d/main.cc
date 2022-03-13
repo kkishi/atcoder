@@ -7,7 +7,7 @@ void Main() {
   V<int> a(n);
   cin >> a;
   sort(a);
-  reverse(all(a));
+  reverse(a);
   int ans = 0;
   int sum = 0;
   rep(i, n) {

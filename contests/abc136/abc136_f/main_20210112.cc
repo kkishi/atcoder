@@ -33,7 +33,7 @@ void Main() {
       bit.Add(y, 1);
     }
   }
-  reverse(all(v));
+  reverse(v);
   {
     BIT<int> bit(n);
     for (auto [_, y, i] : v) {

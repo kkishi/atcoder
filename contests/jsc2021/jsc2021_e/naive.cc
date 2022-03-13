@@ -12,7 +12,7 @@ void Main() {
     if ((sz(t) << k) > sz(s)) return;
     {
       string rt = t;
-      reverse(all(rt));
+      reverse(rt);
       if (t.empty() || rt != t) {
         // dbg(t);
         V<char> v;
@@ -22,7 +22,7 @@ void Main() {
             each(e, v) {
               string nx = x;
               if (e != ' ') nx += e;
-              reverse(all(x));
+              reverse(x);
               nx += x;
               x = nx;
             }

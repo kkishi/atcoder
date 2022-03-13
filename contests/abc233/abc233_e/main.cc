@@ -22,6 +22,6 @@ void Main() {
     carry /= 10;
     ans.pb((char)('0' + y));
   }
-  reverse(all(ans));
+  reverse(ans);
   wt(ans);
 }

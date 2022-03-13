@@ -4,7 +4,7 @@
 
 void Main() {
   strings(x);
-  reverse(all(x));
+  reverse(x);
   while (!x.empty()) {
     if (set{'o', 'k', 'u'}.count(x[0])) {
       x = x.substr(1);

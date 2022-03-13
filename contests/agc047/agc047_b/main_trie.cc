@@ -13,7 +13,7 @@ void Main() {
   V<string> s(n);
   rep(i, n) {
     cin >> s[i];
-    reverse(all(s[i]));
+    reverse(s[i]);
   }
 
   Trie trie;

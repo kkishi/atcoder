@@ -34,6 +34,6 @@ void Main() {
     wt(-1);
     return;
   }
-  reverse(all(ans));
+  reverse(ans);
   each(e, ans) wt(e + 1);
 }

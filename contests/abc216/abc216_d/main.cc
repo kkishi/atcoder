@@ -12,7 +12,7 @@ void Main() {
       c[i].pb(a);
     }
     c[i].pb(big + i);
-    reverse(all(c[i]));
+    reverse(c[i]);
   }
   using T = tuple<int, int>;
   queue<T> que;

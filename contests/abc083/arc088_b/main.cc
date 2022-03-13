@@ -5,7 +5,7 @@
 void Main() {
   strings(s);
   string r = s;
-  reverse(all(r));
+  reverse(r);
   if (sz(s) & 1) {
     int i = sz(s) / 2;
     char c = s[i];

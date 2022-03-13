@@ -27,7 +27,7 @@ void Main() {
   }
   string s(all(que));
   if (flipped) {
-    reverse(all(s));
+    reverse(s);
   }
   cout << s << endl;
 }

@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   strings(s);
   string t = s;
-  reverse(all(t));
+  reverse(t);
   string u = s;
   sort(u);
   do {

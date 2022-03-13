@@ -16,7 +16,7 @@ void Main() {
         n += '0' + x % 9;
         x /= 9;
       }
-      reverse(all(n));
+      reverse(n);
     }
     each(e, n) if (e == '8') e = '5';
   }

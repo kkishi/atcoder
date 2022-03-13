@@ -4,9 +4,9 @@
 
 void Main() {
   strings(s);
-  reverse(all(s));
+  reverse(s);
   V<string> v{"dream", "dreamer", "erase", "eraser"};
-  for (auto& vi : v) reverse(all(vi));
+  for (auto& vi : v) reverse(vi);
   while (!s.empty()) {
     bool changed = false;
     for (const auto& vi : v) {

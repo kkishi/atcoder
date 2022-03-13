@@ -13,7 +13,7 @@ void Main() {
       v[i].pb(vi % 10);
       vi /= 10;
     }
-    reverse(all(v[i]));
+    reverse(v[i]);
   }
   V<optional<string>> m(10);
   // Run a DFS with backtracking.

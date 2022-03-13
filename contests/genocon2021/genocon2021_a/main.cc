@@ -13,7 +13,7 @@ void Main() {
         e = 'C' + 'G' - e;
       }
     }
-    reverse(all(s));
+    reverse(s);
     wt(s);
   }
 }

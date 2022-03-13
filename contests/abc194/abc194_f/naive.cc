@@ -30,7 +30,7 @@ void Main() {
       j /= 16;
     }
     if (sz(cnt) == k) {
-      reverse(all(v));
+      reverse(v);
       dbg(v);
       ++ans;
     }

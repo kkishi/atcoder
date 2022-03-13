@@ -33,7 +33,7 @@ void Main() {
       } else {
         assert(t.second.empty());
         string rs = s[i];
-        reverse(all(rs));
+        reverse(rs);
         if (!prefixMatch(t.first, rs)) continue;
         t.second = rs;
       }

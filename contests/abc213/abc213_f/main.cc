@@ -20,9 +20,9 @@ void Main() {
       sum[i + 1] = la[i] * (i - j) + sum[j + 1];
       st.eb(la[i], i);
     }
-    reverse(all(la));
+    reverse(la);
   }
-  reverse(all(dsum));
+  reverse(dsum);
   map<int, int> m;
   rep(i, n) m[sa[i]] = i;
   rep(i, n) {

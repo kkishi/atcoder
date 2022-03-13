@@ -12,7 +12,7 @@ void Main() {
     if (depth == k) {
       if (len == 1) return false;
       string t = s.substr(l, r - l);
-      if (rev) reverse(all(t));
+      if (rev) reverse(t);
       v.eb(t);
       return true;
     }
@@ -69,7 +69,7 @@ void Main() {
     }
   }
   string rt = t;
-  reverse(all(rt));
+  reverse(rt);
   if (!t.empty() && rt == t) {
     int mini = big;
     rep(i, sz(second)) {

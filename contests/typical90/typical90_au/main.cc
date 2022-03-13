@@ -9,7 +9,7 @@ using ll = long long;
 void Main() {
   ints(n);
   strings(s, t);
-  reverse(all(s));
+  reverse(s);
   string rgb = "RGB";
   map<char, V<ll>> C;
   each(e, rgb) C[e].resize(n * 2 - 1);

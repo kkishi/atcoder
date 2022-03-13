@@ -18,8 +18,8 @@ void Main() {
   V<int> L = f(l), R = f(r);
   int n = sz(R);
   while (sz(L) < n) L.eb(0);
-  reverse(all(L));
-  reverse(all(R));
+  reverse(L);
+  reverse(R);
   vector dp(n + 1, vector(2, vector(2, mint(0))));
   bool seen_L_1 = false;
   rep(i, n) {

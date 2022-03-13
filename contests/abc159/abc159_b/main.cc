@@ -4,7 +4,7 @@
 
 bool pal(const string& s) {
   string t = s;
-  reverse(all(t));
+  reverse(t);
   return s == t;
 }
 

@@ -9,7 +9,7 @@ void Main() {
     v.pb(x % 2);
     x /= 2;
   }
-  reverse(all(v));
+  reverse(v);
   strings(s);
   each(e, s) {
     if (e == 'U') {

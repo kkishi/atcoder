@@ -21,7 +21,7 @@ void Main() {
     t += q.front();
     q.pop_front();
   }
-  if (rev) reverse(all(t));
+  if (rev) reverse(t);
   string T;
   rep(i, sz(t)) {
     if (!T.empty() && T.back() == t[i]) {

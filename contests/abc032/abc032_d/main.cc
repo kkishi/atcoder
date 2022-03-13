@@ -19,7 +19,7 @@ void Main() {
     }
     sort(cand);
     rep(i, 1, sz(cand)) chmax(cand[i].second, cand[i - 1].second);
-    reverse(all(cand));
+    reverse(cand);
     int ans = 0;
     rep(i, 1 << (N - n)) {
       int vs = 0, ws = 0;

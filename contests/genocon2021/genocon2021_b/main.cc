@@ -40,8 +40,8 @@ void Main() {
     i = I;
     j = J;
   }
-  reverse(all(S));
-  reverse(all(T));
+  reverse(S);
+  reverse(T);
   wt(S);
   wt(T);
 }

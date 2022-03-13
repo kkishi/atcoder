@@ -6,8 +6,8 @@ void Main() {
   ints(A, B);
   vector<int> a(A), b(B);
   cin >> a >> b;
-  reverse(all(a));
-  reverse(all(b));
+  reverse(a);
+  reverse(b);
   vector<int> as(A + 1), bs(B + 1);
   rep(i, A) as[i + 1] = as[i] + a[i];
   rep(i, B) bs[i + 1] = bs[i] + b[i];

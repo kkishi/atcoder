@@ -11,7 +11,7 @@ void Main() {
   each(e, s) a.eb(e == '0' ? 1 : -1);
   V<int> b;
   each(e, t) b.eb(e == '0' ? 1 : -1);
-  reverse(all(b));
+  reverse(b);
   V<int> c = atcoder::convolution(b, a);
   int ans = big;
   rep(i, sz(t) - 1, sz(c) - sz(t) + 1) {

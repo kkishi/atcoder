@@ -41,7 +41,7 @@ void Main() {
   string r = conv(S.rbegin(), S.rend());
   dbg(l, r);
   /*
-  reverse(all(r));
+  reverse(r);
   string s = l.substr(0, l.size() - 1) + r;
   dbg(l, r, s);
   */
@@ -59,7 +59,7 @@ void Main() {
   int cnt = 0;
   FOR(c, S) if (c == maximum)++ cnt;
 
-  reverse(all(r));
+  reverse(r);
 
   string s;
   if (cnt & 1) {

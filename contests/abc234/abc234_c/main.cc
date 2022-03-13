@@ -9,6 +9,6 @@ void Main() {
     ans += (char)((k & 1) ? '2' : '0');
     k /= 2;
   }
-  reverse(all(ans));
+  reverse(ans);
   wt(ans);
 }

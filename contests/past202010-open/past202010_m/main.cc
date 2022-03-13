@@ -20,7 +20,7 @@ void Main() {
     ints(u, v, c);
     queries.eb(u - 1, v - 1, c);
   }
-  reverse(all(queries));
+  reverse(queries);
 
   V<int> ans(n - 1);
 

@@ -16,7 +16,7 @@ void Main() {
     x = i + 1;
   }
   f.eb(x);
-  reverse(all(b));
+  reverse(b);
   each(e, b) f.eb(e);
   wt(f);
 }

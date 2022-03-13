@@ -32,8 +32,8 @@ void Main() {
       t.Update(c(r + 1), sz(c.coord), i + 1);
       each(a, j, qs[i + 1]) ans[j] += i + 1 - t.Get(c(a));
     }
-    reverse(all(lr));
-    reverse(all(qs));
+    reverse(lr);
+    reverse(qs);
   }
   rep(i, q) wt(ans[i] + 1);
 }

@@ -30,7 +30,7 @@ void Main() {
 
   int mod = 0;
   map<int, int> cnt;
-  reverse(all(S));
+  reverse(S);
   rep(i, N) {
     mod = (mod + (S[i] - '0') * tens[i]) % P;
     cnt[mod]++;

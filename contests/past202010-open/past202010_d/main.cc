@@ -13,14 +13,14 @@ void Main() {
     ++x;
     f();
   }
-  reverse(all(s));
+  reverse(s);
 
   int y = 0;
   while (s[0] != '#') {
     ++y;
     f();
   }
-  reverse(all(s));
+  reverse(s);
 
   rrep(i, 1, n) if (s[i] == '#' && s[i - 1] == '.') {
     ++x;

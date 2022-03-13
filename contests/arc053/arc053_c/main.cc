@@ -3,7 +3,7 @@
 #include "atcoder.h"
 
 void Reverse(V<pair<int, int>>& v) {
-  reverse(all(v));
+  reverse(v);
   rep(i, sz(v)) swap(v[i].first, v[i].second);
 }
 void Sort(V<pair<int, int>>& v) { sort(v); }

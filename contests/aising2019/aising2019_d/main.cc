@@ -14,7 +14,7 @@ void Main() {
     qs.pb({x, i});
   }
   sort(qs);
-  reverse(all(qs));
+  reverse(qs);
 
   V<int> rsum(n + 1);
   rrep(i, n) rsum[i] = a[i] + rsum[i + 1];

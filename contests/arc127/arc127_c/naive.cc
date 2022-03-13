@@ -13,7 +13,7 @@ void Main() {
       s += (char)('0' + I % 2);
       I /= 2;
     }
-    reverse(all(s));
+    reverse(s);
     v.eb(s);
   }
   sort(v);
@@ -24,7 +24,7 @@ void Main() {
       s += (char)('0' + I % 2);
       I /= 2;
     }
-    reverse(all(s));
+    reverse(s);
   }
   int X = 0;
   rep(i, sz(x)) { X = X * 2 + (x[i] - '0'); }

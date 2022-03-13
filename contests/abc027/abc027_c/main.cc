@@ -23,7 +23,7 @@ void Main() {
     v.pb(n & 1);
     n >>= 1;
   }
-  reverse(all(v));
+  reverse(v);
   string t = "Takahashi", a = "Aoki";
   if (even(sz(v) - 1)) {
     rep(i, 1, sz(v)) {

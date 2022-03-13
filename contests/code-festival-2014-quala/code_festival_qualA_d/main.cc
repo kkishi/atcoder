@@ -8,7 +8,7 @@ void Main() {
   for (int x = a; x; x /= 10) {
     v.pb(x % 10);
   }
-  reverse(all(v));
+  reverse(v);
   int ans = big;
   rep(i, sz(v)) rep(j, 10) rep(k, 10) {
     V<int> u = v;

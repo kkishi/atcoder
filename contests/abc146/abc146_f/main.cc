@@ -18,7 +18,7 @@ void Main() {
     v.pb(i - ni);
     i = ni;
     if (i == 0) {
-      reverse(all(v));
+      reverse(v);
       wt(v);
       return;
     }

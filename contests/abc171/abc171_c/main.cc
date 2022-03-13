@@ -17,6 +17,6 @@ void Main() {
     s += 'a' + (n % 26);
     n /= 26;
   }
-  reverse(all(s));
+  reverse(s);
   wt(s);
 }

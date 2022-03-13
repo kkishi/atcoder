@@ -5,6 +5,6 @@
 void Main() {
   strings(n);
   string r = n;
-  reverse(all(r));
+  reverse(r);
   wt(n == r);
 }

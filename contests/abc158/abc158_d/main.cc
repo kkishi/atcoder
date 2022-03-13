@@ -17,10 +17,10 @@ void Main() {
     rd(char, C);
     (((F == 1) ^ flipped) ? head : tail) += C;
   }
-  reverse(all(head));
+  reverse(head);
   string s = head + S + tail;
   if (flipped) {
-    reverse(all(s));
+    reverse(s);
   }
   wt(s);
 }

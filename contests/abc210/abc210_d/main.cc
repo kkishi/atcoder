@@ -16,7 +16,7 @@ void Main() {
       chmin(dp[i + 1][j], dp[i][j] + c);
       chmin(dp[i][j + 1], dp[i][j] + c);
     }
-    each(e, a) reverse(all(e));
+    each(e, a) reverse(e);
   }
   wt(ans);
 }

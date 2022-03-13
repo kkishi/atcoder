@@ -23,6 +23,6 @@ void Main() {
     ans += (char)('A' + k);
     i -= v[k][j];
   }
-  reverse(all(ans));
+  reverse(ans);
   wt(ans);
 }

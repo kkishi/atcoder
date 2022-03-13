@@ -32,7 +32,7 @@ void Main() {
       tree.Set(yi, 1);
     }
   }
-  reverse(all(p));
+  reverse(p);
   {
     SegmentTree<int> tree(n, [](int a, int b) { return a + b; });
     for (auto [x, y, i] : p) {

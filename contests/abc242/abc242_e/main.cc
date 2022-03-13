@@ -26,7 +26,7 @@ void Solve() {
   {
     string head = s.substr(0, N);
     string tail = s.substr(0, n / 2);
-    reverse(all(tail));
+    reverse(tail);
     if (head + tail <= s) {
       ans += accumulate(dp[N - 1][0]);
     }

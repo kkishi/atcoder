@@ -15,7 +15,7 @@ void Main() {
       if (j == 0) one.insert({x, i});
       two.insert({x, i});
     }
-    reverse(all(t[i]));
+    reverse(t[i]);
   }
   ints(m);
   rep(m) {

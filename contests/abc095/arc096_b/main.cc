@@ -18,10 +18,10 @@ void Main() {
     return y;
   };
   V<int> rx = x;
-  reverse(all(rx));
+  reverse(rx);
   rep(i, n) rx[i] = c - rx[i];
   V<int> rv = v;
-  reverse(all(rv));
+  reverse(rv);
 
   V<int> l = f(x, v);
   V<int> r = f(rx, rv);

@@ -14,6 +14,6 @@ void Main() {
     s += x < 10 ? ('0' + x) : ('A' + x - 10);
     n /= 36;
   }
-  reverse(all(s));
+  reverse(s);
   wt(s);
 }

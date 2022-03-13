@@ -5,6 +5,6 @@
 void Main() {
   strings(s);
   string t = s;
-  reverse(all(t));
+  reverse(t);
   wt(s == t ? "YES" : "NO");
 }

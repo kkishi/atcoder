@@ -6,6 +6,6 @@ void Main() {
   strings(s, t);
   sort(s);
   sort(t);
-  reverse(all(t));
+  reverse(t);
   wt(s < t);
 }

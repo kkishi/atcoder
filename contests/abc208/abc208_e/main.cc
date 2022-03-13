@@ -9,7 +9,7 @@ void Main() {
     v.pb(n % 10);
     n /= 10;
   }
-  reverse(all(v));
+  reverse(v);
   int N = sz(v);
   vector dp(N + 1, vector(2, vector(2, map<int, int>{})));
   dp[0][0][0][0] = 1;

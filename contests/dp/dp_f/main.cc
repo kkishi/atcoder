@@ -30,6 +30,6 @@ void Main() {
     i = pi;
     j = pj;
   }
-  reverse(all(ans));
+  reverse(ans);
   wt(ans);
 }

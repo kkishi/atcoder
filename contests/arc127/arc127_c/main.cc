@@ -7,7 +7,7 @@ void Main() {
   strings(x);
   V<int> v;
   rep(i, sz(x)) v.pb(x[i] - '0');
-  reverse(all(v));
+  reverse(v);
   auto sub = [](V<int>& v, int p) {
     rep(i, p, sz(v)) {
       if (v[i] == 0) {

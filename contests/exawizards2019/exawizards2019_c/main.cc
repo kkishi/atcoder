@@ -21,7 +21,7 @@ void Main() {
       return false;
     };
     ans -= BinarySearch<int>(-1, n, ok) + 1;
-    reverse(all(s));
+    reverse(s);
     rep(i, q) d[i] = 'L' + 'R' - d[i];
   }
   wt(ans);

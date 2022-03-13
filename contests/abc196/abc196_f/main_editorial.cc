@@ -12,7 +12,7 @@ void Main() {
     each(e, s) a.eb(e == ('0' + i));
     V<int> b;
     each(e, t) b.eb(e == ('0' + i));
-    reverse(all(b));
+    reverse(b);
     V<int> c = atcoder::convolution(b, a);
     rep(i, sz(t) - 1, sz(c) - sz(t) + 1) d[i - (sz(t) - 1)] += c[i];
   }

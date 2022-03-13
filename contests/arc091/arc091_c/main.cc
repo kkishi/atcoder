@@ -6,7 +6,7 @@ optional<V<int>> Solve(int n, int a, int b) {
   if (a > b) {
     auto res = Solve(n, b, a);
     if (!res) return nullopt;
-    reverse(all(*res));
+    reverse(*res);
     return res;
   }
   if (a > (n + 1) / 2) return nullopt;

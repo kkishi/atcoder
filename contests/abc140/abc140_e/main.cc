@@ -48,7 +48,7 @@ void Main() {
       }
     }
     rep(i, n) ans += p[i] * l[i] * r[i];
-    reverse(all(p));
+    reverse(p);
   }
   wt(ans);
 }

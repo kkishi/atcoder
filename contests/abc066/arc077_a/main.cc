@@ -8,8 +8,8 @@ void Main() {
   cin >> a;
   V<int> head, tail;
   rep(i, n)((i & 1) ? head : tail).pb(a[i]);
-  reverse(all(head));
+  reverse(head);
   for (int i : tail) head.pb(i);
-  if (n & 1) reverse(all(head));
+  if (n & 1) reverse(head);
   wt(head);
 }

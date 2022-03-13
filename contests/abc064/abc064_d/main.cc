@@ -22,7 +22,7 @@ void Main() {
       if (ok) break;
       s = '(' + s;
     }
-    reverse(all(s));
+    reverse(s);
     rep(i, sz(s)) s[i] = s[i] == '(' ? ')' : '(';
   }
   wt(s);

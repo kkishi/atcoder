@@ -12,7 +12,7 @@ void Main() {
     s += (char)('0' + x % 2);
     x /= 2;
   }
-  reverse(all(s));
+  reverse(s);
   wt(n);
   wt(s);
 }

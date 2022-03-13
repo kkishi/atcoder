@@ -30,7 +30,7 @@ void Main() {
       break;
     }
   }
-  reverse(all(b));
+  reverse(b);
   for (int n : f) b.pb(n);
   wt(sz(b));
   each(x, b)++ x;
