@@ -4,7 +4,8 @@
 
 # 解説
 
-[公式解説](https://www.youtube.com/watch?v=nXyz3oUEidc&t=9226s)で、最小費用流において以下の制約をつける方法が説明されている。
+[公式解説](https://www.youtube.com/watch?v=nXyz3oUEidc&t=11275s)で、最小費用流において以下の制約をつける方法が説明されている。
+
 
 * 最小流量
 * 負辺
