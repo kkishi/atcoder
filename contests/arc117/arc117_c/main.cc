@@ -5,42 +5,20 @@
 
 using mint = ModInt<3>;
 
+// Lucas's theorem
+mint comb(int n, int k) {
+  if (n < 3 && k < 3) {
+    return mint::Comb(n, k);
+  }
+  return comb(n % 3, k % 3) * comb(n / 3, k / 3);
+}
+
 void Main() {
   ints(n);
   strings(s);
-  V<int> v;
-  each(c, s) v.pb(c == 'B' ? 0 : c == 'W' ? 1 : 2);
-  mint x = 1;
-  int three = 0;
-  V<mint> w;
-  rep(i, n) {
-    if (three > 0) {
-      w.pb(0);
-    } else {
-      w.pb(x);
-    }
-    if (i == n - 1) break;
-    {
-      int y = n - 1 - i;
-      while (y % 3 == 0) {
-        y /= 3;
-        ++three;
-      }
-      x *= y;
-    }
-    {
-      int y = i + 1;
-      while (y % 3 == 0) {
-        y /= 3;
-        --three;
-      }
-      x /= y;
-    }
-  }
-  dbg(v);
-  dbg(w);
   mint ans = 0;
-  rep(i, n) ans += v[i] * w[i];
+  string BWR = "BWR";
+  rep(i, n) ans += BWR.find(s[i]) * comb(n - 1, i);
   if (even(n)) ans = -ans;
-  wt(ans == 0 ? 'B' : ans == 1 ? 'W' : 'R');
+  wt(BWR[ans.value()]);
 }

@@ -49,6 +49,14 @@ contests/abc157/abc157_f/main.cc\
 contests/abc168/abc168_d/main.cc\
 contests/abc182/abc182_b/main.cc\
 contests/abc198/abc198_d/main.cc\
+contests/abc215/abc215_e/main.cc\
+contests/abc216/abc216_c/main.cc\
+contests/abc224/abc224_g/main.cc\
+contests/abc233/abc233_f/main.cc\
+contests/abc239/abc239_f/main.cc\
+contests/abc240/abc240_e/main.cc\
+contests/abc244/abc244_c/main.cc\
+contests/abc244/abc244_g/main.cc\
 contests/agc006/agc006_b/main.cc\
 contests/agc007/agc007_b/main.cc\
 contests/agc013/agc013_b/main.cc\
@@ -67,6 +75,10 @@ contests/arc110/arc110_c/main.cc\
 contests/arc111/arc111_c/main.cc\
 contests/arc117/arc117_a/main.cc\
 contests/arc117/arc117_d/main.cc\
+contests/arc127/arc127_b/main.cc\
+contests/arc129/arc129_c/main.cc\
+contests/arc130/arc130_c/main.cc\
+contests/arc135/arc135_b/main.cc\
 contests/ddcc2020-qual/ddcc2020_qual_c/main.cc\
 contests/intro-heuristics/intro_heuristics_a/main.cc\
 contests/jsc2019-qual/jsc2019_qual_d/main.cc\
@@ -80,7 +92,10 @@ contests/practice2/practice2_d/main.cc\
 contests/practice2/practice2_g/main.cc\
 contests/tenka1-2017-beginner/tenka1_2017_c/main.cc\
 contests/tenka1-2018-beginner/tenka1_2018_d/main.cc\
+contests/typical90/typical90_ba/main.cc\
 contests/typical90/typical90_bd/main.cc\
+contests/typical90/typical90_bs/main.cc\
+contests/typical90/typical90_cj/main.cc\
 contests/typical90/typical90_z/main.cc\
 "
 
@@ -111,4 +126,4 @@ contests/typical90/typical90_z/main.cc\
 }
 
 export -f test_a_problem
-problems | xargs -n 1 -P 4 -I {} bash -c 'test_a_problem {}'
+problems | xargs -n 1 -P 8 -I {} bash -c 'test_a_problem {}'

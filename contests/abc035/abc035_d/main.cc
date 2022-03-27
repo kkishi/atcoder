@@ -15,8 +15,8 @@ void Main() {
     g.AddEdge(a, b, c);
     rg.AddEdge(b, a, c);
   }
-  vector<optional<int>> dist = Dijkstra(g, 0);
-  vector<optional<int>> rdist = Dijkstra(rg, 0);
+  vector<optional<int>> dist = Dijkstra(g, 0).dist;
+  vector<optional<int>> rdist = Dijkstra(rg, 0).dist;
   int ans = 0;
   rep(i, n) {
     if (!dist[i] || !rdist[i]) continue;

@@ -13,7 +13,7 @@ void Main() {
     g.AddEdge(b, a, c);
   }
   ints(q, k);
-  V<optional<int>> dist = Dijkstra(g, k);
+  V<optional<int>> dist = Dijkstra(g, k).dist;
   rep(q) {
     ints(x, y);
     wt(*dist[x] + *dist[y]);
