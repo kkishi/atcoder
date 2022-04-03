@@ -9,20 +9,23 @@
 void Main() {
   ints(n, m);
   DisjointSet ds(n);
-  Graph<int> g(n);  // Graph
-  Graph<int> t(n);  // Tree
+  WeightedGraph<int> g(n);   // Graph
+  WeightedGraph<int> tw(n);  // Tree
+  Graph t(n);                // Tree
   VV<int> e;
   rep(m) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b, 1);
+    g[b].eb(a, 1);
     if (ds.Same(a, b)) {
       e.pb({a, b});
     } else {
       ds.Union(a, b);
-      t.AddEdge(a, b, 1);
-      t.AddEdge(b, a, 1);
+      tw[a].eb(b, 1);
+      tw[b].eb(a, 1);
+      t[a].eb(b);
+      t[b].eb(a);
     }
   }
   int M = sz(e);
@@ -61,7 +64,7 @@ void Main() {
   }
 
   RootedTree rt(t, 0);
-  V<optional<int>> rd = Dijkstra(t, 0).dist;
+  V<optional<int>> rd = Dijkstra(tw, 0).dist;
 
   ints(q);
   rep(q) {

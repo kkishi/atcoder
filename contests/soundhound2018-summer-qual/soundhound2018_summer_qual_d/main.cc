@@ -6,14 +6,14 @@
 
 void Main() {
   ints(n, m, s, t);
-  Graph<int> gs(n), gt(n);
+  WeightedGraph<int> gs(n), gt(n);
   rep(m) {
     ints(u, v, a, b);
     --u, --v;
-    gs.AddEdge(u, v, a);
-    gs.AddEdge(v, u, a);
-    gt.AddEdge(u, v, b);
-    gt.AddEdge(v, u, b);
+    gs[u].eb(v, a);
+    gs[v].eb(u, a);
+    gt[u].eb(v, b);
+    gt[v].eb(u, b);
   }
   V<optional<int>> ds = Dijkstra(gs, s - 1).dist;
   V<optional<int>> dt = Dijkstra(gt, t - 1).dist;

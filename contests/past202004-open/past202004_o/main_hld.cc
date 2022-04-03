@@ -19,13 +19,13 @@ void Main() {
 
   DisjointSet ds(n);
   int sum = 0;
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   for (auto [c, a, b, _] : es) {
     if (ds.Same(a, b)) continue;
     ds.Union(a, b);
     sum += c;
-    g.AddEdge(a, b, c);
-    g.AddEdge(b, a, c);
+    g[a].eb(b, c);
+    g[b].eb(a, c);
   }
 
   HeavyLightDecomposition hld(g, attr_on_edge);

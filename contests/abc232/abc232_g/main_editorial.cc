@@ -24,14 +24,14 @@ void Main() {
   Compressor c(ab);
 
   int N = sz(c.coord);
-  Graph<int> g(n + N);
+  WeightedGraph<int> g(n + N);
   rep(i, N) {
     int j = (i + 1) % N;
     g.AddEdge(n + i, n + j, mod(c.coord[j] - c.coord[i], m));
   }
   rep(i, n) {
-    g.AddEdge(i, n + c(a[i]), 0);
-    g.AddEdge(n + c(b[i]), i, 0);
+    g[i].eb(n + c(a[i]), 0);
+    g[n + c(b[i])].eb(i, 0);
   }
   wt(*Dijkstra(g, 0).dist[n - 1]);
 }

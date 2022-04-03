@@ -5,12 +5,12 @@
 
 void Main() {
   ints(n);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b, 1);
+    g[b].eb(a, 1);
   }
   wt(get<0>(Diameter(g)) + 1);
 }

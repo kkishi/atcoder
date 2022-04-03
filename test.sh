@@ -45,6 +45,7 @@ contests/abc109/abc109_d/main.cc\
 contests/abc111/abc111_c/main.cc\
 contests/abc126/abc126_d/main.cc\
 contests/abc131/abc131_e/main.cc\
+contests/abc133/abc133_f/main.cc\
 contests/abc157/abc157_f/main.cc\
 contests/abc168/abc168_d/main.cc\
 contests/abc182/abc182_b/main.cc\

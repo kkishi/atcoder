@@ -5,11 +5,11 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n + 1);
+  WeightedGraph<int> g(n + 1);
   rep(m) {
     ints(a, b);
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b, 1);
+    g[b].eb(a, 1);
   }
   optional<int> d = Dijkstra(g, 1).dist[n];
   wt((d && d == 2) ? "POSSIBLE" : "IMPOSSIBLE");

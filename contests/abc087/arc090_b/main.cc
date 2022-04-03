@@ -5,12 +5,12 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(i, m) {
     ints(l, r, d);
     --l, --r;
-    g.AddEdge(l, r, d);
-    g.AddEdge(r, l, -d);
+    g[l].eb(r, d);
+    g[r].eb(l, -d);
   }
 
   V<int> seen(n, big);
@@ -21,9 +21,8 @@ void Main() {
     while (!que.empty()) {
       auto [u, p] = que.front();
       que.pop();
-      for (const auto& e : g.Edges(u)) {
-        int v = e.to;
-        int w = p + e.weight;
+      for (auto [v, w] : g[u]) {
+        w += p;
         if (seen[v] != big) {
           if (seen[v] != w) {
             wt("No");

@@ -6,13 +6,13 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n * 2);
+  WeightedGraph<int> g(n * 2);
   auto in = [](int i) { return i; };
   auto out = [&n](int i) { return i + n; };
-  rep(i, n) g.AddEdge(in(i), out(i), 0);
+  rep(i, n) g[in(i)].eb(out(i), 0);
   rep(m) {
     ints(a, b, c);
-    g.AddEdge(out(a - 1), in(b - 1), c);
+    g[out(a - 1)].eb(in(b - 1), c);
   }
 
   rep(i, n) {

@@ -5,12 +5,12 @@
 
 void Main() {
   ints(n, q);
-  Graph<int> g(n);
+  Graph g(n);
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b);
+    g[b].eb(a);
   }
   RootedTree rt(g);
   rep(q) {

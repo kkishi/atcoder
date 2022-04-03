@@ -6,12 +6,12 @@
 
 void Main() {
   ints(n, m, r, t);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, c);
-    g.AddEdge(b, a, c);
+    g[a].eb(b, c);
+    g[b].eb(a, c);
   }
   int ans = 0;
   rep(i, n) {

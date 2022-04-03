@@ -17,7 +17,7 @@ bool Update(map<int, int>& m, int k, int v) {
 void Main() {
   ints(n, m);
   DisjointSet ds(n);
-  Graph<int> tree(n);      // Spanning tree. Any one is fine.
+  WeightedGraph<int> tree(n);      // Spanning tree. Any one is fine.
   VV<int> extra_edges(n);  // Extra edges not needed for the spanning tree.
   set<int> extra_nodes;    // Nodes appear in the extra edges.
   rep(m) {
@@ -30,8 +30,8 @@ void Main() {
       extra_nodes.insert(b);
     } else {
       ds.Union(a, b);
-      tree.AddEdge(a, b, 1);
-      tree.AddEdge(b, a, 1);
+      tree[a].eb(b, 1);
+      tree[b].eb(a, 1);
     }
   }
   RootedTree rt(tree, 0);

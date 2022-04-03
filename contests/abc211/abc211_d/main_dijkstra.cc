@@ -9,12 +9,12 @@ using mint = ModInt<>;
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(m) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b, 1);
+    g[b].eb(a, 1);
   }
   auto dist = Dijkstra(g, 0);
   V<tuple<int, int, int>> v;

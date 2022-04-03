@@ -7,15 +7,15 @@
 
 void Main() {
   ints(n, q);
-  Graph<int> dg(n);  // Graph with distance
-  Graph<int> cg(n);  // Graph with color
+  WeightedGraph<int> dg(n);  // Graph with distance
+  WeightedGraph<int> cg(n);  // Graph with color
   rep(n - 1) {
     ints(a, b, c, d);
     --a, --b, --c;
-    dg.AddEdge(a, b, d);
-    dg.AddEdge(b, a, d);
-    cg.AddEdge(a, b, c);
-    cg.AddEdge(b, a, c);
+    dg[a].eb(b, d);
+    dg[b].eb(a, d);
+    cg[a].eb(b, c);
+    cg[b].eb(a, c);
   }
 
   auto dist = Dijkstra(dg, 0).dist;  // Distance in the original tree

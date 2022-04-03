@@ -5,9 +5,9 @@
 #include "warshall_floyd.h"
 
 template <typename T>
-std::vector<std::optional<T>> Dijkstra(const Graph<T>& graph, int start,
+std::vector<std::optional<T>> Dijkstra(const WeightedGraph<T>& graph, int start,
                                        int I) {
-  const int n = graph.NumVertices();
+  const int n = graph.size();
 
   std::vector<std::optional<T>> dist(n);
 
@@ -27,9 +27,9 @@ std::vector<std::optional<T>> Dijkstra(const Graph<T>& graph, int start,
     auto [c, u] = que.front();
     que.pop();
     if (c > dist[u]) continue;
-    for (const auto& e : graph.Edges(u)) {
-      if (e.weight != I) {
-        push(e.to, c + 1);
+    for (auto [to, w] : graph[u]) {
+      if (w != I) {
+        push(to, c + 1);
       }
     }
   }
@@ -39,14 +39,14 @@ std::vector<std::optional<T>> Dijkstra(const Graph<T>& graph, int start,
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   vector dist(n, vector(n, big));
   rep(i, n) dist[i][i] = 0;
   V<pair<int, int>> es;
   rep(i, m) {
     ints(s, t);
     --s, --t;
-    g.AddEdge(s, t, i);
+    g[s].eb(t, i);
     dist[s][t] = 1;
     es.eb(s, t);
   }

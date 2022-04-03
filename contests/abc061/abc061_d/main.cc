@@ -13,12 +13,12 @@ void Main() {
     --a[i], --b[i];
   }
 
-  Graph<int> rg(n);
-  rep(i, m) rg.AddEdge(b[i], a[i], 0);
+  WeightedGraph<int> rg(n);
+  rep(i, m) rg[b[i]].eb(a[i], 0);
   V<optional<int>> rd = Dijkstra(rg, n - 1).dist;
 
-  Graph<int> g(n);
-  rep(i, m) if (rd[b[i]]) g.AddEdge(a[i], b[i], -c[i]);
+  WeightedGraph<int> g(n);
+  rep(i, m) if (rd[b[i]]) g[a[i]].eb(b[i], -c[i]);
 
   if (auto [e, ok] = BellmanFord(g, 0); ok) {
     wt(-e[n - 1]);

@@ -8,7 +8,7 @@ void Main() {
   ints(n, m);
   ints(xab, xac, xbc);
   strings(s);
-  Graph<int> g(n + 6);
+  WeightedGraph<int> g(n + 6);
   int ab = n;
   int ba = n + 1;
   int ac = n + 2;
@@ -17,28 +17,28 @@ void Main() {
   int cb = n + 5;
   rep(i, n) {
     if (s[i] == 'A') {
-      g.AddEdge(i, ab, xab);
-      g.AddEdge(i, ac, xac);
-      g.AddEdge(ba, i);
-      g.AddEdge(ca, i);
+      g[i].eb(ab, xab);
+      g[i].eb(ac, xac);
+      g[ba].eb(i, 0);
+      g[ca].eb(i, 0);
     }
     if (s[i] == 'B') {
-      g.AddEdge(i, ba, xab);
-      g.AddEdge(i, bc, xbc);
-      g.AddEdge(ab, i);
-      g.AddEdge(cb, i);
+      g[i].eb(ba, xab);
+      g[i].eb(bc, xbc);
+      g[ab].eb(i, 0);
+      g[cb].eb(i, 0);
     }
     if (s[i] == 'C') {
-      g.AddEdge(i, ca, xac);
-      g.AddEdge(i, cb, xbc);
-      g.AddEdge(ac, i);
-      g.AddEdge(bc, i);
+      g[i].eb(ca, xac);
+      g[i].eb(cb, xbc);
+      g[ac].eb(i, 0);
+      g[bc].eb(i, 0);
     }
   }
   rep(m) {
     ints(a, b, c);
-    g.AddEdge(a - 1, b - 1, c);
-    g.AddEdge(b - 1, a - 1, c);
+    g[a - 1].eb(b - 1, c);
+    g[b - 1].eb(a - 1, c);
   }
   wt(*Dijkstra(g, 0).dist[n - 1]);
 }

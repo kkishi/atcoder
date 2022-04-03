@@ -10,14 +10,14 @@ struct XY {
 
 void Main() {
   ints(n);
-  Graph<int> g(n * 2 + 2);
+  WeightedGraph<int> g(n * 2 + 2);
   V<XY> r(n), b(n);
   rep(i, n) cin >> r[i].x >> r[i].y;
   rep(i, n) cin >> b[i].x >> b[i].y;
   const int r0 = 0, b0 = r0 + n, s = b0 + n, d = s + 1;
   auto add = [&](int i, int j) {
-    g.AddEdge(i, j, 1);
-    g.AddEdge(j, i, 0);
+    g[i].eb(j, 1);
+    g[j].eb(i, 0);
   };
   rep(i, n) add(s, r0 + i);
   rep(i, n) add(b0 + i, d);

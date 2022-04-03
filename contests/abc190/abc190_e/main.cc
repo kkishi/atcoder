@@ -5,12 +5,12 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(i, m) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b, 1);
+    g[b].eb(a, 1);
   }
 
   ints(k);

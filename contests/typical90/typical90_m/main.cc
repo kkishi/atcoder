@@ -5,12 +5,12 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, c);
-    g.AddEdge(b, a, c);
+    g[a].eb(b, c);
+    g[b].eb(a, c);
   }
   auto d1 = Dijkstra(g, 0).dist;
   auto dn = Dijkstra(g, n - 1).dist;

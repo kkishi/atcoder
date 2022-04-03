@@ -8,12 +8,12 @@ void Main() {
   ints(n, m, t);
   vector<int> a(n);
   cin >> a;
-  Graph<int> g(n), rg(n);
+  WeightedGraph<int> g(n), rg(n);
   rep(i, m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, c);
-    rg.AddEdge(b, a, c);
+    g[a].eb(b, c);
+    rg[b].eb(a, c);
   }
   vector<optional<int>> dist = Dijkstra(g, 0).dist;
   vector<optional<int>> rdist = Dijkstra(rg, 0).dist;

@@ -8,8 +8,8 @@ void Main() {
   ints(n, m);
   V<int> a(n), b(n);
   cin >> a >> b;
-  Graph<int> g(n);
-  rep(i, n) rep(j, n) if (i != j) g.AddEdge(i, j, (a[i] + b[j]) % m);
+  WeightedGraph<int> g(n);
+  rep(i, n) rep(j, n) if (i != j) g[i].eb(j, (a[i] + b[j]) % m);
   auto res = Dijkstra(g, 0);
   rep(i, 1, n) {
     V<int> v;

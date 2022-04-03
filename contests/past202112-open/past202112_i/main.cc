@@ -17,15 +17,15 @@ void Main() {
   }
   Compressor cr(v);
   int N = sz(cr.coord);
-  Graph<int> g(N);
+  WeightedGraph<int> g(N);
   rep(i, N - 1) {
     int d = cr.coord[i + 1] - cr.coord[i];
-    g.AddEdge(i, i + 1, d);
-    g.AddEdge(i + 1, i, d);
+    g[i].eb(i + 1, d);
+    g[i + 1].eb(i, d);
   }
   for (auto [a, b, c] : e) {
-    g.AddEdge(cr(a), cr(b), c);
-    g.AddEdge(cr(b), cr(a), c);
+    g[cr(a)].eb(cr(b), c);
+    g[cr(b)].eb(cr(a), c);
   }
   wt(*Dijkstra(g, 0).dist[N - 1]);
 }

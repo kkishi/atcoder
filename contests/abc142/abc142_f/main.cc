@@ -6,10 +6,10 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> graph(n);
+  Graph graph(n);
   rep(i, m) {
     ints(a, b);
-    graph.AddEdge(a - 1, b - 1, 0);
+    graph[a - 1].eb(b - 1);
   }
   vector<vector<int>> sccs = StronglyConnectedComponents(graph);
   for (const vector<int>& scc : sccs) {
@@ -20,8 +20,7 @@ void Main() {
     map<int, int> prev;
     for (int n : scc_nodes) dbg(n);
     while (true) {
-      for (auto& e : graph.Edges(node)) {
-        int child = e.to;
+      each(child, graph[node]) {
         if (scc_nodes.count(child) == 0) continue;
         next[node] = child;
         prev[child] = node;
@@ -41,8 +40,7 @@ void Main() {
         node = child;
       }
     }
-    rep(u, n) for (auto& e : graph.Edges(u)) {
-      int v = e.to;
+    rep(u, n) each(v, graph[u]) {
       if (next.count(u) > 0 && next.count(v) > 0) {
         int c = next[u];
         while (c != v) {

@@ -7,12 +7,14 @@
 
 void Main() {
   ints(n, q);
-  Graph<int> g(n);
+  Graph g(n);
+  map<pair<int, int>, int> idx;
   rep(i, n - 1) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, i);
-    g.AddEdge(b, a, i);
+    g[a].eb(b);
+    g[b].eb(a);
+    idx[{a, b}] = idx[{b, a}] = i;
   }
 
   V<tuple<int, int, int>> queries;
@@ -32,13 +34,12 @@ void Main() {
   for (auto [u, v, c] : queries) {
     auto paint = [&](int ancestor, int child) {
       while (tree.Depth(child) > tree.Depth(ancestor)) {
-        auto& e = tree.AscendingEdge(child);
-        int parent = e.to;
+        int parent = tree.Parent(child);
         if (ds.Same(child, parent)) {
           child = roots[ds.Find(child)];
           continue;
         }
-        ans[e.weight] = c;
+        ans[idx[{child, parent}]] = c;
         int r = roots[ds.Find(parent)];
         ds.Union(child, parent);
         roots[ds.Find(child)] = r;

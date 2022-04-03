@@ -6,14 +6,14 @@
 
 void Main() {
   ints(n, m, q, k);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   V<int> a(k);
   cin >> a;
   rep(m) {
     ints(u, v);
     --u, --v;
-    g.AddEdge(u, v, 1);
-    g.AddEdge(v, u, 1);
+    g[u].eb(v, 1);
+    g[v].eb(u, 1);
   }
   V<Result<int>> res;
   each(e, a) res.eb(Dijkstra(g, e - 1));

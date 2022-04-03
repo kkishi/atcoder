@@ -6,13 +6,13 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   V<pair<int, int>> es;
   rep(i, m) {
     ints(s, t);
     --s, --t;
-    g.AddEdge(s, t, 1);
-    es.eb(s, sz(g.Edges(s)) - 1);
+    g[s].eb(t, 1);
+    es.eb(s, sz(g[s]) - 1);
   }
   auto res = Dijkstra(g, 0);
   if (!res.dist[n - 1]) {
@@ -21,14 +21,15 @@ void Main() {
   }
   auto dis = [](optional<int> x) { return x ? *x : -1; };
   vector path(n, vector(n, false));
-  each(e, res.Path(n - 1)) path[e.from][e.to] = true;
+  V<int> p = res.Path(n - 1);
+  rep(i, sz(p) - 1) path[p[i]][p[i + 1]] = true;
   each(s, i, es) {
-    auto& e = g.MutableEdges(s)[i];
-    if (path[s][e.to] || path[e.to][s]) {
-      int to = e.to;
-      e.to = e.from;
+    auto& [t, w] = g[s][i];
+    if (path[s][t] || path[t][s]) {
+      int to = t;
+      t = s;
       wt(dis(Dijkstra(g, 0).dist[n - 1]));
-      e.to = to;
+      t = to;
     } else {
       wt(dis(res.dist[n - 1]));
     }

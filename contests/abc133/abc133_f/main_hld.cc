@@ -7,13 +7,13 @@
 
 void Main() {
   ints(n, q);
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   map<int, V<tuple<int, int, int>>> es;
   rep(n - 1) {
     ints(a, b, c, d);
     --a, --b, --c;
-    g.AddEdge(a, b, d);
-    g.AddEdge(b, a, d);
+    g[a].eb(b, d);
+    g[b].eb(a, d);
     es[c].eb(a, b, d);
   }
 

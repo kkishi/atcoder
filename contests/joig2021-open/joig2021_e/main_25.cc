@@ -5,7 +5,7 @@
 #include "graph.h"
 
 void Main1(int n, int m, int l) {
-  Graph<tuple<int, bool>> g(n);
+  WeightedGraph<tuple<int, bool>> g(n);
   rep(m) {
     ints(a, b, c);
     --a, --b;
@@ -31,11 +31,11 @@ void Main1(int n, int m, int l) {
 }
 
 void Main2(int n, int m, int l) {
-  Graph<int> g(n);
+  WeightedGraph<int> g(n);
   rep(m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, c);
+    g[a].eb(b, c);
   }
   if (*Dijkstra(g, 0).dist[n - 1] <= l) {
     wt(0);
@@ -45,7 +45,7 @@ void Main2(int n, int m, int l) {
 }
 
 void Main3(int n, int m, int l) {
-  Graph<tuple<int, int, bool>> g(n);
+  WeightedGraph<tuple<int, int, bool>> g(n);
   rep(i, m) {
     ints(a, b, c);
     --a, --b;

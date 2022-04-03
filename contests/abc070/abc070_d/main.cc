@@ -6,11 +6,11 @@
 
 void Main() {
   ints(n);
-  Graph<int> g(n + 1);
+  WeightedGraph<int> g(n + 1);
   rep(n - 1) {
     ints(a, b, c);
-    g.AddEdge(a, b, c);
-    g.AddEdge(b, a, c);
+    g[a].eb(b, c);
+    g[b].eb(a, c);
   }
   ints(q, k);
   V<optional<int>> dist = Dijkstra(g, k).dist;

@@ -11,20 +11,20 @@ int dp[12][2][1 << 12][12][2];
 void Main() {
   ints(n, m);
   DisjointSet ds(n);
-  Graph<int> g(n);  // Graph
-  Graph<int> t(n);  // Tree
+  WeightedGraph<int> g(n);  // Graph
+  WeightedGraph<int> t(n);  // Tree
   V<pair<int, int>> e;
   rep(m) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b, 1);
-    g.AddEdge(b, a, 1);
+    g[a].eb(b, 1);
+    g[b].eb(a, 1);
     if (ds.Same(a, b)) {
       e.eb(a, b);
     } else {
       ds.Union(a, b);
-      t.AddEdge(a, b, 1);
-      t.AddEdge(b, a, 1);
+      t[a].eb(b, 1);
+      t[b].eb(a, 1);
     }
   }
   int M = sz(e);

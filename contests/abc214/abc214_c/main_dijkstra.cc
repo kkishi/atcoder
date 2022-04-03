@@ -8,10 +8,10 @@ void Main() {
   ints(n);
   V<int> s(n), t(n);
   cin >> s >> t;
-  Graph<int> g(n + 1);
+  WeightedGraph<int> g(n + 1);
   rep(i, n) {
-    g.AddEdge(n, i, t[i]);
-    g.AddEdge(i, (i + 1) % n, s[i]);
+    g[n].eb(i, t[i]);
+    g[i].eb((i + 1) % n, s[i]);
   }
   auto d = Dijkstra(g, n).dist;
   rep(i, n) wt(*d[i]);

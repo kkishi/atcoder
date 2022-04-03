@@ -8,19 +8,22 @@
 
 void Main() {
   ints(n, q);
-  Graph<int> dg(n);  // Graph with distance
-  Graph<int> cg(n);  // Graph with color
+  Graph g(n);
+  WeightedGraph<int> dg(n);  // Graph with distance
+  WeightedGraph<int> cg(n);  // Graph with color
   rep(n - 1) {
     ints(a, b, c, d);
     --a, --b, --c;
-    dg.AddEdge(a, b, d);
-    dg.AddEdge(b, a, d);
-    cg.AddEdge(a, b, c);
-    cg.AddEdge(b, a, c);
+    g[a].eb(b);
+    g[b].eb(a);
+    dg[a].eb(b, d);
+    dg[b].eb(a, d);
+    cg[a].eb(b, c);
+    cg[b].eb(a, c);
   }
 
   auto dist = Dijkstra(dg, 0).dist;  // Distance in the original tree
-  RootedTree<int> rt(dg, 0);
+  RootedTree rt(g, 0);
 
   VV<int> cs(n);  // Queried colors for the node
   VV<tuple<int, int, int, int>> qs(n);
@@ -45,18 +48,17 @@ void Main() {
 
   Fix([&](auto rec, int node, int parent, int color) -> void {
     each(e, cs[node]) to_be_snapped[e].eb(node);
-    rep(i, sz(dg.Edges(node))) {
-      const auto& de = dg.Edges(node)[i];
-      const auto& ce = cg.Edges(node)[i];
-      if (de.to == parent) continue;
-      int c = ce.weight;
+    rep(i, sz(dg[node])) {
+      auto [to, weight] = dg[node][i];
+      auto [_, c] = cg[node][i];
+      if (to == parent) continue;
       snap(c, node);
       if (last[c] != -1) {
         es[c].eb(last[c], node, 0);
       }
-      es[c].eb(node, de.to, de.weight);
-      last[c] = de.to;
-      rec(de.to, node, c);
+      es[c].eb(node, to, weight);
+      last[c] = to;
+      rec(to, node, c);
       last[c] = node;
     }
     if (parent != -1) snap(color, node);
@@ -81,7 +83,7 @@ void Main() {
   V<int> ans(q);
   rep(x, n) {
     auto distance = [](int u, int v, const V<optional<int>>& d,
-                       const RootedTree<int>& rt) {
+                       const RootedTree& rt) {
       int lca = rt.LCA(u, v);
       return *d[u] + *d[v] - *d[lca] * 2;
     };
@@ -98,19 +100,23 @@ void Main() {
     }
     Compressor cmp(v);
     int N = sz(cmp.coord);
-    Graph<int> ng(N);  // Auxiliary tree with cost = 1 (can count num edges)
-    Graph<int> sg(N);  // Auxiliary tree with cost = original distance
+    Graph g(N);
+    WeightedGraph<int> ng(
+        N);  // Auxiliary tree with cost = 1 (can count num edges)
+    WeightedGraph<int> sg(N);  // Auxiliary tree with cost = original distance
     for (auto [a, b, c] : e) {
       a = cmp(a);
       b = cmp(b);
-      ng.AddEdge(a, b, c != 0);
-      ng.AddEdge(b, a, c != 0);
-      sg.AddEdge(a, b, c);
-      sg.AddEdge(b, a, c);
+      g[a].eb(b);
+      g[b].eb(a);
+      ng[a].eb(b, c != 0);
+      ng[b].eb(a, c != 0);
+      sg[a].eb(b, c);
+      sg[b].eb(a, c);
     }
 
     const int r = 0;  // Any node works fine as a root.
-    RootedTree<int> rti(ng, r);
+    RootedTree rti(g, r);
     auto num_edges = Dijkstra(ng, r).dist;
     auto sum_edges = Dijkstra(sg, r).dist;
 
