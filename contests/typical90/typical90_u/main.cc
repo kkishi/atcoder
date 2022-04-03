@@ -5,10 +5,10 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   rep(m) {
     ints(a, b);
-    g.AddEdge(a - 1, b - 1);
+    g[a - 1].eb(b - 1);
   }
   int ans = 0;
   for (auto scc : StronglyConnectedComponents(g)) {

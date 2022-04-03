@@ -9,12 +9,12 @@ void Main() {
   V<int> c(n);
   cin >> c;
   each(e, c)-- e;
-  Graph<int> g(n);
+  Graph g(n);
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b);
-    g.AddEdge(b, a);
+    g[a].eb(b);
+    g[b].eb(a);
   }
   auto [in, out] = EulerTour(g);
   VV<int> v(n);
@@ -29,7 +29,7 @@ void Main() {
     sort(vi, [&](int i, int j) { return in[i] > in[j]; });
     int ans = calc(n);
     each(i, vi) {
-      each(e, g.Edges(i)) if (in[e.to] > in[i]) ans -= calc(size(e.to));
+      each(to, g[i]) if (in[to] > in[i]) ans -= calc(size(to));
       t.Set(in[i], size(i));
     }
     ans -= calc(size(0));

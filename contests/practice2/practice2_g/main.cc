@@ -6,10 +6,10 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   rep(m) {
     ints(a, b);
-    g.AddEdge(a, b);
+    g[a].eb(b);
   }
 
   VV<int> scc = StronglyConnectedComponents(g);

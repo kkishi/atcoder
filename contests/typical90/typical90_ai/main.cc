@@ -7,12 +7,12 @@
 
 void Main() {
   ints(n);
-  Graph<int> g(n);
+  Graph g(n);
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b);
-    g.AddEdge(b, a);
+    g[a].eb(b);
+    g[b].eb(a);
   }
   ints(q);
   set<int> ks;
@@ -32,9 +32,9 @@ void Main() {
       Fix([&](auto rec, int node, int parent) -> bool {
         bool ret = false;
         if (st[node]) ret = true;
-        each(e, g.Edges(node)) {
-          if (e.to == parent) continue;
-          if (rec(e.to, node)) ret = true;
+        each(to, g[node]) {
+          if (to == parent) continue;
+          if (rec(to, node)) ret = true;
         }
         if (ret) st[node] = true;
         return ret;

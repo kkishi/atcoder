@@ -6,12 +6,12 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   rep(i, m) {
     ints(k);
     V<int> a(k);
     cin >> a;
-    rep(i, k - 1) g.AddEdge(a[i] - 1, a[i + 1] - 1);
+    rep(i, k - 1) g[a[i] - 1].eb(a[i + 1] - 1);
   }
   auto [_, ok] = TopologicalSort(g);
   wt(ok);

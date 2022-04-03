@@ -5,12 +5,12 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   rep(m) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b);
-    g.AddEdge(b, a);
+    g[a].eb(b);
+    g[b].eb(a);
   }
   int ans = 1;
   V<bool> seen(n);
@@ -25,8 +25,7 @@ void Main() {
         return;
       }
       V<bool> used(3);
-      each(e, g.Edges(o[depth])) if (color[e.to] != -1) used[color[e.to]] =
-          true;
+      each(to, g[o[depth]]) if (color[to] != -1) used[color[to]] = true;
       rep(c, 3) if (!used[c]) {
         color[o[depth]] = c;
         rec(depth + 1);

@@ -8,28 +8,28 @@ void Main() {
   V<int> x(n), y(n);
   rep(i, n) cin >> x[i] >> y[i];
 
-  Graph<int> g(n * 2);
+  Graph g(n * 2);
 
   rep(i, n - 1) rep(j, i + 1, n) {
     if (abs(x[i] - x[j]) < d) {
       // !i v !j = (i -> !j) ^ (j -> !i)
-      g.AddEdge(i, n + j);
-      g.AddEdge(j, n + i);
+      g[i].eb(n + j);
+      g[j].eb(n + i);
     }
     if (abs(x[i] - y[j]) < d) {
       // !i v j = (i -> j) ^ (!j -> !i)
-      g.AddEdge(i, j);
-      g.AddEdge(n + j, n + i);
+      g[i].eb(j);
+      g[n + j].eb(n + i);
     }
     if (abs(y[i] - x[j]) < d) {
       // i v !j = (!i -> !j) ^ (j -> i)
-      g.AddEdge(n + i, n + j);
-      g.AddEdge(j, i);
+      g[n + i].eb(n + j);
+      g[j].eb(i);
     }
     if (abs(y[i] - y[j]) < d) {
       // i v j = (!i -> j) ^ (!j -> i)
-      g.AddEdge(n + i, j);
-      g.AddEdge(n + j, i);
+      g[n + i].eb(j);
+      g[n + j].eb(i);
     }
   }
 

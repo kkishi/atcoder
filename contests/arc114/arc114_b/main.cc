@@ -13,8 +13,8 @@ void Main() {
   cin >> f;
   each(e, f)-- e;
 
-  Graph<int> g(n);
-  rep(i, n) g.AddEdge(i, f[i]);
+  Graph g(n);
+  rep(i, n) g[i].eb(f[i]);
   VV<int> scc = StronglyConnectedComponents(g);
   int x = 0;
   each(e, scc) {

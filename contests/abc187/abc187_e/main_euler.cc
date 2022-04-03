@@ -7,13 +7,13 @@
 
 void Main() {
   ints(n);
-  Graph<int> g(n);
+  Graph g(n);
   V<pair<int, int>> es;
   rep(n - 1) {
     ints(a, b);
     --a, --b;
-    g.AddEdge(a, b);
-    g.AddEdge(b, a);
+    g[a].eb(b);
+    g[b].eb(a);
     es.eb(a, b);
   }
   auto [in, out] = EulerTour(g);

@@ -7,8 +7,8 @@ void Main() {
   ints(n);
   V<int> p(n - 1);
   cin >> p;
-  Graph<int> g(n);
-  rep(i, n - 1) g.AddEdge(p[i] - 1, i + 1);
+  Graph g(n);
+  rep(i, n - 1) g[p[i] - 1].eb(i + 1);
   VV<tuple<int, int>> qs(n);
   ints(q);
   rep(i, q) {

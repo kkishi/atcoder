@@ -6,7 +6,7 @@
 
 void Main() {
   ints(n);
-  Graph<int> g(n);
+  Graph g(n);
   int root;
   rep(i, n) {
     ints(p);
@@ -14,7 +14,7 @@ void Main() {
       root = i;
     } else {
       --p;
-      g.AddEdge(p, i);
+      g[p].eb(i);
     }
   }
   RootedTree t(g, root);

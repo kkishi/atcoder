@@ -6,15 +6,14 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   rep(m) {
     ints(x, y);
-    g.AddEdge(x - 1, y - 1);
+    g[x - 1].eb(y - 1);
   }
   auto [ts, ok] = TopologicalSort(g);
   assert(ok);
   V<int> dp(n);
-  rrep(i, n) for (const auto& e : g.Edges(ts[i]))
-      chmax(dp[e.from], dp[e.to] + 1);
+  rrep(i, n) each(to, g[ts[i]]) chmax(dp[ts[i]], dp[to] + 1);
   wt(max(dp));
 }

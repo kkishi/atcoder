@@ -8,13 +8,13 @@ void Main() {
   ints(n);
   V<int> p(n - 1);
   cin >> p;
-  Graph<int> g(n);
-  rep(i, n - 1) g.AddEdge(p[i] - 1, i + 1);
+  Graph g(n);
+  rep(i, n - 1) g[p[i] - 1].eb(i + 1);
   auto [in, out] = EulerTour(g);
   VV<int> depth_idx(n);
   Fix([&](auto rec, int node, int depth) -> void {
     depth_idx[depth].pb(node);
-    each(e, g.Edges(node)) rec(e.to, depth + 1);
+    each(to, g[node]) rec(to, depth + 1);
   })(0, 0);
   ints(q);
   VV<tuple<int, int>> depth_qs(n);

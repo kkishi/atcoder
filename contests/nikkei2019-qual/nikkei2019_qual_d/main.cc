@@ -6,18 +6,18 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   rep(n - 1 + m) {
     ints(a, b);
-    g.AddEdge(a - 1, b - 1);
+    g[a - 1].eb(b - 1);
   }
   auto [ts, ok] = TopologicalSort(g);
   assert(ok);
   V<int> p(n, -1);
   rrep(i, n) {
-    for (const auto& e : g.Edges(ts[i])) {
-      if (p[e.to] == -1) {
-        p[e.to] = ts[i];
+    each(to, g[ts[i]]) {
+      if (p[to] == -1) {
+        p[to] = ts[i];
       }
     }
   }

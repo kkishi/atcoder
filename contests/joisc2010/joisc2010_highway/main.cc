@@ -7,13 +7,13 @@
 
 void Main() {
   ints(n, m);
-  Graph<int> g(n);
+  Graph g(n);
   V<pair<int, int>> es;
   rep(n - 1) {
     ints(p, q);
     --p, --q;
-    g.AddEdge(p, q);
-    g.AddEdge(q, p);
+    g[p].eb(q);
+    g[q].eb(p);
     es.eb(p, q);
   }
   HeavyLightDecomposition hld(g, attr_on_edge);
