@@ -7,13 +7,13 @@
 
 void Main() {
   ints(n, q);
-  WeightedGraph<int> g(n);
+  Graph g(n);
   map<int, V<tuple<int, int, int>>> es;
   rep(n - 1) {
     ints(a, b, c, d);
     --a, --b, --c;
-    g[a].eb(b, d);
-    g[b].eb(a, d);
+    g[a].eb(b);
+    g[b].eb(a);
     es[c].eb(a, b, d);
   }
 
@@ -26,7 +26,7 @@ void Main() {
 
   HeavyLightDecomposition hld(g, attr_on_edge);
   AddSegmentTree<int> t0(n);
-  rep(i, n) each(e, g.Edges(i)) t0.Set(hld.Index(i, e.to), e.weight);
+  each(_, e, es) for (auto [a, b, d] : e) t0.Set(hld.Index(a, b), d);
 
   AddSegmentTree<int> t1(n), t2(n);
   V<int> ans(q);

@@ -16,13 +16,13 @@ void Main() {
     g[a].eb(b, 1);
     g[b].eb(a, 1);
   }
-  auto dist = Dijkstra(g, 0);
+  auto dist = Dijkstra(g, 0).dist;
   V<tuple<int, int, int>> v;
-  rep(i, n) each(e, g.Edges(i)) {
+  rep(i, n) each(to, _, g[i]) {
     auto a = dist[i];
-    auto b = dist[e.to];
+    auto b = dist[to];
     if (a && b && *a + 1 == *b) {
-      v.eb(*a, i, e.to);
+      v.eb(*a, i, to);
     }
   }
   sort(v);

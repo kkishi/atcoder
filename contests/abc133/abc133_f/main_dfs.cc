@@ -7,11 +7,14 @@
 
 void Main() {
   ints(n, q);
+  Graph g(n);
   WeightedGraph<int> dg(n);  // Graph with distance
   WeightedGraph<int> cg(n);  // Graph with color
   rep(n - 1) {
     ints(a, b, c, d);
     --a, --b, --c;
+    g[a].eb(b);
+    g[b].eb(a);
     dg[a].eb(b, d);
     dg[b].eb(a, d);
     cg[a].eb(b, c);
@@ -19,7 +22,7 @@ void Main() {
   }
 
   auto dist = Dijkstra(dg, 0).dist;  // Distance in the original tree
-  RootedTree<int> rt(dg, 0);
+  RootedTree rt(g, 0);
 
   V<int> ans(q);
   VV<pair<int, int>> query_lca(n);
@@ -47,15 +50,13 @@ void Main() {
       ans[i] += sum[x] * 2;
       ans[i] -= num[x] * ys[i] * 2;
     }
-    rep(i, sz(dg.Edges(node))) {
-      const auto& de = dg.Edges(node)[i];
-      const auto& ce = cg.Edges(node)[i];
-      if (de.to == parent) continue;
-      int c = ce.weight;
-      int d = de.weight;
+    rep(i, sz(dg[node])) {
+      auto [to, d] = dg[node][i];
+      auto [_, c] = cg[node][i];
+      if (to == parent) continue;
       ++num[c];
       sum[c] += d;
-      rec(ce.to, node);
+      rec(to, node);
       sum[c] -= d;
       --num[c];
     }

@@ -20,7 +20,7 @@ void Main() {
   Fix([&](auto rec, int node, int depth) -> void {
     each(i, d, qs[node]) ans[i] -= depth_cnt[d];
     depth_cnt[depth]++;
-    each(e, g.Edges(node)) rec(e.to, depth + 1);
+    each(to, g[node]) rec(to, depth + 1);
     each(i, d, qs[node]) ans[i] += depth_cnt[d];
   })(0, 0);
   each(e, ans) wt(e);

@@ -1,16 +1,15 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "graph.h"
 
 void Main() {
   ints(n, m, l);
-  Graph<tuple<int, bool>> g(n);
+  VV<tuple<int, int, bool>> g(n);
   rep(i, m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, {c, false});
-    g.AddEdge(b, a, {c, true});
+    g[a].eb(b, c, false);
+    g[b].eb(a, c, true);
   }
   vector dist(m + 1, vector(n, big));
   low_priority_queue<tuple<int, int, int>> que;
@@ -22,10 +21,9 @@ void Main() {
     auto [dis, used, node] = que.top();
     que.pop();
     if (dis != dist[used][node]) continue;
-    each(e, g.Edges(node)) {
-      auto [cos, flipped] = e.weight;
+    for (auto [to, cos, flipped] : g[node]) {
       int nused = used + flipped;
-      push(dis + cos, nused, e.to);
+      push(dis + cos, nused, to);
     }
   }
   int ans = big;

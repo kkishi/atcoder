@@ -19,20 +19,20 @@ void Main() {
 
   DisjointSet ds(n);
   int sum = 0;
-  WeightedGraph<int> g(n);
+  Graph g(n);
+  V<tuple<int, int, int>> tes;
   for (auto [c, a, b, _] : es) {
     if (ds.Same(a, b)) continue;
     ds.Union(a, b);
     sum += c;
-    g[a].eb(b, c);
-    g[b].eb(a, c);
+    g[a].eb(b);
+    g[b].eb(a);
+    tes.eb(a, b, c);
   }
 
   HeavyLightDecomposition hld(g, attr_on_edge);
   MaxSegmentTree<int> t(n);
-  rep(i, n) for (const auto& e : g.Edges(i)) {
-    t.Set(hld.Index(i, e.to), e.weight);
-  }
+  for (auto [a, b, c] : tes) t.Set(hld.Index(a, b), c);
 
   V<int> ans(m);
   for (auto [c, a, b, i] : es) {

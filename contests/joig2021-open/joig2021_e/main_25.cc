@@ -5,12 +5,12 @@
 #include "graph.h"
 
 void Main1(int n, int m, int l) {
-  WeightedGraph<tuple<int, bool>> g(n);
+  VV<tuple<int, int, bool>> g(n);
   rep(m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, {c, false});
-    g.AddEdge(b, a, {c, true});
+    g[a].eb(b, c, false);
+    g[b].eb(a, c, true);
   }
   wt(Fix([&](auto rec, int node, int parent, int dist, int changed) -> int {
     if (node == n - 1) {
@@ -20,10 +20,9 @@ void Main1(int n, int m, int l) {
         return -1;
       }
     }
-    each(e, g.Edges(node)) {
-      if (e.to == parent) continue;
-      auto [cost, flipped] = e.weight;
-      int res = rec(e.to, node, dist + cost, changed + flipped);
+    for (auto [to, cost, flipped] : g[node]) {
+      if (to == parent) continue;
+      int res = rec(to, node, dist + cost, changed + flipped);
       if (res >= 0) return res;
     }
     return -1;
@@ -45,12 +44,12 @@ void Main2(int n, int m, int l) {
 }
 
 void Main3(int n, int m, int l) {
-  WeightedGraph<tuple<int, int, bool>> g(n);
+  VV<tuple<int, int, int, bool>> g(n);
   rep(i, m) {
     ints(a, b, c);
     --a, --b;
-    g.AddEdge(a, b, {c, i, false});
-    g.AddEdge(b, a, {c, i, true});
+    g[a].eb(b, c, i, false);
+    g[b].eb(a, c, i, true);
   }
   vector dist(1 << m, vector(n, big));
   low_priority_queue<tuple<int, int, int>> que;
@@ -62,11 +61,10 @@ void Main3(int n, int m, int l) {
     auto [dis, mask, node] = que.top();
     que.pop();
     if (dis > dist[mask][node]) continue;
-    each(e, g.Edges(node)) {
-      auto [cos, idx, flipped] = e.weight;
+    for (auto [to, cos, idx, flipped] : g[node]) {
       int nmask = mask;
       if (flipped) nmask |= 1 << idx;
-      push(dis + cos, nmask, e.to);
+      push(dis + cos, nmask, to);
     }
   }
   int ans = big;
