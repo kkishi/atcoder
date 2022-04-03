@@ -24,22 +24,20 @@ void Main() {
     qs[x].eb(y, u, v, i);
   }
 
-  HeavyLightDecomposition hld(g);
+  HeavyLightDecomposition hld(g, attr_on_edge);
   AddSegmentTree<int> t0(n);
-  rep(i, n) each(e, g.Edges(i)) if (hld.Parent(i) == e.to)
-      t0.Set(hld.Index(i), e.weight);
+  rep(i, n) each(e, g.Edges(i)) t0.Set(hld.Index(i, e.to), e.weight);
 
   AddSegmentTree<int> t1(n), t2(n);
   V<int> ans(q);
   rep(x, n) {
     for (auto [a, b, d] : es[x]) {
-      int c = hld.Parent(a) == b ? a : b;
-      t1.Set(hld.Index(c), d);
-      t2.Set(hld.Index(c), 1);
+      t1.Set(hld.Index(a, b), d);
+      t2.Set(hld.Index(a, b), 1);
     }
     for (auto [y, u, v, i] : qs[x]) {
       int sum = 0;
-      each(l, r, hld.Query(u, v)) {
+      each(l, r, hld.Path(u, v)) {
         sum += t0.Aggregate(l, r);
         sum -= t1.Aggregate(l, r);
         sum += t2.Aggregate(l, r) * y;
@@ -47,9 +45,8 @@ void Main() {
       ans[i] = sum;
     }
     for (auto [a, b, d] : es[x]) {
-      int c = hld.Parent(a) == b ? a : b;
-      t1.Set(hld.Index(c), 0);
-      t2.Set(hld.Index(c), 0);
+      t1.Set(hld.Index(a, b), 0);
+      t2.Set(hld.Index(a, b), 0);
     }
   }
   each(e, ans) wt(e);

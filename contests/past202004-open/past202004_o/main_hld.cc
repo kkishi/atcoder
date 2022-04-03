@@ -28,18 +28,16 @@ void Main() {
     g.AddEdge(b, a, c);
   }
 
-  HeavyLightDecomposition hld(g);
+  HeavyLightDecomposition hld(g, attr_on_edge);
   MaxSegmentTree<int> t(n);
   rep(i, n) for (const auto& e : g.Edges(i)) {
-    int a = e.from, b = e.to, c = e.weight;
-    if (hld.Parent(a) != b) continue;
-    t.Set(hld.Index(a), c);
+    t.Set(hld.Index(i, e.to), e.weight);
   }
 
   V<int> ans(m);
   for (auto [c, a, b, i] : es) {
     int ma = -big;
-    each(l, r, hld.Query(a, b)) chmax(ma, t.Aggregate(l, r));
+    each(l, r, hld.Path(a, b)) chmax(ma, t.Aggregate(l, r));
     ans[i] = sum - ma + c;
   }
   rep(i, m) wt(ans[i]);

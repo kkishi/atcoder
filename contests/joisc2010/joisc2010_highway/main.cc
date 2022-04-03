@@ -16,7 +16,7 @@ void Main() {
     g.AddEdge(q, p);
     es.eb(p, q);
   }
-  HeavyLightDecomposition hld(g);
+  HeavyLightDecomposition hld(g, attr_on_edge);
   AddSegmentTree<int> up(n), down(n);
   rep(i, 1, n) {
     up.Set(i, 1);
@@ -32,18 +32,17 @@ void Main() {
         swap(s, t);
       }
       if (hld.Parent(q) == p) {
-        swap(p, q);
         swap(s, t);
       }
-      up.Set(hld.Index(p), s);
-      down.Set(hld.Index(p), t);
+      up.Set(hld.Index(p, q), s);
+      down.Set(hld.Index(p, q), t);
     } else {
       ints(x, y);
       --x, --y;
       int z = hld.LCA(x, y);
       int ans = 0;
-      each(l, r, hld.Query(x, z)) ans += up.Aggregate(l, r);
-      each(l, r, hld.Query(z, y)) ans += down.Aggregate(l, r);
+      each(l, r, hld.Path(x, z)) ans += up.Aggregate(l, r);
+      each(l, r, hld.Path(z, y)) ans += down.Aggregate(l, r);
       wt(ans);
     }
   }
