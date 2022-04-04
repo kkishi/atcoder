@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n);
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(a, b);
-    --a, --b;
-    g[a].pb(b);
-    g[b].pb(a);
-  }
+  Graph g(n);
+  g.Read();
   VV<int> ans(2);
   Fix([&](auto rec, int node, int parent, int color) -> void {
     ans[color].pb(node + 1);

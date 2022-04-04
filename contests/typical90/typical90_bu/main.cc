@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<>;
@@ -9,13 +10,8 @@ void Main() {
   ints(n);
   V<char> c(n);
   cin >> c;
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(a, b);
-    --a, --b;
-    g[a].pb(b);
-    g[b].pb(a);
-  }
+  Graph g(n);
+  g.Read();
   wt(Fix([&](auto rec, int node, int parent) -> V<mint> {
     V<mint> dp(4);
     dp[1 << (c[node] == 'a' ? 0 : 1)] = 1;

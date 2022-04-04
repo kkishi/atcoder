@@ -7,12 +7,7 @@
 void Main() {
   ints(n, m, r, t);
   WeightedGraph<int> g(n);
-  rep(m) {
-    ints(a, b, c);
-    --a, --b;
-    g[a].eb(b, c);
-    g[b].eb(a, c);
-  }
+  g.Read(m);
   int ans = 0;
   rep(i, n) {
     V<optional<int>> od = Dijkstra(g, i).dist;

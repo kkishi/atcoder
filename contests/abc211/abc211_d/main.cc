@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
 void Main() {
   ints(n, m);
-  VV<int> g(n);
-  rep(m) {
-    ints(a, b);
-    --a, --b;
-    g[a].pb(b);
-    g[b].pb(a);
-  }
+  Graph g(n);
+  g.Read(m);
   vector dist(n, big);
   vector dp(n, mint(0));
   queue<int> que;

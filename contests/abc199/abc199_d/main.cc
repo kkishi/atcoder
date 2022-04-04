@@ -6,12 +6,7 @@
 void Main() {
   ints(n, m);
   Graph g(n);
-  rep(m) {
-    ints(a, b);
-    --a, --b;
-    g[a].eb(b);
-    g[b].eb(a);
-  }
+  g.Read(m);
   int ans = 1;
   V<bool> seen(n);
   rep(i, n) if (!seen[i]) {

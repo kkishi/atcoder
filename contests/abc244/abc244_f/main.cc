@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m);
-  VV<int> g(n);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read(m);
   vector dp(n, vector(1 << n, big));
   rep(i, n) dp[i][1 << i] = 1;
   while (true) {

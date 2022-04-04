@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<>;
@@ -8,13 +9,8 @@ using mint = ModInt<>;
 void Main() {
   ints(n, a, b, m);
   --a, --b;
-  VV<int> to(n);
-  rep(m) {
-    ints(x, y);
-    --x, --y;
-    to[x].pb(y);
-    to[y].pb(x);
-  }
+  Graph to(n);
+  to.Read(m);
 
   V<int> dist(n, big);
   V<mint> cnt(n);

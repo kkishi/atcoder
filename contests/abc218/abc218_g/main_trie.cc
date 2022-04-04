@@ -2,18 +2,14 @@
 
 #include "atcoder.h"
 #include "binary_trie.h"
+#include "graph.h"
 
 void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read();
   BinaryTrie t;
   wt(Fix([&](auto rec, int node, int parent, int depth) -> int {
     t.Insert(a[node]);

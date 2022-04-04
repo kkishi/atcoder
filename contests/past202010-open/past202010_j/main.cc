@@ -35,10 +35,6 @@ void Main() {
       g[bc].eb(i, 0);
     }
   }
-  rep(m) {
-    ints(a, b, c);
-    g[a - 1].eb(b - 1, c);
-    g[b - 1].eb(a - 1, c);
-  }
+  g.Read(m);
   wt(*Dijkstra(g, 0).dist[n - 1]);
 }

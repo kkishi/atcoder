@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m, k, l);
@@ -8,13 +9,8 @@ void Main() {
   cin >> a >> b;
   each(e, a)-- e;
   each(e, b)-- e;
-  VV<pair<int, int>> g(n);
-  rep(m) {
-    ints(u, v, c);
-    --u, --v;
-    g[u].eb(v, c);
-    g[v].eb(u, c);
-  }
+  WeightedGraph<int> g(n);
+  g.Read(m);
   V<int> x(n, big);
   for (int i = 0; (1 << i) < k; ++i) {
     rep(group, 2) {

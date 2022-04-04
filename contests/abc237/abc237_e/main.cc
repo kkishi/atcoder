@@ -1,18 +1,14 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m);
   V<int> h(n);
   cin >> h;
-  VV<int> g(n);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    g[u].eb(v);
-    g[v].eb(u);
-  }
+  Graph g(n);
+  g.Read(m);
   vector dist(n, -big);
   dist[0] = 0;
   priority_queue<pair<int, int>> L, H;

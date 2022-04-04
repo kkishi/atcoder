@@ -10,12 +10,7 @@ void Main() {
   cin >> c;
   each(e, c)-- e;
   Graph g(n);
-  rep(n - 1) {
-    ints(a, b);
-    --a, --b;
-    g[a].eb(b);
-    g[b].eb(a);
-  }
+  g.Read();
   auto [in, out] = EulerTour(g);
   VV<int> v(n);
   rep(i, n) v[c[i]].eb(i);

@@ -2,16 +2,12 @@
 
 #include "atcoder.h"
 #include "binary_search.h"
+#include "graph.h"
 
 void Main() {
   ints(n, k);
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read();
   wt(BinarySearch<int>(n, 0, [&](int t) {
     auto [closest_marked, farthest_uncovered, sum_child_marked] =
         Fix([&](auto rec, int node, int parent) -> tuple<int, int, int> {

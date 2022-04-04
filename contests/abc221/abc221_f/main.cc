@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<998244353>;
 
 void Main() {
   ints(n);
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read();
   int maxi = 0;
   int maxi_n;
   Fix([&](auto rec, int node, int parent, int d) -> void {

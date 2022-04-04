@@ -6,12 +6,8 @@
 void Main() {
   ints(n, q);
   Graph g(n);
-  rep(n - 1) {
-    ints(a, b);
-    --a, --b;
-    g[a].eb(b);
-    g[b].eb(a);
-  }
+  g.Read();
+
   RootedTree rt(g);
   rep(q) {
     ints(c, d);

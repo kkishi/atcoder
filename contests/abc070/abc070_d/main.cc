@@ -6,16 +6,12 @@
 
 void Main() {
   ints(n);
-  WeightedGraph<int> g(n + 1);
-  rep(n - 1) {
-    ints(a, b, c);
-    g[a].eb(b, c);
-    g[b].eb(a, c);
-  }
+  WeightedGraph<int> g(n);
+  g.Read();
   ints(q, k);
-  V<optional<int>> dist = Dijkstra(g, k).dist;
+  V<optional<int>> dist = Dijkstra(g, k - 1).dist;
   rep(q) {
     ints(x, y);
-    wt(*dist[x] + *dist[y]);
+    wt(*dist[x - 1] + *dist[y - 1]);
   }
 }

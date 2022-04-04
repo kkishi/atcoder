@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
 void Main() {
   ints(n);
-  VV<int> to(n);
-  rep(n - 1) {
-    ints(x, y);
-    --x, --y;
-    to[x].pb(y);
-    to[y].pb(x);
-  }
+  Graph to(n);
+  to.Read();
   vector dp(n, vector(2, optional<mint>()));
   auto rec = Fix([&](auto rec, int n, int p, bool b) -> mint {
     auto& d = dp[n][b];

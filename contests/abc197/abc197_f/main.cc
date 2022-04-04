@@ -1,17 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m);
-  VV<pair<int, char>> v(n);
-  rep(m) {
-    ints(a, b);
-    rd(char, c);
-    --a, --b;
-    v[a].eb(b, c);
-    v[b].eb(a, c);
-  }
+  WeightedGraph<char> v(n);
+  v.Read(m);
   vector dist(n, vector(n, big));
   dist[0][n - 1] = 0;
   low_priority_queue<tuple<int, int, int>> que;

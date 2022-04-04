@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 class DisjointSet {
  public:
@@ -41,13 +42,8 @@ class DisjointSet {
 
 void Main() {
   ints(n, m, k);
-  VV<int> g(n);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read(m);
   V<int> s(n);
   cin >> s;
   each(e, s)-- e;

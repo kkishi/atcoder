@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(m);
-  VV<int> g(9);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(9);
+  g.Read(m);
   V<int> v;
   rep(8) {
     ints(p);

@@ -2,17 +2,13 @@
 
 #include "atcoder.h"
 #include "disjoint_set.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m, s);
   DisjointSet ds(n);
-  VV<int> to(n);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    to[u].pb(v);
-    to[v].pb(u);
-  }
+  Graph to(n);
+  to.Read(m);
   V<int> ans;
   rrep(i, n) {
     for (int j : to[i]) {

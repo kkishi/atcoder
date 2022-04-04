@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
 void Main() {
   ints(n);
-  VV<pair<int, int>> g(n);
-  rep(n - 1) {
-    ints(u, v, w);
-    --u, --v;
-    g[u].eb(v, w);
-    g[v].eb(u, w);
-  }
+  WeightedGraph<int> g(n);
+  g.Read();
   V<int> v(n);
   Fix([&](auto rec, int node, int parent, int value) -> void {
     v[node] = value;

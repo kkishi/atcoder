@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m);
-  VV<int> g(n);
-  rep(m) {
-    ints(a, b);
-    --a, --b;
-    g[a].pb(b);
-    g[b].pb(a);
-  }
+  Graph g(n);
+  g.Read(m);
   V<bool> hi(n);
   rep(i, n) hi[i] = sz(g[i]) * sz(g[i]) > n;
   VV<int> G(n);

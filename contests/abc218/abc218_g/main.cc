@@ -1,18 +1,14 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read();
   multiset<int> L, H;
   auto adjust = [&]() {
     while (sz(L) > sz(H) + 1) {

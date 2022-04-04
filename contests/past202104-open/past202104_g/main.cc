@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m, q);
-  VV<tuple<int, int>> to(n);
-  rep(m) {
-    ints(a, b, c);
-    --a, --b;
-    to[a].eb(b, c);
-    to[b].eb(a, c);
-  }
+  WeightedGraph<int> to(n);
+  to.Read(m);
   V<int> x(q);
   cin >> x;
 

@@ -1,20 +1,16 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<998244353>;
 
 void Main() {
   ints(n, m, k);
-  VV<int> g(n);
+  Graph g(n);
   rep(i, n) g[i].pb(i);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  g.Read(m);
   V<mint> dp(n);
   dp[0] = 1;
   rep(k) {

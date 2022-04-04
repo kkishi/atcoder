@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 int A[2 * 100000];
 int B[2 * 100000];
@@ -8,13 +9,8 @@ int B[2 * 100000];
 void Main() {
   ints(N, M);
 
-  VV<int> edges(N);
-  rep(i, M) {
-    ints(A, B);
-    --A, --B;
-    edges[A].pb(B);
-    edges[B].pb(A);
-  }
+  Graph edges(N);
+  edges.Read(M);
 
   map<int, int> prev;
   prev[0] = -1;

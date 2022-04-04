@@ -1,18 +1,14 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 int n, u, v;
 
 void Main() {
   cin >> n >> u >> v;
-  vector<vector<int>> edges(n);
-  rep(i, n - 1) {
-    ints(a, b);
-    --a, --b;
-    edges[a].pb(b);
-    edges[b].pb(a);
-  }
+  Graph edges(n);
+  edges.Read();
 
   map<int, int> aoki;
   aoki[v - 1] = 0;

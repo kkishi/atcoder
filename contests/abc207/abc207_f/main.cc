@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<>;
 
 void Main() {
   ints(n);
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read();
   V<int> sdp(n);
   vector dp(n, vector(2, vector(2, vector(n + 1, mint(0)))));
   Fix([&](auto rec, int node, int parent) -> void {

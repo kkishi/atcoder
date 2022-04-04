@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 #include "modint.h"
 
 using mint = ModInt<998244353>;
@@ -31,12 +32,7 @@ mint Solve(const VV<int>& g) {
 
 void Main() {
   ints(n, m);
-  VV<int> g(n);
-  rep(m) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read(m);
   wt(Solve(g));
 }

@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n);
-  VV<int> to(n);
-  rep(n - 1) {
-    ints(a, b);
-    --a, --b;
-    to[a].pb(b);
-    to[b].pb(a);
-  }
+  Graph to(n);
+  to.Read();
   auto rec = Fix([&to](auto rec, int n, int p) -> pair<int, int> {
     int node = n;
     int dist = 0;

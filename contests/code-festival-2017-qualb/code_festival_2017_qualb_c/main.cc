@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m);
-  VV<int> to(n);
-  rep(m) {
-    ints(a, b);
-    --a, --b;
-    to[a].pb(b);
-    to[b].pb(a);
-  }
+  Graph to(n);
+  to.Read(m);
   V<int> colors(n, -1);
   stack<pair<int, int>> stk;
   stk.push({0, 0});

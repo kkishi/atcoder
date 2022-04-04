@@ -2,18 +2,14 @@
 #include <pbds.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n);
   V<int> a(n);
   cin >> a;
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(u, v);
-    --u, --v;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
+  Graph g(n);
+  g.Read();
   Set<pair<int, int>> s;
   wt(Fix([&](auto rec, int node, int parent, int depth) -> int {
     s.insert({a[node], node});

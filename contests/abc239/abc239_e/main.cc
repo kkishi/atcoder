@@ -1,18 +1,14 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, q);
   V<int> x(n);
   cin >> x;
-  VV<int> g(n);
-  rep(n - 1) {
-    ints(a, b);
-    --a, --b;
-    g[a].pb(b);
-    g[b].pb(a);
-  }
+  Graph g(n);
+  g.Read();
   VV<int> top(n);
   Fix([&](auto rec, int node, int parent) -> V<int> {
     V<int>& t = top[node];

@@ -1,16 +1,12 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "graph.h"
 
 void Main() {
   ints(n, m);
-  VV<int> to(n);
-  rep(m) {
-    ints(a, b);
-    --a, --b;
-    to[a].pb(b);
-    to[b].pb(a);
-  }
+  Graph to(n);
+  to.Read(m);
   int a = to[0][0];
   V<bool> seen(n);
   seen[0] = true;

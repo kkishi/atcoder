@@ -5,14 +5,9 @@
 #include "lca.h"
 
 void Main() {
-  ints(N);
-  Graph g(N);
-  rep(N - 1) {
-    ints(x, y);
-    --x, --y;
-    g[x].eb(y);
-    g[y].eb(x);
-  }
+  ints(n);
+  Graph g(n);
+  g.Read();
 
   RootedTree t(g);
   ints(q);
