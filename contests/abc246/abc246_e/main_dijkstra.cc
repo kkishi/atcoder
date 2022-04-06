@@ -11,27 +11,27 @@ void Main() {
   int dx[] = {1, 1, -1, -1};
   int dy[] = {1, -1, 1, -1};
 
-  // 01BFS
+  // Dijkstra with pruning
   vector dist(n, vector(n, vector(4, big)));
-  deque<tuple<int, int, int, int>> que;
+  struct S {
+    int x, y, dir, dis;
+    bool operator<(const S& s) const { return dis > s.dis; }
+  };
+  priority_queue<S> que;
   rep(i, 4) {
     dist[ax][ay][i] = 1;
-    que.eb(ax, ay, i, 1);
+    que.push({ax, ay, i, 1});
   }
   while (!que.empty()) {
-    auto [x, y, dir, dis] = que.front();
-    que.pop_front();
+    auto [x, y, dir, dis] = que.top();
+    que.pop();
     rep(ndir, 4) {
-      int w = ndir != dir;
       int nx = x + dx[ndir];
       int ny = y + dy[ndir];
+      int ndis = dis + (ndir != dir);
       if (inside(nx, ny, n, n) && (s[nx][ny] == '.') &&
-          chmin(dist[nx][ny][ndir], dis + w)) {
-        if (w == 0) {
-          que.emplace_front(nx, ny, ndir, dis + w);
-        } else {
-          que.emplace_back(nx, ny, ndir, dis + w);
-        }
+          chmin(dist[nx][ny][ndir], ndis)) {
+        que.push({nx, ny, ndir, ndis});
       }
     }
   }
