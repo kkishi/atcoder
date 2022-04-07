@@ -1,23 +1,14 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-
-using P = pair<int, int>;
+#include "interval_scheduling.h"
 
 void Main() {
-  ints(n, m);
-  vector<P> v;
+  ints(_, m);
+  vector<pair<int, int>> v;
   rep(i, m) {
     ints(a, b);
-    v.pb({b, a});
+    v.eb(a, b);
   }
-  sort(v);
-  int ans = 0;
-  int last = 0;
-  for (auto [b, a] : v) {
-    if (a < last && last <= b) continue;
-    ++ans;
-    last = b;
-  }
-  wt(ans);
+  wt(IntervalScheduling(v));
 }
