@@ -7,8 +7,10 @@ void Main() {
   ints(n);
   vector a(n, vector(n, int(0)));
   cin >> a;
-  VV<optional<int>> dp = TravellingSalespersonProblem(a);
+  vector dp(1 << n, vector(n, big));
+  dp[1][0] = 0;
+  TravellingSalespersonProblem(dp, a);
   int ans = big;
-  rep(i, 1, n) chmin(ans, *dp[(1 << n) - 1][i] + a[i][0]);
+  rep(i, 1, n) chmin(ans, dp.back()[i] + a[i][0]);
   wt(ans);
 }
