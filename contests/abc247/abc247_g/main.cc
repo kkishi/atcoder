@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <min_cost_flow.h>
 
 #include <atcoder/mincostflow>
 
@@ -20,14 +21,10 @@ void Main() {
     g.add_edge(univ(a), prog(i), 1, big - c);
     g.add_edge(prog(i), good(b), 1, 0);
   }
-  V<pair<int, int>> slope = g.slope(s, t);
-  int k = slope.back().first;
-  wt(k);
-  rep(i, sz(slope) - 1) {
-    auto [x0, y0] = slope[i];
-    auto [x1, y1] = slope[i + 1];
-    rep(x, x0 + 1, x1 + 1) {
-      wt(x * big - (y0 + (y1 - y0) / (x1 - x0) * (x - x0)));
-    }
+  V<pair<int, int>> slope = InterpolateSlope(g.slope(s, t));
+  wt(sz(slope) - 1);
+  rep(i, 1, sz(slope)) {
+    auto [cap, cost] = slope[i];
+    wt(cap * big - cost);
   }
 }
