@@ -18,6 +18,9 @@ void Main() {
   vector dp(200001, vector(2, vector(2, mint(0))));
   dp[2][0][0] = 1;
   dp[2][1][1] = 1;
+  // z: whether the first element is covered
+  // p: whether the previous element is covered
+  // c: whether to cover the current and the previous element
   rep(i, 3, n + 1) rep(z, 2) rep(p, 2) rep(c, 2) if (p || c) {
     dp[i][z][c] += dp[i - 1][z][p];
   }
