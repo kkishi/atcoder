@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "rational.h"
 
 void Main() {
   ints(n, K);
@@ -26,57 +27,30 @@ void Main() {
     int dx = x[j] - x[i];
     int dy = y[j] - y[i];
     if (dx == 0 || dy == 0) continue;
-    int g = gcd(dx, dy);
-    dx /= g;
-    dy /= g;
-    if (dx < 0) {
-      dx = -dx;
-      dy = -dy;
-    }
+    Rational r = {dx, dy};
+    r.Normalize();
     {
-      int p = y[i] * dx - x[i] * dy;
-      int q = dx;
-      int g = gcd(p, q);
-      p /= g;
-      q /= g;
-      if (p < 0) {
-        p = -p;
-        q = -q;
-      }
-      auto [_, ok] = seen.emplace(P{dx, dy}, P{p, q});
-      if (!ok) continue;
+      if (!seen.emplace(r, Rational::Normalized(y[i] * dx - x[i] * dy, dx))
+               .second)
+        continue;
     }
-    st.eb(i, P{dx, dy});
+    st.eb(i, r);
   }
   vector cache(n, vector(n, P{}));
   rep(i, n) rep(j, n) {
     int dx = x[j] - x[i];
     int dy = y[j] - y[i];
     if (dx == 0 || dy == 0) continue;
-    int g = gcd(dx, dy);
-    dx /= g;
-    dy /= g;
-    if (dx < 0) {
-      dx = -dx;
-      dy = -dy;
-    }
-    cache[i][j] = P{dx, dy};
+    cache[i][j] = Rational::Normalized(dx, dy);
   }
-  V<set<P>> counted(n);
   each(I, q, st) {
     int cnt = 0;
     rep(i, n) {
-      if (i == I) {
-        ++cnt;
-        continue;
-      }
-      auto [dx, dy] = cache[i][I];
-      if (q == P{dx, dy}) {
+      if (i == I || q == cache[i][I]) {
         ++cnt;
       }
     }
     if (cnt >= K) ++ans;
-    continue;
   }
   wt(ans);
 }

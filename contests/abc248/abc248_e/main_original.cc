@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "rational.h"
 
 void Main() {
   ints(n, K);
@@ -25,14 +26,9 @@ void Main() {
     int dx = x[j] - x[i];
     int dy = y[j] - y[i];
     if (dx == 0 || dy == 0) continue;
-    int g = gcd(dx, dy);
-    dx /= g;
-    dy /= g;
-    if (dx < 0) {
-      dx = -dx;
-      dy = -dy;
-    }
-    slope[i][j] = {dx, dy};
+    Rational r = {dx, dy};
+    r.Normalize();
+    slope[i][j] = r;
   }
   rep(i, n) rep(j, n) if (j != i) {
     P s = slope[i][j];
