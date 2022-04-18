@@ -3,18 +3,16 @@
 #include "atcoder.h"
 #include "geometry.h"
 
-using Vec = Vector<double>;
-
 void Main() {
   ints(n);
-  V<Vec> a(n), b(n);
+  V<Point> a(n), b(n);
   cin >> a >> b;
-  auto f = [](const V<Vec>& v) {
-    Vec c;
+  auto f = [](const V<Point>& v) {
+    Point c;
     for (auto& vi : v) c += vi;
     c.x /= sz(v);
     c.y /= sz(v);
-    double ret = 0;
+    Float ret = 0;
     for (auto& vi : v) ret += (vi - c).Norm();
     return ret;
   };

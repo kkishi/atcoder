@@ -4,19 +4,16 @@
 #include "binary_search.h"
 #include "geometry.h"
 
-using Vec = Vector<double>;
-
 void Main() {
-  ints(N);
-  V<Vec> vec(N);
-  cin >> vec;
-  wt(BinarySearch<double>(10000000000, 0, [&](double mid) {
-    rep(i, N) rep(j, i) {
-      vector<Vec> vs =
-          (Circle<double>{vec[i], mid}).Intersections({vec[j], mid});
-      for (const Vec& v : vs) {
+  ints(n);
+  V<Point> p(n);
+  cin >> p;
+  wt(BinarySearch<Float>(10000000000, 0, [&](Float mid) {
+    rep(i, n) rep(j, i) {
+      vector<Point> vs = (Circle{p[i], mid}).Intersections({p[j], mid});
+      for (const Point& v : vs) {
         bool ok = true;
-        rep(k, N) if ((vec[k] - v).Norm() > mid + 1e-9) ok = false;
+        rep(k, n) if (Sign((p[k] - v).Norm() - mid) > 0) ok = false;
         if (ok) return true;
       }
     }

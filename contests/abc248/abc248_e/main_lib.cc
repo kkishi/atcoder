@@ -9,15 +9,13 @@ void Main() {
     wt("Infinity");
     return;
   }
-  using P = Vector<double>;
-  V<P> p(n);
+  V<Point> p(n);
   cin >> p;
 
   int ans = 0;
   vector counted(n, vector(n, false));
   rep(i, n) rep(j, i) if (!counted[i][j]) {
-    using L = Line<double>;
-    L l = {p[i], p[j]};
+    Line l = {p[i], p[j]};
     int cnt = 0;
     V<int> online;
     rep(k, n) if (Intersect(l, p[k])) {

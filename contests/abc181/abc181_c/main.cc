@@ -3,15 +3,13 @@
 #include "atcoder.h"
 #include "geometry.h"
 
-using Vec = Vector<int>;
-
 void Main() {
   ints(n);
-  V<Vec> v(n);
-  cin >> v;
+  V<Point> p(n);
+  cin >> p;
   bool ok = false;
-  rep(i, n) rep(j, i + 1, n) rep(k, j + 1, n) {
-    if (Cross(v[j] - v[i], v[k] - v[i]) == 0) ok = true;
+  rep(i, n) rep(j, i) rep(k, j) {
+    if (Intersect(Line{p[i], p[j]}, p[k])) ok = true;
   }
   wt(ok);
 }

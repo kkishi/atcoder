@@ -3,11 +3,9 @@
 #include "atcoder.h"
 #include "geometry.h"
 
-using Vec = Vector<double>;
-
 void Main() {
   ints(n);
-  vector<Vec> v(n);
+  vector<Point> v(n);
   cin >> v;
   sort(v);
   double sum = 0;

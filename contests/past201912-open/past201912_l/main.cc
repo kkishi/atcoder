@@ -4,12 +4,10 @@
 #include "disjoint_set.h"
 #include "geometry.h"
 
-using Vec = Vector<double>;
-
 void Main() {
   ints(n, m);
   int nm = n + m;
-  V<Vec> xy(nm);
+  V<Point> xy(nm);
   V<int> c(nm);
   rep(i, nm) cin >> xy[i] >> c[i];
 

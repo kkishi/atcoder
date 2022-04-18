@@ -4,18 +4,15 @@
 #include "binary_search.h"
 #include "geometry.h"
 
-using Vec = Vector<double>;
-using Circ = Circle<double>;
-
 int N, K;
-Vec p[60];
+Point p[60];
 double c[60];
 
 bool Ok(double t) {
-  vector<Vec> vs(p, p + N);
+  vector<Point> vs(p, p + N);
   auto Rad = [t](int i) { return t / c[i]; };
   rep(i, N) rep(j, i) {
-    Circ ci = {p[i], Rad(i)}, cj = {p[j], Rad(j)};
+    Circle ci = {p[i], Rad(i)}, cj = {p[j], Rad(j)};
     for (auto& v : ci.Intersections(cj)) {
       vs.pb(v);
     }

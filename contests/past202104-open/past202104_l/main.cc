@@ -4,28 +4,25 @@
 #include "disjoint_set.h"
 #include "geometry.h"
 
-using P = Vector<double>;
-using C = Circle<double>;
-
 void Main() {
   ints(n, m);
-  V<P> p(n);
+  V<Point> p(n);
   cin >> p;
-  V<C> c(m);
+  V<Circle> c(m);
   rep(i, m) cin >> c[i].center >> c[i].radius;
-  V<tuple<double, int, int>> e;
-  auto d = [](const P& a, const P& b) { return (a - b).Norm(); };
+  V<tuple<Float, int, int>> e;
+  auto d = [](const Point& a, const Point& b) { return (a - b).Norm(); };
   rep(i, n) rep(j, n) { e.eb(d(p[i], p[j]), i, j); }
   rep(i, n) rep(j, m) {
     e.eb(abs(d(p[i], c[j].center) - c[j].radius), i, n + j);
   }
   rep(i, m) rep(j, m) {
-    double cd = d(c[i].center, c[j].center);
-    double dist;
-    auto contains = [&](const C& a, const C& b) {
+    Float cd = d(c[i].center, c[j].center);
+    Float dist;
+    auto contains = [&](const Circle& a, const Circle& b) {
       return cd + b.radius <= a.radius;
     };
-    auto overlap = [&](const C& a, const C& b) {
+    auto overlap = [&](const Circle& a, const Circle& b) {
       return cd <= a.radius + b.radius;
     };
     if (contains(c[i], c[j])) {
@@ -41,10 +38,10 @@ void Main() {
   }
   sort(e);
 
-  double ans = big;
+  Float ans = big;
   rep(mask, 1 << m) {
     DisjointSet ds(n + m);
-    double sum = 0;
+    Float sum = 0;
     for (auto [dist, i, j] : e) {
       if (ds.Same(i, j)) continue;
       if (i >= n && hasbit(mask, i - n)) continue;
