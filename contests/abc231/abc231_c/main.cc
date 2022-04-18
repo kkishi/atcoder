@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "count.h"
 
 void Main() {
   ints(n, q);
@@ -9,6 +10,6 @@ void Main() {
   sort(a);
   rep(q) {
     ints(x);
-    wt(a.end() - lower_bound(all(a), x));
+    wt(CountGE(a, x));
   }
 }

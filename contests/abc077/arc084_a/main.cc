@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "count.h"
 
 void Main() {
   ints(n);
@@ -10,8 +11,8 @@ void Main() {
   sort(b);
   sort(c);
   V<int> dp(n + 1);
-  rep(i, n) dp[i + 1] = dp[i] + lower_bound(all(a), b[i]) - a.begin();
+  rep(i, n) dp[i + 1] = dp[i] + CountLT(a, b[i]);
   int ans = 0;
-  rep(i, n) ans += dp[lower_bound(all(b), c[i]) - b.begin()];
+  rep(i, n) ans += dp[CountLT(b, c[i])];
   wt(ans);
 }

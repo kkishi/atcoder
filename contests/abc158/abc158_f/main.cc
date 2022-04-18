@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "count.h"
 #include "modint.h"
 #include "segment_tree.h"
 
@@ -27,7 +28,7 @@ void Main() {
   dp[N] = 1;
   rrep(i, N) {
     Robot r = {robot[i].Destination(), 0};
-    int n = lower_bound(all(robot), r) - robot.begin();
+    int n = CountLT(robot, r);
     int m = tree.Aggregate(i, n);
     tree.Set(i, m);
 

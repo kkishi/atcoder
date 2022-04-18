@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "count.h"
 
 void Main() {
   ints(n, k);
@@ -9,7 +10,7 @@ void Main() {
     ints(p);
     sum[i] += p;
   }
-  V<int> v(all(sum));
+  V<int> v = sum;
   sort(v);
-  rep(i, n) wt((v.end() - lower_bound(all(v), sum[i] + 301)) < k);
+  rep(i, n) wt(CountGT(v, sum[i] + 300) < k);
 }

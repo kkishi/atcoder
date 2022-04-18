@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "count.h"
 
 void Main() {
   ints(n, k);
@@ -9,9 +10,6 @@ void Main() {
   vector<int> s(n + 1);
   rep(i, n) s[i + 1] = s[i] + a[i];
   int ans = 0;
-  rep(i, n) {
-    int j = lower_bound(all(s), s[i + 1] - k + 1) - s.begin();
-    ans += j;
-  }
+  rep(i, n) ans += CountLE(s, s[i + 1] - k);
   wt(ans);
 }
