@@ -23,6 +23,7 @@ var (
 	dryRun          = flag.Bool("dry_run", false, "If true, do not actually submit. Useful for excersizing the end to end workflow, especially the include preprocessing.")
 	compilationMode = flag.String("c", "opt", "Supported values: opt dbg prof")
 	useOJSubmit     = flag.Bool("use_oj_submit", false, "Whether to use oj for submission")
+	output          = flag.String("o", "a.out", "The name of the output binary file.")
 )
 
 func amalgamateCC(dir, base string) ([]byte, error) {
@@ -85,11 +86,12 @@ func buildCC(dir, base string) error {
 	case "prof":
 		args = append(args, "-O2", "-pg")
 	}
+	args = append(args, "-o", *output)
 	return runCommand(dir, "g++", append(args, base)...)
 }
 
 func buildGo(dir, base string) error {
-	return runCommand(dir, "go", "build", "-o", "a.out", base)
+	return runCommand(dir, "go", "build", "-o", *output, base)
 }
 
 func build(dir, base string) error {
@@ -110,7 +112,7 @@ func test(dir string) error {
 	} else {
 		timeLimit = "3"
 	}
-	return runCommand(dir, "oj", "t", "-t", timeLimit, "--mle", "1024", "-e", "0.000000001")
+	return runCommand(dir, "oj", "t", "-c", "./"+*output, "-t", timeLimit, "--mle", "1024", "-e", "0.000000001")
 }
 
 func submit(dir, base string) error {
