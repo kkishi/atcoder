@@ -15,7 +15,7 @@ done
 cd $1
 
 if [[ $clear = 1 ]]; then
-  rm test/random-*
+  rm -f test/random-*
 fi
 
 atcoder -o gen gen.cc
