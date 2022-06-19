@@ -20,13 +20,9 @@ void Main() {
       a[0][1] = mint::Comb(d - 1, i - 1);
       a[1][0] = mint::Comb(d - 1, i - 1);
       a[1][1] = mint::Comb(d - 1, i - 2);
-      M b = Pow(a, n - 1);
+      M b = Pow(a, n);
       V y = Mult(b, x);
-      rep(j, 2) {
-        int rem = i - v0 - j;
-        mint z = mint::Comb(d - 1, rem) * y[j][0];
-        ans += z;
-      }
+      ans += y[v0][0];
     }
   }
   wt(ans);
