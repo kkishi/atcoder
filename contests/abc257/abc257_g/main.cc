@@ -14,9 +14,5 @@ void Main() {
   rep(i, N) g[i + 1].eb(i, 0);
   rep(i, N) g[i].eb(i + z[sz(s) + 1 + i], 1);
   auto d = Dijkstra(g, 0).dist;
-  if (d[N]) {
-    wt(*d[N]);
-  } else {
-    wt(-1);
-  }
+  wt(d[N] ? *d[N] : -1);
 }

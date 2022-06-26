@@ -18,25 +18,23 @@ void Main() {
       g[v].eb(u, 1);
     }
   }
-  auto S = Dijkstra(g, 0).dist;
-  auto T = Dijkstra(g, n - 1).dist;
-  int su = big;
-  rep(i, n) if (S[i] && open[i]) chmin(su, *S[i]);
-  int tu = big;
-  rep(i, n) if (T[i] && open[i]) chmin(tu, *T[i]);
-  int sut = big;
-  if (su < big && tu < big) sut = su + 2 + tu;
-  if (S[n - 1]) chmin(sut, *S[n - 1]);
-  V<int> v;
-  rep(i, n) {
-    int ans = sut;
-    if (S[i]) chmin(ans, *S[i] + 1 + tu);
-    if (T[i]) chmin(ans, su + 1 + *T[i]);
-    if (ans == big) {
-      v.eb(-1);
-    } else {
-      v.eb(ans);
-    }
+  auto f = [&g](int s) {
+    V<int> w;
+    each(e, Dijkstra(g, s).dist) w.eb(e ? *e : big);
+    return w;
+  };
+  V<int> s = f(0), t = f(n - 1);
+  int su = big, tu = big;
+  rep(i, n) if (open[i]) {
+    chmin(su, s[i]);
+    chmin(tu, t[i]);
   }
-  wt(v);
+  V<int> ans;
+  rep(i, n) {
+    int x = min(s[n - 1],                // Do not use i
+                min(s[i], su + 1) +      // Min from 1 to i
+                    min(t[i], tu + 1));  // Min from i to n
+    ans.eb(x == big ? -1 : x);
+  }
+  wt(ans);
 }
