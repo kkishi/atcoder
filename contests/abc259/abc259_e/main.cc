@@ -17,14 +17,17 @@ void Main() {
     }
     v.eb(vi);
   }
-  each(k, v, mp) sort(v);
-  set<V<P>> st;
+  each(k, v, mp) {
+    v.eb(0);
+    sort(v);
+  }
+  set<V<int>> st;
   rep(i, n) {
-    V<P> vi;
+    V<int> vi;
     each(p, e, v[i]) {
       const auto& w = mp[p];
-      if (w.back() == e && (sz(w) == 1 || w[sz(w) - 2] < e)) {
-        vi.eb(p, w[sz(w) - 2]);
+      if (w.back() == e && w[sz(w) - 2] < e) {
+        vi.eb(p);
       }
     }
     st.insert(vi);
