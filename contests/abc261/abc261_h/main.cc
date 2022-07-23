@@ -52,6 +52,10 @@ void Main() {
           que.emplace(parent, !aoki);
         }
       }
+      // The current node represents Aoki's turn and it has a finite value.
+      // That means Takahashi's turns leading to this node can be finite.
+      // Rememeber such nodes so that we can continue the computation when que
+      // becomes empty.
       if (aoki) {
         each(parent, rg[node]) {
           if (dp[!aoki][parent] == -1) {
