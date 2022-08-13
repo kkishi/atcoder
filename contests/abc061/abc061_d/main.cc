@@ -21,7 +21,7 @@ void Main() {
   rep(i, m) if (rd[b[i]]) g[a[i]].eb(b[i], -c[i]);
 
   if (auto [e, ok] = BellmanFord(g, 0); ok) {
-    wt(-e[n - 1]);
+    wt(-*e[n - 1]);
   } else {
     wt("inf");
   }

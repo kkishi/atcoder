@@ -21,7 +21,7 @@ void Main() {
   rep(i, m) if (bgd[a[i]] == 0) g[a[i]].eb(b[i], p - c[i]);
 
   if (auto [d, ok] = BellmanFord(g, 0); ok) {
-    wt(max(-d[n - 1], 0LL));
+    wt(max(-*d[n - 1], 0LL));
   } else {
     wt(-1);
   }

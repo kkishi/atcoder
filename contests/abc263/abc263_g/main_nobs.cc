@@ -3,7 +3,6 @@
 #include <atcoder/maxflow>
 
 #include "atcoder.h"
-#include "binary_search.h"
 #include "primes.h"
 
 void Main() {
@@ -40,16 +39,7 @@ void Main() {
     return g.flow(s, t);
   };
 
-  if (one == 0) {
-    wt(flow(0));
-  } else {
-    int use;
-    if (flow(0) == flow(1)) {
-      use = 0;
-    } else {
-      use = BinarySearch<int>(1, one + 1,
-                              [&](int x) { return flow(x - 1) < flow(x); });
-    }
-    wt(flow(use) + (one - use) / 2);
-  }
+  int x = flow(0);
+  int y = flow(one);
+  wt(y + (one - (y - x)) / 2);
 }
