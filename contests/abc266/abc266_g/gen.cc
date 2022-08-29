@@ -6,7 +6,7 @@
 void Main() {
   Rand r;
   V<int> v;
-  rep(3) v.eb(r.Int(1, 2));
+  rep(3) v.eb(r.Int(1, 5));
   v.eb(r.Int(0, min(v[0], v[1])));
   wt(v);
 }
