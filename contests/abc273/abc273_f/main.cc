@@ -6,16 +6,18 @@ void Main() {
   ints(n, x);
   V<int> y(n), z(n);
   cin >> y >> z;
-  using P = tuple<int, int, int>;
-  V<P> v;
-  v.eb(0, -1, -1);
-  rep(i, n) v.eb(y[i], 0, i);
-  rep(i, n) v.eb(z[i], 1, i);
-  v.eb(x, 2, 2);
+  map<int, int> ym;
+  rep(i, n) ym[y[i]] = i;
+
+  V<int> v;
+  v.eb(0);
+  each(e, y) v.eb(e);
+  each(e, z) v.eb(e);
+  v.eb(x);
   sort(v);
-  int N = sz(v);
-  int init;
-  rep(i, sz(v)) if (get<0>(v[i]) == 0) init = i;
+
+  int init = lower_bound(all(v), 0) - v.begin();
+
   using S = tuple<int, int, int>;
   low_priority_queue<pair<int, S>> que;
   map<S, int> dist;
@@ -30,32 +32,29 @@ void Main() {
     que.pop();
     if (dist[s] < w) continue;
     auto [l, r, d] = s;
-    int pos = get<0>(v[(d == 0 ? l : r)]);
+    int pos = v[(d == 0 ? l : r)];
     if (pos == x) {
       wt(w);
       return;
     }
-    auto check = [&](int idx) -> bool {
-      int lp = get<0>(v[l]);
-      int rp = get<0>(v[r]);
-      return lp <= z[idx] && z[idx] <= rp;
+    auto check = [&](int ypos) -> bool {
+      auto it = ym.find(ypos);
+      if (it == ym.end()) return true;
+      int zpos = z[it->second];
+      return v[l] <= zpos && zpos <= v[r];
     };
     // Go left
     if (l - 1 >= 0) {
-      auto [npos, kind, idx] = v[l - 1];
-      if (kind != 0 || check(idx)) {
-        int nw = w + abs(pos - npos);
-        S ns = {l - 1, r, 0};
-        push(ns, nw);
+      auto npos = v[l - 1];
+      if (check(npos)) {
+        push({l - 1, r, 0}, w + pos - npos);
       }
     }
     // Go right
     if (r + 1 < sz(v)) {
-      auto [npos, kind, idx] = v[r + 1];
-      if (kind != 0 || check(idx)) {
-        int nw = w + abs(pos - npos);
-        S ns = {l, r + 1, 1};
-        push(ns, nw);
+      auto npos = v[r + 1];
+      if (check(npos)) {
+        push({l, r + 1, 1}, w + npos - pos);
       }
     }
   }
