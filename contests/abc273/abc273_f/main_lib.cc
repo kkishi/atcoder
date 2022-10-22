@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
-#include "dijkstra_generic.h"
+#include "dijkstra_unordered_map.h"
 
 void add(int& x, int y, int b) {
   x <<= b;
@@ -48,27 +48,26 @@ void Main() {
     auto [l, r, d] = unpack(s);
     return v[(d == 0 ? l : r)];
   };
-  unordered_map<S, int> dist =
-      Dijkstra<S, int>(pack(init, init, 0), [&](S s, auto push) {
-        auto [l, r, d] = unpack(s);
-        int pos = spos(s);
-        auto check = [&](int ypos) -> bool {
-          auto it = ym.find(ypos);
-          if (it == ym.end()) return true;
-          int zpos = z[it->second];
-          return v[l] <= zpos && zpos <= v[r];
-        };
-        // Go left
-        if (l - 1 >= 0) {
-          int npos = v[l - 1];
-          if (check(npos)) push(pack(l - 1, r, 0), pos - npos);
-        }
-        // Go right
-        if (r + 1 < sz(v)) {
-          int npos = v[r + 1];
-          if (check(npos)) push(pack(l, r + 1, 1), npos - pos);
-        }
-      });
+  auto dist = Dijkstra<S, int>(pack(init, init, 0), [&](S s, auto push) {
+    auto [l, r, d] = unpack(s);
+    int pos = spos(s);
+    auto check = [&](int ypos) -> bool {
+      auto it = ym.find(ypos);
+      if (it == ym.end()) return true;
+      int zpos = z[it->second];
+      return v[l] <= zpos && zpos <= v[r];
+    };
+    // Go left
+    if (l - 1 >= 0) {
+      int npos = v[l - 1];
+      if (check(npos)) push(pack(l - 1, r, 0), pos - npos);
+    }
+    // Go right
+    if (r + 1 < sz(v)) {
+      int npos = v[r + 1];
+      if (check(npos)) push(pack(l, r + 1, 1), npos - pos);
+    }
+  });
   int ans = big;
   each(s, c, dist) if (spos(s) == x) chmin(ans, c);
   if (ans == big) ans = -1;
