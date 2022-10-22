@@ -27,21 +27,17 @@ void Main() {
     int dx = x[j] - x[i];
     int dy = y[j] - y[i];
     if (dx == 0 || dy == 0) continue;
-    Rational r = {dx, dy};
-    r.Normalize();
-    {
-      if (!seen.emplace(r, Rational::Normalized(y[i] * dx - x[i] * dy, dx))
-               .second)
-        continue;
-    }
-    st.eb(i, r);
+    Rational r(dx, dy);
+    Rational s(y[i] * dx - x[i] * dy, dx);
+    if (!seen.emplace(r.ToPair(), s.ToPair()).second) continue;
+    st.eb(i, r.ToPair());
   }
   vector cache(n, vector(n, P{}));
   rep(i, n) rep(j, n) {
     int dx = x[j] - x[i];
     int dy = y[j] - y[i];
     if (dx == 0 || dy == 0) continue;
-    cache[i][j] = Rational::Normalized(dx, dy);
+    cache[i][j] = Rational(dx, dy).ToPair();
   }
   each(I, q, st) {
     int cnt = 0;

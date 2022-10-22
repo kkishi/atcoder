@@ -33,8 +33,8 @@ void Main() {
       ++b_zeros;
       continue;
     }
-    s1[Rational::Normalized(-b, a)]++;
-    s2[Rational::Normalized(a, b)]++;
+    s1[Rational(-b, a).ToPair()]++;
+    s2[Rational(a, b).ToPair()]++;
   }
 
   vector<P> groups;

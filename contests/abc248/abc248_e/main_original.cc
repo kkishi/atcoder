@@ -26,9 +26,7 @@ void Main() {
     int dx = x[j] - x[i];
     int dy = y[j] - y[i];
     if (dx == 0 || dy == 0) continue;
-    Rational r = {dx, dy};
-    r.Normalize();
-    slope[i][j] = r;
+    slope[i][j] = Rational(dx, dy).ToPair();
   }
   rep(i, n) rep(j, n) if (j != i) {
     P s = slope[i][j];
