@@ -5,10 +5,11 @@
 void Main() {
   ints(h, m);
   while (true) {
+    int a = h / 10;
     int b = h % 10;
     int c = m / 10;
     int d = m % 10;
-    int H = h - b + c;
+    int H = a * 10 + c;
     int M = b * 10 + d;
     if (H < 24 && M < 60) {
       wt(h, m);
