@@ -8,7 +8,7 @@ void Main() {
   cin >> a;
   multiset<int> l, r;
   int ls = 0, rs = 0;
-  rep(i, m) {
+  rep(i, m - 1) {
     l.insert(a[i]);
     ls += a[i];
   }
@@ -29,12 +29,18 @@ void Main() {
     }
   };
   V<int> ans;
-  int i = m;
-  while (true) {
+  rep(i, m - 1, n) {
+    int add = a[i];
+    if (l.empty() || *prev(l.end()) < add) {
+      rs += add;
+      r.insert(add);
+    } else {
+      ls += add;
+      l.insert(add);
+    }
     adjust();
     ans.eb(ls);
-    if (i == n) break;
-    int rem = a[i - m];
+    int rem = a[i - (m - 1)];
     if (auto it = l.find(rem); it != l.end()) {
       ls -= *it;
       l.erase(it);
@@ -43,15 +49,6 @@ void Main() {
       assert(it != r.end());
       rs -= *it;
       r.erase(it);
-    }
-    int add = a[i];
-    ++i;
-    if (l.empty() || *prev(l.end()) < add) {
-      rs += add;
-      r.insert(add);
-    } else {
-      ls += add;
-      l.insert(add);
     }
   }
   wt(ans);
