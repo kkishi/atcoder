@@ -6,10 +6,9 @@
 
 void Main() {
   ints(k);
-  auto fs = Factors(k);
   int N = 1000000000000LL;
   int ans = -big;
-  each(k, v, fs) {
+  each(k, v, Factors(k)) {
     int x = BinarySearch<int>(N, 1, [&](int x) {
       int cnt = 0;
       int p = k;
