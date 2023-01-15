@@ -14,7 +14,7 @@ struct S {
 S op(S l, S r) {
   if (l.left == -1) return r;
   if (r.left == -1) return l;
-  assert(l.right == r.left);
+  assert(l.right == r.left);  // Important: ACL ensures this.
   S m;
   m.sorted = l.sorted && r.sorted;
   int lmax = -big, rmin = big;
