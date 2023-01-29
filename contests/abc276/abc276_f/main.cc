@@ -19,7 +19,7 @@ void Main() {
     mint x = l * a[i] + h;
     ans += x * 2 + a[i];
     wt(ans / (i + 1) / (i + 1));
-    cnt.Set(a[i], cnt.Get(a[i]) + 1);
-    sum.Set(a[i], sum.Get(a[i]) + a[i]);
+    cnt.Add(a[i], 1);
+    sum.Add(a[i], a[i]);
   }
 }

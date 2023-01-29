@@ -26,10 +26,7 @@ void Main() {
   Compressor c(vs);
   int N = sz(c.coord);
   AddSegmentTree<int> cnt(N), val(N);
-  auto add = [&](AddSegmentTree<int>& t, int v, int x) {
-    int i = c(v);
-    t.Set(i, t.Get(i) + x);
-  };
+  auto add = [&](AddSegmentTree<int>& t, int v, int x) { t.Add(c(v), x); };
   rep(i, n) {
     add(cnt, a[i], b[i]);
     add(val, a[i], a[i] * b[i]);
