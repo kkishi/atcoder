@@ -10,15 +10,23 @@ void Main() {
 
   V<bool> removed(n, false);
   V<int> ans(n, -1);
-  V<int> sizes(n);
-  Fix([&](auto rec, int node, int subtree_size) -> int {
+  Fix([&](auto decompose, int node) -> int {
+    // Calculate the size of the subtree to which node belongs.
+    int subtree_size = 0;
+    Fix([&](auto rec, int node, int parent) -> void {
+      ++subtree_size;
+      each(child, g[node]) if (!removed[child] && child != parent) {
+        rec(child, node);
+      }
+    })(node, -1);
+
     // Find a centroid of the subtree to which node belongs.
     int centroid;
-    Fix([&](auto findCentroid, int node, int parent) -> int {
+    Fix([&](auto rec, int node, int parent) -> int {
       bool ok = true;
       int ret = 1;  // Size of the descendants of node.
       each(child, g[node]) if (!removed[child] && child != parent) {
-        int res = findCentroid(child, node);
+        int res = rec(child, node);
         ret += res;
         if (res > subtree_size / 2) ok = false;
       }
@@ -29,21 +37,11 @@ void Main() {
 
     removed[centroid] = true;
 
-    // Re-calculate the sizes of the subtrees newly created by removing the
-    // centroid.
-    Fix([&](auto rec, int node, int parent) -> void {
-      sizes[node] = 1;
-      each(child, g[node]) if (!removed[child] && child != parent) {
-        rec(child, node);
-        sizes[node] += sizes[child];
-      }
-    })(centroid, -1);
-
     each(child, g[centroid]) if (!removed[child]) {
-      int child_centroid = rec(child, sizes[child]);
+      int child_centroid = decompose(child);
       ans[child_centroid] = centroid + 1;
     }
     return centroid;
-  })(0, n);
+  })(0);
   wt(ans);
 }
