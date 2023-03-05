@@ -1,6 +1,6 @@
 module github.com/kkishi/atcoder
 
-go 1.14
+go 1.18
 
 require (
 	github.com/emirpasic/gods v1.12.0
@@ -9,3 +9,5 @@ require (
 	github.com/logrusorgru/aurora/v3 v3.0.0
 	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4
 )
+
+require golang.org/x/tools v0.0.0-20200925191224-5d1fdd8fa346 // indirect
