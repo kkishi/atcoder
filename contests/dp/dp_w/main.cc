@@ -1,23 +1,7 @@
 #include <bits/stdc++.h>
-
-#include <atcoder/lazysegtree>
+#include <lazysegtree.h>
 
 #include "atcoder.h"
-#include "modint.h"
-
-using S = int;
-
-S op(S a, S b) { return max(a, b); }
-
-S e() { return -big; }
-
-using F = int;
-
-S mapping(F f, S x) { return f + x; }
-
-F composition(F f, F g) { return f + g; }
-
-F id() { return 0; }
 
 // References:
 // * https://www.youtube.com/watch?v=niACBP9pHZU
@@ -31,7 +15,7 @@ void Main() {
     s[r].eb(l, a);
   }
 
-  atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> tree(n + 1);
+  add_max::segtree tree(n + 1);
   tree.set(0, 0);
   rep(i, 1, n + 1) {
     int sum = 0;
