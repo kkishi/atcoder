@@ -3,9 +3,6 @@
 
 #include "atcoder.h"
 
-// References:
-// * https://www.youtube.com/watch?v=niACBP9pHZU
-// * https://kyopro-friends.hatenablog.com/entry/2019/01/12/231106
 void Main() {
   ints(n, m);
 
