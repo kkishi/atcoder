@@ -13,7 +13,7 @@ void Main() {
     qs.eb(l - 1, r);
   }
 
-  V<int> v(200001);
+  V<i32> v(200001);
   int ans = 0;
   auto calc = [](int x) -> int {
     if (x < 3) return 0;
