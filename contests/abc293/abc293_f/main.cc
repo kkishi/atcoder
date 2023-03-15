@@ -23,7 +23,7 @@ void Main() {
     }
     rep(mask, 1 << 5) {
       auto calc = [&](int x) {
-        int sum = 0;
+        __int128_t sum = 0;
         rep(i, 5) {
           sum *= x;
           if (hasbit(mask, i)) sum += 1;
