@@ -18,21 +18,24 @@
 
 Xを作った後に余ったRとGからRGが一つも作られない並べ方を数えたい。これは、全体(全てのありうるRGBX列(元のRGB列でない事に注意))から余事象(1つ以上RGがある)を引けばよい。
 
-余事象を求めるには包除をする。RGBX列のうち`i個目の要素がRでi+1個目の要素がG`を満たす文字列の集合 $A_i$ を考えて、これらの和集合を求めればよい。
+余事象を求めるには包除をする。RGBX列のうち「i個目の要素がRでi+1個目の要素がG」を満たす文字列の集合 $A_i$ を考えて、これらの和集合を求めればよい。
 
 これを素朴に包除しようとすると以下が問題になる。
 
-* $A_i$ の積集合は $2^(R+G+B+X-1)$ 通りあるので、間に合わない。
-* i番目とi+1番目の条件が独立してないので、「i箇所RGと決め、他は自由」のようにしてまとめて数えるのが難しい。
+* $A_i$ の積集合は $2^{R+G+B+X-1}$ 通りあるので、間に合わない。
+* i番目とi+1番目の条件が独立してないので、「j箇所をRGと決め、他は自由に並べる方法をまとめて数える」などをするのが難しい。
 
 ここで以下の事実を利用する。
 
-* 「i箇所RGと決め、他は自由に並べる」数は、「新たに文字Yをi個作りRGをそれぞれi個ずつ減らして出来たRGBXY列を自由に並べる」数に等しい。
+> 「j箇所をRGと決め、他は自由に並べる方法」の数は、「新たに文字Yをj個作りRGをそれぞれj個ずつ減らして出来たRGBXY列を自由に並べる」数に等しい。
 
-これは前者それぞれに対応する後者が存在することから分かる。以上で`Aをi個選んで作られる積集合の要素数`がO(1)で求まるので、包除ができる。
+これは前者の各並び方に対応する後者が存在することから分かる。以上から「Aをi個選んで作られる積集合の要素数」がO(1)で求まり、包除が間に合う。
 
-R=3, G=3, B=0, K=1 の場合を具体的に示す。RGB列の並べ方は $ 6!/(3!*3!) = 20 $ 通りあり、そのうち条件を満たすのは9通りある。
+#### 具体例
 
+R=3, G=3, B=0, K=1 の場合を具体的に示す。RGB列の並べ方は $6!/(3! \times 3!) = 20$ 通りあり、そのうち条件を満たすのは9通りある。
+
+| RGB列  | i=RG? | o |
 |--------|-------|---|
 | GGGRRR | xxxxx | 0 |
 | GGRGRR | xxoxx | 1 |
@@ -55,51 +58,53 @@ R=3, G=3, B=0, K=1 の場合を具体的に示す。RGB列の並べ方は $ 6!/(
 | RRGRGG | xoxox | 2 |
 | RRRGGG | xxoxx | 1 |
 
-次にRGBX列で考える。並べ方は $ 5!/(2! \times 2! \times 1!) = 30 $ 通りある。
+次にRGBX列で考える。並べ方は $5!/(2! \times 2! \times 1!) = 30$ 通りある。
 
-GGRRX xxxx 0
-GGRXR xxxx 0
-GGXRR xxxx 0
-GRGRX xoxx 1
-GRGXR xoxx 1
-GRRGX xxox 1
-GRRXG xxxx 0
-GRXGR xxxx 0
-GRXRG xxxo 1
-GXGRR xxxx 0
-GXRGR xxox 1
-GXRRG xxxo 1
-RGGRX oxxx 1
-RGGXR oxxx 1
-RGRGX oxox 2
-RGRXG oxxx 1
-RGXGR oxxx 1
-RGXRG oxxo 2
-RRGGX xoxx 1
-RRGXG xoxx 1
-RRXGG xxxx 0
-RXGGR xxxx 0
-RXGRG xxxo 1
-RXRGG xxox 1
-XGGRR xxxx 0
-XGRGR xxox 1
-XGRRG xxxo 1
-XRGGR xoxx 1
-XRGRG xoxo 2
-XRRGG xxox 1
+| RGBX列| i=RG?| o|
+|-------|------|---|
+| GGRRX | xxxx | 0 |
+| GGRXR | xxxx | 0 |
+| GGXRR | xxxx | 0 |
+| GRGRX | xoxx | 1 |
+| GRGXR | xoxx | 1 |
+| GRRGX | xxox | 1 |
+| GRRXG | xxxx | 0 |
+| GRXGR | xxxx | 0 |
+| GRXRG | xxxo | 1 |
+| GXGRR | xxxx | 0 |
+| GXRGR | xxox | 1 |
+| GXRRG | xxxo | 1 |
+| RGGRX | oxxx | 1 |
+| RGGXR | oxxx | 1 |
+| RGRGX | oxox | 2 |
+| RGRXG | oxxx | 1 |
+| RGXGR | oxxx | 1 |
+| RGXRG | oxxo | 2 |
+| RRGGX | xoxx | 1 |
+| RRGXG | xoxx | 1 |
+| RRXGG | xxxx | 0 |
+| RXGGR | xxxx | 0 |
+| RXGRG | xxxo | 1 |
+| RXRGG | xxox | 1 |
+| XGGRR | xxxx | 0 |
+| XGRGR | xxox | 1 |
+| XGRRG | xxxo | 1 |
+| XRGGR | xoxx | 1 |
+| XRGRG | xoxo | 2 |
+| XRRGG | xxox | 1 |
 
 素朴に包除すると、
 
-A_1 = {RGGRY, RGGYR, RGRGY, RGRYG, RGYGR, RGYRG}  // o???
-A_2 = {GRGRY, GRGYR, RRGGY, RRGYG, YRGGR, YRGRG}  // ?o??
-A_3 = {GRRGY, GYRGR, RGRGY, RYRGG, YGRGR, YRRGG}  // ??o?
-A_4 = {GRYRG, GYRRG, RGYRG, RYGRG, YGRRG, YRGRG}  // ???o
-A_1 \bigcup A_2 = {}  // oo??
-A_1 \bigcup A_3 = {RGRGY}  // o?o?
-A_1 \bigcup A_4 = {RGYRG}  // o??o
-A_2 \bigcup A_3 = {}  // ?oo?
-A_2 \bigcup A_4 = {YRGRG}  // ?o?o
-A_3 \bigcup A_4 = {}  // ??oo
+$A_1 = {RGGRY, RGGYR, RGRGY, RGRYG, RGYGR, RGYRG}$  // o???
+$A_2 = {GRGRY, GRGYR, RRGGY, RRGYG, YRGGR, YRGRG}$  // ?o??
+$A_3 = {GRRGY, GYRGR, RGRGY, RYRGG, YGRGR, YRRGG}$  // ??o?
+$A_4 = {GRYRG, GYRRG, RGYRG, RYGRG, YGRRG, YRGRG}$  // ???o
+$A_1 \bigcup A_2 = {}$  // oo??
+$A_1 \bigcup A_3 = {RGRGY}$  // o?o?
+$A_1 \bigcup A_4 = {RGYRG}$  // o??o
+$A_2 \bigcup A_3 = {}$  // ?oo?
+$A_2 \bigcup A_4 = {YRGRG}$  // ?o?o
+$A_3 \bigcup A_4 = {}$  // ??oo
 
 から
 
