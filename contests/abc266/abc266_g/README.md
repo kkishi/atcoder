@@ -95,22 +95,31 @@ R=3, G=3, B=0, K=1 の場合を具体的に示す。RGB列の並べ方は $6!/(3
 
 素朴に包除すると、
 
-$A_1 = {RGGRY, RGGYR, RGRGY, RGRYG, RGYGR, RGYRG}$  // o???
-$A_2 = {GRGRY, GRGYR, RRGGY, RRGYG, YRGGR, YRGRG}$  // ?o??
-$A_3 = {GRRGY, GYRGR, RGRGY, RYRGG, YGRGR, YRRGG}$  // ??o?
-$A_4 = {GRYRG, GYRRG, RGYRG, RYGRG, YGRRG, YRGRG}$  // ???o
-$A_1 \bigcup A_2 = {}$  // oo??
-$A_1 \bigcup A_3 = {RGRGY}$  // o?o?
-$A_1 \bigcup A_4 = {RGYRG}$  // o??o
-$A_2 \bigcup A_3 = {}$  // ?oo?
-$A_2 \bigcup A_4 = {YRGRG}$  // ?o?o
-$A_3 \bigcup A_4 = {}$  // ??oo
+$A_1 = \\{RGGRX, RGGXR, RGRGX, RGRXG, RGXGR, RGXRG\\}$ `o???`
+
+$A_2 = \\{GRGRX, GRGXR, RRGGX, RRGXG, XRGGR, XRGRG\\}$ `?o??`
+
+$A_3 = \\{GRRGX, GXRGR, RGRGX, RXRGG, XGRGR, XRRGG\\}$ `??o?`
+
+$A_4 = \\{GRXRG, GXRRG, RGXRG, RXGRG, XGRRG, XRGRG\\}$ `???o`
+
+$A_1 \bigcup A_2 = \\{\\}$ `oo??`
+
+$A_1 \bigcup A_3 = \\{RGRGX\\}$ `o?o?`
+
+$A_1 \bigcup A_4 = \\{RGXRG\\}$ `o??o`
+
+$A_2 \bigcup A_3 = \\{\\}$ `?oo?`
+
+$A_2 \bigcup A_4 = \\{XRGRG\\}$ `?o?o`
+
+$A_3 \bigcup A_4 = \\{\\}$ `??oo`
 
 から
 
-余事象 = 6+6+6+6-(0+1+1+0+1+0) = 21
+$余事象 = 6+6+6+6-(0+1+1+0+1+0) = 21$
 
-従って、全体-余事象=30-21=9
+従って、 $全体-余事象=30-21=9$
 
 最後にまとめて数えられる事を確認する。
 
