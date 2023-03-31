@@ -12,23 +12,9 @@ void Main() {
     --p;
     parent[i + 1] = p;
   }
-  V<int> root(n);
   V<int> mini(n);
-  rep(i, n) {
-    root[i] = i;
-    mini[i] = i;
-  }
+  rep(i, n) mini[i] = i;
   DisjointSet ds(n);
-  auto findRoot = [&](int i) { return root[ds.Find(i)]; };
-  auto findMini = [&](int i) { return mini[ds.Find(i)]; };
-  auto merge = [&](int parent, int child) {
-    int p = ds.Find(parent);
-    int c = ds.Find(child);
-    ds.Union(parent, child);
-    int i = ds.Find(parent);
-    root[i] = root[p];
-    mini[i] = min(mini[p], mini[c]);
-  };
   ints(q);
   rep(q) {
     ints(kind);
@@ -36,14 +22,15 @@ void Main() {
       ints(u, v);
       --u, --v;
       while (!ds.Same(u, v)) {
-        int p = findRoot(parent[u]);
-        merge(p, u);
+        int mu = mini[ds.Find(u)];
+        int p = ds.Union(parent[u], u);
+        chmin(mini[p], mu);
         u = p;
       }
     } else {
       ints(x);
       --x;
-      wt(findMini(x) + 1);
+      wt(mini[ds.Find(x)] + 1);
     }
   }
 }
