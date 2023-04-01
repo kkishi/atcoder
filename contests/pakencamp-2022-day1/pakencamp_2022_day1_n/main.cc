@@ -8,26 +8,15 @@
 
 using mint = atcoder::modint;
 using vec = Matrix<mint, 2, 1>;
-struct S {
-  vec v;
-  int cnt;
-  bool operator==(const S& s) const { return v == s.v && cnt == s.cnt; }
-};
+using S = vec;
 
 namespace std {
 template <>
 struct hash<S> {
   inline size_t operator()(const S& s) const {
-    return std::hash<int>()((s.v[0][0].val() << 2) | s.cnt);
+    return std::hash<int>()(s[0][0].val());
   }
 };
-}  // namespace std
-
-namespace std {
-ostream& operator<<(ostream& os, mint m) {
-  os << m.val();
-  return os;
-}
 }  // namespace std
 
 void Main() {
@@ -44,31 +33,19 @@ void Main() {
       mat m = {{{a, b}, {0, 1}}};
       v.eb(m);
     }
-    mat cba = Mult(v[2], Mult(v[1], v[0]));
-
-    using X = int;
-    auto xx = [&](X l, X r) { return l + r; };
-
-    auto xs = [&](X x, S s) {
-      while (x) {
-        if (x >= 3 && s.cnt == 0) {
-          s.v = Mult(Pow(cba, x / 3), s.v);
-          x %= 3;
-        } else {
-          --x;
-          s.v = Mult(v[s.cnt], s.v);
-          s.cnt = (s.cnt + 1) % 3;
-        }
-      }
-      return s;
-    };
-    S ss = {vec{{{s}, {1}}}, 0};
 
     int ans = big;
     rep(i, 3) {
-      S tt = {vec{{{t}, {1}}}, i};
-      int n = BSGS<X, S>(1, ss, tt, p * 3, xx, xs);
-      if (n != -1) chmin(ans, n);
+      S ss = {{{s}, 1}};
+      rep(j, i) ss = Mult(v[j], ss);
+      S tt = {{{t}, 1}};
+      using X = mat;
+      X x = Identity<mint, 2>();
+      rep(j, 3) x = Mult(v[(i + j) % 3], x);
+      auto xx = [](X l, X r) { return Mult(l, r); };
+      auto xs = [](X x, S s) { return Mult(x, s); };
+      int n = BSGS<X, S>(x, ss, tt, p, xx, xs);
+      if (n != -1) chmin(ans, n * 3 + i);
     }
     if (ans == big) ans = -1;
     wt(ans);
