@@ -14,7 +14,7 @@ void Main() {
     Point d = {di, dj};
     bool ok2 = true;
     rep(4) {
-      if (!ok(p.x(), p.y())) ok2 = false;
+      if (!ok(p.x, p.y)) ok2 = false;
       p += d;
       d = Rot90(d);
     }
