@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "atcoder.h"
+#include "atcoder_yn.h"
 
-bool Solve() {
+bool Main() {
   ints(n);
   set<string> st = {"and", "not", "that", "the", "you"};
   rep(n) {
@@ -11,5 +11,3 @@ bool Solve() {
   }
   return false;
 }
-
-void Main() { wt(Solve()); }

@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
-#include "atcoder.h"
+#include "atcoder_yn.h"
 
-bool Solve() {
+bool Main() {
   ints(n, x);
   V<int> a(n);
   cin >> a;
@@ -10,5 +10,3 @@ bool Solve() {
   each(e, a) if (st.count(e + x)) return true;
   return false;
 }
-
-void Main() { wt(Solve()); }

@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 
-#include "atcoder.h"
+#include "atcoder_yn.h"
 #include "inversion_number.h"
 
-bool Solve() {
+bool Main() {
   ints(n);
   V<int> a(n), b(n);
   cin >> a >> b;
@@ -17,5 +17,3 @@ bool Solve() {
   rep(i, n) b[i] = mp[b[i]];
   return even(InversionNumber(b));
 }
-
-void Main() { wt(Solve()); }
