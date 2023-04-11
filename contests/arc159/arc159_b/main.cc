@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "atcoder.h"
+#include "divisors.h"
 
 void Main() {
   ints(a, b);
@@ -8,27 +9,22 @@ void Main() {
   int ans = 0;
   while (a >= 1 && b >= 1) {
     int g = gcd(a, b);
-    int na = a / g;
-    int nb = b / g;
-    int d = nb - na;
+    a /= g;
+    b /= g;
+    int d = b - a;
     if (d == 0) {
       ++ans;
       break;
     }
     if (d == 1) {
-      ans += na;
+      ans += a;
       break;
     }
-    int rem = na % d;
-    for (int i = 2; i * i <= d; ++i) {
-      if (d % i == 0) {
-        chmin(rem, na % i);
-        chmin(rem, na % (d / i));
-      }
-    }
+    int rem = big;
+    each(e, Divisors(d)) if (e != 1) chmin(rem, a % e);
     ans += rem;
-    a -= g * rem;
-    b -= g * rem;
+    a -= rem;
+    b -= rem;
   }
   wt(ans);
 }

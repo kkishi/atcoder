@@ -13,10 +13,8 @@ void Main() {
   rep(q) {
     ints(s, t);
     --s, --t;
-    s %= n;
-    t %= n;
-    int ans = a[s][t];
-    if (ans >= big) ans = -1;
+    int ans = a[s % n][t % n];
+    if (ans == big) ans = -1;
     wt(ans);
   }
 }
