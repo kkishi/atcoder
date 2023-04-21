@@ -1,15 +1,14 @@
+// This solution is probably correct, but it's too slow.
 #include <bits/stdc++.h>
 
-#include <atcoder/maxflow>
-
 #include "atcoder.h"
-#include "max_flow.h"
+#include "min_cost_flow.h"
 
 void Main() {
   ints(h, w);
   V<string> c(h);
   cin >> c;
-  MaxFlow mf;
+  MinCostFlow mcf;
 #define cell(r, c) ((r)*w + c)
 #define s cell(h, 0)
 #define t (s + 1)
@@ -18,12 +17,12 @@ void Main() {
     char C = c[i][j];
     int idx = cell(i, j);
     if (C == '2' || C == '?') {
-      int min_flow = C == '2' ? 1 : 0;
-      sum += min_flow;
+      int cost = C == '2' ? -1000000 : 0;
+      sum += cost;
       if (even(i + j)) {
-        mf.Add(s, idx, 1, min_flow);
+        mcf.Add(s, idx, 1, cost);
       } else {
-        mf.Add(idx, t, 1, min_flow);
+        mcf.Add(idx, t, 1, cost);
       }
       int di[] = {0, 1};
       int dj[] = {1, 0};
@@ -35,14 +34,15 @@ void Main() {
           int nidx = cell(ni, nj);
           if (D == '2' || D == '?') {
             if (even(i + j)) {
-              mf.Add(idx, nidx, 1);
+              mcf.Add(idx, nidx, 1, 0);
             } else {
-              mf.Add(nidx, idx, 1);
+              mcf.Add(nidx, idx, 1, 0);
             }
           }
         }
       }
     }
   }
-  wt(mf.Flow(s, t) != -1);
+  auto [_, cost] = mcf.Flow(s, t);
+  wt(cost == sum);
 }
