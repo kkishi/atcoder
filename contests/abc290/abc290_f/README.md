@@ -5,4 +5,6 @@
 
 # 解法
 
-TODO
+$$\sum_{K=1}^{N-2}(K+1) \times {N \choose K} \times {N-3 \choose K-1}$$
+
+は畳み込める。
