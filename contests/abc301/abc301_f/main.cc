@@ -43,7 +43,6 @@ void Main() {
     {
       mint d = dp[i][1];
       if (islower(s[i])) {
-        dbg(d * f(i + 1));
         ng += d * f(i + 1);
       }
       if (isupper(s[i])) dp[i + 1][1] += d;
