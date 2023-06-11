@@ -24,7 +24,7 @@ void Main() {
   V<int> ans(q, -1);
   V<int> query(q, -1);
   int last_wakeup = -1;
-  int slept = 0;
+  int awake = 0;
   each(e, v) {
     auto [time, kind, query_i] = e;
     if (kind == wakeup) {
@@ -35,25 +35,25 @@ void Main() {
       int d = time - last_wakeup;
       assert(d >= 0);
       last_wakeup = -1;
-      slept += d;
+      awake += d;
     } else if (kind == query_l) {
       if (last_wakeup != -1) {
-        slept += time - last_wakeup;
+        awake += time - last_wakeup;
         last_wakeup = time;
       }
       assert(0 <= query_i && query_i < q);
       assert(query[query_i] == -1);
-      query[query_i] = time - slept;
+      query[query_i] = time - awake;
     } else {
       assert(kind == query_r);
       assert(ans[query_i] == -1);
       if (last_wakeup != -1) {
-        slept += time - last_wakeup;
+        awake += time - last_wakeup;
         last_wakeup = time;
       }
       assert(0 <= query_i && query_i < q);
       assert(query[query_i] != -1);
-      ans[query_i] = time - slept - query[query_i];
+      ans[query_i] = time - awake - query[query_i];
     }
   }
   each(e, ans) wt(e);
