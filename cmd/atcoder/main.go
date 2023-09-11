@@ -77,7 +77,7 @@ func runCommand(dir, name string, arg ...string) error {
 }
 
 func buildCC(dir, base string) error {
-	args := []string{"-std=c++17"}
+	args := []string{"-std=c++23"}
 	switch *compilationMode {
 	case "opt":
 		args = append(args, "-O2", "-DDEBUG")

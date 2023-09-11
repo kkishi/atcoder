@@ -1,1 +1,1 @@
-((nil . ((flycheck-gcc-language-standard . "c++17"))))
+((nil . ((flycheck-gcc-language-standard . "c++23"))))
