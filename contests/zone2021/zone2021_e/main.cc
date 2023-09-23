@@ -23,9 +23,9 @@ void Main() {
       push(d, r, c, 0);
     } else {
       push(d + 1, r, c, 1);
-      push(d + b[r][c], r + 1, c, 0);
+      if (r < h - 1) push(d + b[r][c], r + 1, c, 0);
       push(d + a[r][c], r, c + 1, 0);
-      push(d + a[r][c - 1], r, c - 1, 0);
+      if (c > 0) push(d + a[r][c - 1], r, c - 1, 0);
     }
   }
   wt(dist[h - 1][w - 1][0]);

@@ -15,8 +15,8 @@ void Main() {
   rep(i, N) {
     V<bool> seen(N);
     // Number of (transitive) parent nodes.
-    int p = Fix([&](auto rec, int n) {
-              if (seen[n]) return int(0);
+    int p = Fix([&](auto rec, int n) -> int {
+              if (seen[n]) return 0;
               seen[n] = true;
               int ret = 1;
               rep(i, N) if (s[i][n] == '1') ret += rec(i);

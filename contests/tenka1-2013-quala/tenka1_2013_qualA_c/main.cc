@@ -35,7 +35,7 @@ void Main() {
   // for (auto& vsi : vs) dbg(vsi);
   set<V<int>> valid;
   V<int> seq;
-  Fix([&](auto rec) {
+  Fix([&](auto rec) -> void {
     valid.insert(seq);
     if (sz(seq) == 4) return;
     rep(i, sz(vs)) {

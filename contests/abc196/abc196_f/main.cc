@@ -44,7 +44,7 @@ void Main() {
       if (j == LT - 1 && szt_rem != 0) {
         x &= ~(0ULL) >> (B - szt_rem);
       }
-      sum += popcount(x ^ T[j]);
+      sum += popcount<int>(x ^ T[j]);
       // We already have a better answer, so we prune.
       if (sum >= ans) break;
     }
