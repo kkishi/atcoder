@@ -42,33 +42,21 @@ bool Main() {
     return;
   };
 
-  rep(r0, 4) {
-    p[0] = Rotate90(p[0]);
-    rep(r1, 4) {
-      p[1] = Rotate90(p[1]);
-      rep(r2, 4) {
-        p[2] = Rotate90(p[2]);
-        vector g(4, vector(4, int(0)));
-        rep(dr, -3, 4) rep(dc, -3, 4) {
-          if (fill(g, p[0], dr, dc)) {
-            rep(dr, -3, 4) rep(dc, -3, 4) {
-              if (fill(g, p[1], dr, dc)) {
-                rep(dr, -3, 4) rep(dc, -3, 4) {
-                  if (fill(g, p[2], dr, dc)) {
-                    bool ok = true;
-                    each(e, g) each(e, e) if (e == 0) ok = false;
-                    if (ok) return true;
-                  }
-                  defill(g, p[2], dr, dc);
-                }
-              }
-              defill(g, p[1], dr, dc);
-            }
-          }
-          defill(g, p[0], dr, dc);
+  vector g(4, vector(4, int(0)));
+  return Fix([&](auto rec, int depth) -> bool {
+    if (depth == 3) {
+      each(e, g) each(e, e) if (!e) return false;
+      return true;
+    }
+    rep(4) {
+      p[depth] = Rotate90(p[depth]);
+      rep(dr, -3, 4) rep(dc, -3, 4) {
+        if (fill(g, p[depth], dr, dc)) {
+          if (rec(depth + 1)) return true;
         }
+        defill(g, p[depth], dr, dc);
       }
     }
-  }
-  return false;
+    return false;
+  })(0);
 }

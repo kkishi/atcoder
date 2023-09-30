@@ -5,21 +5,17 @@
 #include "atcoder.h"
 
 struct S {
-  int li, ri;
-  int lv, rv;
-  int ll, rl;
-  int l0, l1;
-  int len() const { return ri - li + 1; };
+  int l;       // Length of the substring.
+  int lv, rv;  // Values of each end (0 or 1).
+  int ll, rl;  // Lengths of the contiguous values on each end (0s or 1s).
+  int l0, l1;  // Maximum lengths of 0s and 1s in the substring.
 };
 
-S E = S{-1, -1, -1, -1, -1, -1, -1, -1};
-
 S op(S a, S b) {
-  if (a.li == -1) return b;
-  if (b.li == -1) return a;
+  if (a.l == -1) return b;
+  if (b.l == -1) return a;
   S c;
-  c.li = a.li;
-  c.ri = b.ri;
+  c.l = a.l + b.l;
   c.lv = a.lv;
   c.rv = b.rv;
   c.ll = a.ll;
@@ -30,13 +26,13 @@ S op(S a, S b) {
     int len = a.rl + b.ll;
     if (a.rv == 0) chmax(c.l0, len);
     if (a.rv == 1) chmax(c.l1, len);
-    if (a.len() == a.rl) c.ll += b.ll;
-    if (b.len() == b.ll) c.rl += a.rl;
+    if (a.l == a.rl) c.ll += b.ll;
+    if (b.l == b.ll) c.rl += a.rl;
   }
   return c;
 };
 
-S e() { return E; };
+S e() { return S{-1, -1, -1, -1, -1, -1, -1}; };
 
 using F = int;
 
@@ -58,8 +54,8 @@ void Main() {
   strings(s);
   V<S> v(n);
   rep(i, n) {
-    int x = s[i] == '1';
-    v[i] = S{i, i, x, x, 1, 1, (x == 0), (x == 1)};
+    int x = s[i] - '0';
+    v[i] = S{1, x, x, 1, 1, !x, x};
   }
   atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> t(v);
   rep(q) {
