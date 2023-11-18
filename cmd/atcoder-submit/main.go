@@ -20,7 +20,7 @@ import (
 )
 
 var (
-	languageID           = flag.Int("language_id", 4003, "Default: 4003 (C++ (GCC 9.2.1))")
+	languageID           = flag.Int("language_id", 5028, "Default: 5028 (C++ 23 (gcc 12.2))")
 	refreshCSRFTokenOnly = flag.Bool("refresh_csrf_token_only", false, "If true, just refreshes csrf_token and exit.")
 )
 

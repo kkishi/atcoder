@@ -122,7 +122,7 @@ func submit(dir, base string) error {
 		var languageID string
 		switch filepath.Ext(base) {
 		case ".cc":
-			languageID = "4003"
+			languageID = "5028"
 		case ".go":
 			languageID = "4026"
 		default:
