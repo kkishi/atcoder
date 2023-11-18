@@ -6,7 +6,7 @@ void Main() {
   ints(n);
   using P = pair<int, int>;
   V<P> v(n);
-  rep(i, n) cin >> v[i].first >> v[i].second;
+  cin >> v;
   sort(v);
 
   int idx = 0;
