@@ -25,11 +25,7 @@ void Main() {
     if (s[i][j] != '.') continue;
     ++cnt;
     set<int> st;
-    int di[] = {0, 1, 0, -1};
-    int dj[] = {1, 0, -1, 0};
-    rep(d, 4) {
-      int ni = i + di[d];
-      int nj = j + dj[d];
+    each(ni, nj, adjacent(i, j)) {
       if (inside(ni, nj, h, w) && s[ni][nj] == '#') st.insert(ds.Find(ni, nj));
     }
     ans += base - sz(st) + 1;
